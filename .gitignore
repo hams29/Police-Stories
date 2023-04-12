@@ -58,3 +58,6 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+#UserSettingsファイルの除外設定
+UserSettings/
+
