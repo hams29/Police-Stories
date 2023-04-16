@@ -8,7 +8,7 @@ public class Movement : CoreComponent, ILogicUpdate
     public bool CanSetVelocity { get; set; }
     public Vector3 CurrentVelocity { get; private set; }
 
-    private Vector3 worlspace;
+    private Vector3 workspace;
 
     protected override void Awake()
     {
@@ -26,18 +26,17 @@ public class Movement : CoreComponent, ILogicUpdate
     #region Set Function
     public void SetVelocityZero()
     {
-        worlspace = Vector3.zero;
+        workspace = Vector3.zero;
         SetFinalVelocity();        
     }
-
     //TODO::Movement::‘±‚«
 
     private void SetFinalVelocity()
     {
         if(CanSetVelocity)
         {
-            myRB.velocity = worlspace;
-            CurrentVelocity = worlspace;
+            myRB.velocity = workspace;
+            CurrentVelocity = workspace;
         }
     }
 

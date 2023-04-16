@@ -36,7 +36,7 @@ public class PlayerInputHandler : MonoBehaviour
         CheckMeleeInputHoldTime();
     }
 
-    public void OnJumpInput(InputAction.CallbackContext context)
+    public void OnMoveInput(InputAction.CallbackContext context)
     {
         RawMovementInput = context.ReadValue<Vector2>();
 
