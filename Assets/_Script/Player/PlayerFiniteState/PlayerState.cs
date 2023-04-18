@@ -5,12 +5,17 @@ using UnityEngine;
 public class PlayerState
 {
     protected Core core;
+    protected Movement Movement { get => movement ?? core.GetCoreComponent(ref movement); }
+    private Movement movement;
 
     protected PlayerController player;
     protected PlayerStateMachine stateMachine;
     protected PlayerData playerData;
 
     protected float startTime;
+
+    protected int xInput;
+    protected int zInput;
 
     protected bool isAnimationFinished;
     protected bool isExitingState;
@@ -23,6 +28,7 @@ public class PlayerState
         this.stateMachine = stateMachine;
         this.playerData = playerData;
         this.animBoolName = animBoolName;
+        core = player.Core;
     }
 
     public virtual void Enter()
@@ -40,7 +46,8 @@ public class PlayerState
 
     public virtual void LogicUpdate()
     {
-
+        xInput = player.inputController.NormInputX;
+        zInput = player.inputController.NormInputZ;
     }
 
     public virtual void PhysicsUpdate()
