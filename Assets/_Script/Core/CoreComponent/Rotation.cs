@@ -14,7 +14,8 @@ public class Rotation : CoreComponent,ILogicUpdate
     protected override void Awake()
     {
         base.Awake();
-        myTran = GetComponentInParent<Transform>();
+        myTran = transform.parent.parent;
+        CanSetRotate = true;
     }
 
     public override void LogicUpdate()

@@ -23,6 +23,9 @@ public class PlayerController : MonoBehaviour
     public Animator Anim { get; private set; }
     public PlayerInputHandler inputController { get; private set; }
     public Core Core { get; private set; }
+
+    private Rotation Rotation { get => rotation ?? Core.GetCoreComponent(ref rotation); }
+    private Rotation rotation;
     #endregion
 
     #region Other Variables
@@ -61,11 +64,10 @@ public class PlayerController : MonoBehaviour
 
         var ray = Camera.main.ScreenPointToRay(inputController.MousePosition);
         plane.SetNormalAndPosition(Vector3.up, transform.localPosition);
-        if(plane.Raycast(ray,out distance))
+        if(plane.Raycast(ray,out distance) && stateMachine.CurrentState != RunState)
         {
-            var lookpoint = ray.GetPoint(distance);
-            //TODO::Rotationで処理
-            transform.LookAt(lookpoint);
+            Vector3 lookpoint = ray.GetPoint(distance);
+            Rotation.SetRotation(lookpoint);
         }
 
         //TODO::デバッグ用
