@@ -17,10 +17,16 @@ public class PlayerState
     protected int xInput;
     protected int zInput;
 
+    protected bool dashinput;
     protected bool isAnimationFinished;
     protected bool isExitingState;
+    protected bool canMelee;
+
+    protected Vector3 workspace;
 
     private string animBoolName;
+
+    private bool meleeInput;
 
     public PlayerState(PlayerController player,PlayerStateMachine stateMachine,PlayerData playerData,string animBoolName)
     {
@@ -36,6 +42,7 @@ public class PlayerState
         DoCheck();
         player.Anim.SetBool(animBoolName, true);
         isExitingState = false;
+        canMelee = true;
     }
 
     public virtual void Exit()
@@ -48,6 +55,12 @@ public class PlayerState
     {
         xInput = player.inputController.NormInputX;
         zInput = player.inputController.NormInputZ;
+        dashinput = player.inputController.DashInput;
+
+        meleeInput = player.inputController.MeleeInput;
+        //ãﬂê⁄çUåÇÇ…à⁄çs
+        if (meleeInput && canMelee)
+            stateMachine.ChangeState(player.MeleeState);
     }
 
     public virtual void PhysicsUpdate()

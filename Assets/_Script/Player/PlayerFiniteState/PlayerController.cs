@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     //各ステータス
     public PlayerIdle IdleState { get; private set; }
     public PlayerMove MoveState { get; private set; }
+    public PlayerRun RunState { get; private set; }
+    public PlayerMelee MeleeState { get; private set; }
     #endregion
 
     #region Component
@@ -25,6 +27,9 @@ public class PlayerController : MonoBehaviour
 
     #region Other Variables
     private Vector2 workspace;
+
+    private Plane plane = new Plane();
+    float distance = 0;
     #endregion
 
     #region Unity Callback Function
@@ -35,6 +40,8 @@ public class PlayerController : MonoBehaviour
 
         IdleState = new PlayerIdle(this, stateMachine, playerData, "idle");
         MoveState = new PlayerMove(this, stateMachine, playerData, "move");
+        RunState = new PlayerRun(this, stateMachine, playerData, "run");
+        MeleeState = new PlayerMelee(this, stateMachine, playerData, "melee");
     }
 
     private void Start()
@@ -51,6 +58,19 @@ public class PlayerController : MonoBehaviour
     {
         Core.LogicUpdate();
         stateMachine.CurrentState.LogicUpdate();
+
+        var ray = Camera.main.ScreenPointToRay(inputController.MousePosition);
+        plane.SetNormalAndPosition(Vector3.up, transform.localPosition);
+        if(plane.Raycast(ray,out distance))
+        {
+            var lookpoint = ray.GetPoint(distance);
+            //TODO::Rotationで処理
+            transform.LookAt(lookpoint);
+        }
+
+        //TODO::デバッグ用
+        if (Input.GetKeyDown(KeyCode.P) && stateMachine.CurrentState == MeleeState)
+            MeleeState.AnimationFinishTrigger();
     }
 
     private void FixedUpdate()

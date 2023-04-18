@@ -9,6 +9,8 @@ public class PlayerInputHandler : MonoBehaviour
     private Camera cam;
 
     public Vector3 RawMovementInput { get; private set; }
+
+    public Vector2 MousePosition { get; private set; }
     public int NormInputX { get; private set; }
     public int NormInputZ { get; private set; }
     
@@ -93,6 +95,13 @@ public class PlayerInputHandler : MonoBehaviour
 
         if (context.canceled)
             DashInput = false;
+    }
+
+    public void OnMousePosition(InputAction.CallbackContext context)
+    {
+        MousePosition = context.ReadValue<Vector2>();
+
+        Debug.Log(MousePosition);
     }
 
     public void UseReloadInput() => ReloadInput = false;

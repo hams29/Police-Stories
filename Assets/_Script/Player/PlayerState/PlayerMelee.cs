@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerIdle : PlayerState
+public class PlayerMelee : PlayerState
 {
-    public PlayerIdle(PlayerController player,PlayerStateMachine stateMachine,PlayerData playerData,string animBoolName) : base(player,stateMachine,playerData,animBoolName)
+    public PlayerMelee(PlayerController player,PlayerStateMachine stateMachine, PlayerData playerData,string animBoolName):base(player,stateMachine,playerData,animBoolName)
     {
-
     }
 
     public override void DoCheck()
@@ -17,29 +16,34 @@ public class PlayerIdle : PlayerState
     public override void Enter()
     {
         base.Enter();
-
+        isAnimationFinished = false;
         Movement?.SetVelocityZero();
     }
 
     public override void Exit()
     {
         base.Exit();
+
+        player.inputController.UseMeleeInput();
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
 
-        if(!isExitingState)
+
+        //近接攻撃モーション終了時次のステータスに移行
+        if(isAnimationFinished)
         {
-            //TODO::PlayerIdle::各ステータスへ移行
-            if(xInput != 0 || zInput != 0)
+            if (xInput != 0 || zInput != 0)
             {
                 if (dashinput)
                     stateMachine.ChangeState(player.RunState);
                 else
                     stateMachine.ChangeState(player.MoveState);
             }
+            else
+                stateMachine.ChangeState(player.IdleState);
         }
     }
 

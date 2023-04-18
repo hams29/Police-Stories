@@ -29,7 +29,12 @@ public class Movement : CoreComponent, ILogicUpdate
         workspace = Vector3.zero;
         SetFinalVelocity();        
     }
-    //TODO::Movement::‘±‚«
+
+    public void SetVelocity(Vector3 velocity,float speed)
+    {
+        workspace = velocity.normalized * speed;
+        SetFinalVelocity();
+    }
 
     private void SetFinalVelocity()
     {
