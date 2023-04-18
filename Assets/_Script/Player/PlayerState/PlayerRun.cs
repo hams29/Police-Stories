@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMove : PlayerState
+public class PlayerRun : PlayerState
 {
-    public PlayerMove(PlayerController player,PlayerStateMachine stateMachine,PlayerData playerData,string animBoolName):base(player,stateMachine,playerData,animBoolName)
+    public PlayerRun(PlayerController player,PlayerStateMachine stateMachine,PlayerData playerData, string animBoolName):base(player,stateMachine,playerData,animBoolName)
     {
     }
 
@@ -27,11 +27,10 @@ public class PlayerMove : PlayerState
     {
         base.LogicUpdate();
 
-        //別のステータスに移行
         if (xInput == 0 && zInput == 0)
             stateMachine.ChangeState(player.IdleState);
-        else if (dashinput)
-            stateMachine.ChangeState(player.RunState);
+        else if (!dashinput)
+            stateMachine.ChangeState(player.MoveState);
     }
 
     public override void PhysicsUpdate()
@@ -39,6 +38,6 @@ public class PlayerMove : PlayerState
         base.PhysicsUpdate();
 
         workspace = new Vector3(xInput, 0, zInput);
-        Movement?.SetVelocity(workspace, playerData.moveSpeed);
+        Movement?.SetVelocity(workspace, playerData.runSpeed);
     }
 }
