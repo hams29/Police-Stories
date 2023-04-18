@@ -39,5 +39,8 @@ public class PlayerRun : PlayerState
 
         workspace = new Vector3(xInput, 0, zInput);
         Movement?.SetVelocity(workspace, playerData.runSpeed);
+        Vector3 pos = player.transform.position;
+        workspace = new Vector3(workspace.x + pos.x, workspace.y + pos.y, workspace.z + pos.z);
+        Rotation.SetRotation(workspace);
     }
 }

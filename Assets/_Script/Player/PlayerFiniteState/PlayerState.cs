@@ -8,6 +8,9 @@ public class PlayerState
     protected Movement Movement { get => movement ?? core.GetCoreComponent(ref movement); }
     private Movement movement;
 
+    protected Rotation Rotation { get => rotation ?? core.GetCoreComponent(ref rotation); }
+    private Rotation rotation;
+
     protected PlayerController player;
     protected PlayerStateMachine stateMachine;
     protected PlayerData playerData;
