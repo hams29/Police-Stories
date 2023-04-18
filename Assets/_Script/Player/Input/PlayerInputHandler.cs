@@ -8,7 +8,7 @@ public class PlayerInputHandler : MonoBehaviour
     private PlayerInput playerInput;
     private Camera cam;
 
-    public Vector2 RawMovementInput { get; private set; }
+    public Vector3 RawMovementInput { get; private set; }
     public int NormInputX { get; private set; }
     public int NormInputZ { get; private set; }
     
@@ -36,12 +36,24 @@ public class PlayerInputHandler : MonoBehaviour
         CheckMeleeInputHoldTime();
     }
 
+    /*
     public void OnMoveInput(InputAction.CallbackContext context)
     {
         RawMovementInput = context.ReadValue<Vector2>();
 
         NormInputX = Mathf.RoundToInt(RawMovementInput.x);
         NormInputZ = Mathf.RoundToInt(RawMovementInput.y);
+    }   
+    */
+    
+    public void OnMoveInput(InputAction.CallbackContext context)
+    {
+        RawMovementInput = context.ReadValue<Vector3>();
+
+        Debug.Log(RawMovementInput);
+
+        NormInputX = Mathf.RoundToInt(RawMovementInput.x);
+        NormInputZ = Mathf.RoundToInt(RawMovementInput.z);
     }
 
     public void OnReloadInput(InputAction.CallbackContext context)

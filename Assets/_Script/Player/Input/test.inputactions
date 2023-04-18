@@ -1,5 +1,5 @@
 {
-    "name": "PlayerInput",
+    "name": "PlayerInputTest",
     "maps": [
         {
             "name": "Game",
@@ -9,7 +9,7 @@
                     "name": "Move",
                     "type": "Value",
                     "id": "93c96f9d-bc85-48fc-9dc9-bc0427a233b2",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "Vector3",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -77,9 +77,9 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "WASD",
-                    "id": "796b1458-a836-4c93-9127-09afce3c80c9",
-                    "path": "2DVector",
+                    "name": "3D Vector",
+                    "id": "bb26f786-8b73-4a19-84ee-f7bcb2b39d02",
+                    "path": "3DVector",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -89,44 +89,66 @@
                 },
                 {
                     "name": "up",
-                    "id": "d6787d09-25a2-4b2d-b382-c90909c27a15",
-                    "path": "<Keyboard>/w",
+                    "id": "df15d341-616d-47cd-8f10-0c8b64afb23a",
+                    "path": "",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard & Mouse",
+                    "groups": "",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "down",
-                    "id": "d0e4b854-816f-43e8-87fe-b2c6d16566da",
-                    "path": "<Keyboard>/s",
+                    "id": "e20fd194-52b9-40ce-b555-23ee38d147e7",
+                    "path": "",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard & Mouse",
+                    "groups": "",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "left",
-                    "id": "aaf097ae-ab1a-4d01-9c54-b91b0a6ef9ad",
+                    "id": "f14c8975-4d2e-4e6b-9c4c-c87f372c0ef9",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard & Mouse",
+                    "groups": "",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "right",
-                    "id": "61b5c2a6-8fc0-49c5-af52-53d041cbf0bd",
+                    "id": "f744d77b-5ba9-4600-97f1-83c5595f19ff",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard & Mouse",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "forward",
+                    "id": "c5380da7-ba4b-402f-8387-8e173604efa4",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "backward",
+                    "id": "ff89297f-cbb6-47d8-a894-c21abebe4663",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true

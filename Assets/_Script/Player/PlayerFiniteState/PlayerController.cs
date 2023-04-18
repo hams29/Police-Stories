@@ -6,6 +6,13 @@ public class PlayerController : MonoBehaviour
 {
     #region State Variables
     public PlayerStateMachine stateMachine { get; private set; }
+
+    [SerializeField]
+    private PlayerData playerData;
+
+    //各ステータス
+    public PlayerIdle IdleState { get; private set; }
+    public PlayerMove MoveState { get; private set; }
     #endregion
 
     #region Component
@@ -25,6 +32,9 @@ public class PlayerController : MonoBehaviour
     {
         Core = GetComponentInChildren<Core>();
         stateMachine = new PlayerStateMachine();
+
+        IdleState = new PlayerIdle(this, stateMachine, playerData, "idle");
+        MoveState = new PlayerMove(this, stateMachine, playerData, "move");
     }
 
     private void Start()
@@ -33,6 +43,8 @@ public class PlayerController : MonoBehaviour
         myColl = GetComponent<CapsuleCollider>();
         inputController = GetComponent<PlayerInputHandler>();
         Anim = GetComponent<Animator>();
+
+        stateMachine.Initialize(IdleState);
     }
 
     private void Update()
