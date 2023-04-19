@@ -16,11 +16,17 @@ public class PlayerRun : PlayerState
     public override void Enter()
     {
         base.Enter();
+
+        canMelee = false;
+        canShoot = false;
     }
 
     public override void Exit()
     {
         base.Exit();
+
+        canMelee = true;
+        canShoot = true;
     }
 
     public override void LogicUpdate()
