@@ -19,6 +19,7 @@ public class PlayerInputHandler : MonoBehaviour
     public bool ReloadInputStop { get; private set; }
     public bool MeleeInput { get; private set; }
     public bool MeleeInputStop { get; private set; }
+    public bool ShotInput { get; private set; }
 
     private float reloadInputStartTime;
     private float meleeInputStartTIme;
@@ -37,16 +38,6 @@ public class PlayerInputHandler : MonoBehaviour
         CheckReloadInputHoldTime();
         CheckMeleeInputHoldTime();
     }
-
-    /*
-    public void OnMoveInput(InputAction.CallbackContext context)
-    {
-        RawMovementInput = context.ReadValue<Vector2>();
-
-        NormInputX = Mathf.RoundToInt(RawMovementInput.x);
-        NormInputZ = Mathf.RoundToInt(RawMovementInput.y);
-    }   
-    */
     
     public void OnMoveInput(InputAction.CallbackContext context)
     {
@@ -100,8 +91,15 @@ public class PlayerInputHandler : MonoBehaviour
     public void OnMousePosition(InputAction.CallbackContext context)
     {
         MousePosition = context.ReadValue<Vector2>();
+    }
 
-        Debug.Log(MousePosition);
+    public void OnShotInput(InputAction.CallbackContext context)
+    {
+        if(context.started)
+            ShotInput = true;
+
+        if (context.canceled)
+            ShotInput = false;
     }
 
     public void UseReloadInput() => ReloadInput = false;
