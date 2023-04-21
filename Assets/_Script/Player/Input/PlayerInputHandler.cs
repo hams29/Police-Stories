@@ -104,6 +104,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void UseReloadInput() => ReloadInput = false;
     public void UseMeleeInput() => MeleeInput = false;
+    public void UseShotInput() => ShotInput = false;
 
     private void CheckReloadInputHoldTime()
     {

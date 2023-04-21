@@ -23,11 +23,10 @@ public class PlayerController : MonoBehaviour
     public Animator Anim { get; private set; }
     public PlayerInputHandler inputController { get; private set; }
     public Core Core { get; private set; }
+    public Inventory Inventory { get; private set; }
 
     private Rotation Rotation { get => rotation ?? Core.GetCoreComponent(ref rotation); }
     private Rotation rotation;
-
-    private Gun gun;
     #endregion
 
     #region Other Variables
@@ -55,7 +54,7 @@ public class PlayerController : MonoBehaviour
         myColl = GetComponent<CapsuleCollider>();
         inputController = GetComponent<PlayerInputHandler>();
         Anim = GetComponent<Animator>();
-        gun = GetComponentInChildren<Gun>();
+        Inventory = GetComponentInChildren<Inventory>();
 
         stateMachine.Initialize(IdleState);
     }
@@ -73,8 +72,6 @@ public class PlayerController : MonoBehaviour
             Rotation.SetRotation(lookpoint);
         }
 
-        CheckShot();
-
         //TODO::デバッグ用
         if (Input.GetKeyDown(KeyCode.P) && stateMachine.CurrentState == MeleeState)
             MeleeState.AnimationFinishTrigger();
@@ -89,11 +86,5 @@ public class PlayerController : MonoBehaviour
     #region Other Function
     private void AnimationTrigger() => stateMachine.CurrentState.AnimationTrigger();
     private void AnimationFinishTrigger() => stateMachine.CurrentState.AnimationFinishTrigger();
-
-    private void CheckShot()
-    {
-        if (inputController.ShotInput)
-            gun.Shot();
-    }
     #endregion
 }
