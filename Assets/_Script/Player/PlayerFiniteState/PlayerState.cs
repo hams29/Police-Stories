@@ -24,7 +24,7 @@ public class PlayerState
     protected bool isAnimationFinished;
     protected bool isExitingState;
     protected bool canMelee;
-    protected bool canShoot;
+    protected bool canShot;
 
     protected Vector3 workspace;
 
@@ -47,7 +47,7 @@ public class PlayerState
         player.Anim.SetBool(animBoolName, true);
         isExitingState = false;
         canMelee = true;
-        canShoot = true;
+        canShot = true;
     }
 
     public virtual void Exit()
@@ -76,4 +76,6 @@ public class PlayerState
     public virtual void DoCheck() { }
     public virtual void AnimationTrigger() { }
     public virtual void AnimationFinishTrigger() => isAnimationFinished = true;
+
+    public bool GetCanShot() { return canShot; }
 }
