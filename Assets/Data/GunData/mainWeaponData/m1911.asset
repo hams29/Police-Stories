@@ -15,4 +15,5 @@ MonoBehaviour:
   weaponName: M1911
   maxAmmo: 7
   shotReaction: 0
-  shotResponce: 0.5
+  shotWaitTime: 0.5
+  fullAuto: 1

@@ -14,6 +14,9 @@ public class mainWeaponData : ScriptableObject
     [Header("Weapon Shoot Reaction")]
     public float shotReaction = 0;
 
-    [Header("Weapon Responce")]
-    public float shotResponce = 0;
+    [Header("Weapon Shot Wait Time")]
+    public float shotWaitTime = 0;
+
+    [Header("FullAuto")]
+    public bool fullAuto = false;
 }

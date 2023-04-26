@@ -33,7 +33,9 @@ public class PlayerIdle : PlayerState
         if(!isExitingState)
         {
             //TODO::PlayerIdle::各ステータスへ移行
-            if(xInput != 0 || zInput != 0)
+            if (shotInput)
+                stateMachine.ChangeState(player.ShotState);
+            else if(xInput != 0 || zInput != 0)
             {
                 if (dashinput)
                     stateMachine.ChangeState(player.RunState);

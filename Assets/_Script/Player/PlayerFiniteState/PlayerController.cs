@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public PlayerMove MoveState { get; private set; }
     public PlayerRun RunState { get; private set; }
     public PlayerMelee MeleeState { get; private set; }
+    public PlayerShot ShotState { get; private set; }
     #endregion
 
     #region Component
@@ -24,6 +25,8 @@ public class PlayerController : MonoBehaviour
     public PlayerInputHandler inputController { get; private set; }
     public Core Core { get; private set; }
     public Inventory Inventory { get; private set; }
+    public GameObject mainWeapon { get; private set; }
+    public Gun gun { get; private set; }
 
     private Rotation Rotation { get => rotation ?? Core.GetCoreComponent(ref rotation); }
     private Rotation rotation;
@@ -46,6 +49,7 @@ public class PlayerController : MonoBehaviour
         MoveState = new PlayerMove(this, stateMachine, playerData, "move");
         RunState = new PlayerRun(this, stateMachine, playerData, "run");
         MeleeState = new PlayerMelee(this, stateMachine, playerData, "melee");
+        ShotState = new PlayerShot(this, stateMachine, playerData, "shot");
     }
 
     private void Start()
@@ -55,6 +59,7 @@ public class PlayerController : MonoBehaviour
         inputController = GetComponent<PlayerInputHandler>();
         Anim = GetComponent<Animator>();
         Inventory = GetComponentInChildren<Inventory>();
+        mainWeapon = Instantiate(Inventory.mainWeapon, GameObject.Find("handGunSet").transform);
 
         stateMachine.Initialize(IdleState);
     }
