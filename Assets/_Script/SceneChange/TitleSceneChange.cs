@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TitleSceneChange : SceneChange
 {
-    private void Update()
+    public void ChangeClick()
     {
         base.ChangeNextScene();
     }

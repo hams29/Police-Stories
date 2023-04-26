@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class GameOverSceneChange : SceneChange
 {
-    private void Update()
+
+    public void ChangeClick()
     {
         base.ChangeNextScene();
     }

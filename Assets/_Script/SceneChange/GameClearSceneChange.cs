@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameClearSceneChange : SceneChange
 {
-    private void Update()
+    public void ChangeClick()
     {
         base.ChangeNextScene();
     }

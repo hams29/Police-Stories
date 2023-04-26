@@ -5,11 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class SceneChange : MonoBehaviour
 {
+    public static string stageName;
     [SerializeField] protected string nextSceneName;
 
-
-    public void ChangeNextScene()
+    protected void ChangeNextScene()
     {
-        SceneManager.LoadScene(nextSceneName);
+        stageName = nextSceneName;
+        SceneManager.LoadScene(stageName);
     }
 }

@@ -5,10 +5,13 @@ using UnityEngine;
 public class WeaponSetSceneChange : SceneChange
 {
 
+    private void Awake()
+    {
+        nextSceneName = SelectStageName.stageName;
+    }
 
-    private void Update()
+    public void ChangeClick()
     {
         base.ChangeNextScene();
-        
     }
 }
