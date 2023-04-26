@@ -18,7 +18,6 @@ public class PlayerRun : PlayerState
         base.Enter();
 
         canMelee = false;
-        canShot = false;
     }
 
     public override void Exit()
@@ -26,7 +25,6 @@ public class PlayerRun : PlayerState
         base.Exit();
 
         canMelee = true;
-        canShot = true;
     }
 
     public override void LogicUpdate()

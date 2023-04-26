@@ -11,31 +11,42 @@ public class Gun : MonoBehaviour
     [SerializeField]
     private GameObject shotAmmoPrefab;
 
-    [SerializeField]
     private bool fullAuto;
 
     private float shotTime;
 
-    public int[] currentAmmo { get; private set; } = new int[3];
+    public int[] currentMagazine { get; private set; } = new int[3];
+    private int nowMagazine;
 
     private void Start()
     {
-        for (int i = 0; i > currentAmmo.Length; i++)
-            currentAmmo[i] = weaponData.maxAmmo;
+        for (int i = 0; i < currentMagazine.Length; i++)
+            currentMagazine[i] = weaponData.maxAmmo;
+
+        fullAuto = weaponData.fullAuto;
+        nowMagazine = 0;
+        shotTime = 0;
     }
 
     public void Shot()
     {
-        if(Time.time > shotTime + weaponData.shotResponce)
+        Debug.Log("Time.time : " + Time.time);
+        Debug.Log("shotTime : " + shotTime);
+        if (Time.time > shotTime + weaponData.shotWaitTime && currentMagazine[nowMagazine] > 0)
         {
             shotTime = Time.time;
             //TODO::Gun::Œ‚‚Á‚½‚Ìˆ—
+            currentMagazine[nowMagazine]--;
             Vector3 pos = GameObject.Find("gunMuzzle").transform.position;
-            GameObject shot = Instantiate(shotAmmoPrefab, pos, Quaternion.identity);
-
+            //TODO::Gun::’e‚ğ¶¬‚·‚é‚Æ‚«‚ÌŒü‚«‚Ìˆ—
+            GameObject shot = Instantiate(shotAmmoPrefab, pos, Quaternion.Euler(new Vector3(0,90,0)));
+            shot.GetComponent<Rigidbody>().AddForce(this.transform.right * 1.5f, ForceMode.Impulse);
             Debug.Log("bang!!");
         }
     }
 
     public bool GetFullAuto() { return fullAuto; }
+
+    public float GetShotTime() { return shotTime; }
+    public int GetCurrentMagazineAmmo() { return currentMagazine[nowMagazine]; }
 }

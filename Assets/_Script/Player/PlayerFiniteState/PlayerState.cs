@@ -21,10 +21,10 @@ public class PlayerState
     protected int zInput;
 
     protected bool dashinput;
+    protected bool shotInput;
     protected bool isAnimationFinished;
     protected bool isExitingState;
     protected bool canMelee;
-    protected bool canShot;
 
     protected Vector3 workspace;
 
@@ -47,7 +47,6 @@ public class PlayerState
         player.Anim.SetBool(animBoolName, true);
         isExitingState = false;
         canMelee = true;
-        canShot = true;
     }
 
     public virtual void Exit()
@@ -60,6 +59,7 @@ public class PlayerState
     {
         xInput = player.inputController.NormInputX;
         zInput = player.inputController.NormInputZ;
+        shotInput = player.inputController.ShotInput;
         dashinput = player.inputController.DashInput;
 
         meleeInput = player.inputController.MeleeInput;
@@ -76,6 +76,4 @@ public class PlayerState
     public virtual void DoCheck() { }
     public virtual void AnimationTrigger() { }
     public virtual void AnimationFinishTrigger() => isAnimationFinished = true;
-
-    public bool GetCanShot() { return canShot; }
 }
