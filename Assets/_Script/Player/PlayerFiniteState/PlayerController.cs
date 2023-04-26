@@ -60,6 +60,7 @@ public class PlayerController : MonoBehaviour
         Anim = GetComponent<Animator>();
         Inventory = GetComponentInChildren<Inventory>();
         mainWeapon = Instantiate(Inventory.mainWeapon, GameObject.Find("handGunSet").transform);
+        gun = mainWeapon.GetComponent<Gun>();
 
         stateMachine.Initialize(IdleState);
     }

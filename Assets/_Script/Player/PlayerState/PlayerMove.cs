@@ -28,7 +28,7 @@ public class PlayerMove : PlayerState
         base.LogicUpdate();
 
         //別のステータスに移行
-        if (shotInput)
+        if (shotInput && player.gun.GetCurrentMagazineAmmo() <= 0)
             stateMachine.ChangeState(player.ShotState);
         else if (xInput == 0 && zInput == 0)
             stateMachine.ChangeState(player.IdleState);
