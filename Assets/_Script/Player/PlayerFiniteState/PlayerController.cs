@@ -60,6 +60,7 @@ public class PlayerController : MonoBehaviour
         Anim = GetComponent<Animator>();
         Inventory = GetComponentInChildren<Inventory>();
         mainWeapon = Instantiate(Inventory.mainWeapon, GameObject.Find("handGunSet").transform);
+        gun = mainWeapon.GetComponent<Gun>();
 
         stateMachine.Initialize(IdleState);
     }
@@ -77,6 +78,8 @@ public class PlayerController : MonoBehaviour
             Rotation.SetRotation(lookpoint);
         }
 
+        AnimationInputValueSet();
+
         //TODO::デバッグ用
         if (Input.GetKeyDown(KeyCode.P) && stateMachine.CurrentState == MeleeState)
             MeleeState.AnimationFinishTrigger();
@@ -91,5 +94,13 @@ public class PlayerController : MonoBehaviour
     #region Other Function
     private void AnimationTrigger() => stateMachine.CurrentState.AnimationTrigger();
     private void AnimationFinishTrigger() => stateMachine.CurrentState.AnimationFinishTrigger();
+
+    private void AnimationInputValueSet()
+    {
+        Anim.SetFloat("inputForward", inputController.NormInputZ);
+        Anim.SetFloat("inputRight", inputController.NormInputX);
+        Anim.SetFloat("playerDirectionX", this.gameObject.transform.forward.x);
+        Anim.SetFloat("playerDirectionZ", this.gameObject.transform.forward.z);
+    }
     #endregion
 }
