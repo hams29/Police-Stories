@@ -97,8 +97,13 @@ public class PlayerController : MonoBehaviour
 
     private void AnimationInputValueSet()
     {
-        Anim.SetFloat("inputForward", inputController.NormInputZ);
-        Anim.SetFloat("inputRight", inputController.NormInputX);
+        //TODO::PlayerCOntroller::プレイヤーの向きによってアニメーションの変更
+        Vector3 forward = this.gameObject.transform.forward;
+        forward = new Vector3(forward.x, 0, forward.z).normalized;
+
+        Anim.SetFloat("inputForward", inputController.NormInputZ * forward.z);
+        Anim.SetFloat("inputRight", inputController.NormInputX * forward.x);
+
         Anim.SetFloat("playerDirectionX", this.gameObject.transform.forward.x);
         Anim.SetFloat("playerDirectionZ", this.gameObject.transform.forward.z);
     }

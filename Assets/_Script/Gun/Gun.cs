@@ -40,7 +40,7 @@ public class Gun : MonoBehaviour
             Vector3 pos = GameObject.Find("gunMuzzle").transform.position;
             //TODO::Gun::’e‚ğ¶¬‚·‚é‚Æ‚«‚ÌŒü‚«‚Ìˆ—
             GameObject shot = Instantiate(shotAmmoPrefab, pos, Quaternion.Euler(new Vector3(0,90,0)));
-            shot.GetComponent<Rigidbody>().AddForce(this.transform.right * 1.5f, ForceMode.Impulse);
+            shot.GetComponent<Rigidbody>().AddForce(this.transform.right * weaponData.ammoSpeed, ForceMode.Impulse);
             Debug.Log("bang!!");
         }
     }

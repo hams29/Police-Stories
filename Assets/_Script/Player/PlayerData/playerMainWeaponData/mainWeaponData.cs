@@ -19,4 +19,7 @@ public class mainWeaponData : ScriptableObject
 
     [Header("FullAuto")]
     public bool fullAuto = false;
+
+    [Header("Ammo Speed")]
+    public float ammoSpeed = 20.0f;
 }
