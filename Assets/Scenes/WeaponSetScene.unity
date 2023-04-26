@@ -133,14 +133,13 @@ GameObject:
   m_Component:
   - component: {fileID: 105096640}
   - component: {fileID: 105096641}
-  - component: {fileID: 105096642}
   m_Layer: 0
   m_Name: sceneManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &105096640
 Transform:
   m_ObjectHideFlags: 0
@@ -168,21 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a96c565e9484b3e4ba128b09034bd783, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextSceneName: Stage1Scene
---- !u!114 &105096642
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 105096639}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 442ecdeaf414aa044aac025b7e0f998a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectStageName:
-  - Stage1Scene
+  nextSceneName: 
 --- !u!1 &353331771
 GameObject:
   m_ObjectHideFlags: 0
@@ -790,8 +775,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 105096641}
-        m_TargetAssemblyTypeName: SceneChange, Assembly-CSharp
-        m_MethodName: ChangeNextScene
+        m_TargetAssemblyTypeName: WeaponSetSceneChange, Assembly-CSharp
+        m_MethodName: ChangeClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

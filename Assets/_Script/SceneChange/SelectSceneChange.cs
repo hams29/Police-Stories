@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class SelectSceneChange : SceneChange
 {
-
-    public void SelectSceneNext()
+    public void ChangeClick()
     {
         base.ChangeNextScene();
     }

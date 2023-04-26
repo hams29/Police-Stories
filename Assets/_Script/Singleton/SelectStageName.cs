@@ -4,10 +4,19 @@ using UnityEngine;
 
 public class SelectStageName : MonoBehaviour
 {
-    [SerializeField] private string[] selectStageName;
-    int selectNo = 0;
+
+    public static string stageName;
+
+    [SerializeField] private string[] nextStageName;
+
+    private int sceneNo;
 
 
-    public string GetStageName() => selectStageName[selectNo];
+    public void SetStage()
+    {
+        
+        sceneNo = SelectStageChange.sceneId;
+        stageName = nextStageName[sceneNo];
+    }
 
 }
