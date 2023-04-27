@@ -35,7 +35,9 @@ public class PlayerIdle : PlayerState
             //TODO::PlayerIdle::各ステータスへ移行
             if (shotInput && player.gun.GetCurrentMagazineAmmo() > 0)
                 stateMachine.ChangeState(player.ShotState);
-            else if(xInput != 0 || zInput != 0)
+            else if (reloadInput)
+                stateMachine.ChangeState(player.ReloadState);
+            else if (xInput != 0 || zInput != 0)
             {
                 if (dashinput)
                     stateMachine.ChangeState(player.RunState);

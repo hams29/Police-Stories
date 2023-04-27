@@ -30,6 +30,8 @@ public class PlayerMove : PlayerState
         //別のステータスに移行
         if (shotInput && player.gun.GetCurrentMagazineAmmo() <= 0)
             stateMachine.ChangeState(player.ShotState);
+        else if (reloadInput)
+            stateMachine.ChangeState(player.ReloadState);
         else if (xInput == 0 && zInput == 0)
             stateMachine.ChangeState(player.IdleState);
         else if (dashinput)
