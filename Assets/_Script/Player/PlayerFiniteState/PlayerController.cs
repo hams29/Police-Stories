@@ -103,8 +103,11 @@ public class PlayerController : MonoBehaviour
         Vector3 forward = this.gameObject.transform.forward;
         forward = new Vector3(forward.x, 0, forward.z).normalized;
 
-        Anim.SetFloat("inputForward", inputController.NormInputZ * forward.z);
-        Anim.SetFloat("inputRight", inputController.NormInputX * forward.x);
+        float inputForward = inputController.NormInputZ * forward.z;
+        float inputRight = inputController.NormInputX * forward.x;
+
+        Anim.SetFloat("inputForward", inputForward);
+        Anim.SetFloat("inputRight", inputRight);
 
         Anim.SetFloat("playerDirectionX", this.gameObject.transform.forward.x);
         Anim.SetFloat("playerDirectionZ", this.gameObject.transform.forward.z);
