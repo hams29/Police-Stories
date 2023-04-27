@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     public PlayerRun RunState { get; private set; }
     public PlayerMelee MeleeState { get; private set; }
     public PlayerShot ShotState { get; private set; }
+    public PlayerReload ReloadState { get; private set; }
     #endregion
 
     #region Component
@@ -50,6 +51,7 @@ public class PlayerController : MonoBehaviour
         RunState = new PlayerRun(this, stateMachine, playerData, "run");
         MeleeState = new PlayerMelee(this, stateMachine, playerData, "melee");
         ShotState = new PlayerShot(this, stateMachine, playerData, "shot");
+        ReloadState = new PlayerReload(this, stateMachine, playerData, "reload");
     }
 
     private void Start()

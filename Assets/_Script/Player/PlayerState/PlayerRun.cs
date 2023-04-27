@@ -31,7 +31,9 @@ public class PlayerRun : PlayerState
     {
         base.LogicUpdate();
 
-        if (xInput == 0 && zInput == 0)
+        if (reloadInput)
+            stateMachine.ChangeState(player.ReloadState);
+        else if (xInput == 0 && zInput == 0)
             stateMachine.ChangeState(player.IdleState);
         else if (!dashinput)
             stateMachine.ChangeState(player.MoveState);

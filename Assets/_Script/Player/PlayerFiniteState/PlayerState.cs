@@ -22,6 +22,7 @@ public class PlayerState
 
     protected bool dashinput;
     protected bool shotInput;
+    protected bool reloadInput;
     protected bool isAnimationFinished;
     protected bool isExitingState;
     protected bool canMelee;
@@ -61,6 +62,7 @@ public class PlayerState
         zInput = player.inputController.NormInputZ;
         shotInput = player.inputController.ShotInput;
         dashinput = player.inputController.DashInput;
+        reloadInput = player.inputController.ReloadInput;
 
         meleeInput = player.inputController.MeleeInput;
         //ãﬂê⁄çUåÇÇ…à⁄çs

@@ -30,8 +30,8 @@ public class Gun : MonoBehaviour
 
     public void Shot()
     {
-        Debug.Log("Time.time : " + Time.time);
-        Debug.Log("shotTime : " + shotTime);
+        //Debug.Log("Time.time : " + Time.time);
+        //Debug.Log("shotTime : " + shotTime);
         if (Time.time > shotTime + weaponData.shotWaitTime && currentMagazine[nowMagazine] > 0)
         {
             shotTime = Time.time;
@@ -49,4 +49,15 @@ public class Gun : MonoBehaviour
 
     public float GetShotTime() { return shotTime; }
     public int GetCurrentMagazineAmmo() { return currentMagazine[nowMagazine]; }
+
+    public void Reload()
+    {
+        if (nowMagazine + 1 >= 3)
+            nowMagazine = 0;
+        else
+            nowMagazine++;
+
+        Debug.Log("now magazine is " + nowMagazine);
+        Debug.Log("magazine current ammo is " + currentMagazine[nowMagazine]);
+    }
 }
