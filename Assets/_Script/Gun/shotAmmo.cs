@@ -7,24 +7,39 @@ public class shotAmmo : MonoBehaviour
     [SerializeField]
     private LayerMask ammoAble;
 
-    private float damage;
+    private float ammoDamage;
 
     private void Awake()
     {
-        damage = 0;
+        ammoDamage = 0;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (CompareLayer(ammoAble,other.gameObject.layer))
         {
-            other.gameObject.GetComponentInChildren<Damage>().addDamage(damage);
-            Debug.Log("Hit!!");
-            Destroy(this.gameObject);
+            Core core = other.GetComponentInChildren<Core>();
+            if (core == null)
+                return;
+
+            States states = null;
+            Damage damage = null;
+            core.GetCoreComponent(ref states);
+            core.GetCoreComponent(ref damage);
+
+            if (states == null || damage == null)
+                return;
+
+            if(!states.dead)
+            {
+                damage.addDamage(ammoDamage);
+                Debug.Log("Hit!!");
+                Destroy(this.gameObject);
+            }
         }
     }
 
-    public void SetDamageValue(float damage) => this.damage = damage;
+    public void SetDamageValue(float damage) => this.ammoDamage = damage;
 
     private bool CompareLayer(LayerMask layerMask, int layer)
     {

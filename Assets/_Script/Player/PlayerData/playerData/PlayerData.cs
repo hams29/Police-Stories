@@ -14,4 +14,8 @@ public class PlayerData : ScriptableObject
 
     [Header("Reload Move State")]
     public float reloadMoveSpeed = 1.5f;
+
+    [Header("Melee")]
+    public float meleeDamage = 50.0f;
+    public float meleeDistance = 5.0f;
 }
