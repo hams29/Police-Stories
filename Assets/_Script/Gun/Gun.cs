@@ -44,7 +44,7 @@ public class Gun : MonoBehaviour
             GameObject shot = Instantiate(shotAmmoPrefab, pos, Quaternion.Euler(new Vector3(0,90,0)));
             Instantiate(muzzleFlash,pos,Quaternion.Euler(new Vector3(0,0,0)));
             //shot.GetComponent<Rigidbody>().AddForce(this.transform.right * weaponData.ammoSpeed, ForceMode.Impulse);
-            shot.GetComponent<Rigidbody>().AddForce(transform.root.transform.forward * weaponData.ammoSpeed, ForceMode.Impulse);
+            shot.GetComponent<Rigidbody>().AddForce(transform.root.transform.forward * weaponData.ammoSpeed + new Vector3(Random.Range(Mathf.Abs(weaponData.shotReaction) * -1,Mathf.Abs(weaponData.shotReaction)),0, Random.Range(Mathf.Abs(weaponData.shotReaction) * -1, Mathf.Abs(weaponData.shotReaction))), ForceMode.Impulse);
             shot.GetComponent<shotAmmo>().SetDamageValue(weaponData.shotDamage);
             //ÉJÉÅÉâÇóhÇÁÇ∑
             var source = GetComponent<Cinemachine.CinemachineImpulseSource>();
