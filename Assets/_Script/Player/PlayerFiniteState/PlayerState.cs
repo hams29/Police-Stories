@@ -11,6 +11,9 @@ public class PlayerState
     protected Rotation Rotation { get => rotation ?? core.GetCoreComponent(ref rotation); }
     private Rotation rotation;
 
+    protected States States { get => states ?? core.GetCoreComponent(ref states); }
+    private States states;
+
     protected PlayerController player;
     protected PlayerStateMachine stateMachine;
     protected PlayerData playerData;
@@ -68,6 +71,11 @@ public class PlayerState
         //‹ßÚUŒ‚‚ÉˆÚs
         if (meleeInput && canMelee)
             stateMachine.ChangeState(player.MeleeState);
+
+        if(States.dead)
+        {
+            stateMachine.ChangeState(player.DeadState);
+        }
     }
 
     public virtual void PhysicsUpdate()
