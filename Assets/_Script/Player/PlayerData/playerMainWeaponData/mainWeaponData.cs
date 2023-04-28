@@ -22,4 +22,7 @@ public class mainWeaponData : ScriptableObject
 
     [Header("Ammo Speed")]
     public float ammoSpeed = 20.0f;
+
+    [Header("Damage")]
+    public float shotDamage = 20.0f;
 }

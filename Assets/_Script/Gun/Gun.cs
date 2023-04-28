@@ -38,11 +38,10 @@ public class Gun : MonoBehaviour
             //TODO::Gun::Œ‚‚Á‚½‚Ìˆ—
             currentMagazine[nowMagazine]--;
             Vector3 pos = GameObject.Find("gunMuzzle").transform.position;
-            //TODO::Gun::’e‚ğ¶¬‚·‚é‚Æ‚«‚ÌŒü‚«‚Ìˆ—
             GameObject shot = Instantiate(shotAmmoPrefab, pos, Quaternion.Euler(new Vector3(0,90,0)));
             //shot.GetComponent<Rigidbody>().AddForce(this.transform.right * weaponData.ammoSpeed, ForceMode.Impulse);
             shot.GetComponent<Rigidbody>().AddForce(transform.root.transform.forward * weaponData.ammoSpeed, ForceMode.Impulse);
-
+            shot.GetComponent<shotAmmo>().SetDamageValue(weaponData.shotDamage);
             //ƒJƒƒ‰‚ğ—h‚ç‚·
             var source = GetComponent<Cinemachine.CinemachineImpulseSource>();
             source.GenerateImpulse();
