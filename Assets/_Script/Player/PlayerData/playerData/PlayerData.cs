@@ -12,7 +12,8 @@ public class PlayerData : ScriptableObject
     public float moveSpeed = 5.0f;
     public float runSpeed = 8.0f;
 
-    [Header("Reload Move State")]
+    [Header("Shot Move State")]
+    public float shotMoveSpeed = 1.5f;
     public float reloadMoveSpeed = 1.5f;
 
     [Header("Melee")]
