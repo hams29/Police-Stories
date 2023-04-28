@@ -21,6 +21,7 @@ public class Damage : CoreComponent, ILogicUpdate
     public void addDamage(float damage)
     {
         States.addDamage(damage);
+        Debug.Log(transform.root.gameObject.name + " is " + damage + "damage");
     }
     #endregion
 }
