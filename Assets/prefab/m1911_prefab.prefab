@@ -398,6 +398,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: f710e7f7acffd37419de259d48710f71, type: 2}
   shotAmmoPrefab: {fileID: 8967325426568925108, guid: 2ea3ef17f5a06ce46a07fd2f1c11c0c9, type: 3}
+  muzzleFlash: {fileID: 8275732551370029512, guid: f0852a0a5194c384c86496890fb423fc, type: 3}
 --- !u!114 &365619161
 MonoBehaviour:
   m_ObjectHideFlags: 0
