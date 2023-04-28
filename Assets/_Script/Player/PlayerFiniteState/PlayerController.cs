@@ -106,6 +106,8 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("currentHP is " + States.currentHP);
             }
 
+            Vector3 pos = new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z);
+            Debug.DrawRay(pos, gameObject.transform.forward, Color.blue, playerData.meleeDistance);
         }
     }
 
