@@ -48,6 +48,6 @@ public class PlayerShot : PlayerState
         base.PhysicsUpdate();
 
         workspace = new Vector3(xInput, 0, zInput);
-        Movement?.SetVelocity(workspace, playerData.moveSpeed);
+        Movement?.SetVelocity(workspace, playerData.shotMoveSpeed);
     }
 }
