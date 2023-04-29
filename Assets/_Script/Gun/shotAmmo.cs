@@ -21,7 +21,7 @@ public class shotAmmo : MonoBehaviour
         if (other.gameObject == shotObject)
             return;
 
-        if (CompareLayer(ammoAble,other.gameObject.layer))
+        if (CompareLayer(ammoAble, other.gameObject.layer))
         {
             Core core = other.GetComponentInChildren<Core>();
             if (core == null)
@@ -35,13 +35,15 @@ public class shotAmmo : MonoBehaviour
             if (states == null || damage == null)
                 return;
 
-            if(!states.dead)
+            if (!states.dead)
             {
                 damage.addDamage(ammoDamage);
                 Debug.Log("Hit!!");
+                Destroy(this.gameObject);
             }
         }
-        Destroy(this.gameObject);
+        else
+            Destroy(this.gameObject);
     }
 
     public void SetDamageValue(float damage) => this.ammoDamage = damage;

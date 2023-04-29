@@ -28,6 +28,10 @@ public class FunSearch : MonoBehaviour
                         //視界内に収まっている場合
                         SetShow(other.gameObject);
                     }
+                    else if(hit.collider.gameObject.layer == other.gameObject.layer)
+                    {
+                        SetShow(other.gameObject);
+                    }
                     else
                     {
                         //ターゲットとプレイヤーの間に別のオブジェクトが入った場合
