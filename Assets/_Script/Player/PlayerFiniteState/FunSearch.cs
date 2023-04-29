@@ -15,7 +15,8 @@ public class FunSearch : MonoBehaviour
             Vector3 posDelta = other.transform.position - this.transform.position;
             float target_angle = Vector3.Angle(this.transform.forward,posDelta);
 
-            if(target_angle < angle) //target_angleがangleに収まっているかどうか
+            //target_angleがangleに収まっているかどうか
+            if (target_angle < angle) 
             {
                 Vector3 pos = new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z);
                 Debug.DrawRay(pos, posDelta, Color.red, 0.5f);
@@ -24,20 +25,59 @@ public class FunSearch : MonoBehaviour
                 {
                     if(hit.collider == other)
                     {
-                        //Coreの取得
-                        Core otherCore = other.transform.GetComponentInChildren<Core>();
-                        if(otherCore != null)
-                        {
-                            //CoreComponentの取得
-                            Show otherShow = null;
-                            otherCore.GetCoreComponent(ref otherShow);
-                            if(otherShow != null)
-                            {
-                                otherShow.ShowObject();
-                            }
-                        }
+                        //視界内に収まっている場合
+                        SetShow(other.gameObject);
+                    }
+                    else
+                    {
+                        //ターゲットとプレイヤーの間に別のオブジェクトが入った場合
+                        SetBlind(other.gameObject);
                     }
                 }
+            }
+            else
+            {
+                //角度内に収まっていない場合
+                SetBlind(other.gameObject);
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.gameObject.tag == "target")
+        {
+            //視界からターゲットが抜けた場合
+            SetBlind(other.gameObject);
+        }
+    }
+
+    private void SetBlind(GameObject other)
+    {
+        Core otherCore = other.GetComponentInChildren<Core>();
+        if (otherCore != null)
+        {
+            //CoreComponentの取得
+            Show otherShow = null;
+            otherCore.GetCoreComponent(ref otherShow);
+            if (otherShow != null)
+            {
+                otherShow.BlindObject();
+            }
+        }
+    }
+
+    private void SetShow(GameObject other)
+    {
+        Core otherCore = other.GetComponentInChildren<Core>();
+        if (otherCore != null)
+        {
+            //CoreComponentの取得
+            Show otherShow = null;
+            otherCore.GetCoreComponent(ref otherShow);
+            if (otherShow != null)
+            {
+                otherShow.ShowObject();
             }
         }
     }
