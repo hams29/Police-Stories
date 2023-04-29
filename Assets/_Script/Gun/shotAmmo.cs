@@ -9,6 +9,8 @@ public class shotAmmo : MonoBehaviour
 
     private float ammoDamage;
 
+    private GameObject shotObject;
+
     private void Awake()
     {
         ammoDamage = 0;
@@ -16,6 +18,9 @@ public class shotAmmo : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject == shotObject)
+            return;
+
         if (CompareLayer(ammoAble,other.gameObject.layer))
         {
             Core core = other.GetComponentInChildren<Core>();
@@ -34,12 +39,13 @@ public class shotAmmo : MonoBehaviour
             {
                 damage.addDamage(ammoDamage);
                 Debug.Log("Hit!!");
-                Destroy(this.gameObject);
             }
         }
+        Destroy(this.gameObject);
     }
 
     public void SetDamageValue(float damage) => this.ammoDamage = damage;
+    public void SetShotObject(GameObject shotObject) => this.shotObject = shotObject;
 
     private bool CompareLayer(LayerMask layerMask, int layer)
     {

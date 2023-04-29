@@ -12,4 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b02f0f4b3b7550147996d2b3d2870717, type: 3}
   m_Name: playerData
   m_EditorClassIdentifier: 
-  movementVelocity: 5
+  maxHP: 100
+  moveSpeed: 5
+  runSpeed: 8
+  shotMoveSpeed: 1.5
+  reloadMoveSpeed: 1.5
+  meleeDamage: 50
+  meleeDistance: 1

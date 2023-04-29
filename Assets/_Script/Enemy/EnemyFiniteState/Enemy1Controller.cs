@@ -37,7 +37,6 @@ public class Enemy1Controller : MonoBehaviour
     {
         Core = GetComponentInChildren<Core>();
         stateMachine = new EnemyStateMachine();
-        States.SetInitHP(enemyData.maxHP);
 
         //各ステータスの初期化
         IdleState = new Enemy1Idle(this, stateMachine, enemyData, "idle");
@@ -50,6 +49,7 @@ public class Enemy1Controller : MonoBehaviour
         myColl = GetComponent<CapsuleCollider>();
         Anim = GetComponent<Animator>();
 
+        States.SetInitHP(enemyData.maxHP);
         stateMachine.Initialize(IdleState);
     }
 
