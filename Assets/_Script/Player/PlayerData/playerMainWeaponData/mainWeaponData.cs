@@ -25,4 +25,13 @@ public class mainWeaponData : ScriptableObject
 
     [Header("Damage")]
     public float shotDamage = 20.0f;
+
+    [Header("GunType")]
+    public GunType gunType;
+
+    public enum GunType
+    {
+        HandGun,
+        AssaultRifle,
+    }
 }

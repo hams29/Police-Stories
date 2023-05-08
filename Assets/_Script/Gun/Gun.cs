@@ -70,4 +70,6 @@ public class Gun : MonoBehaviour
         Debug.Log("now magazine is " + nowMagazine);
         Debug.Log("magazine current ammo is " + currentMagazine[nowMagazine]);
     }
+
+    public mainWeaponData GetMainWeaponData() { return weaponData; }
 }

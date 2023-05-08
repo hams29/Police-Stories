@@ -10,10 +10,12 @@ public class Show : CoreComponent,ILogicUpdate
     [SerializeField]
     Material transparentMaterial;
 
+    public bool isBlind { get; private set; }
+
     protected override void Awake()
     {
         base.Awake();
-
+        isBlind = false;
     }
 
     private void Start()
@@ -37,26 +39,13 @@ public class Show : CoreComponent,ILogicUpdate
     #region Set Function
     public void BlindObject()
     {
-        /*
-        material.shader = Shader.Find("Transparent");
-        Color color = material.color;
-        color.a = 0.5f;
-        material.color = color;
-        */
-
+        isBlind = true;
         rend.material = transparentMaterial;
     }
 
     public void ShowObject()
     {
-        /*
-        Color color = material.color;
-        color.a = 1.0f;
-        material.color = color;
-
-        material.shader = normShader;
-        */
-
+        isBlind = false;
         rend.material = material;
     }
     #endregion

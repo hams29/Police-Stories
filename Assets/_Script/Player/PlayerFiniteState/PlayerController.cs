@@ -10,7 +10,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private PlayerData playerData;
 
-    //ŠeƒXƒe[ƒ^ƒX
+    [SerializeField]
+    private GameObject handGunSet;
+
+    [SerializeField]
+    private GameObject assaultRifleSet;
+
+    //ï¿½eï¿½Xï¿½eï¿½[ï¿½^ï¿½X
     public PlayerIdle IdleState { get; private set; }
     public PlayerMove MoveState { get; private set; }
     public PlayerRun RunState { get; private set; }
@@ -65,7 +71,20 @@ public class PlayerController : MonoBehaviour
         inputController = GetComponent<PlayerInputHandler>();
         Anim = GetComponent<Animator>();
         Inventory = GetComponentInChildren<Inventory>();
-        mainWeapon = Instantiate(Inventory.mainWeapon, GameObject.Find("handGunSet").transform);
+
+        GameObject setMainWeapon = null;
+        switch (Inventory.gunType) 
+        {
+            case mainWeaponData.GunType.HandGun:
+                setMainWeapon = handGunSet;
+                break;
+
+            case mainWeaponData.GunType.AssaultRifle:
+                setMainWeapon = assaultRifleSet;
+                break;
+        }
+
+        mainWeapon = Instantiate(Inventory.mainWeapon, setMainWeapon.transform);
         gun = mainWeapon.GetComponent<Gun>();
 
         stateMachine.Initialize(IdleState);
@@ -78,7 +97,7 @@ public class PlayerController : MonoBehaviour
         stateMachine.CurrentState.LogicUpdate();
 
 
-        //ƒ}ƒEƒX‚ÌˆÊ’u‚ª³–Ê‚É‚È‚é‚æ‚¤‚ÉƒvƒŒƒCƒ„[‚ğ‰ñ“]‚³‚¹‚éˆ—
+        //ï¿½}ï¿½Eï¿½Xï¿½ÌˆÊ’uï¿½ï¿½ï¿½ï¿½ï¿½Ê‚É‚È‚ï¿½æ‚¤ï¿½Éƒvï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½]ï¿½ï¿½ï¿½ï¿½ï¿½éˆï¿½ï¿½
         {
             var ray = Camera.main.ScreenPointToRay(inputController.MousePosition);
             plane.SetNormalAndPosition(Vector3.up, transform.localPosition);
@@ -90,10 +109,10 @@ public class PlayerController : MonoBehaviour
 
         }
 
-        //Animator‚É•K—v‚È’l‚ğ“ü‚ê‚éˆ—
+        //Animatorï¿½É•Kï¿½vï¿½È’lï¿½ï¿½ï¿½ï¿½ï¿½éˆï¿½ï¿½
         AnimationInputValueSet();
 
-        //TODO::ƒfƒoƒbƒO—p::Œã‚Åíœ
+        //TODO::ï¿½fï¿½oï¿½bï¿½Oï¿½p::ï¿½ï¿½Åíœ
         {
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
@@ -126,7 +145,7 @@ public class PlayerController : MonoBehaviour
 
     private void AnimationInputValueSet()
     {
-        //TODO::PlayerCOntroller::ƒvƒŒƒCƒ„[‚ÌŒü‚«‚É‚æ‚Á‚ÄƒAƒjƒ[ƒVƒ‡ƒ“‚Ì•ÏX
+        //TODO::PlayerCOntroller::ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ÌŒï¿½ï¿½ï¿½ï¿½É‚ï¿½ï¿½ï¿½ÄƒAï¿½jï¿½ï¿½ï¿½[ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Ì•ÏX
         Vector3 forward = this.gameObject.transform.forward;
         forward = new Vector3(forward.x, 0, forward.z).normalized;
 
