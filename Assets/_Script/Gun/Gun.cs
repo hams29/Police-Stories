@@ -40,7 +40,8 @@ public class Gun : MonoBehaviour
             shotTime = Time.time;
             //TODO::Gun::åÇÇ¡ÇΩéûÇÃèàóù
             currentMagazine[nowMagazine]--;
-            Vector3 pos = GameObject.Find("gunMuzzle").transform.position;
+            //Vector3 pos = GameObject.Find("gunMuzzle").transform.position;
+            Vector3 pos = transform.FindChild("gunMuzzle").transform.position;
             GameObject shot = Instantiate(shotAmmoPrefab, pos, Quaternion.Euler(new Vector3(0,90,0)));
             Instantiate(muzzleFlash,pos,Quaternion.Euler(new Vector3(0,0,0)));
             //shot.GetComponent<Rigidbody>().AddForce(this.transform.right * weaponData.ammoSpeed, ForceMode.Impulse);
