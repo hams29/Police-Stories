@@ -5,6 +5,7 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     public GameObject mainWeapon { get; private set; }
+    public mainWeaponData.GunType gunType { get; private set; }
 
     //TODO::Inventory::å„Ç≈è¡Ç∑
     [SerializeField]
@@ -13,7 +14,10 @@ public class Inventory : MonoBehaviour
     private void Awake()
     {
         if (debugMainWeapon != null)
-            mainWeapon = debugMainWeapon;        
+            mainWeapon = debugMainWeapon;
+
+        if(mainWeapon != null)
+            gunType = mainWeapon.GetComponent<Gun>().GetMainWeaponData().gunType;
     }
     private void Start()
     {

@@ -5,9 +5,20 @@ using UnityEngine;
 public class Enemy1Controller : EnemyControllerBase
 {
     #region State Variables
+    [SerializeField]
+    private GameObject handGunSet;
+
+    [SerializeField]
+    private GameObject assaultRifleSet;
+
     //各ステータス
     public Enemy1Idle IdleState { get; private set; }
     public Enemy1Death DeadState { get; private set; }
+    #endregion
+
+    #region Component
+    public Inventory Inventory { get; private set; }
+    public GameObject mainWeapon { get; private set; }
     #endregion
 
     #region Other Variables
@@ -29,6 +40,21 @@ public class Enemy1Controller : EnemyControllerBase
     {
         base.Start();
 
+        Inventory = GetComponentInChildren<Inventory>();
+
+        GameObject setMainWeapon = null;
+        switch (Inventory.gunType)
+        {
+            case mainWeaponData.GunType.HandGun:
+                setMainWeapon = handGunSet;
+                break;
+
+            case mainWeaponData.GunType.AssaultRifle:
+                setMainWeapon = assaultRifleSet;
+                break;
+        }
+
+        mainWeapon = Instantiate(Inventory.mainWeapon, setMainWeapon.transform);
         States.SetInitHP(enemyData.maxHP);
         stateMachine.Initialize(IdleState);
     }

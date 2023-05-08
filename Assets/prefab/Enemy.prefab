@@ -1,5 +1,50 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1437796066
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1437796067}
+  - component: {fileID: 1437796068}
+  m_Layer: 0
+  m_Name: Inventory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1437796067
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1437796066}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.71, y: 0, z: -6.54}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4524479840272937969}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1437796068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1437796066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc3d8e788bbb57448a064e2e88a23d3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugMainWeapon: {fileID: 8810664080158413873, guid: deab3125be0dacb4ebc739af4eee9ab8, type: 3}
 --- !u!1 &2041601970
 GameObject:
   m_ObjectHideFlags: 0
@@ -270,6 +315,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6c8add5c1daeb641a2466de3f91ec10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &3503734637173733927
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6970087217217899549}
+  m_Layer: 0
+  m_Name: handGunSet
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6970087217217899549
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3503734637173733927}
+  m_LocalRotation: {x: 0.064229794, y: -0.61517644, z: 0.7856275, w: -0.014895341}
+  m_LocalPosition: {x: -0.1569, y: -0.0515, z: 0.0106}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7521728601891638795}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 105.272, y: -153.082, z: 22.884003}
 --- !u!1 &4524479840273165841
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,6 +381,7 @@ Transform:
   - {fileID: 4524479840272937971}
   - {fileID: 4524479840272937975}
   - {fileID: 704455865148867235}
+  - {fileID: 1437796067}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -372,6 +449,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 30ad1d206c35b754b95a467a3ba313ce, type: 2}
+  handGunSet: {fileID: 3503734637173733927}
+  assaultRifleSet: {fileID: 0}
 --- !u!1 &4524479840273165843
 GameObject:
   m_ObjectHideFlags: 0
@@ -1951,6 +2030,7 @@ Transform:
   - {fileID: 7521728601891638899}
   - {fileID: 7521728601891638903}
   - {fileID: 7521728601891638907}
+  - {fileID: 6970087217217899549}
   m_Father: {fileID: 7521728601891638791}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
