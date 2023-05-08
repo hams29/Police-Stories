@@ -88,6 +88,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5056269d52439c347ba6ae46188165c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1360906126858477991
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8489162333648484811}
+  m_Layer: 0
+  m_Name: assaultRifleSet
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8489162333648484811
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1360906126858477991}
+  m_LocalRotation: {x: -0.64358914, y: 0.4609978, z: -0.40625444, w: 0.45632383}
+  m_LocalPosition: {x: -0.272, y: -0.073, z: 0.032}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7161306763587681662}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: -12.287, y: 105.034, z: -99.335}
 --- !u!1 &2189008923400452622
 GameObject:
   m_ObjectHideFlags: 0
@@ -542,6 +573,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerData: {fileID: 11400000, guid: 6f0d243e88646d245806cf795ac95328, type: 2}
+  handGunSet: {fileID: 7384495092277542840}
+  assaultRifleSet: {fileID: 1360906126858477991}
 --- !u!114 &8654250720634851520
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1238,6 +1271,7 @@ Transform:
   - {fileID: 7161306763587681538}
   - {fileID: 7161306763587681550}
   - {fileID: 7384495092277542843}
+  - {fileID: 8489162333648484811}
   m_Father: {fileID: 7161306763587681650}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2585,7 +2619,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc3d8e788bbb57448a064e2e88a23d3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugMainWeapon: {fileID: 8810664080158413873, guid: deab3125be0dacb4ebc739af4eee9ab8, type: 3}
+  debugMainWeapon: {fileID: 0}
 --- !u!1 &7384495092277542840
 GameObject:
   m_ObjectHideFlags: 0
