@@ -12,12 +12,16 @@ public class Enemy1Controller : EnemyControllerBase
     [SerializeField]
     private GameObject assaultRifleSet;
 
+    [SerializeField]
+    private List<GameObject> moveLoot;
+
     //各ステータス
     public Enemy1Idle IdleState { get; private set; }
     public Enemy1Death DeadState { get; private set; }
     public Enemy1Shot ShotState { get; private set; }
     public Enemy1PlayerSearch PlayerSearchState { get; private set; }
     public Enemy1Reload ReloadState { get; private set; }
+    public Enemy1Move MoveState { get; private set; }
     #endregion
 
     #region Component
@@ -41,6 +45,7 @@ public class Enemy1Controller : EnemyControllerBase
         ShotState = new Enemy1Shot(this, stateMachine, enemyData, "shot");
         PlayerSearchState = new Enemy1PlayerSearch(this, stateMachine, enemyData, "search");
         ReloadState = new Enemy1Reload(this, stateMachine, enemyData, "reload");
+        MoveState = new Enemy1Move(this, stateMachine, enemyData, "move");
     }
 
     protected override void Start()
@@ -79,5 +84,7 @@ public class Enemy1Controller : EnemyControllerBase
 
     #region Other Function
     private void AnimationFinishTrigger() => stateMachine.CurrentState.AnimationFinishTrigger();
+
+    public List<GameObject> getMoveLoot() { return moveLoot; }
     #endregion
 }

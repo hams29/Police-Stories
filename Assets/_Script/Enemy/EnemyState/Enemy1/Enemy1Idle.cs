@@ -5,6 +5,8 @@ using UnityEngine;
 public class Enemy1Idle : EnemyState
 {
     private Gun gun;
+    private float lockTime = 0;
+
     public Enemy1Idle(Enemy1Controller enemy,EnemyStateMachine stateMachine,EnemyData enemyData,string animBoolName):base(enemy,stateMachine,enemyData,animBoolName)
     { }
 
@@ -17,6 +19,7 @@ public class Enemy1Idle : EnemyState
     {
         base.Enter();
         gun = enemy.mainWeapon.GetComponent<Gun>();
+        Movement?.SetVelocityZero();
     }
 
     public override void Exit()
@@ -28,6 +31,9 @@ public class Enemy1Idle : EnemyState
     {
         base.LogicUpdate();
 
+        if (Time.time < lockTime)
+            return;
+
         if (gun.GetCurrentMagazineAmmo() <= 0)
         {
             stateMachine.ChangeState(enemy.ReloadState);
@@ -36,10 +42,16 @@ public class Enemy1Idle : EnemyState
         {
             stateMachine.ChangeState(enemy.PlayerSearchState);
         }
+        else
+        {
+            stateMachine.ChangeState(enemy.MoveState);
+        }
     }
 
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
     }
+
+    public void SetLockTime(float time) { lockTime = time; }
 }
