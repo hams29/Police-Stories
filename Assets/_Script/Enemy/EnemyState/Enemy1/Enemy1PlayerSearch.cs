@@ -17,6 +17,7 @@ public class Enemy1PlayerSearch : EnemyState
     {
         base.Enter();
         gun = enemy.mainWeapon.GetComponent<Gun>();
+        Movement?.SetVelocityZero();
     }
 
     public override void Exit()

@@ -32,7 +32,7 @@ public class EnemyControllerBase : MonoBehaviour
         myRB = GetComponent<Rigidbody>();
         myColl = GetComponent<CapsuleCollider>();
         Anim = GetComponent<Animator>();
-        PlayerSearch = GetComponent<PlayerSearch>();
+        PlayerSearch = GetComponentInChildren<PlayerSearch>();
         
     }
 

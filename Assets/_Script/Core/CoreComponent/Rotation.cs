@@ -24,7 +24,6 @@ public class Rotation : CoreComponent,ILogicUpdate
     }
 
     #region Set Function
-    //TODO::Rotation::‘±‚«
     public void SetRotation(Vector3 look)
     {
         workspace = look;

@@ -23,12 +23,12 @@ public class FunSearch : MonoBehaviour
                 //Ray‚ğg—p‚µ‚Ätarget‚É“–‚½‚Á‚Ä‚¢‚é‚©”»•Ê
                 if (Physics.Raycast(pos,posDelta,out RaycastHit hit)) 
                 {
-                    if(hit.collider == other)
+                    if(hit.collider == other && hit.collider.gameObject.tag == "target")
                     {
                         //‹ŠE“à‚Éû‚Ü‚Á‚Ä‚¢‚éê‡
                         SetShow(other.gameObject);
                     }
-                    else if(hit.collider.gameObject.layer == other.gameObject.layer)
+                    else if(hit.collider.gameObject.layer == other.gameObject.layer && hit.collider.gameObject.tag == "target")
                     {
                         SetShow(other.gameObject);
                     }
