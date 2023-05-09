@@ -15,3 +15,5 @@ MonoBehaviour:
   maxHP: 100
   moveSpeed: 5
   runSpeed: 8
+  playerSearchTime: 0.5
+  enemyShotCount: 5

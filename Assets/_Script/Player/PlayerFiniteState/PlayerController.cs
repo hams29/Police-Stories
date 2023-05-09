@@ -98,6 +98,7 @@ public class PlayerController : MonoBehaviour
 
 
         //�}�E�X�̈ʒu�����ʂɂȂ�悤�Ƀv���C���[����]�����鏈��
+        if(!States.dead)
         {
             var ray = Camera.main.ScreenPointToRay(inputController.MousePosition);
             plane.SetNormalAndPosition(Vector3.up, transform.localPosition);

@@ -18,6 +18,7 @@ public class Gun : MonoBehaviour
     private GameObject gunMuzzle;
 
     private bool fullAuto;
+    private bool lastGunShot;
 
     private float shotTime;
 
@@ -32,6 +33,7 @@ public class Gun : MonoBehaviour
         fullAuto = weaponData.fullAuto;
         nowMagazine = 0;
         shotTime = 0;
+        lastGunShot = false;
     }
 
     public void Shot()
@@ -45,18 +47,21 @@ public class Gun : MonoBehaviour
             currentMagazine[nowMagazine]--;
             //Vector3 pos = GameObject.Find("gunMuzzle").transform.position;
             Vector3 pos = gunMuzzle.transform.position;
-            GameObject shot = Instantiate(shotAmmoPrefab, pos, Quaternion.Euler(new Vector3(0,90,0)));
-            Instantiate(muzzleFlash,pos,Quaternion.Euler(new Vector3(0,0,0)));
+            GameObject shot = Instantiate(shotAmmoPrefab, pos, Quaternion.Euler(new Vector3(0, 90, 0)));
+            Instantiate(muzzleFlash, pos, Quaternion.Euler(new Vector3(0, 0, 0)));
             //shot.GetComponent<Rigidbody>().AddForce(this.transform.right * weaponData.ammoSpeed, ForceMode.Impulse);
-            shot.GetComponent<Rigidbody>().AddForce(transform.root.transform.forward * weaponData.ammoSpeed + new Vector3(Random.Range(Mathf.Abs(weaponData.shotReaction) * -1,Mathf.Abs(weaponData.shotReaction)),0, Random.Range(Mathf.Abs(weaponData.shotReaction) * -1, Mathf.Abs(weaponData.shotReaction))), ForceMode.Impulse);
+            shot.GetComponent<Rigidbody>().AddForce(transform.root.transform.forward * weaponData.ammoSpeed + new Vector3(Random.Range(Mathf.Abs(weaponData.shotReaction) * -1, Mathf.Abs(weaponData.shotReaction)), 0, Random.Range(Mathf.Abs(weaponData.shotReaction) * -1, Mathf.Abs(weaponData.shotReaction))), ForceMode.Impulse);
             shot.GetComponent<shotAmmo>().SetDamageValue(weaponData.shotDamage);
             shot.GetComponent<shotAmmo>().SetShotObject(transform.root.gameObject);
             //ÉJÉÅÉâÇóhÇÁÇ∑
             var source = GetComponent<Cinemachine.CinemachineImpulseSource>();
             source.GenerateImpulse();
 
+            lastGunShot = true;
             Debug.Log("bang!!");
         }
+        else
+            lastGunShot = false;
     }
 
     public bool GetFullAuto() { return fullAuto; }
@@ -76,4 +81,5 @@ public class Gun : MonoBehaviour
     }
 
     public mainWeaponData GetMainWeaponData() { return weaponData; }
+    public bool GetLastGunShot() { return lastGunShot; }
 }

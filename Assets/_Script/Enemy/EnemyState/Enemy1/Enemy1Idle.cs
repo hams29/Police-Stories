@@ -25,6 +25,11 @@ public class Enemy1Idle : EnemyState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+
+        if(enemy.PlayerSearch.isPlayerFind)
+        {
+            stateMachine.ChangeState(enemy.PlayerSearchState);
+        }
     }
 
     public override void PhysicsUpdate()

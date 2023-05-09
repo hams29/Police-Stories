@@ -12,4 +12,10 @@ public class EnemyData : ScriptableObject
     [Header("Move State")]
     public float moveSpeed = 5.0f;
     public float runSpeed = 8.0f;
+
+    [Header("Player SearchTime")]
+    public float playerSearchTime = 1.5f;
+
+    [Header("Enemy Shot Count")]
+    public int enemyShotCount = 5;
 }

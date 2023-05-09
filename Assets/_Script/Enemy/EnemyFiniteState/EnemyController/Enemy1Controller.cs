@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,8 @@ public class Enemy1Controller : EnemyControllerBase
     //各ステータス
     public Enemy1Idle IdleState { get; private set; }
     public Enemy1Death DeadState { get; private set; }
+    public Enemy1Shot ShotState { get; private set; }
+    public Enemy1PlayerSearch PlayerSearchState { get; private set; }
     #endregion
 
     #region Component
@@ -34,6 +37,8 @@ public class Enemy1Controller : EnemyControllerBase
         //各ステータスの初期化
         IdleState = new Enemy1Idle(this, stateMachine, enemyData, "idle");
         DeadState = new Enemy1Death(this, stateMachine, enemyData, "dead");
+        ShotState = new Enemy1Shot(this, stateMachine, enemyData, "shot");
+        PlayerSearchState = new Enemy1PlayerSearch(this, stateMachine, enemyData, "search");
     }
 
     protected override void Start()
