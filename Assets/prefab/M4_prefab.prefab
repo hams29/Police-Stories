@@ -73,6 +73,7 @@ MonoBehaviour:
   weaponData: {fileID: 11400000, guid: f0acf4cb1e3442749b17f3ab0592f1c5, type: 2}
   shotAmmoPrefab: {fileID: 8967325426568925108, guid: 2ea3ef17f5a06ce46a07fd2f1c11c0c9, type: 3}
   muzzleFlash: {fileID: 8275732551370029512, guid: f0852a0a5194c384c86496890fb423fc, type: 3}
+  gunMuzzle: {fileID: 3928739984085106375}
 --- !u!114 &6152182899980002335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -352,5 +353,10 @@ PrefabInstance:
 --- !u!4 &3928739984085106372 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3501253718756826010, guid: 899e32ac68685c348b9ff12ffe925b1d, type: 3}
+  m_PrefabInstance: {fileID: 437767839395358046}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3928739984085106375 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3501253718756826009, guid: 899e32ac68685c348b9ff12ffe925b1d, type: 3}
   m_PrefabInstance: {fileID: 437767839395358046}
   m_PrefabAsset: {fileID: 0}

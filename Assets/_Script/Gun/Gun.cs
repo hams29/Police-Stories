@@ -14,6 +14,9 @@ public class Gun : MonoBehaviour
     [SerializeField]
     private GameObject muzzleFlash;
 
+    [SerializeField]
+    private GameObject gunMuzzle;
+
     private bool fullAuto;
 
     private float shotTime;
@@ -41,7 +44,7 @@ public class Gun : MonoBehaviour
             //TODO::Gun::åÇÇ¡ÇΩéûÇÃèàóù
             currentMagazine[nowMagazine]--;
             //Vector3 pos = GameObject.Find("gunMuzzle").transform.position;
-            Vector3 pos = transform.FindChild("gunMuzzle").transform.position;
+            Vector3 pos = gunMuzzle.transform.position;
             GameObject shot = Instantiate(shotAmmoPrefab, pos, Quaternion.Euler(new Vector3(0,90,0)));
             Instantiate(muzzleFlash,pos,Quaternion.Euler(new Vector3(0,0,0)));
             //shot.GetComponent<Rigidbody>().AddForce(this.transform.right * weaponData.ammoSpeed, ForceMode.Impulse);
