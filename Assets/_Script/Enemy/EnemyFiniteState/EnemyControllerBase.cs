@@ -15,6 +15,7 @@ public class EnemyControllerBase : MonoBehaviour
     public CapsuleCollider myColl { get; protected set; }
     public Animator Anim { get; protected set; }
     public Core Core { get; protected set; }
+    public PlayerSearch PlayerSearch { get;protected set; }
 
     protected States States { get => states ?? Core.GetCoreComponent(ref states); }
     private States states;
@@ -31,6 +32,7 @@ public class EnemyControllerBase : MonoBehaviour
         myRB = GetComponent<Rigidbody>();
         myColl = GetComponent<CapsuleCollider>();
         Anim = GetComponent<Animator>();
+        PlayerSearch = GetComponent<PlayerSearch>();
         
     }
 

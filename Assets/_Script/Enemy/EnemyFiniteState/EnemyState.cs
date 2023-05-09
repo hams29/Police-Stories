@@ -37,6 +37,7 @@ public class EnemyState
     {
         DoCheck();
         enemy.Anim.SetBool(animBoolName, true);
+        startTIme = Time.time;
     }
 
     public virtual void Exit()

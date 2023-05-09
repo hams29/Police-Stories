@@ -18,7 +18,7 @@ public class shotAmmo : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == shotObject)
+        if (other.gameObject == shotObject || other.tag == shotObject.tag)
             return;
 
         if (CompareLayer(ammoAble, other.gameObject.layer))
