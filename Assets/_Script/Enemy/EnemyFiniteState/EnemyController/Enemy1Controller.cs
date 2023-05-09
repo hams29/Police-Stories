@@ -17,6 +17,7 @@ public class Enemy1Controller : EnemyControllerBase
     public Enemy1Death DeadState { get; private set; }
     public Enemy1Shot ShotState { get; private set; }
     public Enemy1PlayerSearch PlayerSearchState { get; private set; }
+    public Enemy1Reload ReloadState { get; private set; }
     #endregion
 
     #region Component
@@ -39,6 +40,7 @@ public class Enemy1Controller : EnemyControllerBase
         DeadState = new Enemy1Death(this, stateMachine, enemyData, "dead");
         ShotState = new Enemy1Shot(this, stateMachine, enemyData, "shot");
         PlayerSearchState = new Enemy1PlayerSearch(this, stateMachine, enemyData, "search");
+        ReloadState = new Enemy1Reload(this, stateMachine, enemyData, "reload");
     }
 
     protected override void Start()
@@ -73,5 +75,9 @@ public class Enemy1Controller : EnemyControllerBase
     {
         base.FixedUpdate();
     }
+    #endregion
+
+    #region Other Function
+    private void AnimationFinishTrigger() => stateMachine.CurrentState.AnimationFinishTrigger();
     #endregion
 }

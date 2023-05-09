@@ -20,6 +20,7 @@ public class EnemyState
     private States states;
 
     protected float startTIme;
+    protected bool isAnimationFinishTrigger;
 
     protected Vector3 workspace;
     private string animBoolName;
@@ -38,6 +39,7 @@ public class EnemyState
         DoCheck();
         enemy.Anim.SetBool(animBoolName, true);
         startTIme = Time.time;
+        isAnimationFinishTrigger = false;
     }
 
     public virtual void Exit()
@@ -60,4 +62,6 @@ public class EnemyState
     {
 
     }
+
+    public virtual void AnimationFinishTrigger() => isAnimationFinishTrigger = true;
 }

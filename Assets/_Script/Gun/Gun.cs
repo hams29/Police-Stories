@@ -17,6 +17,9 @@ public class Gun : MonoBehaviour
     [SerializeField]
     private GameObject gunMuzzle;
 
+    [SerializeField]
+    private bool isHaveEnemy = false;
+
     private bool fullAuto;
     private bool lastGunShot;
 
@@ -53,9 +56,13 @@ public class Gun : MonoBehaviour
             shot.GetComponent<Rigidbody>().AddForce(transform.root.transform.forward * weaponData.ammoSpeed + new Vector3(Random.Range(Mathf.Abs(weaponData.shotReaction) * -1, Mathf.Abs(weaponData.shotReaction)), 0, Random.Range(Mathf.Abs(weaponData.shotReaction) * -1, Mathf.Abs(weaponData.shotReaction))), ForceMode.Impulse);
             shot.GetComponent<shotAmmo>().SetDamageValue(weaponData.shotDamage);
             shot.GetComponent<shotAmmo>().SetShotObject(transform.root.gameObject);
-            //カメラを揺らす
-            var source = GetComponent<Cinemachine.CinemachineImpulseSource>();
-            source.GenerateImpulse();
+
+            //カメラを揺らす（プレイヤー射撃時のみ）
+            if(!isHaveEnemy)
+            {
+                var source = GetComponent<Cinemachine.CinemachineImpulseSource>();
+                source.GenerateImpulse();
+            }
 
             lastGunShot = true;
             Debug.Log("bang!!");
@@ -76,10 +83,15 @@ public class Gun : MonoBehaviour
         else
             nowMagazine++;
 
-        Debug.Log("now magazine is " + nowMagazine);
-        Debug.Log("magazine current ammo is " + currentMagazine[nowMagazine]);
+        Debug.Log(transform.root.gameObject.name +  " now magazine is " + nowMagazine);
+        Debug.Log(transform.root.gameObject.name + " magazine current ammo is " + currentMagazine[nowMagazine]);
     }
 
     public mainWeaponData GetMainWeaponData() { return weaponData; }
     public bool GetLastGunShot() { return lastGunShot; }
+    //Enemy用
+    public void MaxAmmo()
+    {
+        currentMagazine[nowMagazine] = weaponData.maxAmmo;
+    }
 }

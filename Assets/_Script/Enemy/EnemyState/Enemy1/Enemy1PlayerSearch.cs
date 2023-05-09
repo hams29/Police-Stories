@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy1PlayerSearch : EnemyState
 {
+    private Gun gun;
     public Enemy1PlayerSearch(Enemy1Controller enemy, EnemyStateMachine stateMachine, EnemyData enemyData, string animBoolName) : base(enemy, stateMachine, enemyData, animBoolName)
     { }
 
@@ -15,6 +16,7 @@ public class Enemy1PlayerSearch : EnemyState
     public override void Enter()
     {
         base.Enter();
+        gun = enemy.mainWeapon.GetComponent<Gun>();
     }
 
     public override void Exit()
@@ -28,7 +30,11 @@ public class Enemy1PlayerSearch : EnemyState
 
         //ƒvƒŒƒCƒ„[‚Ì•ûŒü‚ÉŒü‚­
         Rotation.SetRotation(enemy.PlayerSearch.playerPos);
-        if(Time.time > enemyData.playerSearchTime + startTIme)
+        if (gun.GetCurrentMagazineAmmo() <= 0)
+        {
+            stateMachine.ChangeState(enemy.ReloadState);
+        }
+        else if (Time.time > enemyData.playerSearchTime + startTIme)
         {
             stateMachine.ChangeState(enemy.ShotState);
         }
