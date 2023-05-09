@@ -38,6 +38,11 @@ public class Enemy1Shot : EnemyState
             {
                 stateMachine.ChangeState(enemy.IdleState);
             }
+            else
+            {
+                //ƒvƒŒƒCƒ„[‚Ì•ûŒü‚ÉŒü‚­
+                Rotation.SetRotation(enemy.PlayerSearch.playerPos);
+            }
         }
         else
             Debug.LogError("Not Set Gun!!");

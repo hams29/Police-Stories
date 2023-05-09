@@ -2,21 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy1Idle : EnemyState
+public class Enemy1Reload : EnemyState
 {
     private Gun gun;
-    public Enemy1Idle(Enemy1Controller enemy,EnemyStateMachine stateMachine,EnemyData enemyData,string animBoolName):base(enemy,stateMachine,enemyData,animBoolName)
+    public Enemy1Reload(Enemy1Controller enemy,EnemyStateMachine stateMachine,EnemyData enemyData,string animBoolName):base(enemy,stateMachine,enemyData,animBoolName)
     { }
 
     public override void DoCheck()
     {
         base.DoCheck();
     }
-
     public override void Enter()
     {
         base.Enter();
-        gun = enemy.mainWeapon.GetComponent<Gun>();
+        gun = enemy.mainWeapon.GetComponent<Gun>(); 
     }
 
     public override void Exit()
@@ -28,13 +27,11 @@ public class Enemy1Idle : EnemyState
     {
         base.LogicUpdate();
 
-        if (gun.GetCurrentMagazineAmmo() <= 0)
+        //TODO::Enemy1Reload::リロードアニメーション設定時にAnimationFinishTriggerの設定
+        if (isAnimationFinishTrigger)
         {
-            stateMachine.ChangeState(enemy.ReloadState);
-        }
-        else if (enemy.PlayerSearch.isPlayerFind)
-        {
-            stateMachine.ChangeState(enemy.PlayerSearchState);
+            gun.MaxAmmo();
+            stateMachine.ChangeState(enemy.IdleState);
         }
     }
 
