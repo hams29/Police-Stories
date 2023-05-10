@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     public PlayerReload ReloadState { get; private set; }
     public PlayerDead DeadState { get; private set; }
     public PlayerInteract InteractState { get; private set; }
+    public PlayerCall CallState { get; private set; }
     #endregion
 
     #region Component
@@ -36,6 +37,7 @@ public class PlayerController : MonoBehaviour
     public Inventory Inventory { get; private set; }
     public GameObject mainWeapon { get; private set; }
     public Gun gun { get; private set; }
+    public FunSearch search { get; private set; }
     
     private States States { get => states ?? Core.GetCoreComponent(ref states); }
     private States states;
@@ -64,6 +66,7 @@ public class PlayerController : MonoBehaviour
         ReloadState = new PlayerReload(this, stateMachine, playerData, "reload");
         DeadState = new PlayerDead(this, stateMachine, playerData, "dead");
         InteractState = new PlayerInteract(this, stateMachine, playerData, "interact");
+        CallState = new PlayerCall(this, stateMachine, playerData, "call");
     }
 
     private void Start()
@@ -73,6 +76,7 @@ public class PlayerController : MonoBehaviour
         inputController = GetComponent<PlayerInputHandler>();
         Anim = GetComponent<Animator>();
         Inventory = GetComponentInChildren<Inventory>();
+        search = GetComponentInChildren<FunSearch>();
 
         GameObject setMainWeapon = null;
         switch (Inventory.gunType) 

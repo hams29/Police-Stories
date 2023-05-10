@@ -7,6 +7,13 @@ public class FunSearch : MonoBehaviour
     [SerializeField]
     private float angle = 45.0f;
 
+    public List<EnemyControllerBase> enemyShowList { get; private set; }
+
+    private void Awake()
+    {
+        enemyShowList = new List<EnemyControllerBase>();
+    }
+
     private void OnTriggerStay(Collider other)
     {
         if(other.gameObject.tag == "target")
@@ -27,15 +34,25 @@ public class FunSearch : MonoBehaviour
                     {
                         //視界内に収まっている場合
                         SetShow(other.gameObject);
+                        EnemyControllerBase enemy = other.gameObject.GetComponent<EnemyControllerBase>();
+                        if(enemy != null)
+                            addEnemyList(enemy);
+
                     }
                     else if(hit.collider.gameObject.layer == other.gameObject.layer && hit.collider.gameObject.tag == "target")
                     {
                         SetShow(other.gameObject);
+                        EnemyControllerBase enemy = other.gameObject.GetComponent<EnemyControllerBase>();
+                        if (enemy != null)
+                            addEnemyList(enemy);
                     }
                     else
                     {
                         //ターゲットとプレイヤーの間に別のオブジェクトが入った場合
                         SetBlind(other.gameObject);
+                        EnemyControllerBase enemy = other.gameObject.GetComponent<EnemyControllerBase>();
+                        if (enemy != null)
+                            delEnemyList(enemy);
                     }
                 }
             }
@@ -43,6 +60,9 @@ public class FunSearch : MonoBehaviour
             {
                 //角度内に収まっていない場合
                 SetBlind(other.gameObject);
+                EnemyControllerBase enemy = other.gameObject.GetComponent<EnemyControllerBase>();
+                if (enemy != null)
+                    delEnemyList(enemy);
             }
         }
     }
@@ -53,6 +73,9 @@ public class FunSearch : MonoBehaviour
         {
             //視界からターゲットが抜けた場合
             SetBlind(other.gameObject);
+            EnemyControllerBase enemy = other.gameObject.GetComponent<EnemyControllerBase>();
+            if (enemy != null)
+                delEnemyList(enemy);
         }
     }
 
@@ -83,6 +106,22 @@ public class FunSearch : MonoBehaviour
             {
                 otherShow.ShowObject();
             }
+        }
+    }
+
+    private void addEnemyList(EnemyControllerBase enemy)
+    {
+        if(!enemyShowList.Contains(enemy))
+        {
+            enemyShowList.Add(enemy);
+        }
+    }
+
+    private void delEnemyList(EnemyControllerBase enemy)
+    {
+        if(enemyShowList.Contains(enemy))
+        {
+            enemyShowList.Remove(enemy);
         }
     }
 }

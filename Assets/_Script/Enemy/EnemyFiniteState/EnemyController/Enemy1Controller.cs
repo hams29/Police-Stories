@@ -22,11 +22,14 @@ public class Enemy1Controller : EnemyControllerBase
     public Enemy1PlayerSearch PlayerSearchState { get; private set; }
     public Enemy1Reload ReloadState { get; private set; }
     public Enemy1Move MoveState { get; private set; }
+    public Enemy1Surrender SurrenderState { get; private set; }
     #endregion
 
     #region Component
     public Inventory Inventory { get; private set; }
     public GameObject mainWeapon { get; private set; }
+    protected Rotation Rotation { get => rotation ?? Core.GetCoreComponent(ref rotation); }
+    private Rotation rotation;
     #endregion
 
     #region Other Variables
@@ -46,6 +49,7 @@ public class Enemy1Controller : EnemyControllerBase
         PlayerSearchState = new Enemy1PlayerSearch(this, stateMachine, enemyData, "search");
         ReloadState = new Enemy1Reload(this, stateMachine, enemyData, "reload");
         MoveState = new Enemy1Move(this, stateMachine, enemyData, "move");
+        SurrenderState = new Enemy1Surrender(this, stateMachine, enemyData, "surrender");
     }
 
     protected override void Start()
@@ -84,6 +88,17 @@ public class Enemy1Controller : EnemyControllerBase
 
     #region Other Function
     private void AnimationFinishTrigger() => stateMachine.CurrentState.AnimationFinishTrigger();
+
+    public override void PlayerCall(Vector3 ppos)
+    {
+        base.PlayerCall(ppos);
+        Rotation.SetRotation(ppos);
+        //待機、歩き、プレイヤー探知ステータスのみ降伏するようにする：：確率で変動させる？
+        if (stateMachine.CurrentState == IdleState || stateMachine.CurrentState == MoveState || stateMachine.CurrentState == PlayerSearchState)
+        {
+            stateMachine.ChangeState(SurrenderState);
+        }
+    }
 
     public List<GameObject> getMoveLoot() { return moveLoot; }
     #endregion

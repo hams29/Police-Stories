@@ -46,7 +46,6 @@ public class Gun : MonoBehaviour
         if (Time.time > shotTime + weaponData.shotWaitTime && currentMagazine[nowMagazine] > 0)
         {
             shotTime = Time.time;
-            //TODO::Gun::Œ‚‚Á‚½‚Ìˆ—
             currentMagazine[nowMagazine]--;
             //Vector3 pos = GameObject.Find("gunMuzzle").transform.position;
             Vector3 pos = gunMuzzle.transform.position;
