@@ -23,7 +23,7 @@ public class gameManager : MonoBehaviour
         weapon = weaponSelect.weaponData;
         stageName = SelectStageName.stageName;
 
-        text.text = weapon.name;
+        text.text = (!weapon) ? "" : weapon.name;
         text2.text = stageName;
     }
 
