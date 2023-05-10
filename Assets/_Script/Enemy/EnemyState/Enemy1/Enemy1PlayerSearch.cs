@@ -35,7 +35,7 @@ public class Enemy1PlayerSearch : EnemyState
         {
             stateMachine.ChangeState(enemy.ReloadState);
         }
-        else if (Time.time > enemyData.playerSearchTime + startTIme)
+        else if (Time.time > enemyData.playerSearchTime + startTIme && !enemy.PlayerSearch.isPlayerDead)
         {
             stateMachine.ChangeState(enemy.ShotState);
         }

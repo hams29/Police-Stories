@@ -19,10 +19,13 @@ public class PlayerInputHandler : MonoBehaviour
     public bool ReloadInputStop { get; private set; }
     public bool MeleeInput { get; private set; }
     public bool MeleeInputStop { get; private set; }
+    public bool InteractInputStop { get; private set; }
     public bool ShotInput { get; private set; }
+    public bool InteractInput { get; private set; }
 
     private float reloadInputStartTime;
     private float meleeInputStartTIme;
+    private float interactInputStartTime;
 
     [SerializeField]
     private float inputHoldTime = 0.2f;
@@ -37,6 +40,7 @@ public class PlayerInputHandler : MonoBehaviour
     {
         CheckReloadInputHoldTime();
         CheckMeleeInputHoldTime();
+        CheckInteractInputHoldTime();
     }
     
     public void OnMoveInput(InputAction.CallbackContext context)
@@ -102,9 +106,25 @@ public class PlayerInputHandler : MonoBehaviour
             ShotInput = false;
     }
 
+    public void OnInteractInput(InputAction.CallbackContext context)
+    {
+        if(context.started)
+        {
+            InteractInput = true;
+            interactInputStartTime = Time.time;
+            InteractInputStop = false;
+        }
+
+        if(context.canceled)
+        {
+            InteractInputStop = true;
+        }
+    }
+
     public void UseReloadInput() => ReloadInput = false;
     public void UseMeleeInput() => MeleeInput = false;
     public void UseShotInput() => ShotInput = false;
+    public void UseInteractInput() => InteractInput = false;
 
     private void CheckReloadInputHoldTime()
     {
@@ -116,5 +136,11 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (Time.time >= meleeInputStartTIme + inputHoldTime)
             MeleeInput = false;
+    }
+
+    private void CheckInteractInputHoldTime()
+    {
+        if (Time.time > interactInputStartTime + inputHoldTime)
+            InteractInput = false;
     }
 }

@@ -9,10 +9,12 @@ public class PlayerSearch : MonoBehaviour
 
     public bool isPlayerFind { get; private set; }
     public Vector3 playerPos { get; private set; }
+    public bool isPlayerDead { get; private set; }
 
     private void Awake()
     {
         isPlayerFind = false;
+        isPlayerDead = false;
     }
 
     private void OnTriggerStay(Collider other)
@@ -35,11 +37,19 @@ public class PlayerSearch : MonoBehaviour
                     {
                         //éãäEì‡Ç…é˚Ç‹Ç¡ÇƒÇ¢ÇÈèÍçá
                         playerPos = other.transform.position;
+                        States state = null;
+                        other.GetComponentInChildren<Core>().GetCoreComponent(ref state);
+                        if (state != null)
+                            isPlayerDead = state.dead;
                         isPlayerFind = true;
                     }
                     else if (hit.collider.gameObject.layer == other.gameObject.layer)
                     {
                         playerPos = other.transform.position;
+                        States state = null;
+                        other.GetComponentInChildren<Core>().GetCoreComponent(ref state);
+                        if (state != null)
+                            isPlayerDead = state.dead;
                         isPlayerFind = true;
                     }
                     else
