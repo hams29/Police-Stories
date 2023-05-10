@@ -32,6 +32,8 @@ public class PlayerMove : PlayerState
             stateMachine.ChangeState(player.ShotState);
         else if (reloadInput)
             stateMachine.ChangeState(player.ReloadState);
+        else if (interactInput)
+            stateMachine.ChangeState(player.InteractState);
         else if (xInput == 0 && zInput == 0)
             stateMachine.ChangeState(player.IdleState);
         else if (dashinput)

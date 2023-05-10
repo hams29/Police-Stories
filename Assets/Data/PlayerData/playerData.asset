@@ -19,3 +19,7 @@ MonoBehaviour:
   reloadMoveSpeed: 1.5
   meleeDamage: 50
   meleeDistance: 1
+  interactLayer:
+    serializedVersion: 2
+    m_Bits: 2048
+  interactDistance: 1
