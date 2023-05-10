@@ -7,6 +7,7 @@ public class DoorOpen : MonoBehaviour
      [SerializeField] Animator doorAC;
 
     bool isOpened = false;
+    bool isInteract = false;
 
     // Start is called before the first frame update
     private void Awake()
@@ -17,13 +18,13 @@ public class DoorOpen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !isOpened)
+        if (isInteract && !isOpened)
         {
             isOpened = true;
             doorAC.SetTrigger("open");
             doorAC.SetBool("opened",isOpened);
         }
-        else if (Input.GetMouseButtonDown(0) && isOpened)
+        else if (isInteract && isOpened)
         {
             isOpened = false;
             doorAC.SetTrigger("close");
@@ -31,4 +32,15 @@ public class DoorOpen : MonoBehaviour
         }
 
     }
+
+    public void SetInteract()
+    {
+        isInteract = true;
+    }
+
+    public void SetAnimTriggger()
+    {
+        isInteract = false;
+    }
+
 }
