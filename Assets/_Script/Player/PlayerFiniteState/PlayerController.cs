@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     public PlayerShot ShotState { get; private set; }
     public PlayerReload ReloadState { get; private set; }
     public PlayerDead DeadState { get; private set; }
+    public PlayerInteract InteractState { get; private set; }
     #endregion
 
     #region Component
@@ -62,6 +63,7 @@ public class PlayerController : MonoBehaviour
         ShotState = new PlayerShot(this, stateMachine, playerData, "shot");
         ReloadState = new PlayerReload(this, stateMachine, playerData, "reload");
         DeadState = new PlayerDead(this, stateMachine, playerData, "dead");
+        InteractState = new PlayerInteract(this, stateMachine, playerData, "interact");
     }
 
     private void Start()

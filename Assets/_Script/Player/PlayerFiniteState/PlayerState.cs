@@ -26,6 +26,7 @@ public class PlayerState
     protected bool dashinput;
     protected bool shotInput;
     protected bool reloadInput;
+    protected bool interactInput;
     protected bool isAnimationFinished;
     protected bool isExitingState;
     protected bool canMelee;
@@ -66,6 +67,7 @@ public class PlayerState
         shotInput = player.inputController.ShotInput;
         dashinput = player.inputController.DashInput;
         reloadInput = player.inputController.ReloadInput;
+        interactInput = player.inputController.InteractInput;
 
         meleeInput = player.inputController.MeleeInput;
         //‹ßÚUŒ‚‚ÉˆÚs

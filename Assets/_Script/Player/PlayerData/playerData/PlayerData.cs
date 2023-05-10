@@ -19,4 +19,8 @@ public class PlayerData : ScriptableObject
     [Header("Melee")]
     public float meleeDamage = 50.0f;
     public float meleeDistance = 5.0f;
+
+    [Header("Interact Layer")]
+    public string interactLayerName;
+    public float interactDistance = 5.0f;
 }
