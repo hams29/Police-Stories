@@ -51,7 +51,10 @@ public class shotAmmo : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject == shotObject || collision.gameObject.tag == shotObject.tag)
+        {
+            Destroy(this.gameObject);
             return;
+        }
 
         if (CompareLayer(ammoAble, collision.gameObject.layer))
         {
