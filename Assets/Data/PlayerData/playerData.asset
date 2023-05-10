@@ -20,4 +20,4 @@ MonoBehaviour:
   meleeDamage: 50
   meleeDistance: 1
   interactLayerName: Interact
-  interactDistance: 1
+  interactDistance: 3

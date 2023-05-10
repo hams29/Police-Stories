@@ -20,12 +20,15 @@ public class PlayerInputHandler : MonoBehaviour
     public bool MeleeInput { get; private set; }
     public bool MeleeInputStop { get; private set; }
     public bool InteractInputStop { get; private set; }
+    public bool CallInputStop { get; private set; }
     public bool ShotInput { get; private set; }
     public bool InteractInput { get; private set; }
+    public bool CallInput { get; private set; }
 
     private float reloadInputStartTime;
     private float meleeInputStartTIme;
     private float interactInputStartTime;
+    private float callInputStartTime;
 
     [SerializeField]
     private float inputHoldTime = 0.2f;
@@ -41,6 +44,7 @@ public class PlayerInputHandler : MonoBehaviour
         CheckReloadInputHoldTime();
         CheckMeleeInputHoldTime();
         CheckInteractInputHoldTime();
+        CheckCallInputHoldTime();
     }
     
     public void OnMoveInput(InputAction.CallbackContext context)
@@ -121,10 +125,26 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
 
+    public void OnCallInput(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            CallInput = true;
+            callInputStartTime = Time.time;
+            CallInputStop = false;
+        }
+
+        if (context.canceled)
+        {
+            CallInputStop = true;
+        }
+    }
+
     public void UseReloadInput() => ReloadInput = false;
     public void UseMeleeInput() => MeleeInput = false;
     public void UseShotInput() => ShotInput = false;
     public void UseInteractInput() => InteractInput = false;
+    public void UseCallInput() => CallInput = false;
 
     private void CheckReloadInputHoldTime()
     {
@@ -142,5 +162,11 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (Time.time > interactInputStartTime + inputHoldTime)
             InteractInput = false;
+    }
+
+    private void CheckCallInputHoldTime()
+    {
+        if (Time.time > callInputStartTime + inputHoldTime)
+            CallInput = false;
     }
 }

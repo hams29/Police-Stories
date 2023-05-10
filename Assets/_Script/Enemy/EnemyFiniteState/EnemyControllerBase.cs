@@ -46,4 +46,9 @@ public class EnemyControllerBase : MonoBehaviour
     {
 
     }
+
+    public virtual void PlayerCall(Vector3 ppos)
+    {
+
+    }
 }

@@ -38,7 +38,15 @@ public class PlayerIdle : PlayerState
             else if (reloadInput)
                 stateMachine.ChangeState(player.ReloadState);
             else if (interactInput)
+            {
+                player.inputController.UseInteractInput();
                 stateMachine.ChangeState(player.InteractState);
+            }
+            else if(callInput)
+            {
+                player.inputController.UseCallInput();
+                stateMachine.ChangeState(player.CallState);
+            }
             else if (xInput != 0 || zInput != 0)
             {
                 if (dashinput)
