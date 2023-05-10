@@ -32,7 +32,8 @@ public class PlayerInteract : PlayerState
         Vector3 pos = new Vector3(player.transform.position.x, player.transform.position.y + 1.5f, player.transform.position.z);
         if (Physics.Raycast(pos,player.transform.forward,out hitObject,playerData.interactDistance))
         {
-            if (hitObject.transform.root.gameObject.layer == playerData.interactLayer)
+            int layerNo = LayerMask.NameToLayer(playerData.interactLayerName);
+            if (hitObject.transform.root.gameObject.layer == layerNo)
             {
                 Core otherCore = hitObject.transform.GetComponentInChildren<Core>();
                 if (otherCore != null)
@@ -46,7 +47,7 @@ public class PlayerInteract : PlayerState
                 }
             }
             else
-                Debug.Log(hitObject.transform.root.name + "ÇÕinteractLayerÇ≈ÇÕÇ†ÇËÇ‹ÇπÇÒÅB");
+                Debug.Log(hitObject.transform.root.name + "ÇÕinteractLayerÇ≈ÇÕÇ†ÇËÇ‹ÇπÇÒÅB Layer : " + hitObject.transform.root.gameObject.layer.ToString());
         }
 
         stateMachine.ChangeState(player.IdleState);
