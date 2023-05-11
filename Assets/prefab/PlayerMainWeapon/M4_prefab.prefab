@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2606139686623833679}
   - component: {fileID: 3641720532467277181}
   - component: {fileID: 6152182899980002335}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: M4_prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,6 +74,7 @@ MonoBehaviour:
   shotAmmoPrefab: {fileID: 8967325426568925108, guid: 2ea3ef17f5a06ce46a07fd2f1c11c0c9, type: 3}
   muzzleFlash: {fileID: 8275732551370029512, guid: f0852a0a5194c384c86496890fb423fc, type: 3}
   gunMuzzle: {fileID: 3928739984085106375}
+  isHaveEnemy: 0
 --- !u!114 &6152182899980002335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,7 +139,7 @@ GameObject:
   - component: {fileID: 2606139686633341357}
   - component: {fileID: 2606139686634144141}
   - component: {fileID: 2606139686635242317}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: clip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -221,7 +222,7 @@ GameObject:
   - component: {fileID: 2606139686633341359}
   - component: {fileID: 2606139686634144143}
   - component: {fileID: 2606139686635242319}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: M4A1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -303,6 +304,10 @@ PrefabInstance:
     - target: {fileID: 3501253718756826009, guid: 899e32ac68685c348b9ff12ffe925b1d, type: 3}
       propertyPath: m_Name
       value: gunMuzzle
+      objectReference: {fileID: 0}
+    - target: {fileID: 3501253718756826009, guid: 899e32ac68685c348b9ff12ffe925b1d, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3501253718756826010, guid: 899e32ac68685c348b9ff12ffe925b1d, type: 3}
       propertyPath: m_RootOrder

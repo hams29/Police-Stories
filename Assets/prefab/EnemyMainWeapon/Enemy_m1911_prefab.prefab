@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8814084074548406235}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: M1911_rigged
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8813765190927236887}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: trigger_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8813690399437760889}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: bolt_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8813940833167592847}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: M1911_main
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,7 +139,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8813023493813801329}
   - component: {fileID: 8909893035946089087}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: M1911_Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -231,7 +231,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8813720107997955255}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: reload_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,7 +262,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8813477630106115649}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: bolt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -294,7 +294,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8813070150920501009}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: magazine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -327,7 +327,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8813372888907831633}
   - component: {fileID: 8809331237630370626}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Enemy_m1911_prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -378,7 +378,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8813697904759888223}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: reload
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -410,7 +410,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8813128014148274697}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: magazine_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -441,7 +441,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8813400829148509127}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -474,6 +474,10 @@ PrefabInstance:
     - target: {fileID: 3501253718756826009, guid: 899e32ac68685c348b9ff12ffe925b1d, type: 3}
       propertyPath: m_Name
       value: gunMuzzle
+      objectReference: {fileID: 0}
+    - target: {fileID: 3501253718756826009, guid: 899e32ac68685c348b9ff12ffe925b1d, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3501253718756826010, guid: 899e32ac68685c348b9ff12ffe925b1d, type: 3}
       propertyPath: m_RootOrder
