@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2606139686633341355}
   - component: {fileID: 2606139686623833679}
   - component: {fileID: 3641720532467277181}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Enemy_M4_prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,7 +85,7 @@ GameObject:
   - component: {fileID: 2606139686633341357}
   - component: {fileID: 2606139686634144141}
   - component: {fileID: 2606139686635242317}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: clip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,7 +168,7 @@ GameObject:
   - component: {fileID: 2606139686633341359}
   - component: {fileID: 2606139686634144143}
   - component: {fileID: 2606139686635242319}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: M4A1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -250,6 +250,10 @@ PrefabInstance:
     - target: {fileID: 3501253718756826009, guid: 899e32ac68685c348b9ff12ffe925b1d, type: 3}
       propertyPath: m_Name
       value: gunMuzzle
+      objectReference: {fileID: 0}
+    - target: {fileID: 3501253718756826009, guid: 899e32ac68685c348b9ff12ffe925b1d, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3501253718756826010, guid: 899e32ac68685c348b9ff12ffe925b1d, type: 3}
       propertyPath: m_RootOrder

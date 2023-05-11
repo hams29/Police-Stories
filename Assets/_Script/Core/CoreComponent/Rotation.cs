@@ -30,11 +30,26 @@ public class Rotation : CoreComponent,ILogicUpdate
         SetFinalRotation();
     }
 
+    public void SetRotation(float angle)
+    {
+        workspace = new Vector3(0.0f, angle, 0.0f);
+        SetFinalRotateAngle();
+    }
+
     private void SetFinalRotation()
     {
         if(CanSetRotate)
         {
             myTran.LookAt(workspace);
+            CurrentRotate = workspace;
+        }
+    }
+
+    private void SetFinalRotateAngle()
+    {
+        if(CanSetRotate)
+        {
+            myTran.Rotate(workspace);
             CurrentRotate = workspace;
         }
     }

@@ -54,7 +54,7 @@ public class Enemy1Move : EnemyState
                 if (maxLootCount <= nowLootCount + 1)
                 {
                     nowLootCount = 0;
-                    enemy.IdleState.SetLockTime(Time.time + 2.0f);
+                    enemy.IdleState.SetLockTime(2.0f);
                     stateMachine.ChangeState(enemy.IdleState);
                 }
                 else

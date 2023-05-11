@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class Enemy1Controller : EnemyControllerBase
@@ -23,6 +24,7 @@ public class Enemy1Controller : EnemyControllerBase
     public Enemy1Reload ReloadState { get; private set; }
     public Enemy1Move MoveState { get; private set; }
     public Enemy1Surrender SurrenderState { get; private set; }
+    public Enemy1MoveLostPoint MoveLastPointState { get; private set; }
     #endregion
 
     #region Component
@@ -50,6 +52,7 @@ public class Enemy1Controller : EnemyControllerBase
         ReloadState = new Enemy1Reload(this, stateMachine, enemyData, "reload");
         MoveState = new Enemy1Move(this, stateMachine, enemyData, "move");
         SurrenderState = new Enemy1Surrender(this, stateMachine, enemyData, "surrender");
+        MoveLastPointState = new Enemy1MoveLostPoint(this, stateMachine, enemyData, "moveLastPoint");
     }
 
     protected override void Start()

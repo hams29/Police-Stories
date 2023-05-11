@@ -40,9 +40,9 @@ public class Enemy1PlayerSearch : EnemyState
             stateMachine.ChangeState(enemy.ShotState);
         }
 
-        //プレイヤーを見失った際にIdleステータスに移行
+        //プレイヤーを見失った際にMoveLastPointステータスに移行
         if (!enemy.PlayerSearch.isPlayerFind)
-            stateMachine.ChangeState(enemy.IdleState);
+            stateMachine.ChangeState(enemy.MoveLastPointState);
     }
 
     public override void PhysicsUpdate()

@@ -53,5 +53,5 @@ public class Enemy1Idle : EnemyState
         base.PhysicsUpdate();
     }
 
-    public void SetLockTime(float time) { lockTime = time; }
+    public void SetLockTime(float time) { lockTime =  Time.time + time; }
 }
