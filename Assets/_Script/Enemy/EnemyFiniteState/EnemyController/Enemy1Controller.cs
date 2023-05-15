@@ -100,7 +100,7 @@ public class Enemy1Controller : EnemyControllerBase
         base.PlayerCall(ppos);
         Rotation.SetRotation(ppos);
         float rand = Random.Range(0, 100.0f);
-        //待機、歩き、プレイヤー探知ステータスのみ降伏するようにする：：確率で変動させる？
+        //待機、歩き、プレイヤー探知ステータスのみ降伏するようにする
         if ((stateMachine.CurrentState == IdleState || stateMachine.CurrentState == MoveState || stateMachine.CurrentState == PlayerSearchState) && rand <= enemyData.surrenderProbability)
         {
             stateMachine.ChangeState(SurrenderState);
