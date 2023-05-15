@@ -18,4 +18,7 @@ public class EnemyData : ScriptableObject
 
     [Header("Enemy Shot Count")]
     public int enemyShotCount = 5;
+
+    [Header("Enemy Surrender Probability")]
+    public float surrenderProbability = 50.0f;
 }

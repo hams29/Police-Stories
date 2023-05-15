@@ -36,6 +36,8 @@ public class Enemy1Controller : EnemyControllerBase
 
     #region Other Variables
     private Vector3 workspace;
+
+    public bool enemySurrenderProbability { get; private set; }
     #endregion
 
 
@@ -73,6 +75,7 @@ public class Enemy1Controller : EnemyControllerBase
                 break;
         }
 
+        enemySurrenderProbability = false;
         mainWeapon = Instantiate(Inventory.mainWeapon, setMainWeapon.transform);
         States.SetInitHP(enemyData.maxHP);
         stateMachine.Initialize(IdleState);
@@ -96,11 +99,18 @@ public class Enemy1Controller : EnemyControllerBase
     {
         base.PlayerCall(ppos);
         Rotation.SetRotation(ppos);
+        float rand = Random.Range(0, 100.0f);
         //待機、歩き、プレイヤー探知ステータスのみ降伏するようにする：：確率で変動させる？
-        if (stateMachine.CurrentState == IdleState || stateMachine.CurrentState == MoveState || stateMachine.CurrentState == PlayerSearchState)
+        if ((stateMachine.CurrentState == IdleState || stateMachine.CurrentState == MoveState || stateMachine.CurrentState == PlayerSearchState) && rand <= enemyData.surrenderProbability)
         {
             stateMachine.ChangeState(SurrenderState);
         }
+        else
+        {
+            IdleState.SetLockTime(0.5f);
+            stateMachine.ChangeState(IdleState);
+        }
+        enemySurrenderProbability = true;
     }
 
     public List<GameObject> getMoveLoot() { return moveLoot; }
