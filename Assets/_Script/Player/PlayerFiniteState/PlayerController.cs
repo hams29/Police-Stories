@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
     public PlayerDead DeadState { get; private set; }
     public PlayerInteract InteractState { get; private set; }
     public PlayerCall CallState { get; private set; }
+    public PlayerDetantion DetantionState { get; private set; }
     #endregion
 
     #region Component
@@ -67,6 +68,7 @@ public class PlayerController : MonoBehaviour
         DeadState = new PlayerDead(this, stateMachine, playerData, "dead");
         InteractState = new PlayerInteract(this, stateMachine, playerData, "interact");
         CallState = new PlayerCall(this, stateMachine, playerData, "call");
+        DetantionState = new PlayerDetantion(this, stateMachine, playerData, "detantion");
     }
 
     private void Start()
@@ -164,6 +166,23 @@ public class PlayerController : MonoBehaviour
 
         Anim.SetFloat("playerDirectionX", this.gameObject.transform.forward.x);
         Anim.SetFloat("playerDirectionZ", this.gameObject.transform.forward.z);
+    }
+
+    public bool CheckFrontObject(string tag, out GameObject gameObject)
+    {
+        RaycastHit hitObject;
+        Vector3 pos = new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z);
+        if (Physics.Raycast(pos, transform.forward, out hitObject, playerData.meleeDistance))
+        {
+            if(hitObject.transform.tag == tag)
+            {
+                gameObject = hitObject.transform.gameObject;
+                return true;
+            }
+        }
+
+        gameObject = null;
+        return false;
     }
     #endregion
 }

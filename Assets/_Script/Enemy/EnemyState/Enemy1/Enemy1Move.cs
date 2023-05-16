@@ -12,7 +12,7 @@ public class Enemy1Move : EnemyState
     {
         nowLootCount = 0;
         List<GameObject> lootObj = enemy.getMoveLoot();
-        enemyLootList = new List<Vector3>(); // ‰Šú‰»‚ğ’Ç‰Á
+        enemyLootList = new List<Vector3>();
 
         for (int i = 0; i < lootObj.Count;i++)
         {

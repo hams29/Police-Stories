@@ -25,17 +25,23 @@ public class Enemy1Controller : EnemyControllerBase
     public Enemy1Move MoveState { get; private set; }
     public Enemy1Surrender SurrenderState { get; private set; }
     public Enemy1MoveLostPoint MoveLastPointState { get; private set; }
+    public Enemy1Detection DetactionState { get; private set; }
     #endregion
 
     #region Component
     public Inventory Inventory { get; private set; }
     public GameObject mainWeapon { get; private set; }
-    protected Rotation Rotation { get => rotation ?? Core.GetCoreComponent(ref rotation); }
+    private Rotation Rotation { get => rotation ?? Core.GetCoreComponent(ref rotation); }
     private Rotation rotation;
+
+    private Interact Interact { get => interact ?? Core.GetCoreComponent(ref interact); }
+    private Interact interact;
     #endregion
 
     #region Other Variables
     private Vector3 workspace;
+
+    public bool enemySurrenderProbability { get; private set; }
     #endregion
 
 
@@ -53,6 +59,7 @@ public class Enemy1Controller : EnemyControllerBase
         MoveState = new Enemy1Move(this, stateMachine, enemyData, "move");
         SurrenderState = new Enemy1Surrender(this, stateMachine, enemyData, "surrender");
         MoveLastPointState = new Enemy1MoveLostPoint(this, stateMachine, enemyData, "moveLastPoint");
+        DetactionState = new Enemy1Detection(this, stateMachine, enemyData, "detaction");
     }
 
     protected override void Start()
@@ -73,9 +80,12 @@ public class Enemy1Controller : EnemyControllerBase
                 break;
         }
 
+        enemySurrenderProbability = false;
         mainWeapon = Instantiate(Inventory.mainWeapon, setMainWeapon.transform);
         States.SetInitHP(enemyData.maxHP);
         stateMachine.Initialize(IdleState);
+        Interact.canInteract = false;
+        
     }
 
     protected override void Update()
@@ -95,11 +105,23 @@ public class Enemy1Controller : EnemyControllerBase
     public override void PlayerCall(Vector3 ppos)
     {
         base.PlayerCall(ppos);
+
+        if (enemySurrenderProbability)
+            return;
+        else
+            enemySurrenderProbability = true;
+
         Rotation.SetRotation(ppos);
-        //待機、歩き、プレイヤー探知ステータスのみ降伏するようにする：：確率で変動させる？
-        if (stateMachine.CurrentState == IdleState || stateMachine.CurrentState == MoveState || stateMachine.CurrentState == PlayerSearchState)
+        float rand = Random.Range(0, 100.0f);
+        //待機、歩き、プレイヤー探知ステータスのみ降伏するようにする
+        if ((stateMachine.CurrentState == IdleState || stateMachine.CurrentState == MoveState || stateMachine.CurrentState == PlayerSearchState) && rand <= enemyData.surrenderProbability)
         {
             stateMachine.ChangeState(SurrenderState);
+        }
+        else
+        {
+            IdleState.SetLockTime(0.5f);
+            stateMachine.ChangeState(IdleState);
         }
     }
 

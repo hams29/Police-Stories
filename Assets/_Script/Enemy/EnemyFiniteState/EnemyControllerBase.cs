@@ -21,6 +21,11 @@ public class EnemyControllerBase : MonoBehaviour
     private States states;
     #endregion
 
+    #region Variables
+    public float playerOutOfViewTime { get; private set; }
+    public bool isPlayerOutOfView { get; private set; }
+    #endregion
+
     protected virtual void Awake()
     {
         Core = GetComponentInChildren<Core>();
@@ -33,7 +38,8 @@ public class EnemyControllerBase : MonoBehaviour
         myColl = GetComponent<CapsuleCollider>();
         Anim = GetComponent<Animator>();
         PlayerSearch = GetComponentInChildren<PlayerSearch>();
-        
+        playerOutOfViewTime = 0.0f;
+        isPlayerOutOfView = true;
     }
 
     protected virtual void Update()
@@ -51,4 +57,7 @@ public class EnemyControllerBase : MonoBehaviour
     {
 
     }
+
+    public void PlayerOutOfViewTIme() => playerOutOfViewTime = Time.time;
+    public void SetPlayerOutOfView(bool flg) => isPlayerOutOfView = flg;
 }

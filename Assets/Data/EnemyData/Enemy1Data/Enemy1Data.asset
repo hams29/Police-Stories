@@ -17,3 +17,6 @@ MonoBehaviour:
   runSpeed: 8
   playerSearchTime: 0.5
   enemyShotCount: 5
+  surrenderProbability: 50
+  detantionTime: 2
+  playerOutOfViewTime: 1.5
