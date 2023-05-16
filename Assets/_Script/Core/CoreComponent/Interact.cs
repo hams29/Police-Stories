@@ -14,6 +14,8 @@ public class Interact : CoreComponent
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+
+        Debug.Log(transform.root.name + " interact " + isInteract);
     }
 
     #region SetFunction

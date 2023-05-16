@@ -98,6 +98,10 @@ public class Enemy1Controller : EnemyControllerBase
     public override void PlayerCall(Vector3 ppos)
     {
         base.PlayerCall(ppos);
+
+        if (enemySurrenderProbability)
+            return;
+
         Rotation.SetRotation(ppos);
         float rand = Random.Range(0, 100.0f);
         //待機、歩き、プレイヤー探知ステータスのみ降伏するようにする

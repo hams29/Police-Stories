@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class PlayerIdle : PlayerState
 {
@@ -30,13 +31,27 @@ public class PlayerIdle : PlayerState
     {
         base.LogicUpdate();
 
-        if(!isExitingState)
+        GameObject other;
+
+        if (!isExitingState)
         {
             //TODO::PlayerIdle::各ステータスへ移行
             if (shotInput && player.gun.GetCurrentMagazineAmmo() > 0)
                 stateMachine.ChangeState(player.ShotState);
             else if (reloadInput)
                 stateMachine.ChangeState(player.ReloadState);
+            else if(interactInput && player.CheckFrontObject("target",out other))
+            {
+                Core otherCore = other.GetComponentInChildren<Core>();
+                if(otherCore != null)
+                {
+                    Interact otherInteract = null;
+                    otherCore.GetCoreComponent(ref otherInteract);
+                    player.DetantionState.SetOtherInteractComponent(otherInteract);
+                    player.inputController.UseInteractInput();
+                    stateMachine.ChangeState(player.DetantionState);
+                }
+            }
             else if (interactInput)
             {
                 player.inputController.UseInteractInput();

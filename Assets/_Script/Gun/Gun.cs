@@ -64,7 +64,6 @@ public class Gun : MonoBehaviour
             }
 
             lastGunShot = true;
-            Debug.Log("bang!!");
         }
         else
             lastGunShot = false;
