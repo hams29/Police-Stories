@@ -25,13 +25,17 @@ public class Enemy1Controller : EnemyControllerBase
     public Enemy1Move MoveState { get; private set; }
     public Enemy1Surrender SurrenderState { get; private set; }
     public Enemy1MoveLostPoint MoveLastPointState { get; private set; }
+    public Enemy1Detection DetactionState { get; private set; }
     #endregion
 
     #region Component
     public Inventory Inventory { get; private set; }
     public GameObject mainWeapon { get; private set; }
-    protected Rotation Rotation { get => rotation ?? Core.GetCoreComponent(ref rotation); }
+    private Rotation Rotation { get => rotation ?? Core.GetCoreComponent(ref rotation); }
     private Rotation rotation;
+
+    private Interact Interact { get => interact ?? Core.GetCoreComponent(ref interact); }
+    private Interact interact;
     #endregion
 
     #region Other Variables
@@ -55,6 +59,7 @@ public class Enemy1Controller : EnemyControllerBase
         MoveState = new Enemy1Move(this, stateMachine, enemyData, "move");
         SurrenderState = new Enemy1Surrender(this, stateMachine, enemyData, "surrender");
         MoveLastPointState = new Enemy1MoveLostPoint(this, stateMachine, enemyData, "moveLastPoint");
+        DetactionState = new Enemy1Detection(this, stateMachine, enemyData, "detaction");
     }
 
     protected override void Start()
@@ -79,6 +84,8 @@ public class Enemy1Controller : EnemyControllerBase
         mainWeapon = Instantiate(Inventory.mainWeapon, setMainWeapon.transform);
         States.SetInitHP(enemyData.maxHP);
         stateMachine.Initialize(IdleState);
+        Interact.canInteract = false;
+        
     }
 
     protected override void Update()
@@ -101,6 +108,8 @@ public class Enemy1Controller : EnemyControllerBase
 
         if (enemySurrenderProbability)
             return;
+        else
+            enemySurrenderProbability = true;
 
         Rotation.SetRotation(ppos);
         float rand = Random.Range(0, 100.0f);
@@ -114,7 +123,6 @@ public class Enemy1Controller : EnemyControllerBase
             IdleState.SetLockTime(0.5f);
             stateMachine.ChangeState(IdleState);
         }
-        enemySurrenderProbability = true;
     }
 
     public List<GameObject> getMoveLoot() { return moveLoot; }

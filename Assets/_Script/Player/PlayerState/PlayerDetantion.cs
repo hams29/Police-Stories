@@ -42,7 +42,7 @@ public class PlayerDetantion : PlayerState
         base.LogicUpdate();
 
         //インタラクトボタンを離したときの処理
-        if(player.inputController.MeleeInputStop)
+        if(player.inputController.InteractInputStop)
         {
             otherInteract.UseInteract();
             stateMachine.ChangeState(player.IdleState);

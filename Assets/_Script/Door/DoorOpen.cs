@@ -22,6 +22,7 @@ public class DoorOpen : MonoBehaviour
     private void Start()
     {
         core = GetComponentInChildren<Core>();
+        Interact.canInteract = true;
     }
 
     // Update is called once per frame

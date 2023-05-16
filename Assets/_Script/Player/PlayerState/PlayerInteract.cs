@@ -40,7 +40,8 @@ public class PlayerInteract : PlayerState
                     otherCore.GetCoreComponent(ref otherInteract);
                     if(otherInteract != null)
                     {
-                        otherInteract.SetInteract();
+                        if(otherInteract.canInteract)
+                            otherInteract.SetInteract();
                     }
                 }
             }

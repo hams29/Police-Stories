@@ -113,6 +113,7 @@ public class FunSearch : MonoBehaviour
     {
         if(!enemyShowList.Contains(enemy))
         {
+            enemy.SetPlayerOutOfView(false);
             enemyShowList.Add(enemy);
         }
     }
@@ -121,6 +122,8 @@ public class FunSearch : MonoBehaviour
     {
         if(enemyShowList.Contains(enemy))
         {
+            enemy.SetPlayerOutOfView(true);
+            enemy.PlayerOutOfViewTIme();
             enemyShowList.Remove(enemy);
         }
     }

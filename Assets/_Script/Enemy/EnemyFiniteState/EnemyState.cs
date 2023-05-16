@@ -12,11 +12,13 @@ public class EnemyState
 
     protected Movement Movement { get => movement ?? core.GetCoreComponent(ref movement); }
     protected Rotation Rotation { get => rotation ?? core.GetCoreComponent(ref rotation); }
+    protected States States { get => states ?? core.GetCoreComponent(ref states); }
+    protected Interact Interact { get => interact ?? core.GetCoreComponent(ref interact); }
 
+    private Interact interact;
     private Movement movement;
     private Rotation rotation;
 
-    protected States States { get => states ?? core.GetCoreComponent(ref states); }
     private States states;
 
     protected float startTIme;

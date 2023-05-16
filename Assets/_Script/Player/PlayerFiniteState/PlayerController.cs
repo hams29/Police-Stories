@@ -170,6 +170,7 @@ public class PlayerController : MonoBehaviour
 
     public bool CheckFrontObject(string tag, out GameObject gameObject)
     {
+        /*
         // 前方にRayを発射する
         Ray ray = new Ray(transform.position, transform.forward);
         RaycastHit hit;
@@ -186,6 +187,21 @@ public class PlayerController : MonoBehaviour
         }
 
         // ヒットしなかった場合や、タグが「target」でなかった場合
+        gameObject = null;
+        return false;
+        */
+
+        RaycastHit hitObject;
+        Vector3 pos = new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z);
+        if (Physics.Raycast(pos, transform.forward, out hitObject, playerData.meleeDistance))
+        {
+            if(hitObject.transform.tag == tag)
+            {
+                gameObject = hitObject.transform.gameObject;
+                return true;
+            }
+        }
+
         gameObject = null;
         return false;
     }

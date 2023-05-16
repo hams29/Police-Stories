@@ -47,9 +47,12 @@ public class PlayerIdle : PlayerState
                 {
                     Interact otherInteract = null;
                     otherCore.GetCoreComponent(ref otherInteract);
-                    player.DetantionState.SetOtherInteractComponent(otherInteract);
-                    player.inputController.UseInteractInput();
-                    stateMachine.ChangeState(player.DetantionState);
+                    if(otherInteract.canInteract)
+                    {
+                        player.DetantionState.SetOtherInteractComponent(otherInteract);
+                        player.inputController.UseInteractInput();
+                        stateMachine.ChangeState(player.DetantionState);
+                    }
                 }
             }
             else if (interactInput)

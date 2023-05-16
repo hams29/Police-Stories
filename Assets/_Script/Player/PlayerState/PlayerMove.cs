@@ -27,11 +27,28 @@ public class PlayerMove : PlayerState
     {
         base.LogicUpdate();
 
+        GameObject other;
+
         //別のステータスに移行
         if (shotInput && player.gun.GetCurrentMagazineAmmo() <= 0)
             stateMachine.ChangeState(player.ShotState);
         else if (reloadInput)
             stateMachine.ChangeState(player.ReloadState);
+        else if (interactInput && player.CheckFrontObject("target", out other))
+        {
+            Core otherCore = other.GetComponentInChildren<Core>();
+            if (otherCore != null)
+            {
+                Interact otherInteract = null;
+                otherCore.GetCoreComponent(ref otherInteract);
+                if (otherInteract.canInteract)
+                {
+                    player.DetantionState.SetOtherInteractComponent(otherInteract);
+                    player.inputController.UseInteractInput();
+                    stateMachine.ChangeState(player.DetantionState);
+                }
+            }
+        }
         else if (interactInput)
         {
             player.inputController.UseInteractInput();

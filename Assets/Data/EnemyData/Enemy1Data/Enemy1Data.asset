@@ -18,3 +18,4 @@ MonoBehaviour:
   playerSearchTime: 0.5
   enemyShotCount: 5
   surrenderProbability: 100
+  detantionTime: 2
