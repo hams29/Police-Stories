@@ -35,7 +35,7 @@ public class Enemy1MoveLostPoint : EnemyState
         workspace = new Vector3(workspace.x + pos.x, workspace.y + pos.y, workspace.z + pos.z);
         Rotation?.SetRotation(workspace);
 
-        //TODO::Enemy1MoveLostPoint::áŠQ•¨‚É“–‚½‚Á‚½Û‚Ìˆ—
+        //áŠQ•¨‚É“–‚½‚Á‚½Û‚Ìˆ—
         float detectionDistance = 0.5f;
         float detectionHeight = 0.2f;
 
