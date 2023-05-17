@@ -158,14 +158,45 @@ public class PlayerController : MonoBehaviour
         Vector3 forward = this.gameObject.transform.forward;
         forward = new Vector3(forward.x, 0, forward.z).normalized;
 
-        float inputForward = inputController.NormInputZ * forward.z;
-        float inputRight = inputController.NormInputX * forward.x;
+        Debug.Log(forward);
+
+        float inputForward = inputController.NormInputZ;
+        float inputRight = inputController.NormInputX;
+        if(inputForward == 1)
+        {
+            if(forward.x >= 0)
+            {
+                inputForward -= forward.x;
+                inputRight -= forward.x;
+            }
+            else
+            {
+                inputForward -= Mathf.Abs(forward.x);
+                inputRight += Mathf.Abs(forward.x);
+            }
+        }
+        else if(inputForward == -1)
+        {
+            if (forward.x >= 0)
+            {
+                inputForward += forward.x;
+                inputRight += forward.x;
+            }
+            else
+            {
+                inputForward += Mathf.Abs(forward.x);
+                inputRight -= Mathf.Abs(forward.x);
+            }
+        }
+
+        inputForward *= forward.z;
+        inputRight *= forward.x;
 
         Anim.SetFloat("inputForward", inputForward);
         Anim.SetFloat("inputRight", inputRight);
 
-        Anim.SetFloat("playerDirectionX", this.gameObject.transform.forward.x);
-        Anim.SetFloat("playerDirectionZ", this.gameObject.transform.forward.z);
+        //Anim.SetFloat("playerDirectionX", this.gameObject.transform.forward.x);
+        //Anim.SetFloat("playerDirectionZ", this.gameObject.transform.forward.z);
     }
 
     public bool CheckFrontObject(string tag, out GameObject gameObject)
