@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class gameManager : MonoBehaviour
 {
     public static gameManager GameManager;
@@ -12,9 +13,22 @@ public class gameManager : MonoBehaviour
 
     [SerializeField] private Text text;
     [SerializeField] private Text text2;
+    [SerializeField] private Text scoreText;
+    [SerializeField] private Text remainingAmmoText;
+    [SerializeField] private Text maxAmmoText;
+
+    [SerializeField] private Slider magazinSlider1;
+    [SerializeField] private Slider magazinSlider2;
+    [SerializeField] private Slider magazinSlider3;
+
+    [SerializeField] private Image currentNPCStateImage;
+
+
+    public Gun gun { get; private set; }
 
     private void Awake()
     {
+
         if (GameManager != null)
             GameManager = this;
         else
@@ -25,8 +39,21 @@ public class gameManager : MonoBehaviour
 
         text.text = (!weapon) ? "" : weapon.name;
         text2.text = stageName;
+
+        scoreText.text = "";
+
+        remainingAmmoText.text = (!gun) ? "" : gun.GetCurrentMagazineAmmo().ToString();
+        maxAmmoText.text = (!gun) ? "" : gun.GetMainWeaponData().maxAmmo.ToString();
+
+        magazinSlider1.value = gun.currentMagazine[0];
+        magazinSlider2.value = gun.currentMagazine[1];
+        magazinSlider3.value = gun.currentMagazine[2];
+
+        //NPC‚ÌŒ»İ‚Ìó‘Ô‚Ì‰æ‘œ‚ğ“ü‚ê‚éB
+        currentNPCStateImage = null;
+
     }
 
-
+    public void SetPlayerGun(Gun gun) { this.gun = gun; }
 
 }
