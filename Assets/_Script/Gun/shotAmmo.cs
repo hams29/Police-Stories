@@ -15,39 +15,6 @@ public class shotAmmo : MonoBehaviour
     {
         ammoDamage = 0;
     }
-
-    /*
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject == shotObject || other.tag == shotObject.tag)
-            return;
-
-        if (CompareLayer(ammoAble, other.gameObject.layer))
-        {
-            Core core = other.GetComponentInChildren<Core>();
-            if (core == null)
-                return;
-
-            States states = null;
-            Damage damage = null;
-            core.GetCoreComponent(ref states);
-            core.GetCoreComponent(ref damage);
-
-            if (states == null || damage == null)
-                return;
-
-            if (!states.dead)
-            {
-                damage.addDamage(ammoDamage);
-                Debug.Log("Hit!!");
-                Destroy(this.gameObject);
-            }
-        }
-        else
-            Destroy(this.gameObject);
-    }
-    */
-
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject == shotObject || collision.gameObject.tag == shotObject.tag)
@@ -77,8 +44,8 @@ public class shotAmmo : MonoBehaviour
                 Destroy(this.gameObject);
             }
         }
-        else
-            Destroy(this.gameObject);
+        
+        Destroy(this.gameObject);
     }
 
     public void SetDamageValue(float damage) => this.ammoDamage = damage;
