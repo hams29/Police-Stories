@@ -190,13 +190,13 @@ public class PlayerController : MonoBehaviour
         }
 
         inputForward *= forward.z;
-        //inputRight = inputController.NormInputX * forward.x;
+        inputRight *= forward.x;
 
         Anim.SetFloat("inputForward", inputForward);
         Anim.SetFloat("inputRight", inputRight);
 
-        Anim.SetFloat("playerDirectionX", this.gameObject.transform.forward.x);
-        Anim.SetFloat("playerDirectionZ", this.gameObject.transform.forward.z);
+        //Anim.SetFloat("playerDirectionX", this.gameObject.transform.forward.x);
+        //Anim.SetFloat("playerDirectionZ", this.gameObject.transform.forward.z);
     }
 
     public bool CheckFrontObject(string tag, out GameObject gameObject)
