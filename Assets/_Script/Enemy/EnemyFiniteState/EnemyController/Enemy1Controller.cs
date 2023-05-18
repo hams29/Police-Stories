@@ -36,6 +36,9 @@ public class Enemy1Controller : EnemyControllerBase
 
     private Interact Interact { get => interact ?? Core.GetCoreComponent(ref interact); }
     private Interact interact;
+
+    private Damage Damage { get => damage ?? Core.GetCoreComponent(ref damage); }
+    private Damage damage;
     #endregion
 
     #region Other Variables
@@ -91,6 +94,12 @@ public class Enemy1Controller : EnemyControllerBase
     protected override void Update()
     {
         base.Update();
+
+        if(Damage.isDamage)
+        {
+            Damage?.UseDamageHandler();
+            Rotation?.SetRotation(Damage.shotAnyPos);
+        }
     }
 
     protected override void FixedUpdate()
@@ -126,5 +135,7 @@ public class Enemy1Controller : EnemyControllerBase
     }
 
     public List<GameObject> getMoveLoot() { return moveLoot; }
+
+    public void SetTrueSurrenderProbability() { enemySurrenderProbability = true; }
     #endregion
 }

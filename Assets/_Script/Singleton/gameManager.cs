@@ -28,7 +28,7 @@ public class gameManager : MonoBehaviour
 
     private void Awake()
     {
-
+        /*
         if (GameManager != null)
             GameManager = this;
         else
@@ -42,18 +42,19 @@ public class gameManager : MonoBehaviour
 
         scoreText.text = "";
 
+        //NPC‚ÌŒ»İ‚Ìó‘Ô‚Ì‰æ‘œ‚ğ“ü‚ê‚éB
+        currentNPCStateImage = null;
+        */
+    }
+
+    public void SetPlayerGun(Gun gunScript) 
+    {
+        this.gun = gunScript;
         remainingAmmoText.text = (!gun) ? "" : gun.GetCurrentMagazineAmmo().ToString();
         maxAmmoText.text = (!gun) ? "" : gun.GetMainWeaponData().maxAmmo.ToString();
-
         magazinSlider1.value = gun.currentMagazine[0];
         magazinSlider2.value = gun.currentMagazine[1];
         magazinSlider3.value = gun.currentMagazine[2];
-
-        //NPC‚ÌŒ»İ‚Ìó‘Ô‚Ì‰æ‘œ‚ğ“ü‚ê‚éB
-        currentNPCStateImage = null;
-
     }
-
-    public void SetPlayerGun(Gun gun) { this.gun = gun; }
 
 }

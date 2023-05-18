@@ -28,11 +28,14 @@ public class Enemy1MoveLostPoint : EnemyState
         base.LogicUpdate();
 
         Vector3 lastPlayerPos = new Vector3(enemy.PlayerSearch.playerPos.x, 0, enemy.PlayerSearch.playerPos.z);
-        Vector3 pos = new Vector3(enemy.transform.position.x, 0, enemy.transform.position.z);
-        workspace = (lastPlayerPos - pos).normalized;
+        //Vector3 pos = new Vector3(enemy.transform.position.x, 0, enemy.transform.position.z);
+        //workspace = (lastPlayerPos - pos).normalized;
+        workspace = new Vector3(lastPlayerPos.x - enemy.transform.position.x,
+                                0,
+                                lastPlayerPos.z - enemy.transform.position.z);
         Movement?.SetVelocity(workspace, enemyData.runSpeed);
-        pos = enemy.transform.position;
-        workspace = new Vector3(workspace.x + pos.x, workspace.y + pos.y, workspace.z + pos.z);
+        Vector3 pos = enemy.transform.position;
+        workspace = new Vector3(workspace.x + pos.x, pos.y, workspace.z + pos.z);
         Rotation?.SetRotation(workspace);
 
         //è·äQï®Ç…ìñÇΩÇ¡ÇΩç€ÇÃèàóù

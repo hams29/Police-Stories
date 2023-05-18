@@ -40,11 +40,15 @@ public class Enemy1Move : EnemyState
     {
         base.LogicUpdate();
 
-        workspace = (enemyLootList[nowLootCount] - enemy.transform.position).normalized;
+        //workspace = (enemyLootList[nowLootCount] - enemy.transform.position).normalized;
+        workspace = new Vector3(enemyLootList[nowLootCount].x - enemy.transform.position.x,
+                                0,
+                                enemyLootList[nowLootCount].z - enemy.transform.position.z).normalized;
         Movement?.SetVelocity(workspace, enemyData.moveSpeed);
 
         Vector3 pos = enemy.transform.position;
-        workspace = new Vector3(workspace.x + pos.x, workspace.y + pos.y, workspace.z + pos.z);
+        //workspace = new Vector3(workspace.x + pos.x, workspace.y + pos.y, workspace.z + pos.z);
+        workspace = new Vector3(workspace.x + pos.x, pos.y, workspace.z + pos.z);
         Rotation.SetRotation(workspace);
 
         if (enemyLootList[nowLootCount].x + 0.1 > enemy.transform.position.x && enemyLootList[nowLootCount].x - 0.1 < enemy.transform.position.x)
