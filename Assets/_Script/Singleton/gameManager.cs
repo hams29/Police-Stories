@@ -28,7 +28,7 @@ public class gameManager : MonoBehaviour
 
     private void Awake()
     {
-
+        /*
         if (GameManager != null)
             GameManager = this;
         else
@@ -44,7 +44,7 @@ public class gameManager : MonoBehaviour
 
         //NPC‚ÌŒ»İ‚Ìó‘Ô‚Ì‰æ‘œ‚ğ“ü‚ê‚éB
         currentNPCStateImage = null;
-
+        */
     }
 
     public void SetPlayerGun(Gun gunScript) 
