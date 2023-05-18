@@ -17,6 +17,7 @@ public class Enemy1Shot : EnemyState
     {
         base.Enter();
         shotCount = 0;
+        enemy.SetTrueSurrenderProbability();
     }
 
     public override void Exit()

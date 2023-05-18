@@ -40,6 +40,7 @@ public class shotAmmo : MonoBehaviour
             if (!states.dead)
             {
                 damage.addDamage(ammoDamage);
+                damage.SetShotAnyPos(shotObject.transform.position);
                 Debug.Log("Hit!!");
                 Destroy(this.gameObject);
             }

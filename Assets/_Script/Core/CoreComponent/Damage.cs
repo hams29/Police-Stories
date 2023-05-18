@@ -6,10 +6,13 @@ public class Damage : CoreComponent, ILogicUpdate
 {
     private States States { get => states ?? core.GetCoreComponent(ref states); }
     private States states;
+    public bool isDamage { get; private set; }
+    public Vector3 shotAnyPos { get; private set; }
 
     protected override void Awake()
     {
         base.Awake();
+        isDamage = false;
     }
 
     public override void LogicUpdate()
@@ -20,8 +23,12 @@ public class Damage : CoreComponent, ILogicUpdate
     #region Set Function
     public void addDamage(float damage)
     {
-        States.addDamage(damage);
-        Debug.Log(transform.root.gameObject.name + " is " + damage + "damage");
+        States?.addDamage(damage);
+        isDamage = true;
+        //Debug.Log(transform.root.gameObject.name + " is " + damage + "damage");
     }
+
+    public void UseDamageHandler() { isDamage = false; }
+    public void SetShotAnyPos(Vector3 pos) { shotAnyPos = pos; }
     #endregion
 }

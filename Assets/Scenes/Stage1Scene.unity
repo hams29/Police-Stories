@@ -19351,10 +19351,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8170490176160825506, guid: 3175e5bf58ed0bc41adcc8e7bb142670, type: 3}
-      propertyPath: m_FollowOffset.y
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 8170490176752468436, guid: 3175e5bf58ed0bc41adcc8e7bb142670, type: 3}
       propertyPath: m_Follow
       value: 
