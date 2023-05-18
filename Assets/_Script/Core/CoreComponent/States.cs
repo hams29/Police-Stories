@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class States : CoreComponent
+public class States : CoreComponent, ILogicUpdate
 {
     public float currentHP { get; private set; }
     public bool dead { get; private set; }

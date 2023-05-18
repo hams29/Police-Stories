@@ -94,7 +94,7 @@ public class PlayerController : MonoBehaviour
 
         mainWeapon = Instantiate(Inventory.mainWeapon, setMainWeapon.transform);
         gun = mainWeapon.GetComponent<Gun>();
-        gameManager.GameManager.SetPlayerGun(gun);
+        gameManager.GameManager?.SetPlayerGun(gun);
 
         stateMachine.Initialize(IdleState);
         States.SetInitHP(playerData.maxHP);

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Interact : CoreComponent
+public class Interact : CoreComponent, ILogicUpdate
 {
     public bool isInteract;
     public bool canInteract;
