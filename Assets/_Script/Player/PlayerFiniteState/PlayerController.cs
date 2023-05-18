@@ -116,25 +116,10 @@ public class PlayerController : MonoBehaviour
                 Vector3 lookpoint = ray.GetPoint(distance);
                 Rotation.SetRotation(lookpoint);
             }
-
         }
 
         //Animator�ɕK�v�Ȓl�����鏈��
         AnimationInputValueSet();
-
-        //TODO::�f�o�b�O�p::��ō폜
-        {
-            if (Input.GetKeyDown(KeyCode.UpArrow))
-            {
-                States.addDamage(20.0f);
-                Debug.Log("currentHP is " + States.currentHP);
-            }
-            else if(Input.GetKeyUp(KeyCode.DownArrow))
-            {
-                States.addHealth(20.0f);
-                Debug.Log("currentHP is " + States.currentHP);
-            }            
-        }
     }
 
     private void OnDrawGizmos()
@@ -158,8 +143,6 @@ public class PlayerController : MonoBehaviour
         //TODO::PlayerCOntroller::�v���C���[�̌����ɂ���ăA�j���[�V�����̕ύX
         Vector3 forward = this.gameObject.transform.forward;
         forward = new Vector3(forward.x, 0, forward.z).normalized;
-
-        Debug.Log(forward);
 
         float inputForward = inputController.NormInputZ;
         float inputRight = inputController.NormInputX;
