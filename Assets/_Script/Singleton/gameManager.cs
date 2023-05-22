@@ -40,16 +40,23 @@ public class gameManager : MonoBehaviour
     public void SetPlayerGun(Gun gunScript) 
     {
         this.gun = gunScript;
-
     }
 
     public void Update()
     {
         remainingAmmoText.text = (!gun) ? "" : gun.GetCurrentMagazineAmmo().ToString();
         maxAmmoText.text = (!gun) ? "" : gun.GetMainWeaponData().maxAmmo.ToString();
-        magazinSlider1.maxValue = gun.currentMagazine[0];
-        magazinSlider2.maxValue = gun.currentMagazine[1];
-        magazinSlider3.maxValue = gun.currentMagazine[2];
+
+        magazinSlider1.maxValue = gun.GetMainWeaponData().maxAmmo;
+        magazinSlider2.maxValue = gun.GetMainWeaponData().maxAmmo;
+        magazinSlider3.maxValue = gun.GetMainWeaponData().maxAmmo;
+
+        magazinSlider1.value = gun.currentMagazine[0];
+        magazinSlider2.value = gun.currentMagazine[1];
+        magazinSlider3.value = gun.currentMagazine[2];
+
+
+
     }
 
 }
