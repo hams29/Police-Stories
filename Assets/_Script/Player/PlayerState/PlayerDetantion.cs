@@ -28,6 +28,8 @@ public class PlayerDetantion : PlayerState
             Movement.CanSetVelocity = false;
             Rotation.CanSetRotate = false;
         }
+
+        player.DetantionUI.Show();
     }
 
     public override void Exit()
@@ -35,6 +37,7 @@ public class PlayerDetantion : PlayerState
         Movement.CanSetVelocity = true;
         Rotation.CanSetRotate = true;
         base.Exit();
+        player.DetantionUI.Hide();
     }
 
     public override void LogicUpdate()

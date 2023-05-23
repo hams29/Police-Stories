@@ -17,7 +17,10 @@ public class Enemy1Detection : EnemyState
         base.Enter();
         Interact.canInteract = false;
         if (gameManager.GameManager != null)
+        {
             gameManager.GameManager.AddScore(100.0f);
+            gameManager.GameManager.addEliminatedEnemy();
+        }
         Debug.Log(enemy.name + " ‚ğS‘©");
     }
 

@@ -51,6 +51,13 @@ public class PlayerController : MonoBehaviour
 
     private Plane plane = new Plane();
     float distance = 0;
+
+    [SerializeField]
+    private PlayerInteractUI interactUI;
+    [SerializeField]
+    private PlayerInteractUI detantionUI;
+    public PlayerInteractUI InteractUI { get; private set; }
+    public PlayerInteractUI DetantionUI { get; private set; }
     #endregion
 
     #region Unity Callback Function
@@ -99,6 +106,10 @@ public class PlayerController : MonoBehaviour
 
         stateMachine.Initialize(IdleState);
         States.SetInitHP(playerData.maxHP);
+        InteractUI = interactUI;
+        DetantionUI = detantionUI;
+        InteractUI.Hide();
+        detantionUI.Hide();
     }
 
     private void Update()
@@ -117,6 +128,11 @@ public class PlayerController : MonoBehaviour
                 Vector3 lookpoint = ray.GetPoint(distance);
                 Rotation.SetRotation(lookpoint);
             }
+        }
+        else if(gameManager.GameManager != null)
+        {
+            if (!gameManager.GameManager.isPlayerDead)
+                gameManager.GameManager.PlayerDead();
         }
 
         //Animator�ɕK�v�Ȓl�����鏈��
@@ -184,11 +200,11 @@ public class PlayerController : MonoBehaviour
         //Anim.SetFloat("playerDirectionZ", this.gameObject.transform.forward.z);
     }
 
-    public bool CheckFrontObject(string tag, out GameObject gameObject)
+    public bool CheckFrontObject(string tag, out GameObject gameObject, float distance)
     {
         RaycastHit hitObject;
         Vector3 pos = new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z);
-        if (Physics.Raycast(pos, transform.forward, out hitObject, playerData.meleeDistance))
+        if (Physics.Raycast(pos, transform.forward, out hitObject, distance))
         {
             if(hitObject.transform.tag == tag)
             {
@@ -198,6 +214,20 @@ public class PlayerController : MonoBehaviour
         }
 
         gameObject = null;
+        return false;
+    }
+
+    public bool CheckFrontObject(string tag, float distance)
+    {
+        RaycastHit hitObject;
+        Vector3 pos = new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z);
+        if (Physics.Raycast(pos, transform.forward, out hitObject, distance))
+        {
+            if (hitObject.transform.tag == tag)
+            {
+                return true;
+            }
+        }
         return false;
     }
     #endregion

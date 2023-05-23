@@ -16,14 +16,13 @@ public class Enemy1Death : EnemyState
     {
         base.Enter();
 
-        if (enemy.enemySurrenderProbability)
+        if (gameManager.GameManager != null)
         {
-            if (gameManager.GameManager != null)
+            gameManager.GameManager.addEliminatedEnemy();
+
+            if(enemy.enemySurrenderProbability)
                 gameManager.GameManager.AddScore(50.0f);
-        }
-        else
-        {
-            if (gameManager.GameManager != null)
+            else
                 gameManager.GameManager.AddScore(-50.0f);
         }
     }

@@ -36,13 +36,17 @@ public class gameManager : MonoBehaviour
     private Image currentNPCStateImage;
 
     public Gun gun { get; private set; }
+    public nextSetGun setGun;
     private float score;
+
+    private int maxEnemy;
+    private int eliminateEnemy;
     private Scene nowScene;
 
     private bool isSetGun = false;
     private bool isSetGameUI = false;
+    public bool isPlayerDead { get; private set; }
 
-    public nextSetGun setGun;
     private void Awake()
     {
         
@@ -84,6 +88,12 @@ public class gameManager : MonoBehaviour
             magazinSlider2.value = (!gun) ? 0 : gun.currentMagazine[1];
             magazinSlider3.value = (!gun) ? 0 : gun.currentMagazine[2];
             scoreText.text = score.ToString();
+
+            if (maxEnemy <= eliminateEnemy)
+                Debug.Log("ステージクリア");
+
+            if (isPlayerDead)
+                Debug.Log("ゲームオーバー");
         }
     }
 
@@ -116,8 +126,15 @@ public class gameManager : MonoBehaviour
             case Scene.Game:
                 isSetGun = false;
                 isSetGameUI = false;
+                isPlayerDead = false;
+                maxEnemy = 0;
+                eliminateEnemy = 0;
                 break;
         }
         nowScene = ns; 
     }
+
+    public void addMaxEnemy() { maxEnemy++; }
+    public void addEliminatedEnemy() { eliminateEnemy++; }
+    public void PlayerDead() { isPlayerDead = true; }
 }
