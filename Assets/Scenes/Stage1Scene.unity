@@ -4071,13 +4071,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8257f55518fafb4f8eec13f337c409a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreText: {fileID: 35115197}
-  remainingAmmoText: {fileID: 1694500641}
-  maxAmmoText: {fileID: 1575059577}
-  magazinSlider1: {fileID: 842091795}
-  magazinSlider2: {fileID: 1263989722}
-  magazinSlider3: {fileID: 866433176}
-  currentNPCStateImage: {fileID: 1084521380}
 --- !u!1001 &297222058
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20128,6 +20121,7 @@ GameObject:
   - component: {fileID: 1498637113}
   - component: {fileID: 1498637112}
   - component: {fileID: 1498637111}
+  - component: {fileID: 1498637114}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -20220,6 +20214,25 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1498637114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1498637109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a42ee184174672643820100261f838f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 35115197}
+  remainingAmmoText: {fileID: 1694500641}
+  maxAmmoText: {fileID: 1575059577}
+  magazinSlider1: {fileID: 842091795}
+  magazinSlider2: {fileID: 1263989722}
+  magazinSlider3: {fileID: 866433176}
+  currentNPCStateImage: {fileID: 1084521380}
 --- !u!1 &1509150453
 GameObject:
   m_ObjectHideFlags: 0

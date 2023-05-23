@@ -7,10 +7,13 @@ public class SceneChange : MonoBehaviour
 {
     public static string stageName;
     [SerializeField] protected string nextSceneName;
+    [SerializeField] protected gameManager.Scene nextScene;
 
     protected void ChangeNextScene()
     {
         stageName = nextSceneName;
         SceneManager.LoadScene(stageName);
+        if (gameManager.GameManager != null)
+            gameManager.GameManager.SetNextScene(nextScene);
     }
 }

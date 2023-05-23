@@ -7,5 +7,6 @@ public class TitleSceneChange : SceneChange
     public void ChangeClick()
     {
         base.ChangeNextScene();
+
     }
 }

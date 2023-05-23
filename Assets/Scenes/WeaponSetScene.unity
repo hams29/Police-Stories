@@ -168,6 +168,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextSceneName: 
+  nextScene: 3
+  weaponSet: {fileID: 1195526841}
 --- !u!1 &353331771
 GameObject:
   m_ObjectHideFlags: 0
@@ -572,7 +574,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: babdc43f6b0f9be49952a4a56701b235, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponPrefab: {fileID: 8536058977771240811, guid: b59f0a4843eac1f4ca08fc9be34ea694, type: 3}
+  weaponPrefab: {fileID: 8810664080158413873, guid: deab3125be0dacb4ebc739af4eee9ab8, type: 3}
+  weaponSet: {fileID: 1195526841}
 --- !u!4 &957041284
 Transform:
   m_ObjectHideFlags: 0
@@ -665,6 +668,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1195526840}
+  - component: {fileID: 1195526841}
   m_Layer: 0
   m_Name: GadgetHolder
   m_TagString: Untagged
@@ -689,6 +693,18 @@ Transform:
   m_Father: {fileID: 1621346996}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1195526841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1195526839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20d707ccc3b33a54eb6557bd152b6c12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1427836179
 GameObject:
   m_ObjectHideFlags: 0
@@ -1283,4 +1299,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: babdc43f6b0f9be49952a4a56701b235, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponPrefab: {fileID: 8975688958392875193, guid: 67138d9703a8d8542b2d1d723de4b629, type: 3}
+  weaponPrefab: {fileID: 2606139686633315723, guid: 710b51e9bea667242b9464a495ed30a0, type: 3}
+  weaponSet: {fileID: 1195526841}

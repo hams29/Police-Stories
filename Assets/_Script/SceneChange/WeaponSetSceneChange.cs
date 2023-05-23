@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class WeaponSetSceneChange : SceneChange
 {
+    [SerializeField]
+    WeaponSet weaponSet;
 
     private void Awake()
     {
@@ -13,5 +15,7 @@ public class WeaponSetSceneChange : SceneChange
     public void ChangeClick()
     {
         base.ChangeNextScene();
+        if (gameManager.GameManager != null)
+            gameManager.GameManager.setGun = weaponSet.setGun;
     }
 }
