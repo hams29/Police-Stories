@@ -40,6 +40,20 @@ public class Enemy1Move : EnemyState
     {
         base.LogicUpdate();
 
+        if (Damage.isDamage)
+        {
+            if (enemy.enemySurrenderProbability)
+            {
+                if (gameManager.GameManager != null)
+                    gameManager.GameManager.AddScore(10.0f);
+            }
+            else
+            {
+                if (gameManager.GameManager != null)
+                    gameManager.GameManager.AddScore(-10.0f);
+            }
+        }
+
         //workspace = (enemyLootList[nowLootCount] - enemy.transform.position).normalized;
         workspace = new Vector3(enemyLootList[nowLootCount].x - enemy.transform.position.x,
                                 0,

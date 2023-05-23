@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class gameManager : MonoBehaviour
 {
+    [SerializeField]
+    private Scene initScene;
     public enum Scene
     {
         Title,
@@ -37,8 +39,8 @@ public class gameManager : MonoBehaviour
     private float score;
     private Scene nowScene;
 
-    private bool isSetGun;
-    private bool isSetGameUI;
+    private bool isSetGun = false;
+    private bool isSetGameUI = false;
 
     public nextSetGun setGun;
     private void Awake()
@@ -52,14 +54,12 @@ public class gameManager : MonoBehaviour
         //NPC‚ÌŒ»İ‚Ìó‘Ô‚Ì‰æ‘œ‚ğ“ü‚ê‚éB
         currentNPCStateImage = null;
         score = 0;
-        nowScene = Scene.Title;
+        nowScene = initScene;
     }
 
     private void Start()
     {
         DontDestroyOnLoad(this.gameObject);
-        isSetGun = false;
-        isSetGameUI = false;
     }
 
     public void SetPlayerGun(Gun gunScript) 
@@ -83,6 +83,7 @@ public class gameManager : MonoBehaviour
             magazinSlider1.value = (!gun) ? 0 : gun.currentMagazine[0];
             magazinSlider2.value = (!gun) ? 0 : gun.currentMagazine[1];
             magazinSlider3.value = (!gun) ? 0 : gun.currentMagazine[2];
+            scoreText.text = score.ToString();
         }
     }
 

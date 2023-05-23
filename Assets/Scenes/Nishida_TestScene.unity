@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731704, g: 0.13414727, b: 0.121078536, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1069,13 +1069,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8257f55518fafb4f8eec13f337c409a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreText: {fileID: 0}
-  remainingAmmoText: {fileID: 0}
-  maxAmmoText: {fileID: 0}
-  magazinSlider1: {fileID: 0}
-  magazinSlider2: {fileID: 0}
-  magazinSlider3: {fileID: 0}
-  currentNPCStateImage: {fileID: 0}
+  initScene: 0
 --- !u!4 &1920576791
 Transform:
   m_ObjectHideFlags: 0
@@ -1577,7 +1571,7 @@ PrefabInstance:
     - target: {fileID: 7384495091219298950, guid: 245f5c0e4059c3949ab7ba3874468284, type: 3}
       propertyPath: debugMainWeapon
       value: 
-      objectReference: {fileID: 2606139686633315723, guid: 710b51e9bea667242b9464a495ed30a0, type: 3}
+      objectReference: {fileID: 8810664080158413873, guid: deab3125be0dacb4ebc739af4eee9ab8, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 245f5c0e4059c3949ab7ba3874468284, type: 3}
 --- !u!1001 &8170490176387762070

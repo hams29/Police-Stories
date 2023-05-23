@@ -16,6 +16,8 @@ public class Enemy1Detection : EnemyState
     {
         base.Enter();
         Interact.canInteract = false;
+        if (gameManager.GameManager != null)
+            gameManager.GameManager.AddScore(100.0f);
         Debug.Log(enemy.name + " ‚ğS‘©");
     }
 
@@ -27,6 +29,12 @@ public class Enemy1Detection : EnemyState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+
+        if(Damage.isDamage)
+        {
+            if (gameManager.GameManager != null)
+                gameManager.GameManager.AddScore(-100.0f);
+        }    
     }
 
     public override void PhysicsUpdate()

@@ -29,6 +29,20 @@ public class Enemy1PlayerSearch : EnemyState
     {
         base.LogicUpdate();
 
+        if (Damage.isDamage)
+        {
+            if (enemy.enemySurrenderProbability)
+            {
+                if (gameManager.GameManager != null)
+                    gameManager.GameManager.AddScore(10.0f);
+            }
+            else
+            {
+                if (gameManager.GameManager != null)
+                    gameManager.GameManager.AddScore(-10.0f);
+            }
+        }
+
         //ƒvƒŒƒCƒ„[‚Ì•ûŒü‚ÉŒü‚­
         Rotation.SetRotation(enemy.PlayerSearch.playerPos);
         if (gun.GetCurrentMagazineAmmo() <= 0)

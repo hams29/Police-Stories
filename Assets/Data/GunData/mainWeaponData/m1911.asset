@@ -18,4 +18,5 @@ MonoBehaviour:
   shotWaitTime: 0.3
   fullAuto: 0
   ammoSpeed: 20
-  shotDamage: 20
+  shotDamage: 45
+  gunType: 0

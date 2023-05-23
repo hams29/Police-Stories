@@ -134,6 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc3d8e788bbb57448a064e2e88a23d3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayer: 0
   debugMainWeapon: {fileID: 8810664080158413873, guid: 58c581d64590fdf479192b997d6e1159, type: 3}
 --- !u!1 &1497819694
 GameObject:
@@ -180,6 +181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInteract: 0
+  canInteract: 0
 --- !u!1 &2041601970
 GameObject:
   m_ObjectHideFlags: 0

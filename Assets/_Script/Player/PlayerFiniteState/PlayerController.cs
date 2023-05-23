@@ -80,6 +80,7 @@ public class PlayerController : MonoBehaviour
         Inventory = GetComponentInChildren<Inventory>();
         search = GetComponentInChildren<FunSearch>();
 
+        Inventory.SetMainWeapon();
         GameObject setMainWeapon = null;
         switch (Inventory.gunType) 
         {
