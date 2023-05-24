@@ -55,7 +55,7 @@ public class gameManager : MonoBehaviour
         else
             Destroy(this);
 
-        //NPC‚ÌŒ»İ‚Ìó‘Ô‚Ì‰æ‘œ‚ğ“ü‚ê‚éB
+        //NPCã®ç¾åœ¨ã®çŠ¶æ…‹ã®ç”»åƒã‚’å…¥ã‚Œã‚‹ã€‚
         currentNPCStateImage = null;
         score = 0;
         nowScene = initScene;
@@ -90,10 +90,10 @@ public class gameManager : MonoBehaviour
             scoreText.text = score.ToString();
 
             if (maxEnemy <= eliminateEnemy)
-                Debug.Log("ƒXƒe[ƒWƒNƒŠƒA");
+                Debug.Log("ã‚¹ãƒ†ãƒ¼ã‚¸ã‚¯ãƒªã‚¢");
 
             if (isPlayerDead)
-                Debug.Log("ƒQ[ƒ€ƒI[ƒo[");
+                Debug.Log("ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼");
         }
     }
 
