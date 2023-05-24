@@ -7,7 +7,6 @@ public class DamageEffect : MonoBehaviour
 {
     [SerializeField] private CanvasGroup playerHurt;
 
-
     public void PlayerDamagedHurt()
     {
         if (playerHurt.alpha < 1)
