@@ -6,6 +6,8 @@ public class Inventory : MonoBehaviour
 {
     public GameObject mainWeapon { get; private set; }
     public mainWeaponData.GunType gunType { get; private set; }
+    [SerializeField]
+    private bool isPlayer;
 
     //TODO::Inventory::å„Ç≈è¡Ç∑
     [SerializeField]
@@ -13,18 +15,39 @@ public class Inventory : MonoBehaviour
 
     private void Awake()
     {
-        if (debugMainWeapon != null)
-            mainWeapon = debugMainWeapon;
+        if(!isPlayer)
+        {
+            if (debugMainWeapon != null)
+                mainWeapon = debugMainWeapon;
 
-        if(mainWeapon != null)
-            gunType = mainWeapon.GetComponent<Gun>().GetMainWeaponData().gunType;
+            if (mainWeapon != null)
+                gunType = mainWeapon.GetComponent<Gun>().GetMainWeaponData().gunType;
+        }
     }
     private void Start()
     {
     }
 
+    public void SetMainWeapon()
+    {
+        if(gameManager.GameManager != null)
+        {
+            if(gameManager.GameManager.setGun != null)
+                mainWeapon = gameManager.GameManager.setGun.gun;
+            else if (debugMainWeapon != null)
+                mainWeapon = debugMainWeapon;
+        }
+        else if (debugMainWeapon != null)
+            mainWeapon = debugMainWeapon;
+
+        if(mainWeapon != null)
+            gunType = mainWeapon.GetComponent<Gun>().GetMainWeaponData().gunType;
+    }
+
+    /*
     public void SetMainWeapon(GameObject mainWeapon)
     {
         this.mainWeapon = mainWeapon;
     }
+    */
 }

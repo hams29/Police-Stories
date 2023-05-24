@@ -27,6 +27,20 @@ public class Enemy1MoveLostPoint : EnemyState
     {
         base.LogicUpdate();
 
+        if (Damage.isDamage)
+        {
+            if (enemy.enemySurrenderProbability)
+            {
+                if (gameManager.GameManager != null)
+                    gameManager.GameManager.AddScore(10.0f);
+            }
+            else
+            {
+                if (gameManager.GameManager != null)
+                    gameManager.GameManager.AddScore(-10.0f);
+            }
+        }
+
         Vector3 lastPlayerPos = new Vector3(enemy.PlayerSearch.playerPos.x, 0, enemy.PlayerSearch.playerPos.z);
         //Vector3 pos = new Vector3(enemy.transform.position.x, 0, enemy.transform.position.z);
         //workspace = (lastPlayerPos - pos).normalized;

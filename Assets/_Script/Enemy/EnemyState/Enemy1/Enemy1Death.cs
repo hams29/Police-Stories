@@ -15,6 +15,16 @@ public class Enemy1Death : EnemyState
     public override void Enter()
     {
         base.Enter();
+
+        if (gameManager.GameManager != null)
+        {
+            gameManager.GameManager.addEliminatedEnemy();
+
+            if(enemy.enemySurrenderProbability)
+                gameManager.GameManager.AddScore(50.0f);
+            else
+                gameManager.GameManager.AddScore(-50.0f);
+        }
     }
 
     public override void Exit()

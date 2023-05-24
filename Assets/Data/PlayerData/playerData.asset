@@ -18,6 +18,6 @@ MonoBehaviour:
   shotMoveSpeed: 1.5
   reloadMoveSpeed: 1.5
   meleeDamage: 50
-  meleeDistance: 1
+  meleeDistance: 1.5
   interactLayerName: Interact
   interactDistance: 3

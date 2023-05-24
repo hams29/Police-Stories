@@ -31,6 +31,7 @@ public class PlayerState
     protected bool isAnimationFinished;
     protected bool isExitingState;
     protected bool canMelee;
+    protected bool isInteractUIShow = false;
 
     protected Vector3 workspace;
 

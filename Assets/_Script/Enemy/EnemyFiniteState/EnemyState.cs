@@ -14,7 +14,9 @@ public class EnemyState
     protected Rotation Rotation { get => rotation ?? core.GetCoreComponent(ref rotation); }
     protected States States { get => states ?? core.GetCoreComponent(ref states); }
     protected Interact Interact { get => interact ?? core.GetCoreComponent(ref interact); }
+    protected Damage Damage { get => damage ?? core.GetCoreComponent(ref damage); }
 
+    private Damage damage;
     private Interact interact;
     private Movement movement;
     private Rotation rotation;
@@ -51,7 +53,7 @@ public class EnemyState
 
     public virtual void LogicUpdate()
     {
-        if (States.dead)
+        if (States.dead && stateMachine.CurrentState != enemy.DeadState)
             stateMachine.ChangeState(enemy.DeadState);
     }
 

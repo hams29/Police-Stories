@@ -40,6 +40,9 @@ public class EnemyControllerBase : MonoBehaviour
         PlayerSearch = GetComponentInChildren<PlayerSearch>();
         playerOutOfViewTime = 0.0f;
         isPlayerOutOfView = true;
+
+        if (gameManager.GameManager != null)
+            gameManager.GameManager.addMaxEnemy();
     }
 
     protected virtual void Update()

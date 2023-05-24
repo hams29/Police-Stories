@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class weaponSelect : MonoBehaviour
 {
-    public static GameObject weaponData;
+    //public static GameObject weaponData;
     [SerializeField] private GameObject weaponPrefab;
-
+    [SerializeField] private WeaponSet weaponSet;
     public void SetWeapon()
     {
-        weaponData = weaponPrefab;
+        weaponSet.setGun.gun = weaponPrefab;
     }
+
+
 
 }

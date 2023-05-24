@@ -33,6 +33,17 @@ public class PlayerIdle : PlayerState
 
         GameObject other;
 
+        if(player.CheckFrontObject("interact", playerData.interactDistance) && !isInteractUIShow)
+        {
+            isInteractUIShow = true;
+            player.InteractUI.Show();
+        }
+        else if(!player.CheckFrontObject("interact", playerData.interactDistance) && isInteractUIShow)
+        {
+            isInteractUIShow = false;
+            player.InteractUI.Hide();
+        }
+
         if (!isExitingState)
         {
             //TODO::PlayerIdle::各ステータスへ移行
@@ -42,7 +53,7 @@ public class PlayerIdle : PlayerState
             }
             else if (reloadInput)
                 stateMachine.ChangeState(player.ReloadState);
-            else if(interactInput && player.CheckFrontObject("target",out other))
+            else if(interactInput && player.CheckFrontObject("target",out other, playerData.meleeDistance))
             {
                 Core otherCore = other.GetComponentInChildren<Core>();
                 if(otherCore != null)

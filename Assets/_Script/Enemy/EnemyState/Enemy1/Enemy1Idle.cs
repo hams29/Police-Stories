@@ -31,6 +31,20 @@ public class Enemy1Idle : EnemyState
     {
         base.LogicUpdate();
 
+        if(Damage.isDamage)
+        {
+            if(enemy.enemySurrenderProbability)
+            {
+                if (gameManager.GameManager != null)
+                    gameManager.GameManager.AddScore(10.0f);
+            }
+            else
+            {
+                if (gameManager.GameManager != null)
+                    gameManager.GameManager.AddScore(-10.0f);
+            }
+        }
+
         if (Time.time < lockTime)
             return;
 
