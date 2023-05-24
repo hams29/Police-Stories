@@ -58,6 +58,8 @@ public class PlayerController : MonoBehaviour
     private PlayerInteractUI detantionUI;
     [SerializeField]
     private DamageEffect damageUI;
+    [SerializeField]
+    private PlayerHurtFlash hurtFlashUI;
     public PlayerInteractUI InteractUI { get; private set; }
     public PlayerInteractUI DetantionUI { get; private set; }
     #endregion
@@ -112,6 +114,9 @@ public class PlayerController : MonoBehaviour
         DetantionUI = detantionUI;
         InteractUI.Hide();
         detantionUI.Hide();
+
+        hurtFlashUI.SetMaxHP(playerData.maxHP);
+        hurtFlashUI.SetCurrentHP(playerData.maxHP);
     }
 
     private void Update()
@@ -140,6 +145,7 @@ public class PlayerController : MonoBehaviour
         //Animator�ɕK�v�Ȓl�����鏈��
         AnimationInputValueSet();
         damageUI.LogicPlayerDamageUI(playerData.maxHP, States.currentHP);
+        hurtFlashUI.SetCurrentHP(States.currentHP);
     }
 
     private void OnDrawGizmos()
