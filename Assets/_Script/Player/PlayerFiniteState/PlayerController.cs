@@ -56,6 +56,8 @@ public class PlayerController : MonoBehaviour
     private PlayerInteractUI interactUI;
     [SerializeField]
     private PlayerInteractUI detantionUI;
+    [SerializeField]
+    private DamageEffect damageUI;
     public PlayerInteractUI InteractUI { get; private set; }
     public PlayerInteractUI DetantionUI { get; private set; }
     #endregion
@@ -137,6 +139,7 @@ public class PlayerController : MonoBehaviour
 
         //Animator�ɕK�v�Ȓl�����鏈��
         AnimationInputValueSet();
+        damageUI.LogicPlayerDamageUI(playerData.maxHP, States.currentHP);
     }
 
     private void OnDrawGizmos()

@@ -5,13 +5,18 @@ using UnityEngine.UI;
 
 public class DamageEffect : MonoBehaviour 
 {
-    [SerializeField] private CanvasGroup playerHurt;
+    Image playerHurt;
+    [SerializeField]
+    private Vector3 ColorCode;
 
-    public void PlayerDamagedHurt()
+    public void Start()
     {
-        if (playerHurt.alpha < 1)
-        {
-            playerHurt.alpha += 0.25f;
-        }
+        playerHurt = GetComponent<Image>();
+        playerHurt.color = new Color(ColorCode.x, ColorCode.y, ColorCode.z,0);
+    }
+
+    public void LogicPlayerDamageUI(float maxHP,float currentHP)
+    {
+        playerHurt.color = new Color(ColorCode.x, ColorCode.y, ColorCode.z, 1.0f - (currentHP / maxHP));
     }
 }
