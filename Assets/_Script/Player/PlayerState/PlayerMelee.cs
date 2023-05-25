@@ -50,7 +50,8 @@ public class PlayerMelee : PlayerState
                     otherCore.GetCoreComponent(ref otherDamage);
                     if(otherDamage != null)
                     {
-                        otherDamage.addDamage(playerData.meleeDamage);
+                        otherDamage.addMeleeDamage(playerData.meleeDamage);
+                        otherDamage.SetMeleeAnyPos(player.transform.position);
                         meleeHit = true;
                         Debug.Log("Melee Damage!!");
                     }

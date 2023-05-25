@@ -114,6 +114,11 @@ public class Enemy1Controller : EnemyControllerBase
 
         if(Damage.isDamage)
         {
+            if(Damage.isMeleeDamage)
+            {
+                Damage?.UseMeleeDamageHundler();
+                stateMachine.ChangeState(SurrenderState);
+            }
             Damage?.UseDamageHandler();
             Rotation?.SetRotation(Damage.shotAnyPos);
         }
