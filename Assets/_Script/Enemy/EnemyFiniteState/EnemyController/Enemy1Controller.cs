@@ -14,7 +14,7 @@ public class Enemy1Controller : EnemyControllerBase
     private GameObject assaultRifleSet;
 
     [SerializeField]
-    private List<GameObject> moveLoot;
+    private List<GameObject> moveLoot = new List<GameObject>();
 
     //各ステータス
     public Enemy1Idle IdleState { get; private set; }
@@ -53,6 +53,24 @@ public class Enemy1Controller : EnemyControllerBase
     {
         base.Awake();
 
+        //moveLootに一つも入っていない場合
+        if (moveLoot.Count <= 0)
+        {
+            GameObject loot = new GameObject("Loot1");
+            loot.transform.parent = gameObject.transform;
+            moveLoot.Add(loot);
+        }
+        else
+        {
+            if (moveLoot[0] == null)
+            {
+                moveLoot.Clear();
+                GameObject loot = new GameObject("Loot1");
+                loot.transform.parent = gameObject.transform;
+                moveLoot.Add(loot);
+            }
+        }
+
         //各ステータスの初期化
         IdleState = new Enemy1Idle(this, stateMachine, enemyData, "idle");
         DeadState = new Enemy1Death(this, stateMachine, enemyData, "dead");
@@ -88,7 +106,6 @@ public class Enemy1Controller : EnemyControllerBase
         States.SetInitHP(enemyData.maxHP);
         stateMachine.Initialize(IdleState);
         Interact.canInteract = false;
-        
     }
 
     protected override void Update()
