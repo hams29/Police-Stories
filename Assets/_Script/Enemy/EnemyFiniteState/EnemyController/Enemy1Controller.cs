@@ -114,7 +114,7 @@ public class Enemy1Controller : EnemyControllerBase
 
         if(Damage.isDamage)
         {
-            if(Damage.isMeleeDamage)
+            if(Damage.isMeleeDamage && stateMachine.CurrentState != SurrenderState)
             {
                 Damage?.UseMeleeDamageHundler();
                 stateMachine.ChangeState(SurrenderState);
