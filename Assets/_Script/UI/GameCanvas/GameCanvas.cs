@@ -18,6 +18,9 @@ public class GameCanvas : MonoBehaviour
     private void Start()
     {
         if (gameManager.GameManager != null)
+        {
             gameManager.GameManager.SetGameUI(remainingAmmoText, scoreText, maxAmmoText, magazinSlider1, magazinSlider2, magazinSlider3, currentNPCStateImage);
+            gameManager.GameManager.addCanvasObj(this.gameObject);
+        }
     }
 }
