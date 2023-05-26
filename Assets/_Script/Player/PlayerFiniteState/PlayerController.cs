@@ -44,6 +44,8 @@ public class PlayerController : MonoBehaviour
     private States states;
     private Rotation Rotation { get => rotation ?? Core.GetCoreComponent(ref rotation); }
     private Rotation rotation;
+    private Movement Movement { get => movement ?? Core.GetCoreComponent(ref movement); }
+    private Movement movement;
     #endregion
 
     #region Other Variables
@@ -123,10 +125,12 @@ public class PlayerController : MonoBehaviour
     {
         Core.LogicUpdate();
         stateMachine.CurrentState.LogicUpdate();
-
+        bool isClear = false;
+        if(gameManager.GameManager != null)
+            isClear = gameManager.GameManager.isGameClear;
 
         //�}�E�X�̈ʒu�����ʂɂȂ�悤�Ƀv���C���[����]�����鏈��
-        if(!States.dead)
+        if(!States.dead && !isClear)
         {
             var ray = Camera.main.ScreenPointToRay(inputController.MousePosition);
             plane.SetNormalAndPosition(Vector3.up, transform.localPosition);
@@ -135,6 +139,13 @@ public class PlayerController : MonoBehaviour
                 Vector3 lookpoint = ray.GetPoint(distance);
                 Rotation.SetRotation(lookpoint);
             }
+        }
+        else if(isClear)
+        {
+            stateMachine.ChangeState(IdleState);
+            stateMachine.canChangeState = false;
+            Movement.CanSetVelocity = false;
+            Rotation.CanSetRotate = false;
         }
         else if(gameManager.GameManager != null)
         {
