@@ -9,17 +9,9 @@ public class gameManager : MonoBehaviour
     [SerializeField]
     private Scene initScene;
 
-    [SerializeField] 
-    private GameObject gameOverCanvas;
-
-    [SerializeField] 
+    private List<GameObject> canvasObj = new List<GameObject>();
     private GameObject gameClearCanvas;
-
-    [SerializeField] 
-    private GameObject gameCanvas;
-    
-    [SerializeField] 
-    private GameObject playerDamageEffectCanvas;
+    private GameObject gameOverCanvas;
 
     public enum Scene
     {
@@ -58,6 +50,7 @@ public class gameManager : MonoBehaviour
 
     private bool isSetGun = false;
     private bool isSetGameUI = false;
+    public bool isGameClear { get; private set; }
     public bool isPlayerDead { get; private set; }
 
     private void Awake()
@@ -105,19 +98,22 @@ public class gameManager : MonoBehaviour
                 scoreText.text = score.ToString();
             }
 
-            if (maxEnemy <= eliminateEnemy)
+            if (maxEnemy <= eliminateEnemy && maxEnemy != 0)
             {
                 Debug.Log("ステージクリア");
-                gameCanvas.SetActive(false);
-                playerDamageEffectCanvas.SetActive(false);
+                isGameClear = true;
+                isSetGameUI = false;
+                foreach (GameObject canvas in canvasObj)
+                    canvas.SetActive(false);
                 gameClearCanvas.SetActive(true); 
             }
 
             if (isPlayerDead)
             {
                 Debug.Log("ゲームオーバー");
-                gameCanvas.SetActive(false);
-                playerDamageEffectCanvas.SetActive(false);
+                isSetGameUI = false;
+                foreach (GameObject canvas in canvasObj)
+                    canvas.SetActive(false);
                 gameOverCanvas.SetActive(true);
             }
         }
@@ -155,6 +151,7 @@ public class gameManager : MonoBehaviour
                 isPlayerDead = false;
                 maxEnemy = 0;
                 eliminateEnemy = 0;
+                isGameClear = false;
                 break;
         }
         nowScene = ns; 
@@ -167,4 +164,8 @@ public class gameManager : MonoBehaviour
     public bool GetPlayerDead() { return isPlayerDead; }
 
     public float GetScore() { return  score; }
+
+    public void addCanvasObj(GameObject obj) { canvasObj.Add(obj); }
+    public void setGameClearCanvas(GameObject obj) { gameClearCanvas = obj; }
+    public void setGameOverCanvas(GameObject obj) { gameOverCanvas = obj; }
 }

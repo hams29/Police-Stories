@@ -340,7 +340,6 @@ GameObject:
   - component: {fileID: 7095411839144558894}
   - component: {fileID: 7095411839144558892}
   - component: {fileID: 1497331632}
-  - component: {fileID: 2960341216600309356}
   m_Layer: 11
   m_Name: Wall Door
   m_TagString: interact
@@ -413,21 +412,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.43903348, y: 9.983421, z: 6.111888}
   m_Center: {x: 0.016490236, y: 4.063895, z: 3.0112958}
---- !u!114 &2960341216600309356
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4790683710122119354}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 1, g: 0.85268855, b: 0.19245279, a: 1}
-  outlineWidth: 10
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
