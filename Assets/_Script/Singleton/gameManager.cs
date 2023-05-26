@@ -105,7 +105,7 @@ public class gameManager : MonoBehaviour
                 isSetGameUI = false;
                 foreach (GameObject canvas in canvasObj)
                     canvas.SetActive(false);
-                gameClearCanvas.SetActive(true); 
+                gameClearCanvas?.SetActive(true); 
             }
 
             if (isPlayerDead)
@@ -114,7 +114,7 @@ public class gameManager : MonoBehaviour
                 isSetGameUI = false;
                 foreach (GameObject canvas in canvasObj)
                     canvas.SetActive(false);
-                gameOverCanvas.SetActive(true);
+                gameOverCanvas?.SetActive(true);
             }
         }
     }
