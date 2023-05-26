@@ -8,6 +8,19 @@ public class gameManager : MonoBehaviour
 {
     [SerializeField]
     private Scene initScene;
+
+    [SerializeField] 
+    private GameObject gameOverCanvas;
+
+    [SerializeField] 
+    private GameObject gameClearCanvas;
+
+    [SerializeField] 
+    private GameObject gameCanvas;
+    
+    [SerializeField] 
+    private GameObject playerDamageEffectCanvas;
+
     public enum Scene
     {
         Title,
@@ -90,10 +103,20 @@ public class gameManager : MonoBehaviour
             scoreText.text = score.ToString();
 
             if (maxEnemy <= eliminateEnemy)
+            {
                 Debug.Log("ステージクリア");
+                gameCanvas.SetActive(false);
+                playerDamageEffectCanvas.SetActive(false);
+                gameClearCanvas.SetActive(true); 
+            }
 
             if (isPlayerDead)
+            {
                 Debug.Log("ゲームオーバー");
+                gameCanvas.SetActive(false);
+                playerDamageEffectCanvas.SetActive(false);
+                gameOverCanvas.SetActive(true);
+            }
         }
     }
 
@@ -137,4 +160,8 @@ public class gameManager : MonoBehaviour
     public void addMaxEnemy() { maxEnemy++; }
     public void addEliminatedEnemy() { eliminateEnemy++; }
     public void PlayerDead() { isPlayerDead = true; }
+
+    public bool GetPlayerDead() { return isPlayerDead; }
+
+    public float GetScore() { return  score; }
 }
