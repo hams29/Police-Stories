@@ -94,13 +94,16 @@ public class gameManager : MonoBehaviour
 
     public void Update()
     {
-        if(nowScene == Scene.Game && isSetGun && isSetGameUI)
+        if(nowScene == Scene.Game)
         {
-            remainingAmmoText.text = (!gun) ? "" : gun.GetCurrentMagazineAmmo().ToString();
-            magazinSlider1.value = (!gun) ? 0 : gun.currentMagazine[0];
-            magazinSlider2.value = (!gun) ? 0 : gun.currentMagazine[1];
-            magazinSlider3.value = (!gun) ? 0 : gun.currentMagazine[2];
-            scoreText.text = score.ToString();
+            if(isSetGun && isSetGameUI)
+            {
+                remainingAmmoText.text = (!gun) ? "" : gun.GetCurrentMagazineAmmo().ToString();
+                magazinSlider1.value = (!gun) ? 0 : gun.currentMagazine[0];
+                magazinSlider2.value = (!gun) ? 0 : gun.currentMagazine[1];
+                magazinSlider3.value = (!gun) ? 0 : gun.currentMagazine[2];
+                scoreText.text = score.ToString();
+            }
 
             if (maxEnemy <= eliminateEnemy)
             {

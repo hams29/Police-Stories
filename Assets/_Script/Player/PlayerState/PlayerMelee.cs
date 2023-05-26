@@ -39,9 +39,9 @@ public class PlayerMelee : PlayerState
         //ãﬂê⁄çUåÇÇÃèàóù
         if(meleeAttack && !meleeHit)
         {
-            RaycastHit hitObject;
-            Vector3 pos = new Vector3(player.transform.position.x, player.transform.position.y + 1.5f, player.transform.position.z);
-            if (Physics.Raycast(pos , player.transform.forward, out hitObject,playerData.meleeDistance))
+            //RaycastHit hitObject;
+            Vector3 pos = new(player.transform.position.x, player.transform.position.y + 1.5f, player.transform.position.z);
+            if (Physics.Raycast(pos , player.transform.forward, out RaycastHit hitObject,playerData.meleeDistance))
             {
                 Core otherCore = hitObject.transform.GetComponentInChildren<Core>();
                 if(otherCore != null)
@@ -50,7 +50,8 @@ public class PlayerMelee : PlayerState
                     otherCore.GetCoreComponent(ref otherDamage);
                     if(otherDamage != null)
                     {
-                        otherDamage.addDamage(playerData.meleeDamage);
+                        otherDamage.addMeleeDamage(playerData.meleeDamage);
+                        otherDamage.SetMeleeAnyPos(player.transform.position);
                         meleeHit = true;
                         Debug.Log("Melee Damage!!");
                     }

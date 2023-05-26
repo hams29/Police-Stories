@@ -139,7 +139,7 @@ public class PlayerController : MonoBehaviour
         else if(gameManager.GameManager != null)
         {
             if (!gameManager.GameManager.isPlayerDead)
-                gameManager.GameManager.PlayerDead();
+                    gameManager.GameManager.PlayerDead();
         }
 
         //Animator�ɕK�v�Ȓl�����鏈��
