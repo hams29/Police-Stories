@@ -8,6 +8,7 @@ public class FunSearch : MonoBehaviour
     private float angle = 45.0f;
 
     public List<EnemyControllerBase> enemyShowList { get; private set; }
+    private GameObject throwObject;
 
     private void Awake()
     {
@@ -45,6 +46,16 @@ public class FunSearch : MonoBehaviour
                         EnemyControllerBase enemy = other.gameObject.GetComponent<EnemyControllerBase>();
                         if (enemy != null)
                             addEnemyList(enemy);
+                    }
+                    else if(throwObject != null)
+                    {
+                        if(hit.collider.gameObject == throwObject)
+                        {
+                            SetShow(other.gameObject);
+                            EnemyControllerBase enemy = other.gameObject.GetComponent<EnemyControllerBase>();
+                            if (enemy != null)
+                                addEnemyList(enemy);
+                        }
                     }
                     else
                     {
@@ -127,4 +138,7 @@ public class FunSearch : MonoBehaviour
             enemyShowList.Remove(enemy);
         }
     }
+
+    public void SetThrowObject(GameObject obj) { throwObject = obj; }
+    public void DelThrowObject() { throwObject = null; }
 }

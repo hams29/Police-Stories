@@ -10,7 +10,7 @@ public class DoorOpen : MonoBehaviour
     private Interact interact;
     private Interact Interact { get => interact ?? core.GetCoreComponent(ref interact); }
 
-    bool isOpened = false;
+    public bool isOpened { get; private set; } = false;
     bool useInteract = false;
 
     // Start is called before the first frame update
