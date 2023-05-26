@@ -18,9 +18,10 @@ public class Enemy1Death : EnemyState
 
         if (gameManager.GameManager != null)
         {
-            gameManager.GameManager.addEliminatedEnemy();
+            if(stateMachine.OldState != enemy.DetactionState)
+                gameManager.GameManager.addEliminatedEnemy();
 
-            if(enemy.enemySurrenderProbability)
+            if(enemy.enemySurrenderProbability && stateMachine.OldState != enemy.DetactionState)
                 gameManager.GameManager.AddScore(50.0f);
             else
                 gameManager.GameManager.AddScore(-50.0f);
