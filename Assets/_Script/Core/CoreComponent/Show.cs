@@ -21,7 +21,15 @@ public class Show : CoreComponent,ILogicUpdate
     private void Start()
     {
         Renderer[] rend = transform.root.GetComponentsInChildren<Renderer>();
-        this.rend = rend[0];
+
+        for(int i = 0;i<rend.Length;i++)
+        {
+            if (rend[i].gameObject.tag == "TargetMesh")
+            {
+                this.rend = rend[i];
+                break;
+            }
+        }
         material = this.rend.material;
 
         if (transparentMaterial == null)

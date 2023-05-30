@@ -62,6 +62,7 @@ public class PlayerController : MonoBehaviour
     private DamageEffect damageUI;
     [SerializeField]
     private PlayerHurtFlash hurtFlashUI;
+
     public PlayerInteractUI InteractUI { get; private set; }
     public PlayerInteractUI DetantionUI { get; private set; }
     #endregion
@@ -147,11 +148,6 @@ public class PlayerController : MonoBehaviour
             Movement.CanSetVelocity = false;
             Rotation.CanSetRotate = false;
         }
-        else if(gameManager.GameManager != null)
-        {
-            if (!gameManager.GameManager.isPlayerDead)
-                    gameManager.GameManager.PlayerDead();
-        }
 
         //TODO::あとから変更
         if(States.dead)
@@ -160,6 +156,7 @@ public class PlayerController : MonoBehaviour
             {
                 inputController.UseReloadInput();
                 gameManager.GameManager?.ReloadNowScene();
+                gameManager.GameManager?.ResetGameScene();
             }
         }
         //Animator�ɕK�v�Ȓl�����鏈��

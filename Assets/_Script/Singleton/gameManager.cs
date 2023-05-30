@@ -170,4 +170,9 @@ public class gameManager : MonoBehaviour
     public void setGameClearCanvas(GameObject obj) { gameClearCanvas = obj; }
     public void setGameOverCanvas(GameObject obj) { gameOverCanvas = obj; }
     public void ReloadNowScene() { SceneManager.LoadScene(SceneManager.GetActiveScene().name); }
+    public void ResetGameScene() 
+    {
+        ResetScore();
+        canvasObj.Clear(); 
+    }
 }
