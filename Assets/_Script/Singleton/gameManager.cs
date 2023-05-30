@@ -172,6 +172,12 @@ public class gameManager  : MonoBehaviour
     public void ReloadNowScene() { SceneManager.LoadScene(SceneManager.GetActiveScene().name); }
     public void ResetGameScene() 
     {
+        isSetGun = false;
+        isSetGameUI = false;
+        isPlayerDead = false;
+        maxEnemy = 0;
+        eliminateEnemy = 0;
+        isGameClear = false;
         ResetScore();
         canvasObj.Clear(); 
     }
