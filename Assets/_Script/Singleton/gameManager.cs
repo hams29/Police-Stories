@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class gameManager : MonoBehaviour
+public class gameManager  : MonoBehaviour
 {
     [SerializeField]
     private Scene initScene;
