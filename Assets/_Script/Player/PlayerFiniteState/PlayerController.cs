@@ -109,7 +109,7 @@ public class PlayerController : MonoBehaviour
         mainWeapon = Instantiate(Inventory.mainWeapon, setMainWeapon.transform);
         gun = mainWeapon.GetComponent<Gun>();
         gameManager.GameManager?.SetPlayerGun(gun);
-
+        gameManager.GameManager?.SetPlayerDead(States.dead);
         stateMachine.Initialize(IdleState);
         States.SetInitHP(playerData.maxHP);
         InteractUI = interactUI;
@@ -153,6 +153,15 @@ public class PlayerController : MonoBehaviour
                     gameManager.GameManager.PlayerDead();
         }
 
+        //TODO::あとから変更
+        if(States.dead)
+        {
+            if(inputController.ReloadInput)
+            {
+                inputController.UseReloadInput();
+                gameManager.GameManager?.ReloadNowScene();
+            }
+        }
         //Animator�ɕK�v�Ȓl�����鏈��
         AnimationInputValueSet();
         damageUI.LogicPlayerDamageUI(playerData.maxHP, States.currentHP);
