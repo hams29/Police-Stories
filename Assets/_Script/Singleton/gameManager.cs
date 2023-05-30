@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 
 public class gameManager : MonoBehaviour
 {
@@ -160,6 +160,7 @@ public class gameManager : MonoBehaviour
     public void addMaxEnemy() { maxEnemy++; }
     public void addEliminatedEnemy() { eliminateEnemy++; }
     public void PlayerDead() { isPlayerDead = true; }
+    public void SetPlayerDead(bool flg) { isPlayerDead = flg; }
 
     public bool GetPlayerDead() { return isPlayerDead; }
 
@@ -168,4 +169,10 @@ public class gameManager : MonoBehaviour
     public void addCanvasObj(GameObject obj) { canvasObj.Add(obj); }
     public void setGameClearCanvas(GameObject obj) { gameClearCanvas = obj; }
     public void setGameOverCanvas(GameObject obj) { gameOverCanvas = obj; }
+    public void ReloadNowScene() { SceneManager.LoadScene(SceneManager.GetActiveScene().name); }
+    public void ResetGameScene() 
+    {
+        ResetScore();
+        canvasObj.Clear(); 
+    }
 }

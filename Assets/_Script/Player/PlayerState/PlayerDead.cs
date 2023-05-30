@@ -27,6 +27,15 @@ public class PlayerDead : PlayerState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+
+        if(isAnimationFinished)
+        {
+            if(gameManager.GameManager != null)
+            {
+                if (!gameManager.GameManager.isPlayerDead)
+                    gameManager.GameManager.PlayerDead();
+            }    
+        }
     }
 
     public override void PhysicsUpdate()

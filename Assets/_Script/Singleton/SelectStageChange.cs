@@ -5,10 +5,9 @@ using UnityEngine;
 public class SelectStageChange : MonoBehaviour
 {
 
-    static public int sceneId;
+    static public int sceneId = -1;
 
     [SerializeField] private int selectStageId;
-
 
     public void SetStageId()
     {
