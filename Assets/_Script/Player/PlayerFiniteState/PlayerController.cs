@@ -66,6 +66,7 @@ public class PlayerController : MonoBehaviour
     private DamageEffect damageUI;
     [SerializeField]
     private PlayerHurtFlash hurtFlashUI;
+
     public PlayerInteractUI InteractUI { get; private set; }
     public PlayerInteractUI DetantionUI { get; private set; }
     #endregion
@@ -114,7 +115,7 @@ public class PlayerController : MonoBehaviour
         mainWeapon = Instantiate(Inventory.mainWeapon, setMainWeapon.transform);
         gun = mainWeapon.GetComponent<Gun>();
         gameManager.GameManager?.SetPlayerGun(gun);
-
+        gameManager.GameManager?.SetPlayerDead(States.dead);
         stateMachine.Initialize(IdleState);
         States.SetInitHP(playerData.maxHP);
         InteractUI = interactUI;
@@ -157,12 +158,17 @@ public class PlayerController : MonoBehaviour
             Movement.CanSetVelocity = false;
             Rotation.CanSetRotate = false;
         }
-        else if(gameManager.GameManager != null)
-        {
-            if (!gameManager.GameManager.isPlayerDead)
-                    gameManager.GameManager.PlayerDead();
-        }
 
+        //TODO::あとから変更
+        if(States.dead)
+        {
+            if(inputController.ReloadInput)
+            {
+                inputController.UseReloadInput();
+                gameManager.GameManager?.ReloadNowScene();
+                gameManager.GameManager?.ResetGameScene();
+            }
+        }
         //Animator�ɕK�v�Ȓl�����鏈��
         AnimationInputValueSet();
         damageUI.LogicPlayerDamageUI(playerData.maxHP, States.currentHP);
