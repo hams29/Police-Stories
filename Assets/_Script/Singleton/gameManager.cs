@@ -42,6 +42,7 @@ public class gameManager  : MonoBehaviour
 
     public Gun gun { get; private set; }
     public nextSetGun setGun;
+    public List<GameObject> gadgetObjects = new List<GameObject>();
     private float score;
 
     private int maxEnemy;

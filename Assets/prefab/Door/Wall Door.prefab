@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &740264466
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 740264467}
+  m_Layer: 11
+  m_Name: doorScopePos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &740264467
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 740264466}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 3.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8367886754899993257}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &901024453
 GameObject:
   m_ObjectHideFlags: 0
@@ -45,6 +76,65 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49198541a4beed14782af70bcbcbe97a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &964792927
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 964792928}
+  - component: {fileID: 964792930}
+  - component: {fileID: 964792929}
+  m_Layer: 11
+  m_Name: doorRightCol
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &964792928
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 964792927}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 3.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8367886754899993257}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &964792930
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 964792927}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.281662, z: 7.024886}
+  m_Center: {x: 0.61, y: -0.3612032, z: -0.32156038}
+--- !u!114 &964792929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 964792927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb099513da30deb448ecdf83ac0fa43d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doorVar: {fileID: 1497331635}
 --- !u!1 &1848830780
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,6 +430,7 @@ GameObject:
   - component: {fileID: 7095411839144558894}
   - component: {fileID: 7095411839144558892}
   - component: {fileID: 1497331632}
+  - component: {fileID: 1497331635}
   m_Layer: 11
   m_Name: Wall Door
   m_TagString: interact
@@ -362,6 +453,8 @@ Transform:
   - {fileID: 2091471192368752828}
   - {fileID: 8797286960433608355}
   - {fileID: 901024454}
+  - {fileID: 740264467}
+  - {fileID: 964792928}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -412,3 +505,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.43903348, y: 9.983421, z: 6.111888}
   m_Center: {x: 0.016490236, y: 4.063895, z: 3.0112958}
+--- !u!114 &1497331635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4790683710122119354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfe1edbd78b9fe64abe68a6b856e3782, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doorCameraPos: {fileID: 740264466}
+  playerRight: 0
