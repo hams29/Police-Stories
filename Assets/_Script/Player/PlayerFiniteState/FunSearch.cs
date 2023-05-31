@@ -8,6 +8,7 @@ public class FunSearch : MonoBehaviour
     private float angle = 45.0f;
 
     public List<EnemyControllerBase> enemyShowList { get; private set; }
+    private GameObject throwObject;
 
     private void Awake()
     {
@@ -18,21 +19,21 @@ public class FunSearch : MonoBehaviour
     {
         if(other.gameObject.tag == "target")
         {
-            //‹ŠE‚ÌŠp“x“à‚Éû‚Ü‚Á‚Ä‚¢‚é‚©
+            //è¦–ç•Œã®è§’åº¦å†…ã«åã¾ã£ã¦ã„ã‚‹ã‹
             Vector3 posDelta = other.transform.position - this.transform.position;
             float target_angle = Vector3.Angle(this.transform.forward,posDelta);
 
-            //target_angle‚ªangle‚Éû‚Ü‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©
+            //target_angleãŒangleã«åã¾ã£ã¦ã„ã‚‹ã‹ã©ã†ã‹
             if (target_angle < angle) 
             {
                 Vector3 pos = new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z);
                 Debug.DrawRay(pos, posDelta, Color.red, 0.5f);
-                //Ray‚ğg—p‚µ‚Ätarget‚É“–‚½‚Á‚Ä‚¢‚é‚©”»•Ê
+                //Rayã‚’ä½¿ç”¨ã—ã¦targetã«å½“ãŸã£ã¦ã„ã‚‹ã‹åˆ¤åˆ¥
                 if (Physics.Raycast(pos,posDelta,out RaycastHit hit)) 
                 {
                     if(hit.collider == other && hit.collider.gameObject.tag == "target")
                     {
-                        //‹ŠE“à‚Éû‚Ü‚Á‚Ä‚¢‚éê‡
+                        //è¦–ç•Œå†…ã«åã¾ã£ã¦ã„ã‚‹å ´åˆ
                         SetShow(other.gameObject);
                         EnemyControllerBase enemy = other.gameObject.GetComponent<EnemyControllerBase>();
                         if(enemy != null)
@@ -41,7 +42,7 @@ public class FunSearch : MonoBehaviour
                     }
                     else
                     {
-                        //ƒ^[ƒQƒbƒg‚ÆƒvƒŒƒCƒ„[‚ÌŠÔ‚É•Ê‚ÌƒIƒuƒWƒFƒNƒg‚ª“ü‚Á‚½ê‡
+                        //ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã¨ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®é–“ã«åˆ¥ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãŒå…¥ã£ãŸå ´åˆ
                         SetBlind(other.gameObject);
                         EnemyControllerBase enemy = other.gameObject.GetComponent<EnemyControllerBase>();
                         if (enemy != null)
@@ -51,7 +52,7 @@ public class FunSearch : MonoBehaviour
             }
             else
             {
-                //Šp“x“à‚Éû‚Ü‚Á‚Ä‚¢‚È‚¢ê‡
+                //è§’åº¦å†…ã«åã¾ã£ã¦ã„ãªã„å ´åˆ
                 SetBlind(other.gameObject);
                 EnemyControllerBase enemy = other.gameObject.GetComponent<EnemyControllerBase>();
                 if (enemy != null)
@@ -64,7 +65,7 @@ public class FunSearch : MonoBehaviour
     {
         if(other.gameObject.tag == "target")
         {
-            //‹ŠE‚©‚çƒ^[ƒQƒbƒg‚ª”²‚¯‚½ê‡
+            //è¦–ç•Œã‹ã‚‰ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãŒæŠœã‘ãŸå ´åˆ
             SetBlind(other.gameObject);
             EnemyControllerBase enemy = other.gameObject.GetComponent<EnemyControllerBase>();
             if (enemy != null)
@@ -77,7 +78,7 @@ public class FunSearch : MonoBehaviour
         Core otherCore = other.GetComponentInChildren<Core>();
         if (otherCore != null)
         {
-            //CoreComponent‚Ìæ“¾
+            //CoreComponentã®å–å¾—
             Show otherShow = null;
             otherCore.GetCoreComponent(ref otherShow);
             if (otherShow != null)
@@ -92,7 +93,7 @@ public class FunSearch : MonoBehaviour
         Core otherCore = other.GetComponentInChildren<Core>();
         if (otherCore != null)
         {
-            //CoreComponent‚Ìæ“¾
+            //CoreComponentã®å–å¾—
             Show otherShow = null;
             otherCore.GetCoreComponent(ref otherShow);
             if (otherShow != null)
@@ -120,4 +121,7 @@ public class FunSearch : MonoBehaviour
             enemyShowList.Remove(enemy);
         }
     }
+
+    public void SetThrowObject(GameObject obj) { throwObject = obj; }
+    public void DelThrowObject() { throwObject = null; }
 }

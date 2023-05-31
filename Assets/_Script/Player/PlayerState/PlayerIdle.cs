@@ -47,7 +47,11 @@ public class PlayerIdle : PlayerState
         if (!isExitingState)
         {
             //TODO::PlayerIdle::各ステータスへ移行
-            if (shotInput && player.gun.GetCurrentMagazineAmmo() > 0)
+            if(shotInput && !player.isHaveMainWeapon)
+            {
+                stateMachine.ChangeState(player.UseGadgetState);
+            }
+            else if (shotInput && player.gun.GetCurrentMagazineAmmo() > 0)
             {
                 stateMachine.ChangeState(player.ShotState);
             }
