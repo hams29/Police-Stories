@@ -40,6 +40,16 @@ public class FunSearch : MonoBehaviour
                             addEnemyList(enemy);
 
                     }
+                    else if (throwObject != null)
+                    {
+                        if (hit.collider.gameObject == throwObject)
+                        {
+                            SetShow(other.gameObject);
+                            EnemyControllerBase enemy = other.gameObject.GetComponent<EnemyControllerBase>();
+                            if (enemy != null)
+                                addEnemyList(enemy);
+                        }
+                    }
                     else
                     {
                         //ターゲットとプレイヤーの間に別のオブジェクトが入った場合

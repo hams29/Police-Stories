@@ -5,6 +5,7 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     public GameObject mainWeapon { get; private set; }
+    public List<GameObject> gadgetObjects { get; private set; } = new List<GameObject>();
     public List<GadgetBase> gadgets { get; private set; } = new List<GadgetBase>();
     public mainWeaponData.GunType gunType { get; private set; }
     [SerializeField]
@@ -16,7 +17,7 @@ public class Inventory : MonoBehaviour
     [SerializeField]
     private GameObject debugMainWeapon;
     [SerializeField]
-    private List<GadgetBase> debugGadgets = new List<GadgetBase>();
+    private List<GameObject> debugGadgets = new List<GameObject>();
 
     private void Awake()
     {
@@ -28,14 +29,16 @@ public class Inventory : MonoBehaviour
             if (mainWeapon != null)
                 gunType = mainWeapon.GetComponent<Gun>().GetMainWeaponData().gunType;
         }
+        /*
         else
         {
-            if(debugGadgets.Count >= 0)
+            if(debugGadgets.Count > 0)
             {
                 foreach (GadgetBase gadgetBase in debugGadgets)
                     gadgets.Add(Instantiate(gadgetBase.gameObject, gadgetHolder).GetComponent<GadgetBase>());
             }
         }
+        */
     }
     private void Start()
     {
@@ -55,6 +58,36 @@ public class Inventory : MonoBehaviour
 
         if(mainWeapon != null)
             gunType = mainWeapon.GetComponent<Gun>().GetMainWeaponData().gunType;
+    }
+
+    public void SetGadget()
+    {
+        if(gameManager.GameManager != null)
+        {
+            if (gameManager.GameManager.gadgetObjects.Count > 0)
+            {
+
+            }
+            else if (debugGadgets.Count > 0)
+                SetDebugGadget();
+        }
+        else if(debugGadgets.Count > 0)
+        {
+            SetDebugGadget();                
+        }
+    }
+
+    private void SetDebugGadget()
+    {
+        foreach (GameObject gadgetObject in debugGadgets)
+        {
+            gadgetObjects.Add(Instantiate(gadgetObject, gadgetHolder));
+        }
+
+        foreach (GameObject gadgetObject in gadgetObjects)
+        {
+            gadgets.Add(gadgetObject.GetComponent<GadgetBase>());
+        }
     }
 
     /*

@@ -11,6 +11,7 @@ public class DoorScope : GadgetBase
     private GameObject mainCamera;
     private GameObject doorObj;
     private Vector3 cameraPos;
+    private Vector3 cameraRot;
 
     private doorVariable doorVariable;
     public override void UseGadget()
@@ -35,9 +36,11 @@ public class DoorScope : GadgetBase
             return;
         }
 
-        cameraPos = doorVariable.doorScopeCenterPos;
+        cameraPos = doorVariable.doorCameraPos.transform.position;
+        cameraRot = doorVariable.GetDoorScopeAngle(player.transform.position).normalized;
         //subCamera.transform.position = transform.InverseTransformPoint(cameraPos);
         subCamera.transform.position = cameraPos;
+        subCamera.transform.LookAt(cameraPos + cameraRot);
         player.search.SetThrowObject(doorObj);
     }
     public override void EndGadget()
