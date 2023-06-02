@@ -9,10 +9,12 @@ public class FunSearch : MonoBehaviour
 
     public List<EnemyControllerBase> enemyShowList { get; private set; }
     private GameObject throwObject;
+    private bool isAllShow;
 
     private void Awake()
     {
         enemyShowList = new List<EnemyControllerBase>();
+        isAllShow = false;
     }
 
     private void OnTriggerStay(Collider other)
@@ -59,6 +61,11 @@ public class FunSearch : MonoBehaviour
                             delEnemyList(enemy);
                     }
                 }
+            }
+            //すべて表示
+            else if(isAllShow)
+            {
+                SetShow(other.gameObject);
             }
             else
             {
@@ -134,4 +141,5 @@ public class FunSearch : MonoBehaviour
 
     public void SetThrowObject(GameObject obj) { throwObject = obj; }
     public void DelThrowObject() { throwObject = null; }
+    public void SetAllShow(bool isShow) { isAllShow = isShow; }
 }

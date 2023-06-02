@@ -98,8 +98,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraMaxAngle: 45
-  mouseSensivity: 50
-  deadZone: 50
+  mouseSensivity: 1
+  deadZone: 0
 --- !u!1 &8371366597903373672
 GameObject:
   m_ObjectHideFlags: 0

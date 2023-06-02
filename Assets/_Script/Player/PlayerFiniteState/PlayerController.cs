@@ -180,7 +180,6 @@ public class PlayerController : MonoBehaviour
         {
             isHaveMainWeapon = !isHaveMainWeapon;
         }
-        Debug.Log(inputController.MousePosition);
     }
 
     private void OnDrawGizmos()

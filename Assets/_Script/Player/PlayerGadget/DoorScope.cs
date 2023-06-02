@@ -46,6 +46,8 @@ public class DoorScope : GadgetBase
 
         cameraView = subCamera.GetComponent<DoorCameraView>();
         cameraView?.SetInitMousePosition(player.inputController.MousePosition);
+        Cursor.visible = false;
+        player.search.SetAllShow(true);
     }
     public override void EndGadget()
     {
@@ -54,6 +56,8 @@ public class DoorScope : GadgetBase
         mainCamera.SetActive(true);
         subCamera.SetActive(false);
         player.search.DelThrowObject();
+        Cursor.visible = true;
+        player.search.SetAllShow(false);
     }
 
     public override void LogicUpdate()
