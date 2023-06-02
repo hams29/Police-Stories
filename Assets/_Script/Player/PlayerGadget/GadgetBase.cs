@@ -6,6 +6,7 @@ public class GadgetBase :MonoBehaviour
 {
     protected PlayerController player;
     protected PlayerData playerData;
+    protected Vector3 mousePosition;
     public GadgetBase() 
     {
     }
