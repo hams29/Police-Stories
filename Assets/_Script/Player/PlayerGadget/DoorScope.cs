@@ -12,6 +12,7 @@ public class DoorScope : GadgetBase
     private GameObject doorObj;
     private Vector3 cameraPos;
     private Vector3 cameraRot;
+    private DoorCameraView cameraView;
 
     private doorVariable doorVariable;
     public override void UseGadget()
@@ -19,6 +20,8 @@ public class DoorScope : GadgetBase
         base.UseGadget();
         mainCamera = Camera.main.gameObject;
         subCamera.transform.position = cameraPos;
+        subCamera.transform.localRotation = new Quaternion(0.0f, 0.0f, 0.0f, subCamera.transform.localRotation.w);
+
 
         bool flg = false;
         if (player.CheckFrontObject("interact", out GameObject hitObj, playerData.meleeDistance))
@@ -42,14 +45,23 @@ public class DoorScope : GadgetBase
         subCamera.transform.position = cameraPos;
         subCamera.transform.LookAt(cameraPos + cameraRot);
         player.search.SetThrowObject(doorObj);
+
+        cameraView = subCamera.GetComponent<DoorCameraView>();
+        cameraView?.SetInitMousePosition(player.inputController.MousePosition);
+        cameraView?.SetRotY(subCamera.transform.localRotation.eulerAngles.y);
+        Cursor.visible = false;
+        player.search.SetAllShow(true);
     }
     public override void EndGadget()
     {
         base.EndGadget();
 
+        subCamera.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
         mainCamera.SetActive(true);
         subCamera.SetActive(false);
         player.search.DelThrowObject();
+        Cursor.visible = true;
+        player.search.SetAllShow(false);
     }
 
     public override void LogicUpdate()
@@ -57,6 +69,7 @@ public class DoorScope : GadgetBase
         if (isEnd)
             return;
 
+        cameraView?.SetMousePosition(player.inputController.MousePosition);
         mainCamera.SetActive(false);
         subCamera.SetActive(true);
     }

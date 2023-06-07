@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8371366597802676180}
   - component: {fileID: 8371366597802676183}
   - component: {fileID: 8371366597802676182}
+  - component: {fileID: 124302352567704830}
   m_Layer: 0
   m_Name: subCamera
   m_TagString: Untagged
@@ -84,6 +85,21 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8371366597802676185}
   m_Enabled: 1
+--- !u!114 &124302352567704830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8371366597802676185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33e48cdd04516cc42b72b2bcf735acbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraMaxAngle: 45
+  mouseSensivity: 0.5
+  deadZone: 3
 --- !u!1 &8371366597903373672
 GameObject:
   m_ObjectHideFlags: 0
