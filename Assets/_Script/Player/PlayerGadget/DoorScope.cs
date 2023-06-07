@@ -20,6 +20,8 @@ public class DoorScope : GadgetBase
         base.UseGadget();
         mainCamera = Camera.main.gameObject;
         subCamera.transform.position = cameraPos;
+        subCamera.transform.localRotation = new Quaternion(0.0f, 0.0f, 0.0f, subCamera.transform.localRotation.w);
+
 
         bool flg = false;
         if (player.CheckFrontObject("interact", out GameObject hitObj, playerData.meleeDistance))
@@ -46,6 +48,7 @@ public class DoorScope : GadgetBase
 
         cameraView = subCamera.GetComponent<DoorCameraView>();
         cameraView?.SetInitMousePosition(player.inputController.MousePosition);
+        cameraView?.SetRotY(subCamera.transform.localRotation.eulerAngles.y);
         Cursor.visible = false;
         player.search.SetAllShow(true);
     }
@@ -53,6 +56,7 @@ public class DoorScope : GadgetBase
     {
         base.EndGadget();
 
+        subCamera.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, 0));
         mainCamera.SetActive(true);
         subCamera.SetActive(false);
         player.search.DelThrowObject();

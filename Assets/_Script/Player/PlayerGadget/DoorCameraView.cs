@@ -12,21 +12,43 @@ public class DoorCameraView : MonoBehaviour
     private float deadZone = 10.0f;
     private Vector3 oldMousePosition;
     private Vector3 mousePosition;
+    private float initRotY;
 
     private void Update()
     {
+        Debug.Log(transform.localRotation.eulerAngles);
         //マウスが右に動いたとき
         if(mousePosition.x > oldMousePosition.x + deadZone)
-        {
+        {            
             float move = mousePosition.x - oldMousePosition.x;
-            transform.Rotate(Vector3.up, mouseSensivity * move);
+            Quaternion rotation = this.transform.localRotation;
+            Vector3 rotationAngles = rotation.eulerAngles;
+            var normalizedAngle180 = Mathf.Repeat(rotationAngles.y + 180, 360) - 180;
+
+            if (normalizedAngle180 + (move * mouseSensivity) < initRotY + cameraMaxAngle)
+                rotationAngles.y += move * mouseSensivity;
+            else
+                rotationAngles.y = initRotY + cameraMaxAngle;
+
+            rotation = Quaternion.Euler(rotationAngles);
+            this.transform.localRotation = rotation;
             oldMousePosition = mousePosition;
         }
         //マウスが左に動いたとき
         else if (mousePosition.x < oldMousePosition.x - deadZone)
         {
             float move = mousePosition.x - oldMousePosition.x;
-            transform.Rotate(Vector3.up, mouseSensivity * move);
+            Quaternion rotation = this.transform.localRotation;
+            Vector3 rotationAngles = rotation.eulerAngles;
+            var normalizedAngle180 = Mathf.Repeat(rotationAngles.y + 180, 360) - 180;
+
+            if (normalizedAngle180 + (move * mouseSensivity) > initRotY - cameraMaxAngle)
+                rotationAngles.y += move * mouseSensivity;
+            else
+                rotationAngles.y = initRotY - cameraMaxAngle;
+
+            rotation = Quaternion.Euler(rotationAngles);
+            this.transform.localRotation = rotation;
             oldMousePosition = mousePosition;
         }
         //マウスが動かなかったとき
@@ -45,4 +67,19 @@ public class DoorCameraView : MonoBehaviour
         mousePosition = mpos;
     }
 
+
+    private float Cliping(float max,float min,float current)
+    {
+        float ret = current;
+
+        if (ret > max)
+            ret = max;
+        else if (ret < min)
+            ret = min;
+
+
+        return ret;
+    }
+
+    public void SetRotY(float y) { initRotY = Mathf.Repeat(y + 180, 360) - 180; }
 }
