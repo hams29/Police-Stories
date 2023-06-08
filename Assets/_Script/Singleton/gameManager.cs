@@ -153,6 +153,7 @@ public class gameManager  : MonoBehaviour
                 maxEnemy = 0;
                 eliminateEnemy = 0;
                 isGameClear = false;
+                gadgetObjects.Clear();
                 break;
         }
         nowScene = ns; 

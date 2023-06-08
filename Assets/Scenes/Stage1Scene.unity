@@ -4705,6 +4705,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initScene: 3
+  gadgetObjects: []
 --- !u!1 &292454663
 GameObject:
   m_ObjectHideFlags: 0
@@ -12525,6 +12526,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5651910625854211475, guid: 245f5c0e4059c3949ab7ba3874468284, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384495091219298950, guid: 245f5c0e4059c3949ab7ba3874468284, type: 3}
+      propertyPath: debugGadgets.Array.size
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
