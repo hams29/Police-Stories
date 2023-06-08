@@ -66,7 +66,7 @@ public class Inventory : MonoBehaviour
         {
             if (gameManager.GameManager.gadgetObjects.Count > 0)
             {
-
+                SetGadget(gameManager.GameManager.gadgetObjects);
             }
             else if (debugGadgets.Count > 0)
                 SetDebugGadget();
@@ -85,6 +85,19 @@ public class Inventory : MonoBehaviour
         }
 
         foreach (GameObject gadgetObject in gadgetObjects)
+        {
+            gadgets.Add(gadgetObject.GetComponent<GadgetBase>());
+        }
+    }
+
+    private void SetGadget(List<GameObject> gadgetObjects)
+    {
+        foreach(GameObject gadgetObject in gadgetObjects)
+        {
+            this.gadgetObjects.Add(Instantiate(gadgetObject, gadgetHolder));
+        }
+        
+        foreach(GameObject gadgetObject in this.gadgetObjects)
         {
             gadgets.Add(gadgetObject.GetComponent<GadgetBase>());
         }

@@ -178,7 +178,10 @@ public class PlayerController : MonoBehaviour
         //Debug
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            isHaveMainWeapon = !isHaveMainWeapon;
+            if (Inventory.gadgets.Count > 0 && isHaveMainWeapon)
+                isHaveMainWeapon = false;
+            else
+                isHaveMainWeapon = true;
         }
     }
 
