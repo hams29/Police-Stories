@@ -53,7 +53,7 @@ public class PlayerMove : PlayerState
         {
             stateMachine.ChangeState(player.ShotState);
         }
-        else if (reloadInput)
+        else if (reloadInput && player.isHaveMainWeapon)
             stateMachine.ChangeState(player.ReloadState);
         else if (interactInput && player.CheckFrontObject("target", out other, playerData.meleeDistance))
         {

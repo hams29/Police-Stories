@@ -35,7 +35,7 @@ public class PlayerRun : PlayerState
         {
             stateMachine.ChangeState(player.UseInventoryState);
         }
-        else if (reloadInput)
+        else if (reloadInput && player.isHaveMainWeapon)
             stateMachine.ChangeState(player.ReloadState);
         else if (xInput == 0 && zInput == 0)
             stateMachine.ChangeState(player.IdleState);
