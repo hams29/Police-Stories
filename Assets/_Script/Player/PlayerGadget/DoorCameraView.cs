@@ -16,7 +16,6 @@ public class DoorCameraView : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(transform.localRotation.eulerAngles);
         //マウスが右に動いたとき
         if(mousePosition.x > oldMousePosition.x + deadZone)
         {            
