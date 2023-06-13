@@ -24,7 +24,8 @@ public class gameManager  : MonoBehaviour
     }
     public class nextSetGun
     {
-        public GameObject gun;
+        //public GameObject gun;
+        public GunTable gunTabele;
     }
 
     public static gameManager GameManager;
@@ -42,6 +43,7 @@ public class gameManager  : MonoBehaviour
 
     public Gun gun { get; private set; }
     public nextSetGun setGun;
+    public GunTable setGunTable;
     public List<GameObject> gadgetObjects = new List<GameObject>();
     private float score;
 

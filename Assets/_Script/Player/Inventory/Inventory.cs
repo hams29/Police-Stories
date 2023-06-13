@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
+    public GunTable mainWeaponTable { get; private set; }
+
     public GameObject mainWeapon { get; private set; }
     public List<GameObject> gadgetObjects { get; private set; } = new List<GameObject>();
     public List<GadgetBase> gadgets { get; private set; } = new List<GadgetBase>();
@@ -48,10 +50,21 @@ public class Inventory : MonoBehaviour
     {
         if(gameManager.GameManager != null)
         {
+            //TODO::ˆ—‚Ì’u‚«Š·‚¦
+            /*
             if(gameManager.GameManager.setGun != null)
                 mainWeapon = gameManager.GameManager.setGun.gun;
             else if (debugMainWeapon != null)
                 mainWeapon = debugMainWeapon;
+            */
+            //-------------------------------
+            //-------------------------------
+            if (gameManager.GameManager.setGun != null)
+            {
+                mainWeaponTable = gameManager.GameManager.setGun.gunTabele;
+                mainWeapon = mainWeaponTable.gunPrefab;
+            }
+            //-------------------------------
         }
         else if (debugMainWeapon != null)
             mainWeapon = debugMainWeapon;
