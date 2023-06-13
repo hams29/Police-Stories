@@ -41,7 +41,11 @@ public class PlayerMove : PlayerState
         }
 
         //別のステータスに移行
-        if(shotInput && !player.isHaveMainWeapon)
+        if (inventoryInput)
+        {
+            stateMachine.ChangeState(player.UseInventoryState);
+        }
+        else if(shotInput && !player.isHaveMainWeapon)
         {
             stateMachine.ChangeState(player.UseGadgetState);
         }
@@ -49,7 +53,7 @@ public class PlayerMove : PlayerState
         {
             stateMachine.ChangeState(player.ShotState);
         }
-        else if (reloadInput)
+        else if (reloadInput && player.isHaveMainWeapon)
             stateMachine.ChangeState(player.ReloadState);
         else if (interactInput && player.CheckFrontObject("target", out other, playerData.meleeDistance))
         {

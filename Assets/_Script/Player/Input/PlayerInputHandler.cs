@@ -22,6 +22,7 @@ public class PlayerInputHandler : MonoBehaviour
     public bool InteractInputStop { get; private set; }
     public bool CallInputStop { get; private set; }
     public bool ShotInput { get; private set; }
+    public bool InventoryInput { get; private set; }
     public bool InteractInput { get; private set; }
     public bool CallInput { get; private set; }
 
@@ -138,6 +139,15 @@ public class PlayerInputHandler : MonoBehaviour
         {
             CallInputStop = true;
         }
+    }
+
+    public void OnInventoryInput(InputAction.CallbackContext context)
+    {
+        if (context.started)
+            InventoryInput = true;
+
+        if (context.canceled)
+            InventoryInput = false;
     }
 
     public void UseReloadInput() => ReloadInput = false;

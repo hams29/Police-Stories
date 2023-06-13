@@ -56,7 +56,7 @@ public class CheckSelectWeapon : MonoBehaviour
 
     public void CheckSelect()
     {
-        if(sceneChange.GetWeaponset().setGun.gun == null)
+        if(sceneChange.GetWeaponset().setGun.gunTabele == null)
         {
             flashFlg = false;
             flashTime = 0;

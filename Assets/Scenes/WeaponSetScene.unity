@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1119,6 +1119,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponPrefab: {fileID: 8810664080158413873, guid: deab3125be0dacb4ebc739af4eee9ab8, type: 3}
   weaponSet: {fileID: 1195526841}
+  gunTable: {fileID: 11400000, guid: 582bbfcd2345aa94991f97032a3105dc, type: 2}
 --- !u!4 &957041284
 Transform:
   m_ObjectHideFlags: 0
@@ -1791,7 +1792,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 969c366c3946007418778f75b00b16c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gadgetPrefab: {fileID: 8371366597903373672, guid: 34b1620bf5ea37d458482d9b02fbfba5, type: 3}
+  gadgetPrefab: {fileID: 11400000, guid: ec257534e4766f74196e8fecab29880c, type: 2}
   notSelectColor: {r: 0.9607844, g: 0.9607844, b: 0.9607844, a: 1}
   selectColor: {r: 1, g: 0.83137256, b: 0, a: 1}
   buttonImage: {fileID: 1756734103}
@@ -2471,6 +2472,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponPrefab: {fileID: 2606139686633315723, guid: 710b51e9bea667242b9464a495ed30a0, type: 3}
   weaponSet: {fileID: 1195526841}
+  gunTable: {fileID: 11400000, guid: 1471a3f67d1b23e4393b8baf37ba5010, type: 2}
 --- !u!1 &1756734100
 GameObject:
   m_ObjectHideFlags: 0

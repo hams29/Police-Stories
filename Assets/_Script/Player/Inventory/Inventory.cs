@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
+    public GunTable mainWeaponTable { get; private set; }
+
+    public mainWeaponData.GunType gunType { get; private set; }
     public GameObject mainWeapon { get; private set; }
     public List<GameObject> gadgetObjects { get; private set; } = new List<GameObject>();
+    public List<GadgetTable> gadgetTables { get; private set; } = new List<GadgetTable>();
     public List<GadgetBase> gadgets { get; private set; } = new List<GadgetBase>();
-    public mainWeaponData.GunType gunType { get; private set; }
     [SerializeField]
     private bool isPlayer;
     [SerializeField]
@@ -48,10 +51,23 @@ public class Inventory : MonoBehaviour
     {
         if(gameManager.GameManager != null)
         {
+            //TODO::ˆ—‚Ì’u‚«Š·‚¦
+            /*
             if(gameManager.GameManager.setGun != null)
                 mainWeapon = gameManager.GameManager.setGun.gun;
             else if (debugMainWeapon != null)
                 mainWeapon = debugMainWeapon;
+            */
+            //-------------------------------
+            //-------------------------------
+            if (gameManager.GameManager.setGun != null)
+            {
+                mainWeaponTable = gameManager.GameManager.setGun.gunTabele;
+                mainWeapon = mainWeaponTable.gunPrefab;
+            }
+            else if (debugMainWeapon != null)
+                mainWeapon = debugMainWeapon;
+            //-------------------------------
         }
         else if (debugMainWeapon != null)
             mainWeapon = debugMainWeapon;
@@ -64,9 +80,10 @@ public class Inventory : MonoBehaviour
     {
         if(gameManager.GameManager != null)
         {
-            if (gameManager.GameManager.gadgetObjects.Count > 0)
+            gadgetTables = gameManager.GameManager.gadgetObjects;
+            if (gadgetTables.Count > 0)
             {
-                SetGadget(gameManager.GameManager.gadgetObjects);
+                SetGadget(gadgetTables);
             }
             else if (debugGadgets.Count > 0)
                 SetDebugGadget();
@@ -90,11 +107,11 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    private void SetGadget(List<GameObject> gadgetObjects)
+    private void SetGadget(List<GadgetTable> gadgetObjects)
     {
-        foreach(GameObject gadgetObject in gadgetObjects)
+        foreach(GadgetTable gadgetObject in gadgetObjects)
         {
-            this.gadgetObjects.Add(Instantiate(gadgetObject, gadgetHolder));
+            this.gadgetObjects.Add(Instantiate(gadgetObject.gadgetPrefab, gadgetHolder));
         }
         
         foreach(GameObject gadgetObject in this.gadgetObjects)
@@ -102,11 +119,4 @@ public class Inventory : MonoBehaviour
             gadgets.Add(gadgetObject.GetComponent<GadgetBase>());
         }
     }
-
-    /*
-    public void SetMainWeapon(GameObject mainWeapon)
-    {
-        this.mainWeapon = mainWeapon;
-    }
-    */
 }
