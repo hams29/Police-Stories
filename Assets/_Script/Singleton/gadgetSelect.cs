@@ -5,18 +5,19 @@ using UnityEngine.UI;
 
 public class gadgetSelect : MonoBehaviour
 {
-    [SerializeField] private GameObject gadgetPrefab;
+    public static List<GadgetTable> setGadgetTable = new List<GadgetTable>();
+
+    [SerializeField] private GadgetTable gadgetPrefab;
     [SerializeField] private Color notSelectColor;
     [SerializeField] private Color selectColor;
     [SerializeField] private Image buttonImage;
-    public static List<GameObject> setGadgetObject = new List<GameObject>();
     private bool isSelect;
 
     public void Start()
     {
         isSelect = false;
         buttonImage.color = notSelectColor;
-        setGadgetObject.Clear();
+        setGadgetTable.Clear();
     }
 
     public void OnClickGadgetSelect()
@@ -37,11 +38,11 @@ public class gadgetSelect : MonoBehaviour
 
     private void SetGadget()
     {
-        setGadgetObject.Add(gadgetPrefab);
+        setGadgetTable.Add(gadgetPrefab);
     }
 
     private void DelGadget()
     {
-        setGadgetObject.Remove(gadgetPrefab);
+        setGadgetTable.Remove(gadgetPrefab);
     }
 }

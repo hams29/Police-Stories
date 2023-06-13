@@ -102,9 +102,12 @@ public class PlayerController : MonoBehaviour
         Anim = GetComponent<Animator>();
         Inventory = GetComponentInChildren<Inventory>();
         search = GetComponentInChildren<FunSearch>();
+        inventoryUI = GetComponentInChildren<PlayerInventoryUI>();
 
         Inventory.SetMainWeapon();
         Inventory.SetGadget();
+        inventoryUI.SetInventory(Inventory);
+
         GameObject setMainWeapon = null;
         switch (Inventory.gunType) 
         {
@@ -132,7 +135,6 @@ public class PlayerController : MonoBehaviour
         hurtFlashUI.SetCurrentHP(playerData.maxHP);
 
         isHaveMainWeapon = true;
-        inventoryUI = GetComponentInChildren<PlayerInventoryUI>();
         inventoryUI.HideInventoryUI();
     }
 

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: DoorScope
   m_EditorClassIdentifier: 
   gadgetPrefab: {fileID: 8371366597903373672, guid: 34b1620bf5ea37d458482d9b02fbfba5, type: 3}
-  gadgetImage: {fileID: 0}
+  gadgetImage: {fileID: 21300000, guid: 74ce44b97ba57bf45803836e85de0c43, type: 3}

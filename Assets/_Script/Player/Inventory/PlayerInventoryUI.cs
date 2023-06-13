@@ -34,6 +34,15 @@ public class PlayerInventoryUI : MonoBehaviour
     [SerializeField]
     private float deadZone = 10.0f;
 
+    [SerializeField]
+    private GameObject InventoryUITopImg;
+    [SerializeField]
+    private GameObject InventoryUIBottomImg;
+    [SerializeField]
+    private GameObject InventoryUILeftImg;
+    [SerializeField]
+    private GameObject InventoryUIRightImg;
+
     private Image InventoryUITopImage;
     private Image InventoryUIBottomImage;
     private Image InventoryUILeftImage;
@@ -44,10 +53,16 @@ public class PlayerInventoryUI : MonoBehaviour
     private RectTransform InventoryUILeftPos;
     private RectTransform InventoryUIRightPos;
 
+    private List<GameObject> allUIObject = new List<GameObject>();
+
+    private Inventory inventory;
+
     [SerializeField]
     private Color selectColor;
     [SerializeField]
     private Color defaultColor;
+    [SerializeField]
+    private float spriteSpace = 10.0f;
 
     private void Start()
     {
@@ -66,10 +81,22 @@ public class PlayerInventoryUI : MonoBehaviour
         InventoryUILeftPos       = InventoryUILeftObj.GetComponent<RectTransform>();
         InventoryUIRightPos      = InventoryUIRightObj.GetComponent<RectTransform>();
 
-        InventoryUITopObj.gameObject.SetActive(false);
-        InventoryUIBottomObj.gameObject.SetActive(false);
-        InventoryUILeftObj.gameObject.SetActive(false);
-        InventoryUIRightObj.gameObject.SetActive(false);
+
+
+        allUIObject.Add(InventoryUITopObj);
+        allUIObject.Add(InventoryUIBottomObj);
+        allUIObject.Add(InventoryUILeftObj);
+        allUIObject.Add(InventoryUIRightObj);
+
+        allUIObject.Add(InventoryUITopImg);
+        allUIObject.Add(InventoryUIBottomImg);
+        allUIObject.Add(InventoryUILeftImg);
+        allUIObject.Add(InventoryUIRightImg);
+
+        foreach(GameObject obj in allUIObject)
+        {
+            obj.SetActive(false);
+        }
     }
 
     private void Update()
@@ -78,10 +105,10 @@ public class PlayerInventoryUI : MonoBehaviour
         {
             nowShow = true;
             isSelect = false;
-            InventoryUITopObj.gameObject.SetActive(true);
-            InventoryUIBottomObj.gameObject.SetActive(true);
-            InventoryUILeftObj.gameObject.SetActive(true);
-            InventoryUIRightObj.gameObject.SetActive(true);
+            foreach (GameObject obj in allUIObject)
+            {
+                obj.SetActive(true);
+            }
 
             InventoryUITopPos.position = mousePos;
             InventoryUIBottomPos.position = mousePos;
@@ -93,15 +120,20 @@ public class PlayerInventoryUI : MonoBehaviour
             InventoryUILeftImage.color = defaultColor;
             InventoryUIRightImage.color = defaultColor;
 
+            InventoryUITopImg.GetComponent<RectTransform>().position = new Vector2(mousePos.x, mousePos.y + spriteSpace);
+            InventoryUIBottomImg.GetComponent<RectTransform>().position = new Vector2(mousePos.x, mousePos.y - spriteSpace);
+            InventoryUIRightImg.GetComponent<RectTransform>().position = new Vector2(mousePos.x + spriteSpace, mousePos.y);
+            InventoryUILeftImg.GetComponent<RectTransform>().position = new Vector2(mousePos.x - spriteSpace, mousePos.y);
+
             oldMousePos = mousePos;
         }   
         else if(!isShow && nowShow)
         {
             nowShow = false;
-            InventoryUITopObj.gameObject.SetActive(false);
-            InventoryUIBottomObj.gameObject.SetActive(false);
-            InventoryUILeftObj.gameObject.SetActive(false);
-            InventoryUIRightObj.gameObject.SetActive(false);
+            foreach (GameObject obj in allUIObject)
+            {
+                obj.SetActive(false);
+            }
         }
 
         //TODO::PlayerInventoryUI::InventoryUIの中身
@@ -115,7 +147,7 @@ public class PlayerInventoryUI : MonoBehaviour
                 InventoryUILeftImage.color = defaultColor;
                 InventoryUIRightImage.color = selectColor;
 
-                selectItem = Item.mainWeapon;
+                selectItem = Item.gadget2;
                 isSelect = true;
             }
             //マウスが左に動いたとき
@@ -137,7 +169,7 @@ public class PlayerInventoryUI : MonoBehaviour
                 InventoryUILeftImage.color = defaultColor;
                 InventoryUIRightImage.color = defaultColor;
 
-                selectItem = Item.gadget2;
+                selectItem = Item.mainWeapon;
                 isSelect = true;
             }
             else if(mousePos.y < oldMousePos.y - deadZone)
@@ -165,4 +197,45 @@ public class PlayerInventoryUI : MonoBehaviour
     public void ShowInventoryUI() => isShow = true;
     public void HideInventoryUI() => isShow = false;
     public void SetMousePosition(Vector2 mpos) => mousePos = mpos;
+    public void SetInventory(Inventory inv)
+    {
+        inventory = inv;
+        if (inventory.mainWeapon != null)
+            InventoryUITopImg.GetComponent<Image>().sprite = inventory.mainWeaponTable.gunSprite;
+
+        Image left = InventoryUILeftImg.GetComponent<Image>();
+        Image right = InventoryUIRightImg.GetComponent<Image>();
+        Image bottom = InventoryUIBottomImg.GetComponent<Image>();
+
+        if (inventory.gadgetTables.Count > 0)
+        {
+            for(int i = 0;i<inventory.gadgetTables.Count;i++)
+            {
+                switch(i)
+                {
+                    case 0:
+                        left.sprite = inventory.gadgetTables[i].gadgetImage;
+                        break;
+
+                    case 1:
+                        right.sprite = inventory.gadgetTables[i].gadgetImage;
+                        break;
+
+                    case 2:
+                        bottom.sprite = inventory.gadgetTables[i].gadgetImage;
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+        }
+
+        if (left.sprite == null)
+            left.color = new Color(0, 0, 0, 0);
+        if (right.sprite == null)
+            right.color = new Color(0, 0, 0, 0);
+        if (bottom.sprite == null)
+            bottom.color = new Color(0, 0, 0, 0);
+    }
 }

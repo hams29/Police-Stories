@@ -21,7 +21,7 @@ public class WeaponSetSceneChange : SceneChange
         if (gameManager.GameManager != null)
         {
             gameManager.GameManager.setGun = weaponSet.setGun;
-            gameManager.GameManager.gadgetObjects = gadgetSelect.setGadgetObject;
+            gameManager.GameManager.gadgetObjects = gadgetSelect.setGadgetTable;
         }
     }
 
