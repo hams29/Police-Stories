@@ -4669,6 +4669,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initScene: 3
+  setGunTable: {fileID: 0}
+  gadgetObjects: []
 --- !u!114 &291780952
 MonoBehaviour:
   m_ObjectHideFlags: 0
