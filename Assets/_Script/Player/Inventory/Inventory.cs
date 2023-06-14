@@ -18,7 +18,7 @@ public class Inventory : MonoBehaviour
 
     //TODO::Inventory::å„Ç≈è¡Ç∑
     [SerializeField]
-    private GameObject debugMainWeapon;
+    private GunTable debugMainWeapon;
     [SerializeField]
     private List<GameObject> debugGadgets = new List<GameObject>();
 
@@ -27,7 +27,10 @@ public class Inventory : MonoBehaviour
         if(!isPlayer)
         {
             if (debugMainWeapon != null)
-                mainWeapon = debugMainWeapon;
+            {
+                mainWeaponTable = debugMainWeapon;
+                mainWeapon = mainWeaponTable.gunPrefab;
+            }
 
             if (mainWeapon != null)
                 gunType = mainWeapon.GetComponent<Gun>().GetMainWeaponData().gunType;
@@ -66,11 +69,17 @@ public class Inventory : MonoBehaviour
                 mainWeapon = mainWeaponTable.gunPrefab;
             }
             else if (debugMainWeapon != null)
-                mainWeapon = debugMainWeapon;
+            {
+                mainWeaponTable = debugMainWeapon;
+                mainWeapon = mainWeaponTable.gunPrefab;
+            }
             //-------------------------------
         }
         else if (debugMainWeapon != null)
-            mainWeapon = debugMainWeapon;
+        {
+            mainWeaponTable = debugMainWeapon;
+            mainWeapon = mainWeaponTable.gunPrefab;
+        }
 
         if(mainWeapon != null)
             gunType = mainWeapon.GetComponent<Gun>().GetMainWeaponData().gunType;

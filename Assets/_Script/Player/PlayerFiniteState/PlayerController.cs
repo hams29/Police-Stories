@@ -98,7 +98,8 @@ public class PlayerController : MonoBehaviour
     {
         myRB = GetComponent<Rigidbody>();
         myColl = GetComponent<CapsuleCollider>();
-        inputController = GetComponent<PlayerInputHandler>();
+        //inputController = GetComponent<PlayerInputHandler>();
+        inputController = PlayerInputHandler.Instance;
         Anim = GetComponent<Animator>();
         Inventory = GetComponentInChildren<Inventory>();
         search = GetComponentInChildren<FunSearch>();
