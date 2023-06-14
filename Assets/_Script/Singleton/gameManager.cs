@@ -25,7 +25,8 @@ public class gameManager  : MonoBehaviour
 
     public class nextSetGun
     {
-        public GameObject gun;
+        //public GameObject gun;
+        public GunTable gunTabele;
     }
 
     public static gameManager GameManager;
@@ -43,6 +44,8 @@ public class gameManager  : MonoBehaviour
 
     public Gun gun { get; private set; }
     public nextSetGun setGun;
+    public GunTable setGunTable;
+    public List<GadgetTable> gadgetObjects = new List<GadgetTable>();
 
     private int maxEnemy;
     private int eliminateEnemy;
@@ -174,6 +177,7 @@ public class gameManager  : MonoBehaviour
                 maxEnemy = 0;
                 eliminateEnemy = 0;
                 isGameClear = false;
+                gadgetObjects.Clear();
                 break;
         }
         nowScene = ns; 

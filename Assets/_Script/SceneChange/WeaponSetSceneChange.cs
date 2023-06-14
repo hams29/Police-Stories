@@ -19,7 +19,10 @@ public class WeaponSetSceneChange : SceneChange
     {
         base.ChangeNextScene();
         if (gameManager.GameManager != null)
+        {
             gameManager.GameManager.setGun = weaponSet.setGun;
+            gameManager.GameManager.gadgetObjects = gadgetSelect.setGadgetTable;
+        }
     }
 
     public WeaponSet GetWeaponset() { return weaponSet; }

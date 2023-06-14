@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
     public PlayerInteract InteractState { get; private set; }
     public PlayerCall CallState { get; private set; }
     public PlayerDetantion DetantionState { get; private set; }
+    public PlayerUseGadget UseGadgetState { get; private set; }
+    public PlayerUseInventory UseInventoryState { get; private set; }
     #endregion
 
     #region Component
@@ -52,7 +54,10 @@ public class PlayerController : MonoBehaviour
     private Vector3 workspace;
 
     private Plane plane = new Plane();
-    float distance = 0;
+    private float distance = 0;
+
+    public bool isHaveMainWeapon;
+    public int nowHaveGadget = 0;
 
     [SerializeField]
     private PlayerInteractUI interactUI;
@@ -65,6 +70,8 @@ public class PlayerController : MonoBehaviour
 
     public PlayerInteractUI InteractUI { get; private set; }
     public PlayerInteractUI DetantionUI { get; private set; }
+
+    public PlayerInventoryUI inventoryUI { get; private set; }
     #endregion
 
     #region Unity Callback Function
@@ -83,6 +90,8 @@ public class PlayerController : MonoBehaviour
         InteractState = new PlayerInteract(this, stateMachine, playerData, "interact");
         CallState = new PlayerCall(this, stateMachine, playerData, "call");
         DetantionState = new PlayerDetantion(this, stateMachine, playerData, "detantion");
+        UseGadgetState = new PlayerUseGadget(this, stateMachine, playerData, "useGadget");
+        UseInventoryState = new PlayerUseInventory(this, stateMachine, playerData, "useInventory");
     }
 
     private void Start()
@@ -93,8 +102,12 @@ public class PlayerController : MonoBehaviour
         Anim = GetComponent<Animator>();
         Inventory = GetComponentInChildren<Inventory>();
         search = GetComponentInChildren<FunSearch>();
+        inventoryUI = GetComponentInChildren<PlayerInventoryUI>();
 
         Inventory.SetMainWeapon();
+        Inventory.SetGadget();
+        inventoryUI.SetInventory(Inventory);
+
         GameObject setMainWeapon = null;
         switch (Inventory.gunType) 
         {
@@ -120,6 +133,9 @@ public class PlayerController : MonoBehaviour
 
         hurtFlashUI.SetMaxHP(playerData.maxHP);
         hurtFlashUI.SetCurrentHP(playerData.maxHP);
+
+        isHaveMainWeapon = true;
+        inventoryUI.HideInventoryUI();
     }
 
     private void Update()
@@ -133,12 +149,15 @@ public class PlayerController : MonoBehaviour
         //�}�E�X�̈ʒu�����ʂɂȂ�悤�Ƀv���C���[����]�����鏈��
         if(!States.dead && !isClear)
         {
-            var ray = Camera.main.ScreenPointToRay(inputController.MousePosition);
-            plane.SetNormalAndPosition(Vector3.up, transform.localPosition);
-            if(plane.Raycast(ray,out distance) && stateMachine.CurrentState != RunState)
+            if(stateMachine.CurrentState != UseGadgetState)
             {
-                Vector3 lookpoint = ray.GetPoint(distance);
-                Rotation.SetRotation(lookpoint);
+                var ray = Camera.main.ScreenPointToRay(inputController.MousePosition);
+                plane.SetNormalAndPosition(Vector3.up, transform.localPosition);
+                if(plane.Raycast(ray,out distance) && stateMachine.CurrentState != RunState)
+                {
+                    Vector3 lookpoint = ray.GetPoint(distance);
+                    Rotation.SetRotation(lookpoint);
+                }
             }
         }
         else if(isClear)
@@ -163,6 +182,10 @@ public class PlayerController : MonoBehaviour
         AnimationInputValueSet();
         damageUI.LogicPlayerDamageUI(playerData.maxHP, States.currentHP);
         hurtFlashUI.SetCurrentHP(States.currentHP);
+        
+        //InventoryUIにマウスの座標をセット
+        //TODO::マウスポジションがうまく取れていない
+        inventoryUI.SetMousePosition(inputController.MousePosition);
     }
 
     private void OnDrawGizmos()

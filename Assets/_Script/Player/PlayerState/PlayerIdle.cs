@@ -47,11 +47,19 @@ public class PlayerIdle : PlayerState
         if (!isExitingState)
         {
             //TODO::PlayerIdle::各ステータスへ移行
-            if (shotInput && player.gun.GetCurrentMagazineAmmo() > 0)
+            if(inventoryInput)
+            {
+                stateMachine.ChangeState(player.UseInventoryState);
+            }
+            else if(shotInput && !player.isHaveMainWeapon)
+            {
+                stateMachine.ChangeState(player.UseGadgetState);
+            }
+            else if (shotInput && player.gun.GetCurrentMagazineAmmo() > 0)
             {
                 stateMachine.ChangeState(player.ShotState);
             }
-            else if (reloadInput)
+            else if (reloadInput && player.isHaveMainWeapon)
                 stateMachine.ChangeState(player.ReloadState);
             else if(interactInput && player.CheckFrontObject("target",out other, playerData.meleeDistance))
             {

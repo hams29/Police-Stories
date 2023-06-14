@@ -28,6 +28,7 @@ public class PlayerState
     protected bool reloadInput;
     protected bool interactInput;
     protected bool callInput;
+    protected bool inventoryInput;
     protected bool isAnimationFinished;
     protected bool isExitingState;
     protected bool canMelee;
@@ -71,6 +72,7 @@ public class PlayerState
         reloadInput = player.inputController.ReloadInput;
         interactInput = player.inputController.InteractInput;
         callInput = player.inputController.CallInput;
+        inventoryInput = player.inputController.InventoryInput;
 
         meleeInput = player.inputController.MeleeInput;
         //ãﬂê⁄çUåÇÇ…à⁄çs
