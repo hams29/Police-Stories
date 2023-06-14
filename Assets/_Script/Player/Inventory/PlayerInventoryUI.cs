@@ -136,7 +136,6 @@ public class PlayerInventoryUI : MonoBehaviour
             }
         }
 
-        //TODO::PlayerInventoryUI::InventoryUIの中身
         if(isShow)
         {
             //マウスが右に動いたとき

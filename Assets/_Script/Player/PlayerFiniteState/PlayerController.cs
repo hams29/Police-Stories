@@ -185,8 +185,14 @@ public class PlayerController : MonoBehaviour
         hurtFlashUI.SetCurrentHP(States.currentHP);
         
         //InventoryUIにマウスの座標をセット
-        //TODO::マウスポジションがうまく取れていない
         inventoryUI.SetMousePosition(inputController.MousePosition);
+
+        //TODO::PlayerController::何故かmainWeaponの実態をPlayerが持っているためInventoryに移す作業
+        //武器を持っていない時はメイン武器を非アクティブ状態に
+        if (isHaveMainWeapon && !mainWeapon.activeSelf)
+            mainWeapon.SetActive(true);
+        else if (!isHaveMainWeapon && mainWeapon.activeSelf)
+            mainWeapon.SetActive(false);
     }
 
     private void OnDrawGizmos()
@@ -207,7 +213,6 @@ public class PlayerController : MonoBehaviour
 
     private void AnimationInputValueSet()
     {
-        //TODO::PlayerCOntroller::�v���C���[�̌����ɂ���ăA�j���[�V�����̕ύX
         Vector3 forward = this.gameObject.transform.forward;
         forward = new Vector3(forward.x, 0, forward.z).normalized;
 
