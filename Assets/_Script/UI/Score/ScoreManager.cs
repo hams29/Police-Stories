@@ -15,22 +15,20 @@ public class ScoreManager : MonoBehaviour
     
     private int high;
 
-
     private string Key = "highScore";
 
     private void Start()
     {
-        string str = gameManager.GameManager.GetScore().ToString();
-        score = int.Parse(str);
         ClearScore();
-        InitScore();
-        Debug.Log("Start’Ê‰ß");
+        Initialize();
     }
 
     private void Update()
     {
         if(gameManager.GameManager.isGameClear)
         {
+            string str = gameManager.GameManager.GetScore().ToString();
+            score = int.Parse(str);
             ClearScore();
             Save();
         }
@@ -38,6 +36,11 @@ public class ScoreManager : MonoBehaviour
 
     public void ClearScore() 
     {
+        if (score < 0)
+        {
+            score = 0;
+        }
+
         if (this.gameObject.activeSelf)
         {
             if (high < score)
@@ -51,7 +54,7 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    private void InitScore()
+    private void Initialize()
     {
         high = PlayerPrefs.GetInt(Key,0);
         Debug.Log("InitScore’Ê‰ß");
@@ -62,7 +65,8 @@ public class ScoreManager : MonoBehaviour
         PlayerPrefs.SetInt(Key,high);
         PlayerPrefs.Save();
 
-        Debug.Log("Save’Ê‰ß");
     }
+
+
 
 }
