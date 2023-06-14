@@ -22,6 +22,7 @@ public class gameManager  : MonoBehaviour
         GameClear,
         GameOver
     }
+
     public class nextSetGun
     {
         //public GameObject gun;
@@ -45,16 +46,24 @@ public class gameManager  : MonoBehaviour
     public nextSetGun setGun;
     public GunTable setGunTable;
     public List<GadgetTable> gadgetObjects = new List<GadgetTable>();
-    private float score;
 
     private int maxEnemy;
     private int eliminateEnemy;
+
     private Scene nowScene;
+
 
     private bool isSetGun = false;
     private bool isSetGameUI = false;
     public bool isGameClear { get; private set; }
     public bool isPlayerDead { get; private set; }
+
+    private float score;
+    private float timer;
+    private float minutes;
+
+    private string rank;
+
 
     private void Awake()
     {
@@ -67,6 +76,9 @@ public class gameManager  : MonoBehaviour
         //NPCの現在の状態の画像を入れる。
         currentNPCStateImage = null;
         score = 0;
+        timer = 0.0f;
+        minutes = 0.0f;
+        rank = "-";
         nowScene = initScene;
     }
 
@@ -118,6 +130,16 @@ public class gameManager  : MonoBehaviour
                 foreach (GameObject canvas in canvasObj)
                     canvas.SetActive(false);
                 gameOverCanvas?.SetActive(true);
+            }
+
+            if(!isGameClear && !isPlayerDead)
+            {
+                timer += Time.deltaTime;
+                if (timer > 60.0f)
+                {
+                    minutes++;
+                    timer = 0.0f;
+                }
             }
         }
     }
@@ -174,6 +196,7 @@ public class gameManager  : MonoBehaviour
     public void setGameClearCanvas(GameObject obj) { gameClearCanvas = obj; }
     public void setGameOverCanvas(GameObject obj) { gameOverCanvas = obj; }
     public void ReloadNowScene() { SceneManager.LoadScene(SceneManager.GetActiveScene().name); }
+    public void StartStageSelectScene() { SceneManager.LoadScene("StageSelectScene"); }
     public void ResetGameScene() 
     {
         isSetGun = false;
@@ -185,4 +208,39 @@ public class gameManager  : MonoBehaviour
         ResetScore();
         canvasObj.Clear(); 
     }
+
+    public float GetTime() => timer;
+
+    public float GetMinutes() => minutes;
+
+    public string GetRank() => rank;
+
+
+    public void Ranking()
+    {
+        if (score >= 1000)
+        {
+            rank = "A";
+        }
+        else if (score >= 150)
+        {
+            rank = "B";
+        }
+        else if(score > 500)
+        {
+            rank = "C";
+
+        }
+        else if(score > 250)
+        {
+            rank = "D";
+
+        }
+        else if(score > 0 || score <= 0)
+        {
+            rank = "E";
+        }
+
+    }
+
 }
