@@ -35,16 +35,6 @@ public class Inventory : MonoBehaviour
             if (mainWeapon != null)
                 gunType = mainWeapon.GetComponent<Gun>().GetMainWeaponData().gunType;
         }
-        /*
-        else
-        {
-            if(debugGadgets.Count > 0)
-            {
-                foreach (GadgetBase gadgetBase in debugGadgets)
-                    gadgets.Add(Instantiate(gadgetBase.gameObject, gadgetHolder).GetComponent<GadgetBase>());
-            }
-        }
-        */
     }
     private void Start()
     {
@@ -112,6 +102,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    //public void SetWeaponActive(bool flg) { mainWeapon.SetActive(flg); }
-    //public bool GetWeaponActive() { return mainWeapon.activeSelf; }
+    public void SetWeaponActive(bool flg) { mainWeapon.SetActive(flg); }
+    public bool GetWeaponActive() { return mainWeapon.activeSelf; }
+    public void SetMainWeapon(GameObject mainWeapon) { this.mainWeapon = mainWeapon; }
 }

@@ -79,7 +79,7 @@ public class PlayerState
         if (meleeInput && canMelee)
             stateMachine.ChangeState(player.MeleeState);
 
-        if(States.dead)
+        if(States.dead && stateMachine.CurrentState != player.DeadState)
         {
             stateMachine.ChangeState(player.DeadState);
         }

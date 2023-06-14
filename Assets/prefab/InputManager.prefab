@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 2789363740189316994}
   - component: {fileID: 2789363740189317005}
   - component: {fileID: 2789363740189317004}
+  - component: {fileID: 6350694610274180956}
+  - component: {fileID: 2020510193}
   m_Layer: 0
   m_Name: InputManager
   m_TagString: Untagged
@@ -215,8 +217,67 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 580cbf43-9b32-490f-b5f0-a31a896b610c
     m_ActionName: Game/Inventory[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6350694610274180956}
+        m_TargetAssemblyTypeName: GameEndInputHandler, Assembly-CSharp
+        m_MethodName: OnRestartInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 916ee0a1-062e-41b4-95e0-98a5773991bf
+    m_ActionName: GameEndUI/Retry[/Keyboard/r]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6350694610274180956}
+        m_TargetAssemblyTypeName: GameEndInputHandler, Assembly-CSharp
+        m_MethodName: OnTransSelectStageInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 089fca90-2648-4159-83ad-f8fef7efed01
+    m_ActionName: GameEndUI/SelectStage[/Keyboard/enter]
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
+  m_DefaultControlScheme: Keyboard & Mouse
   m_DefaultActionMap: Game
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &6350694610274180956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2789363740189317007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6c2065224db71f4c8fa0e925bba7744, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputHoldTime: 0.2
+--- !u!114 &2020510193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2789363740189317007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d71ac2320ca3a54d83a10fd77183d21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerActionMapName: Game
+  GameEndActionMapName: GameEndUI

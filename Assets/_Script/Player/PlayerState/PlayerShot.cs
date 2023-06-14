@@ -26,7 +26,7 @@ public class PlayerShot : PlayerState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        Gun gun = player.mainWeapon.GetComponent<Gun>();
+        Gun gun = player.Inventory.mainWeapon.GetComponent<Gun>();
 
         if (gun != null)
         {
