@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputHandler : MonoBehaviour
 {
+    public static PlayerInputHandler Instance;
+
     private PlayerInput playerInput;
     private Camera cam;
 
@@ -33,6 +35,17 @@ public class PlayerInputHandler : MonoBehaviour
 
     [SerializeField]
     private float inputHoldTime = 0.2f;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(Instance.gameObject);
+        }
+        else
+            GameObject.Destroy(this.gameObject);
+    }
 
     private void Start()
     {

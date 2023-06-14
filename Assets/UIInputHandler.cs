@@ -13,6 +13,7 @@ public class UIInputHandler : MonoBehaviour
             if (Input.GetAxis("Fire2") > 0.1f)
             {
                 gameManager.GameManager?.ReloadNowScene();
+                gameManager.GameManager?.ResetGameScene();
             }
         }
 
@@ -22,10 +23,12 @@ public class UIInputHandler : MonoBehaviour
             if (Input.GetAxis("Fire2") > 0.1f)
             {
                 gameManager.GameManager?.ReloadNowScene();
+                gameManager.GameManager?.ResetGameScene();
             }
             else if (Input.GetAxisRaw("Submit") > 0.1f)
             {
                 gameManager.GameManager?.StartStageSelectScene();
+                gameManager.GameManager?.ResetGameScene();
             }
         }
     }

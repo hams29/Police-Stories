@@ -135,7 +135,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayer: 0
-  debugMainWeapon: {fileID: 8810664080158413873, guid: 58c581d64590fdf479192b997d6e1159, type: 3}
+  gadgetHolder: {fileID: 0}
+  debugMainWeapon: {fileID: 11400000, guid: 582bbfcd2345aa94991f97032a3105dc, type: 2}
+  debugGadgets: []
 --- !u!1 &1497819694
 GameObject:
   m_ObjectHideFlags: 0
@@ -591,11 +593,7 @@ MonoBehaviour:
   enemyData: {fileID: 11400000, guid: 30ad1d206c35b754b95a467a3ba313ce, type: 2}
   handGunSet: {fileID: 3503734637173733927}
   assaultRifleSet: {fileID: 7633503917147302917}
-  moveLoot:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  moveLoot: []
 --- !u!1 &4524479840273165843
 GameObject:
   m_ObjectHideFlags: 0
