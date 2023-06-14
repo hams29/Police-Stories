@@ -24,5 +24,10 @@ public class PlayerInteractUI : MonoBehaviour
     }
 
     public void Show() { image.color = new Color(255, 255, 255, 0.5f); }
-    public void Hide() { image.color = new Color(255, 255, 255, 0.0f); }
+    public void Hide() 
+    {
+        if (image == null)
+            image = GetComponent<Image>();
+        image.color = new Color(255, 255, 255, 0.0f); 
+    }
 }

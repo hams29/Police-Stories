@@ -5,8 +5,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputHandler : MonoBehaviour
 {
-    public static PlayerInputHandler Instance;
-
     private PlayerInput playerInput;
     private Camera cam;
 
@@ -38,18 +36,11 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(Instance.gameObject);
-        }
-        else
-            GameObject.Destroy(this.gameObject);
     }
 
     private void Start()
     {
-        playerInput = GetComponent<PlayerInput>();
+        playerInput = InputManagerDontDestroy.Instance.playerInput;
         cam = Camera.main;
     }
 
@@ -80,7 +71,7 @@ public class PlayerInputHandler : MonoBehaviour
             ReloadInputStop = false;
         }
 
-        if(context.started)
+        if(context.canceled)
         {
             ReloadInputStop = true;
         }
