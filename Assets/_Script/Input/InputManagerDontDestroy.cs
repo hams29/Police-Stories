@@ -30,11 +30,33 @@ public class InputManagerDontDestroy : MonoBehaviour
 
     private void Start()
     {
-        playerInputHandler = GetComponent<PlayerInputHandler>();
+        if (this.playerInputHandler == null)
+            playerInputHandler = GetComponent<PlayerInputHandler>();
+
         gameEndInputHandler = GetComponent<GameEndInputHandler>();
-        playerInput = GetComponent<PlayerInput>();
+
+        if (this.playerInput == null)
+            playerInput = GetComponent<PlayerInput>();
     }
 
     public string GetPlayerActionMapName() { return PlayerActionMapName; }
     public string GetGameEndActionMapName() { return GameEndActionMapName; }
+
+    public PlayerInputHandler GetPlayerInputHandler()
+    {
+        if(this.playerInputHandler == null)
+        {
+            this.playerInputHandler = GetComponent<PlayerInputHandler>();
+        }
+
+        return this.playerInputHandler;
+    }
+
+    public void SetPlayerInputActionMap(string actionMapName)
+    {
+        if(this.playerInput == null)
+            this.playerInput = GetComponent<PlayerInput>();
+
+        playerInput.SwitchCurrentActionMap(actionMapName);
+    }
 }

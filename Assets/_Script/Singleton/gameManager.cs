@@ -121,8 +121,7 @@ public class gameManager  : MonoBehaviour
                 foreach (GameObject canvas in canvasObj)
                     canvas.SetActive(false);
                 gameClearCanvas?.SetActive(true);
-                if(InputManagerDontDestroy.Instance != null)
-                    InputManagerDontDestroy.Instance.playerInput.SwitchCurrentActionMap(InputManagerDontDestroy.Instance.GetGameEndActionMapName());
+                InputManagerDontDestroy.Instance?.SetPlayerInputActionMap(InputManagerDontDestroy.Instance.GetGameEndActionMapName());
             }
 
             if (isPlayerDead)

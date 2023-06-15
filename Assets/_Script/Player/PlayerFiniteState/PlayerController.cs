@@ -100,8 +100,8 @@ public class PlayerController : MonoBehaviour
         myColl = GetComponent<CapsuleCollider>();
         if (InputManagerDontDestroy.Instance != null)
         {
-            inputController = InputManagerDontDestroy.Instance.playerInputHandler;
-            InputManagerDontDestroy.Instance.playerInput.SwitchCurrentActionMap(InputManagerDontDestroy.Instance.GetPlayerActionMapName());
+            inputController = InputManagerDontDestroy.Instance.GetPlayerInputHandler();
+            InputManagerDontDestroy.Instance.SetPlayerInputActionMap(InputManagerDontDestroy.Instance.GetPlayerActionMapName());
         }
         else
             Debug.LogError("InputManagerが存在しません。");
