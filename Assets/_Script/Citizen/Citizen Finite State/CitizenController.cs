@@ -12,6 +12,7 @@ public class CitizenController : MonoBehaviour
     public Citizen_IdleState IdleState { get; private set; }
     public Citizen_SurrenderState SurrenderState { get; private set; }
     public Citizen_DetectionState DetectionState { get; private set; }
+    public Citizen_DeadState DeadState { get; private set; }
     #endregion
 
     #region Component
@@ -48,7 +49,7 @@ public class CitizenController : MonoBehaviour
         IdleState = new Citizen_IdleState(this, stateMachine, citizenData, "Idle");
         SurrenderState = new Citizen_SurrenderState(this, stateMachine, citizenData, "Surrender");
         DetectionState = new Citizen_DetectionState(this, stateMachine, citizenData, "Detection");
-
+        DeadState = new Citizen_DeadState(this, stateMachine, citizenData, "Dead");
     }
 
     private void Start()
@@ -57,6 +58,7 @@ public class CitizenController : MonoBehaviour
         myColl = GetComponent<CapsuleCollider>();
         Anim = GetComponent<Animator>();
 
+        States?.SetInitHP(citizenData.maxHP);
         stateMachine.Initialize(IdleState);
         Renderer[] material = GetComponentsInChildren<Renderer>();
         for (int i = 0; i < material.Length; i++)

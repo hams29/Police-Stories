@@ -51,7 +51,11 @@ public class CitizenState
 
     public virtual void LogicUpdate()
     {
-
+        if(States.dead)
+        {
+            if (stateMachine.CurrentState != citizen.DeadState)
+                stateMachine.ChangeState(citizen.DeadState);
+        }
     }
 
     public virtual void PhysicsUpdate()
