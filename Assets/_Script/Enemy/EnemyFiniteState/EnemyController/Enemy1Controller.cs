@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy1Controller : EnemyControllerBase
 {
@@ -47,7 +48,9 @@ public class Enemy1Controller : EnemyControllerBase
     public bool enemySurrenderProbability { get; private set; }
 
     [SerializeField]
-    protected Enemy1ScoreData enemyScoreData;
+    private Enemy1ScoreData enemyScoreData;
+
+    public NavMeshAgent navAgent { get; private set; }
     #endregion
 
 
@@ -104,11 +107,13 @@ public class Enemy1Controller : EnemyControllerBase
                 break;
         }
 
+        navAgent = GetComponent<NavMeshAgent>();
         enemySurrenderProbability = false;
         mainWeapon = Instantiate(Inventory.mainWeapon, setMainWeapon.transform);
         States.SetInitHP(enemyData.maxHP);
         stateMachine.Initialize(IdleState);
         Interact.canInteract = false;
+        navAgent.enabled = false;
     }
 
     protected override void Update()
