@@ -11,6 +11,7 @@ public class CitizenController : MonoBehaviour
 
     public Citizen_IdleState IdleState { get; private set; }
     public Citizen_SurrenderState SurrenderState { get; private set; }
+    public Citizen_DetectionState DetectionState { get; private set; }
     #endregion
 
     #region Component
@@ -35,6 +36,7 @@ public class CitizenController : MonoBehaviour
     #endregion
 
     #region Other Variables
+    private List<Renderer> renderers = new List<Renderer>();
     #endregion
 
     #region Unity CallbackFunction
@@ -45,6 +47,7 @@ public class CitizenController : MonoBehaviour
 
         IdleState = new Citizen_IdleState(this, stateMachine, citizenData, "Idle");
         SurrenderState = new Citizen_SurrenderState(this, stateMachine, citizenData, "Surrender");
+        DetectionState = new Citizen_DetectionState(this, stateMachine, citizenData, "Detection");
 
     }
 
@@ -55,6 +58,12 @@ public class CitizenController : MonoBehaviour
         Anim = GetComponent<Animator>();
 
         stateMachine.Initialize(IdleState);
+        Renderer[] material = GetComponentsInChildren<Renderer>();
+        for (int i = 0; i < material.Length; i++)
+            renderers.Add(material[i]);
+
+        Show?.InitMaterials(renderers);
+        gameManager.GameManager?.addMaxEnemy();
     }
 
     private void Update()
@@ -80,8 +89,11 @@ public class CitizenController : MonoBehaviour
     #region Other Function
     public void PlayerCall(Vector3 ppos)
     {
-        //TODO::ƒvƒŒƒCƒ„[‚©‚çŽs–¯‚Ö‚Ì~ŽQŒÄ‚Ñ‚©‚¯
-
+        Rotation.SetRotation(ppos);
+        if (stateMachine.CurrentState != SurrenderState && stateMachine.CurrentState != DetectionState)
+        {
+            stateMachine.ChangeState(SurrenderState);
+        }
     }
     #endregion
 }
