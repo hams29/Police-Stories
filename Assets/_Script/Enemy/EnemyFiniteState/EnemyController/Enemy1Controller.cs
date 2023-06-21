@@ -45,6 +45,9 @@ public class Enemy1Controller : EnemyControllerBase
     private Vector3 workspace;
 
     public bool enemySurrenderProbability { get; private set; }
+
+    [SerializeField]
+    protected Enemy1ScoreData enemyScoreData;
     #endregion
 
 
@@ -72,15 +75,15 @@ public class Enemy1Controller : EnemyControllerBase
         }
 
         //各ステータスの初期化
-        IdleState = new Enemy1Idle(this, stateMachine, enemyData, "idle");
-        DeadState = new Enemy1Death(this, stateMachine, enemyData, "dead");
+        IdleState = new Enemy1Idle(this, stateMachine, enemyData, "idle", enemyScoreData);
+        DeadState = new Enemy1Death(this, stateMachine, enemyData, "dead", enemyScoreData);
         ShotState = new Enemy1Shot(this, stateMachine, enemyData, "shot");
-        PlayerSearchState = new Enemy1PlayerSearch(this, stateMachine, enemyData, "search");
-        ReloadState = new Enemy1Reload(this, stateMachine, enemyData, "reload");
-        MoveState = new Enemy1Move(this, stateMachine, enemyData, "move");
-        SurrenderState = new Enemy1Surrender(this, stateMachine, enemyData, "surrender");
-        MoveLastPointState = new Enemy1MoveLostPoint(this, stateMachine, enemyData, "moveLastPoint");
-        DetactionState = new Enemy1Detection(this, stateMachine, enemyData, "detaction");
+        PlayerSearchState = new Enemy1PlayerSearch(this, stateMachine, enemyData, "search", enemyScoreData);
+        ReloadState = new Enemy1Reload(this, stateMachine, enemyData, "reload", enemyScoreData);
+        MoveState = new Enemy1Move(this, stateMachine, enemyData, "move", enemyScoreData);
+        SurrenderState = new Enemy1Surrender(this, stateMachine, enemyData, "surrender", enemyScoreData);
+        MoveLastPointState = new Enemy1MoveLostPoint(this, stateMachine, enemyData, "moveLastPoint", enemyScoreData);
+        DetactionState = new Enemy1Detection(this, stateMachine, enemyData, "detaction", enemyScoreData);
     }
 
     protected override void Start()

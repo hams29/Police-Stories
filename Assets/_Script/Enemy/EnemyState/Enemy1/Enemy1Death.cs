@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class Enemy1Death : EnemyState
 {
-    public Enemy1Death(Enemy1Controller enemy,EnemyStateMachine stateMachine,EnemyData enemyData,string animBoolName):base(enemy,stateMachine,enemyData,animBoolName)
-    { }
+    private Enemy1ScoreData scoreData;
+    public Enemy1Death(Enemy1Controller enemy,EnemyStateMachine stateMachine,EnemyData enemyData,string animBoolName,Enemy1ScoreData scoreData):base(enemy,stateMachine,enemyData,animBoolName)
+    {
+        this.scoreData = scoreData;
+    }
 
     public override void DoCheck()
     {
@@ -22,9 +25,9 @@ public class Enemy1Death : EnemyState
                 gameManager.GameManager.addEliminatedEnemy();
 
             if(enemy.enemySurrenderProbability && stateMachine.OldState != enemy.DetactionState)
-                gameManager.GameManager.AddScore(50.0f);
+                gameManager.GameManager.AddScore(scoreData.enemyAddDeadScore);
             else
-                gameManager.GameManager.AddScore(-50.0f);
+                gameManager.GameManager.AddScore(scoreData.enemySubDeadScore);
         }
     }
 

@@ -6,8 +6,10 @@ public class Enemy1Surrender : EnemyState
 {
     private bool isDetantion;
     private float detantionStartTime;
-    public Enemy1Surrender(Enemy1Controller enemy,EnemyStateMachine stateMachine,EnemyData enemyData,string animBoolName):base(enemy,stateMachine,enemyData,animBoolName)
+    private Enemy1ScoreData scoreData;
+    public Enemy1Surrender(Enemy1Controller enemy,EnemyStateMachine stateMachine,EnemyData enemyData,string animBoolName,Enemy1ScoreData scoreData):base(enemy,stateMachine,enemyData,animBoolName)
     {
+        this.scoreData = scoreData;
     }
 
     public override void DoCheck()
@@ -24,7 +26,7 @@ public class Enemy1Surrender : EnemyState
         detantionStartTime = 0.0f;
         Interact.canInteract = true;
         if (gameManager.GameManager != null)
-            gameManager.GameManager.AddScore(50.0f);
+            gameManager.GameManager.AddScore(scoreData.enemyAddSurrender);
     }
 
     public override void Exit()
@@ -39,7 +41,7 @@ public class Enemy1Surrender : EnemyState
         if(Damage.isDamage)
         {
             if (gameManager.GameManager != null)
-                gameManager.GameManager.AddScore(-80.0f);
+                gameManager.GameManager.AddScore(scoreData.enemySubSurrenderShotScore);
         }    
 
         if(Interact.isInteract && !isDetantion)

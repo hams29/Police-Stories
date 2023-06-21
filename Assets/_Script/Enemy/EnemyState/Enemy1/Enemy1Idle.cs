@@ -6,9 +6,12 @@ public class Enemy1Idle : EnemyState
 {
     private Gun gun;
     private float lockTime = 0;
+    private Enemy1ScoreData scoreData;
 
-    public Enemy1Idle(Enemy1Controller enemy,EnemyStateMachine stateMachine,EnemyData enemyData,string animBoolName):base(enemy,stateMachine,enemyData,animBoolName)
-    { }
+    public Enemy1Idle(Enemy1Controller enemy,EnemyStateMachine stateMachine,EnemyData enemyData,string animBoolName,Enemy1ScoreData scoreData):base(enemy,stateMachine,enemyData,animBoolName)
+    {
+        this.scoreData = scoreData;
+    }
 
     public override void DoCheck()
     {
@@ -36,12 +39,12 @@ public class Enemy1Idle : EnemyState
             if(enemy.enemySurrenderProbability)
             {
                 if (gameManager.GameManager != null)
-                    gameManager.GameManager.AddScore(10.0f);
+                    gameManager.GameManager.AddScore(scoreData.enemyAddShotScore);
             }
             else
             {
                 if (gameManager.GameManager != null)
-                    gameManager.GameManager.AddScore(-10.0f);
+                    gameManager.GameManager.AddScore(scoreData.enemySubShotScore);
             }
         }
 

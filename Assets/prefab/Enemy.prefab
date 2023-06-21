@@ -505,7 +505,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4524479840272937969
 Transform:
   m_ObjectHideFlags: 0
@@ -594,6 +594,7 @@ MonoBehaviour:
   handGunSet: {fileID: 3503734637173733927}
   assaultRifleSet: {fileID: 7633503917147302917}
   moveLoot: []
+  enemyScoreData: {fileID: 11400000, guid: 5f89c50ce63a7f748b2310bd51ecb57d, type: 2}
 --- !u!1 &4524479840273165843
 GameObject:
   m_ObjectHideFlags: 0

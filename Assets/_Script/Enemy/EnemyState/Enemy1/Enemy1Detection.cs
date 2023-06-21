@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class Enemy1Detection : EnemyState
 {
-    public Enemy1Detection(Enemy1Controller enemy,EnemyStateMachine stateMachine,EnemyData enemyData,string animBoolName):base(enemy,stateMachine,enemyData,animBoolName)
-    { }
+    private Enemy1ScoreData scoreData;
+    public Enemy1Detection(Enemy1Controller enemy,EnemyStateMachine stateMachine,EnemyData enemyData,string animBoolName,Enemy1ScoreData scoreData):base(enemy,stateMachine,enemyData,animBoolName)
+    {
+        this.scoreData = scoreData;
+    }
 
     public override void DoCheck()
     {
@@ -18,7 +21,7 @@ public class Enemy1Detection : EnemyState
         Interact.canInteract = false;
         if (gameManager.GameManager != null)
         {
-            gameManager.GameManager.AddScore(100.0f);
+            gameManager.GameManager.AddScore(scoreData.enemyAddDeadScore);
             gameManager.GameManager.addEliminatedEnemy();
         }
         Debug.Log(enemy.name + " ÇçSë©");
@@ -36,7 +39,7 @@ public class Enemy1Detection : EnemyState
         if(Damage.isDamage)
         {
             if (gameManager.GameManager != null)
-                gameManager.GameManager.AddScore(-100.0f);
+                gameManager.GameManager.AddScore(scoreData.enemySubDetectionShotScore);
         }    
     }
 
