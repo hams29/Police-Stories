@@ -8,12 +8,14 @@ public class FunSearch : MonoBehaviour
     private float angle = 45.0f;
 
     public List<EnemyControllerBase> enemyShowList { get; private set; }
+    public List<CitizenController> citizenShowList { get; private set; }
     private GameObject throwObject;
     private bool isAllShow;
 
     private void Awake()
     {
         enemyShowList = new List<EnemyControllerBase>();
+        citizenShowList = new List<CitizenController>();
         isAllShow = false;
     }
 
@@ -40,6 +42,12 @@ public class FunSearch : MonoBehaviour
                         EnemyControllerBase enemy = other.gameObject.GetComponent<EnemyControllerBase>();
                         if(enemy != null)
                             addEnemyList(enemy);
+                        else
+                        {
+                            CitizenController citizen = other.gameObject.GetComponent<CitizenController>();
+                            if (citizen != null)
+                                addCitizenList(citizen);
+                        }
 
                     }
                     else if (throwObject != null)
@@ -50,6 +58,12 @@ public class FunSearch : MonoBehaviour
                             EnemyControllerBase enemy = other.gameObject.GetComponent<EnemyControllerBase>();
                             if (enemy != null)
                                 addEnemyList(enemy);
+                            else
+                            {
+                                CitizenController citizen = other.gameObject.GetComponent<CitizenController>();
+                                if (citizen != null)
+                                    addCitizenList(citizen);
+                            }
                         }
                     }
                     else
@@ -59,6 +73,12 @@ public class FunSearch : MonoBehaviour
                         EnemyControllerBase enemy = other.gameObject.GetComponent<EnemyControllerBase>();
                         if (enemy != null)
                             delEnemyList(enemy);
+                        else
+                        {
+                            CitizenController citizen = other.gameObject.GetComponent<CitizenController>();
+                            if (citizen != null)
+                                delCitizenList(citizen);
+                        }
                     }
                 }
             }
@@ -74,6 +94,12 @@ public class FunSearch : MonoBehaviour
                 EnemyControllerBase enemy = other.gameObject.GetComponent<EnemyControllerBase>();
                 if (enemy != null)
                     delEnemyList(enemy);
+                else
+                {
+                    CitizenController citizen = other.gameObject.GetComponent<CitizenController>();
+                    if (citizen != null)
+                        delCitizenList(citizen);
+                }
             }
         }
     }
@@ -87,6 +113,12 @@ public class FunSearch : MonoBehaviour
             EnemyControllerBase enemy = other.gameObject.GetComponent<EnemyControllerBase>();
             if (enemy != null)
                 delEnemyList(enemy);
+            else
+            {
+                CitizenController citizen = other.gameObject.GetComponent<CitizenController>();
+                if (citizen != null)
+                    delCitizenList(citizen);
+            }
         }
     }
 
@@ -136,6 +168,22 @@ public class FunSearch : MonoBehaviour
             enemy.SetPlayerOutOfView(true);
             enemy.PlayerOutOfViewTIme();
             enemyShowList.Remove(enemy);
+        }
+    }
+
+    private void addCitizenList(CitizenController citizen)
+    {
+        if (!citizenShowList.Contains(citizen))
+        {
+            citizenShowList.Add(citizen);
+        }
+    }
+
+    private void delCitizenList(CitizenController citizen)
+    {
+        if (citizenShowList.Contains(citizen))
+        {
+            citizenShowList.Remove(citizen);
         }
     }
 

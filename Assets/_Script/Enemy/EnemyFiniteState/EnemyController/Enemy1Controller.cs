@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy1Controller : EnemyControllerBase
 {
@@ -26,6 +27,7 @@ public class Enemy1Controller : EnemyControllerBase
     public Enemy1Surrender SurrenderState { get; private set; }
     public Enemy1MoveLostPoint MoveLastPointState { get; private set; }
     public Enemy1Detection DetactionState { get; private set; }
+    public Enemy1RemoveNormalLoot RemoveNormalLootState { get; private set; }
     #endregion
 
     #region Component
@@ -45,6 +47,11 @@ public class Enemy1Controller : EnemyControllerBase
     private Vector3 workspace;
 
     public bool enemySurrenderProbability { get; private set; }
+
+    [SerializeField]
+    private Enemy1ScoreData enemyScoreData;
+
+    public NavMeshAgent navAgent { get; private set; }
     #endregion
 
 
@@ -72,15 +79,16 @@ public class Enemy1Controller : EnemyControllerBase
         }
 
         //各ステータスの初期化
-        IdleState = new Enemy1Idle(this, stateMachine, enemyData, "idle");
-        DeadState = new Enemy1Death(this, stateMachine, enemyData, "dead");
+        IdleState = new Enemy1Idle(this, stateMachine, enemyData, "idle", enemyScoreData);
+        DeadState = new Enemy1Death(this, stateMachine, enemyData, "dead", enemyScoreData);
         ShotState = new Enemy1Shot(this, stateMachine, enemyData, "shot");
-        PlayerSearchState = new Enemy1PlayerSearch(this, stateMachine, enemyData, "search");
-        ReloadState = new Enemy1Reload(this, stateMachine, enemyData, "reload");
-        MoveState = new Enemy1Move(this, stateMachine, enemyData, "move");
-        SurrenderState = new Enemy1Surrender(this, stateMachine, enemyData, "surrender");
-        MoveLastPointState = new Enemy1MoveLostPoint(this, stateMachine, enemyData, "moveLastPoint");
-        DetactionState = new Enemy1Detection(this, stateMachine, enemyData, "detaction");
+        PlayerSearchState = new Enemy1PlayerSearch(this, stateMachine, enemyData, "search", enemyScoreData);
+        ReloadState = new Enemy1Reload(this, stateMachine, enemyData, "reload", enemyScoreData);
+        MoveState = new Enemy1Move(this, stateMachine, enemyData, "move", enemyScoreData);
+        SurrenderState = new Enemy1Surrender(this, stateMachine, enemyData, "surrender", enemyScoreData);
+        MoveLastPointState = new Enemy1MoveLostPoint(this, stateMachine, enemyData, "moveLastPoint", enemyScoreData);
+        DetactionState = new Enemy1Detection(this, stateMachine, enemyData, "detaction", enemyScoreData);
+        RemoveNormalLootState = new Enemy1RemoveNormalLoot(this, stateMachine, enemyData, "move", enemyScoreData);
     }
 
     protected override void Start()
@@ -101,11 +109,13 @@ public class Enemy1Controller : EnemyControllerBase
                 break;
         }
 
+        navAgent = GetComponent<NavMeshAgent>();
         enemySurrenderProbability = false;
         mainWeapon = Instantiate(Inventory.mainWeapon, setMainWeapon.transform);
         States.SetInitHP(enemyData.maxHP);
         stateMachine.Initialize(IdleState);
         Interact.canInteract = false;
+        navAgent.enabled = false;
     }
 
     protected override void Update()
