@@ -6,6 +6,7 @@ using UnityEngine;
 public class DoorOpen : MonoBehaviour
 {
      [SerializeField] Animator doorAC;
+    [SerializeField] private GameObject NavMeshObs;
     Core core;
     private Interact interact;
     private Interact Interact { get => interact ?? core.GetCoreComponent(ref interact); }
@@ -42,7 +43,6 @@ public class DoorOpen : MonoBehaviour
             doorAC.SetBool("closed", !isOpened);
             useInteract = true;
         }
-
     }
 
     public void SetAnimTriggger()

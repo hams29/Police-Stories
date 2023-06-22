@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class Enemy1Move : EnemyState
 {
-    private int nowLootCount;
-    private int maxLootCount;
-    private List<Vector3> enemyLootList = null;
+    public int nowLootCount { get; private set; }
+    public int maxLootCount { get; private set; }
+    public List<Vector3> enemyLootList { get; private set; } = null;
     private Enemy1ScoreData scoreData;
     public Enemy1Move(Enemy1Controller enemy,EnemyStateMachine stateMachine,EnemyData enemyData,string animBoolName,Enemy1ScoreData scoreData):base(enemy,stateMachine,enemyData,animBoolName)
     {
@@ -93,4 +93,6 @@ public class Enemy1Move : EnemyState
     {
         base.PhysicsUpdate();
     }
+
+    public void SetNowLootCount(int count) { nowLootCount = count; }
 }

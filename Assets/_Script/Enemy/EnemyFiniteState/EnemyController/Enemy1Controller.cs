@@ -27,6 +27,7 @@ public class Enemy1Controller : EnemyControllerBase
     public Enemy1Surrender SurrenderState { get; private set; }
     public Enemy1MoveLostPoint MoveLastPointState { get; private set; }
     public Enemy1Detection DetactionState { get; private set; }
+    public Enemy1RemoveNormalLoot RemoveNormalLootState { get; private set; }
     #endregion
 
     #region Component
@@ -87,6 +88,7 @@ public class Enemy1Controller : EnemyControllerBase
         SurrenderState = new Enemy1Surrender(this, stateMachine, enemyData, "surrender", enemyScoreData);
         MoveLastPointState = new Enemy1MoveLostPoint(this, stateMachine, enemyData, "moveLastPoint", enemyScoreData);
         DetactionState = new Enemy1Detection(this, stateMachine, enemyData, "detaction", enemyScoreData);
+        RemoveNormalLootState = new Enemy1RemoveNormalLoot(this, stateMachine, enemyData, "move", enemyScoreData);
     }
 
     protected override void Start()
