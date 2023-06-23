@@ -27,4 +27,8 @@ public class EnemyData : ScriptableObject
 
     [Header("Enemy Player Out of View Time"),Tooltip("“G‚ªƒvƒŒƒCƒ„[‚ğŒ©¸‚Á‚Ä„‰ñ‚É–ß‚é‚Ü‚Å‚ÌŠÔ")]
     public float playerOutOfViewTime = 1.5f;
+
+    [Header("Enemy Interact Distance")]
+    public float interactDistance = 2.5f;
+    public string interactLayerName;
 }

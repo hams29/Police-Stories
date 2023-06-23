@@ -20,3 +20,5 @@ MonoBehaviour:
   surrenderProbability: 50
   detantionTime: 2
   playerOutOfViewTime: 1.5
+  interactDistance: 2.5
+  interactLayerName: Interact
