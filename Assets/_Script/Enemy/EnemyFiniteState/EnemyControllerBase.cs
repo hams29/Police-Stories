@@ -19,11 +19,17 @@ public class EnemyControllerBase : MonoBehaviour
 
     protected States States { get => states ?? Core.GetCoreComponent(ref states); }
     private States states;
+
+    protected Show Show { get => show ?? Core.GetCoreComponent(ref show); }
+    private Show show;
+
+
     #endregion
 
     #region Variables
     public float playerOutOfViewTime { get; private set; }
     public bool isPlayerOutOfView { get; private set; }
+    private List<Renderer> renderers = new List<Renderer>();
     #endregion
 
     protected virtual void Awake()
@@ -43,6 +49,12 @@ public class EnemyControllerBase : MonoBehaviour
 
         if (gameManager.GameManager != null)
             gameManager.GameManager.addMaxEnemy();
+
+        Renderer[] material = GetComponentsInChildren<Renderer>();
+        for (int i = 0; i < material.Length; i++)
+            renderers.Add(material[i]);
+
+        Show?.InitMaterials(renderers);
     }
 
     protected virtual void Update()

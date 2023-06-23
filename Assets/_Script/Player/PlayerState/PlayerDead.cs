@@ -17,6 +17,7 @@ public class PlayerDead : PlayerState
         base.Enter();
 
         Debug.Log("Player is Dead");
+        InputManagerDontDestroy.Instance.SetPlayerInputActionMap(InputManagerDontDestroy.Instance.GetGameEndActionMapName());
     }
 
     public override void Exit()

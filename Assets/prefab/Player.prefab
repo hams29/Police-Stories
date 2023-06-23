@@ -4186,8 +4186,7 @@ MonoBehaviour:
   isPlayer: 1
   gadgetHolder: {fileID: 1787966134}
   debugMainWeapon: {fileID: 11400000, guid: 1471a3f67d1b23e4393b8baf37ba5010, type: 2}
-  debugGadgets:
-  - {fileID: 8371366597903373672, guid: 34b1620bf5ea37d458482d9b02fbfba5, type: 3}
+  debugGadgets: []
 --- !u!1 &7384495092277542840
 GameObject:
   m_ObjectHideFlags: 0

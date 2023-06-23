@@ -10,6 +10,9 @@ public class Show : CoreComponent,ILogicUpdate
     [SerializeField]
     Material transparentMaterial;
 
+    List<Material> materials = new List<Material>();
+    List<Renderer> renderers = new List<Renderer>();
+
     public bool isBlind { get; private set; }
 
     protected override void Awake()
@@ -20,6 +23,7 @@ public class Show : CoreComponent,ILogicUpdate
 
     private void Start()
     {
+        /*
         Renderer[] rend = transform.root.GetComponentsInChildren<Renderer>();
 
         for(int i = 0;i<rend.Length;i++)
@@ -37,6 +41,7 @@ public class Show : CoreComponent,ILogicUpdate
 
         //èâÇﬂÇÕå©Ç¶Ç»Ç¢ÇÊÇ§Ç…Ç∑ÇÈ
         BlindObject();
+        */
     }
 
     public override void LogicUpdate()
@@ -47,14 +52,42 @@ public class Show : CoreComponent,ILogicUpdate
     #region Set Function
     public void BlindObject()
     {
+        if (materials.Count <= 0)
+            return;
+
         isBlind = true;
-        rend.material = transparentMaterial;
+        //rend.material = transparentMaterial;
+        foreach(Renderer renderer in renderers)
+        {
+            renderer.material = transparentMaterial;
+        }
     }
 
     public void ShowObject()
     {
+        if (materials.Count <= 0)
+            return;
+
         isBlind = false;
-        rend.material = material;
+        int count = 0;
+        //rend.material = material;
+        foreach(Renderer renderer in renderers)
+        {
+            renderer.material = materials[count];
+            count++;
+        }
+    }
+
+    public void InitMaterials(List<Renderer> mat)
+    {
+        renderers = mat;
+        foreach(Renderer renderer in renderers)
+        {
+            materials.Add(renderer.material);
+        }
+
+        //èâÇﬂÇÕå©Ç¶Ç»Ç¢ÇÊÇ§Ç…Ç∑ÇÈ
+        BlindObject();
     }
     #endregion
 }

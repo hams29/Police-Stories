@@ -30,6 +30,10 @@ public class PlayerCall : PlayerState
         foreach (EnemyControllerBase controller in enemyList)
             controller.PlayerCall(player.transform.position);
 
+        List<CitizenController> citizenList = player.search.citizenShowList;
+        foreach (CitizenController citizen in citizenList)
+            citizen.PlayerCall(player.transform.position);
+
         stateMachine.ChangeState(player.IdleState);
     }
 

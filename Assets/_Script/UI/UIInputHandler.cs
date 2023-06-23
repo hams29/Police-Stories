@@ -4,14 +4,24 @@ using UnityEngine;
 
 public class UIInputHandler : MonoBehaviour
 {
+
+    private GameEndInputHandler inputController;
+
+    private void Start()
+    {
+        if (InputManagerDontDestroy.Instance != null)
+            inputController = InputManagerDontDestroy.Instance.gameEndInputHandler;
+    }
     private void Update()
     {
-
+        if (inputController == null)
+            return;
         
         if (gameManager.GameManager.isPlayerDead)
         {
-            if (Input.GetAxis("Fire2") > 0.1f)
+            if (inputController.RestartInput)
             {
+                inputController.UseRestartInput();
                 gameManager.GameManager?.ReloadNowScene();
                 gameManager.GameManager?.ResetGameScene();
             }
@@ -20,13 +30,15 @@ public class UIInputHandler : MonoBehaviour
 
         if (gameManager.GameManager.isGameClear)
         {
-            if (Input.GetAxis("Fire2") > 0.1f)
+            if (inputController.RestartInput)
             {
+                inputController.UseRestartInput();
                 gameManager.GameManager?.ReloadNowScene();
                 gameManager.GameManager?.ResetGameScene();
             }
-            else if (Input.GetAxisRaw("Submit") > 0.1f)
+            else if (inputController.TransSelectStageInput)
             {
+                inputController.UseTransSelectStageInput();
                 gameManager.GameManager?.StartStageSelectScene();
                 gameManager.GameManager?.ResetGameScene();
             }

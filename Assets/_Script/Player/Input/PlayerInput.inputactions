@@ -254,6 +254,54 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "GameEndUI",
+            "id": "8a06d3ab-72f8-46dd-a647-496289990efe",
+            "actions": [
+                {
+                    "name": "Retry",
+                    "type": "Button",
+                    "id": "916ee0a1-062e-41b4-95e0-98a5773991bf",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SelectStage",
+                    "type": "Button",
+                    "id": "089fca90-2648-4159-83ad-f8fef7efed01",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c0791e88-0924-4865-b38a-17324a22e5b6",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard & Mouse",
+                    "action": "Retry",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "74a21f30-000b-427e-b740-1f1b4f2763fb",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard & Mouse",
+                    "action": "SelectStage",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

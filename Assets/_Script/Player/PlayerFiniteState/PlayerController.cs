@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
     public PlayerInputHandler inputController { get; private set; }
     public Core Core { get; private set; }
     public Inventory Inventory { get; private set; }
-    public GameObject mainWeapon { get; private set; }
+    //public GameObject mainWeapon { get; private set; }
     public Gun gun { get; private set; }
     public FunSearch search { get; private set; }
     
@@ -98,8 +98,14 @@ public class PlayerController : MonoBehaviour
     {
         myRB = GetComponent<Rigidbody>();
         myColl = GetComponent<CapsuleCollider>();
-        //inputController = GetComponent<PlayerInputHandler>();
-        inputController = PlayerInputHandler.Instance;
+        if (InputManagerDontDestroy.Instance != null)
+        {
+            inputController = InputManagerDontDestroy.Instance.GetPlayerInputHandler();
+            InputManagerDontDestroy.Instance.SetPlayerInputActionMap(InputManagerDontDestroy.Instance.GetPlayerActionMapName());
+        }
+        else
+            Debug.LogError("InputManagerが存在しません。");
+        
         Anim = GetComponent<Animator>();
         Inventory = GetComponentInChildren<Inventory>();
         search = GetComponentInChildren<FunSearch>();
@@ -121,8 +127,9 @@ public class PlayerController : MonoBehaviour
                 break;
         }
 
-        mainWeapon = Instantiate(Inventory.mainWeapon, setMainWeapon.transform);
-        gun = mainWeapon.GetComponent<Gun>();
+        //mainWeapon = Instantiate(Inventory.mainWeapon, setMainWeapon.transform);
+        this.Inventory.SetMainWeapon(Instantiate(Inventory.mainWeapon, setMainWeapon.transform));
+        gun = this.Inventory.mainWeapon.GetComponent<Gun>();
         gameManager.GameManager?.SetPlayerGun(gun);
         gameManager.GameManager?.SetPlayerDead(States.dead);
         stateMachine.Initialize(IdleState);
@@ -169,24 +176,19 @@ public class PlayerController : MonoBehaviour
             Rotation.CanSetRotate = false;
         }
 
-        //TODO::あとから変更
-        if(States.dead)
-        {
-            if(inputController.ReloadInput)
-            {
-                inputController.UseReloadInput();
-                gameManager.GameManager?.ReloadNowScene();
-                gameManager.GameManager?.ResetGameScene();
-            }
-        }
         //Animator�ɕK�v�Ȓl�����鏈��
         AnimationInputValueSet();
         damageUI.LogicPlayerDamageUI(playerData.maxHP, States.currentHP);
         hurtFlashUI.SetCurrentHP(States.currentHP);
         
         //InventoryUIにマウスの座標をセット
-        //TODO::マウスポジションがうまく取れていない
         inventoryUI.SetMousePosition(inputController.MousePosition);
+
+        //武器を持っていない時はメイン武器を非アクティブ状態に
+        if (isHaveMainWeapon && !Inventory.GetWeaponActive())
+            this.Inventory.SetWeaponActive(true);
+        else if (!isHaveMainWeapon && Inventory.GetWeaponActive())
+            this.Inventory.SetWeaponActive(false);
     }
 
     private void OnDrawGizmos()
@@ -207,7 +209,6 @@ public class PlayerController : MonoBehaviour
 
     private void AnimationInputValueSet()
     {
-        //TODO::PlayerCOntroller::�v���C���[�̌����ɂ���ăA�j���[�V�����̕ύX
         Vector3 forward = this.gameObject.transform.forward;
         forward = new Vector3(forward.x, 0, forward.z).normalized;
 
