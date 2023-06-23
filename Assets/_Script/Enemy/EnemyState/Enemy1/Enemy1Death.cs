@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class Enemy1Death : EnemyState
 {
-    private Enemy1ScoreData scoreData;
-    public Enemy1Death(Enemy1Controller enemy,EnemyStateMachine stateMachine,EnemyData enemyData,string animBoolName,Enemy1ScoreData scoreData):base(enemy,stateMachine,enemyData,animBoolName)
-    {
-        this.scoreData = scoreData;
-    }
+    public Enemy1Death(Enemy1Controller enemy,EnemyStateMachine stateMachine,EnemyData enemyData,string animBoolName):base(enemy,stateMachine,enemyData,animBoolName)
+    { }
 
     public override void DoCheck()
     {
@@ -25,9 +22,21 @@ public class Enemy1Death : EnemyState
                 gameManager.GameManager.addEliminatedEnemy();
 
             if(enemy.enemySurrenderProbability && stateMachine.OldState != enemy.DetactionState)
-                gameManager.GameManager.AddScore(scoreData.enemyAddDeadScore);
+            {
+                gameManager.GameManager.AddScore(50.0f);
+                gameManager.GameManager.SetScorePM(true);
+                gameManager.GameManager.SetScoreMsg("“G‚ÌŒÄ‚Ñ‚©‚¯‚É¬Œ÷");
+                Debug.Log("Enemy1Death");
+                ScoreMessage.scoreMessage.TextInMsg();
+            }
             else
-                gameManager.GameManager.AddScore(scoreData.enemySubDeadScore);
+            {
+                gameManager.GameManager.AddScore(-50.0f);
+                gameManager.GameManager.SetScorePM(false);
+                gameManager.GameManager.SetScoreMsg("“G‚ÌŒÄ‚Ñ‚©‚¯‚É¸”s");
+                Debug.Log("Enemy1Death");
+                ScoreMessage.scoreMessage.TextInMsg();
+            }
         }
     }
 
