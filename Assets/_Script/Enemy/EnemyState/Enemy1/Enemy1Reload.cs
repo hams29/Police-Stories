@@ -40,6 +40,7 @@ public class Enemy1Reload : EnemyState
                     gameManager.GameManager.SetScorePM(true);
                     gameManager.GameManager.SetScoreMsg("敵にダメージ");
                     Debug.Log("Enemy1Reload");
+
                     ScoreMessage.scoreMessage.TextInMsg();
 
                 }
@@ -52,7 +53,7 @@ public class Enemy1Reload : EnemyState
                     gameManager.GameManager.SetScorePM(false);
                     gameManager.GameManager.SetScoreMsg("敵にダメージ");
                     Debug.Log("Enemy1Reload");
-                    ScoreMessage.scoreMessage.TextInMsg();
+                    ScoreMessage.scoreMessage?.TextInMsg();
                 }
             }
         }

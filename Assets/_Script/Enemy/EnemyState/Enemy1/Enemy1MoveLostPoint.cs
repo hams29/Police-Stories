@@ -54,7 +54,7 @@ public class Enemy1MoveLostPoint : EnemyState
                     gameManager.GameManager.SetScorePM(false);
                     gameManager.GameManager.SetScoreMsg("“G‚Éƒ_ƒ[ƒW");
                     Debug.Log("Enemy1MovePoint");
-                    ScoreMessage.scoreMessage.TextInMsg();
+                    ScoreMessage.scoreMessage?.TextInMsg();
                 }
             }
         }

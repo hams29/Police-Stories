@@ -215,7 +215,8 @@ public class gameManager  : MonoBehaviour
         ResetScore();
         canvasObj.Clear();
         ResetTimer();
-        ScoreMessage.scoreMessage.ScoreTextReset();
+
+        ScoreMessage.scoreMessage?.ScoreTextReset();
     }
 
     public float GetTime() => timer;

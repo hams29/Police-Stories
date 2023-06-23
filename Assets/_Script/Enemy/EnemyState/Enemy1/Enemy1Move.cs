@@ -53,7 +53,7 @@ public class Enemy1Move : EnemyState
                     gameManager.GameManager.SetScorePM(true);
                     gameManager.GameManager.SetScoreMsg("敵にダメージ");
                     UnityEngine.Debug.Log("Enemy1Move");
-                    ScoreMessage.scoreMessage.TextInMsg();
+                    ScoreMessage.scoreMessage?.TextInMsg();
                 }
             }
             else
@@ -64,7 +64,7 @@ public class Enemy1Move : EnemyState
                     gameManager.GameManager.SetScorePM(false);
                     gameManager.GameManager.SetScoreMsg("敵にダメージ");
                     UnityEngine.Debug.Log("Enemy1Move");
-                    ScoreMessage.scoreMessage.TextInMsg();
+                    ScoreMessage.scoreMessage?.TextInMsg();
                 }
             }
         }

@@ -50,6 +50,7 @@ public class Enemy1Surrender : EnemyState
                 gameManager.GameManager.SetScorePM(false);
                 gameManager.GameManager.SetScoreMsg("S‘©‘O");
                 Debug.Log("Enemy1Surrender");
+
                 ScoreMessage.scoreMessage.TextInMsg();
             }
         }    

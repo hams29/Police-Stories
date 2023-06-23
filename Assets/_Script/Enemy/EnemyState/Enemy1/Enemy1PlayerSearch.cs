@@ -42,7 +42,7 @@ public class Enemy1PlayerSearch : EnemyState
                     gameManager.GameManager.SetScorePM(true);
                     gameManager.GameManager.SetScoreMsg("敵にダメージ");
                     Debug.Log("Enemy1Search");
-                    ScoreMessage.scoreMessage.TextInMsg();
+                    ScoreMessage.scoreMessage?.TextInMsg();
                 }
             }
             else
@@ -53,7 +53,7 @@ public class Enemy1PlayerSearch : EnemyState
                     gameManager.GameManager.SetScorePM(false);
                     gameManager.GameManager.SetScoreMsg("敵にダメージ");
                     Debug.Log("Enemy1Search");
-                    ScoreMessage.scoreMessage.TextInMsg();
+                    ScoreMessage.scoreMessage?.TextInMsg();
                 }
             }
         }
