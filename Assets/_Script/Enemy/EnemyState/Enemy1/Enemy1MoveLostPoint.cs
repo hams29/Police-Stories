@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Enemy1MoveLostPoint : EnemyState
 {
-    public Enemy1MoveLostPoint(Enemy1Controller enemy,EnemyStateMachine stateMachine,EnemyData enemyData,string animBoolName):base(enemy,stateMachine,enemyData,animBoolName)
+    private Enemy1ScoreData scoreData;
+    public Enemy1MoveLostPoint(Enemy1Controller enemy, EnemyStateMachine stateMachine, EnemyData enemyData, string animBoolName, Enemy1ScoreData scoreData) : base(enemy, stateMachine, enemyData, animBoolName)
     {
+        this.scoreData = scoreData;
     }
 
     public override void DoCheck()
@@ -16,11 +18,15 @@ public class Enemy1MoveLostPoint : EnemyState
     public override void Enter()
     {
         base.Enter();
+
+        enemy.navAgent.enabled = true;
     }
 
     public override void Exit()
     {
         base.Exit();
+
+        enemy.navAgent.enabled = false;
     }
 
     public override void LogicUpdate()
@@ -52,7 +58,8 @@ public class Enemy1MoveLostPoint : EnemyState
                 }
             }
         }
-
+        #region old
+        /*
         Vector3 lastPlayerPos = new Vector3(enemy.PlayerSearch.playerPos.x, 0, enemy.PlayerSearch.playerPos.z);
         //Vector3 pos = new Vector3(enemy.transform.position.x, 0, enemy.transform.position.z);
         //workspace = (lastPlayerPos - pos).normalized;
@@ -90,21 +97,25 @@ public class Enemy1MoveLostPoint : EnemyState
             enemy.IdleState.SetLockTime(2.0f);
             stateMachine.ChangeState(enemy.IdleState);
         }
+        */
+        #endregion
+        #region new
+        Vector3 lastPlayerPos = new Vector3(enemy.PlayerSearch.playerPos.x, 0, enemy.PlayerSearch.playerPos.z);
+        enemy.navAgent.SetDestination(lastPlayerPos);
 
-
-        if (enemy.PlayerSearch.isPlayerFind)
+        if (lastPlayerPos.x + 0.1 > enemy.transform.position.x && lastPlayerPos.x - 0.1 < enemy.transform.position.x)
         {
-            stateMachine.ChangeState(enemy.PlayerSearchState);
-        }
-
-        if(lastPlayerPos.x + 0.1 > pos.x && lastPlayerPos.x - 0.1 < pos.x)
-        {
-            if(lastPlayerPos.z + 0.1 > pos.z && lastPlayerPos.z - 0.1 < pos.z)
+            if (lastPlayerPos.z + 0.1 > enemy.transform.position.z && lastPlayerPos.z - 0.1 < enemy.transform.position.z)
             {
                 enemy.IdleState.SetLockTime(2.0f);
+                enemy.IdleState.SetNextState(enemy.RemoveNormalLootState);
                 stateMachine.ChangeState(enemy.IdleState);
             }
         }
+
+        if (enemy.PlayerSearch.isPlayerFind)
+            stateMachine.ChangeState(enemy.PlayerSearchState);
+        #endregion
     }
 
     public override void PhysicsUpdate()

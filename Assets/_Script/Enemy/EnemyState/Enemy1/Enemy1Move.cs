@@ -6,10 +6,11 @@ using UnityEngine;
 
 public class Enemy1Move : EnemyState
 {
-    private int nowLootCount;
-    private int maxLootCount;
-    private List<Vector3> enemyLootList = null;
-    public Enemy1Move(Enemy1Controller enemy,EnemyStateMachine stateMachine,EnemyData enemyData,string animBoolName):base(enemy,stateMachine,enemyData,animBoolName)
+    public int nowLootCount { get; private set; }
+    public int maxLootCount { get; private set; }
+    public List<Vector3> enemyLootList { get; private set; } = null;
+    private Enemy1ScoreData scoreData;
+    public Enemy1Move(Enemy1Controller enemy, EnemyStateMachine stateMachine, EnemyData enemyData, string animBoolName, Enemy1ScoreData scoreData) : base(enemy, stateMachine, enemyData, animBoolName)
     {
         nowLootCount = 0;
         List<GameObject> lootObj = enemy.getMoveLoot();
@@ -20,6 +21,7 @@ public class Enemy1Move : EnemyState
             enemyLootList.Add(lootObj[i].transform.position);
         }
         maxLootCount = enemyLootList.Count;
+        this.scoreData = scoreData;
     }
 
     public override void DoCheck()
@@ -104,4 +106,6 @@ public class Enemy1Move : EnemyState
     {
         base.PhysicsUpdate();
     }
+
+    public void SetNowLootCount(int count) { nowLootCount = count; }
 }
