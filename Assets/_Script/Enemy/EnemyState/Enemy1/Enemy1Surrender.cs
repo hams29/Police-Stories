@@ -6,8 +6,10 @@ public class Enemy1Surrender : EnemyState
 {
     private bool isDetantion;
     private float detantionStartTime;
-    public Enemy1Surrender(Enemy1Controller enemy,EnemyStateMachine stateMachine,EnemyData enemyData,string animBoolName):base(enemy,stateMachine,enemyData,animBoolName)
+    private Enemy1ScoreData scoreData;
+    public Enemy1Surrender(Enemy1Controller enemy, EnemyStateMachine stateMachine, EnemyData enemyData, string animBoolName, Enemy1ScoreData scoreData) : base(enemy, stateMachine, enemyData, animBoolName)
     {
+        this.scoreData = scoreData;
     }
 
     public override void DoCheck()

@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class Enemy1Detection : EnemyState
 {
-    public Enemy1Detection(Enemy1Controller enemy,EnemyStateMachine stateMachine,EnemyData enemyData,string animBoolName):base(enemy,stateMachine,enemyData,animBoolName)
-    { }
+    private Enemy1ScoreData scoreData;
+    public Enemy1Detection(Enemy1Controller enemy, EnemyStateMachine stateMachine, EnemyData enemyData, string animBoolName, Enemy1ScoreData scoreData) : base(enemy, stateMachine, enemyData, animBoolName)
+    {
+        this.scoreData = scoreData;
+    }
 
     public override void DoCheck()
     {
