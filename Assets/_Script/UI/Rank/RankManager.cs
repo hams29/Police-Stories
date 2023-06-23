@@ -20,7 +20,6 @@ public class RankManager : MonoBehaviour
         E
     }
 
-
     private string Key = "highScore";
 
     private string rankStr = "";
@@ -30,7 +29,6 @@ public class RankManager : MonoBehaviour
 
     private void Start()
     {
-        //ClearRank();
         Initialize();
         Debug.Log("Start’Ê‰ß");
     }
@@ -50,60 +48,8 @@ public class RankManager : MonoBehaviour
     {
         if (this.gameObject.activeSelf)
         {
-            if (rank <= (int)tag_Rank.A)
-            {
-                
-            }
-            else if (rank < (int)tag_Rank.B)
-            {
-
-                
-            }
-            else if (rank > (int)tag_Rank.C)
-            {
-
-
-            }
-            else if (rank > (int)tag_Rank.D)
-            {
-
-
-            }
-            else if (rank > (int)tag_Rank.E)
-            {
-
-
-            }
-            switch (rank)
-            {
-                case (int)tag_Rank.A:
-
-                    highRankStr = "A";
-
-                    break;
-                case (int)tag_Rank.B:
-
-                    highRankStr = "B";
-
-                    break;
-                case (int)tag_Rank.C:
-
-                    highRankStr = "C";
-
-                    break;
-                case (int)tag_Rank.D:
-
-                    highRankStr = "D";
-
-                    break;
-                case (int)tag_Rank.E:
-
-                    highRankStr = "E";
-
-                    break;
-            }
-
-
+            CurrentScoreRank();
+            HighScoreRank();
             rankText.text = rankStr;
             highRankText.text = highRankStr;
             Debug.Log("ClearRank’Ê‰ß");
@@ -122,5 +68,51 @@ public class RankManager : MonoBehaviour
         PlayerPrefs.Save();
 
         Debug.Log("Save’Ê‰ß");
+    }
+
+    public void CurrentScoreRank()
+    {
+        if (rankStr == "A")
+        {
+            rank = (int)tag_Rank.A;
+        }
+        else if (rankStr == "B")
+        {
+            rank = (int)tag_Rank.B;
+        }
+        else if (rankStr == "C")
+        {
+            rank = (int)tag_Rank.C;
+        }
+        else if (rankStr == "D")
+        {
+            rank = (int)tag_Rank.D;
+        }
+        else if (rankStr == "E")
+        {
+            rank = (int)tag_Rank.E;
+        }
+    }
+
+    public void HighScoreRank()
+    {
+        switch (rank)
+        {
+            case (int)tag_Rank.A:
+                highRankStr = "A";
+                break;
+            case (int)tag_Rank.B:
+                highRankStr = "B";
+                break;
+            case (int)tag_Rank.C:
+                highRankStr = "C";
+                break;
+            case (int)tag_Rank.D:
+                highRankStr = "D";
+                break;
+            case (int)tag_Rank.E:
+                highRankStr = "E";
+                break;
+        }
     }
 }

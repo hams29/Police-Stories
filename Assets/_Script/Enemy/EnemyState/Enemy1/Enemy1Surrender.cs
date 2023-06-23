@@ -24,7 +24,11 @@ public class Enemy1Surrender : EnemyState
         detantionStartTime = 0.0f;
         Interact.canInteract = true;
         if (gameManager.GameManager != null)
+        {
             gameManager.GameManager.AddScore(50.0f);
+            gameManager.GameManager.SetScorePM(true);
+            gameManager.GameManager.SetScoreMsg("“G‚ğS‘©");
+        }
     }
 
     public override void Exit()
@@ -39,7 +43,13 @@ public class Enemy1Surrender : EnemyState
         if(Damage.isDamage)
         {
             if (gameManager.GameManager != null)
+            {
                 gameManager.GameManager.AddScore(-80.0f);
+                gameManager.GameManager.SetScorePM(false);
+                gameManager.GameManager.SetScoreMsg("S‘©‘O");
+                Debug.Log("Enemy1Surrender");
+                ScoreMessage.scoreMessage.TextInMsg();
+            }
         }    
 
         if(Interact.isInteract && !isDetantion)

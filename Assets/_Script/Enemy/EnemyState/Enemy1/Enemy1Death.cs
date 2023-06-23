@@ -22,9 +22,21 @@ public class Enemy1Death : EnemyState
                 gameManager.GameManager.addEliminatedEnemy();
 
             if(enemy.enemySurrenderProbability && stateMachine.OldState != enemy.DetactionState)
+            {
                 gameManager.GameManager.AddScore(50.0f);
+                gameManager.GameManager.SetScorePM(true);
+                gameManager.GameManager.SetScoreMsg("“G‚ÌŒÄ‚Ñ‚©‚¯‚É¬Œ÷");
+                Debug.Log("Enemy1Death");
+                ScoreMessage.scoreMessage.TextInMsg();
+            }
             else
+            {
                 gameManager.GameManager.AddScore(-50.0f);
+                gameManager.GameManager.SetScorePM(false);
+                gameManager.GameManager.SetScoreMsg("“G‚ÌŒÄ‚Ñ‚©‚¯‚É¸”s");
+                Debug.Log("Enemy1Death");
+                ScoreMessage.scoreMessage.TextInMsg();
+            }
         }
     }
 

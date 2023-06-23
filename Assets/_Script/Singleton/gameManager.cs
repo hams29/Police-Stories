@@ -47,6 +47,7 @@ public class gameManager  : MonoBehaviour
     public GunTable setGunTable;
     public List<GadgetTable> gadgetObjects = new List<GadgetTable>();
 
+
     private int maxEnemy;
     private int eliminateEnemy;
 
@@ -55,14 +56,19 @@ public class gameManager  : MonoBehaviour
 
     private bool isSetGun = false;
     private bool isSetGameUI = false;
+
     public bool isGameClear { get; private set; }
     public bool isPlayerDead { get; private set; }
+
 
     private float score;
     private float timer;
     private float minutes;
 
     private string rank;
+
+    private string scorePM;
+    private string scoreMsg;
 
 
     private void Awake()
@@ -206,23 +212,28 @@ public class gameManager  : MonoBehaviour
         eliminateEnemy = 0;
         isGameClear = false;
         ResetScore();
-        canvasObj.Clear(); 
+        canvasObj.Clear();
+        ResetTimer();
+        ScoreMessage.scoreMessage.ScoreTextReset();
     }
 
     public float GetTime() => timer;
+
+    public void ResetTimer() { timer = 0.0f; }
 
     public float GetMinutes() => minutes;
 
     public string GetRank() => rank;
 
 
+    //TODO :ステージによってランク付けが変わる
     public void Ranking()
     {
         if (score >= 1000)
         {
             rank = "A";
         }
-        else if (score >= 150)
+        else if (score >= 750)
         {
             rank = "B";
         }
@@ -242,5 +253,15 @@ public class gameManager  : MonoBehaviour
         }
 
     }
+
+    public string GetScorePM() => scorePM;
+
+
+    public void SetScorePM(bool b) { scorePM = (b) ? "+" : "-"; } 
+    
+    public string GetScoreMsg() => scoreMsg;
+
+    public void SetScoreMsg(string msg) { scoreMsg = msg; }
+
 
 }

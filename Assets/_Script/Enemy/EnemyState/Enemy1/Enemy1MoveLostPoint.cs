@@ -32,12 +32,24 @@ public class Enemy1MoveLostPoint : EnemyState
             if (enemy.enemySurrenderProbability)
             {
                 if (gameManager.GameManager != null)
+                {
                     gameManager.GameManager.AddScore(10.0f);
+                    gameManager.GameManager.SetScorePM(true);
+                    gameManager.GameManager.SetScoreMsg("敵にダメージ");
+                    Debug.Log("Enemy1MovePoint");
+                    ScoreMessage.scoreMessage.TextInMsg();
+                }
             }
             else
             {
                 if (gameManager.GameManager != null)
+                {
                     gameManager.GameManager.AddScore(-10.0f);
+                    gameManager.GameManager.SetScorePM(false);
+                    gameManager.GameManager.SetScoreMsg("敵にダメージ");
+                    Debug.Log("Enemy1MovePoint");
+                    ScoreMessage.scoreMessage.TextInMsg();
+                }
             }
         }
 

@@ -36,12 +36,24 @@ public class Enemy1Idle : EnemyState
             if(enemy.enemySurrenderProbability)
             {
                 if (gameManager.GameManager != null)
+                {
                     gameManager.GameManager.AddScore(10.0f);
+                    gameManager.GameManager.SetScorePM(true);
+                    gameManager.GameManager.SetScoreMsg("S‘©’†‚Ì“G‚Éƒ_ƒ[ƒW");
+                    Debug.Log("Enemy1Idle");
+                    ScoreMessage.scoreMessage.TextInMsg();
+                }
             }
             else
             {
                 if (gameManager.GameManager != null)
+                {
                     gameManager.GameManager.AddScore(-10.0f);
+                    gameManager.GameManager.SetScorePM(false);
+                    gameManager.GameManager.SetScoreMsg("S‘©’†‚Ì“G‚Éƒ_ƒ[ƒW");
+                    Debug.Log("Enemy1Idle");
+                    ScoreMessage.scoreMessage.TextInMsg();
+                }
             }
         }
 

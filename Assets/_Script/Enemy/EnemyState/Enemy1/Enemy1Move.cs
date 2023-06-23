@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 //using static UnityEditor.PlayerSettings;
 
@@ -45,12 +46,24 @@ public class Enemy1Move : EnemyState
             if (enemy.enemySurrenderProbability)
             {
                 if (gameManager.GameManager != null)
+                {
                     gameManager.GameManager.AddScore(10.0f);
+                    gameManager.GameManager.SetScorePM(true);
+                    gameManager.GameManager.SetScoreMsg("敵にダメージ");
+                    UnityEngine.Debug.Log("Enemy1Move");
+                    ScoreMessage.scoreMessage.TextInMsg();
+                }
             }
             else
             {
                 if (gameManager.GameManager != null)
+                {
                     gameManager.GameManager.AddScore(-10.0f);
+                    gameManager.GameManager.SetScorePM(false);
+                    gameManager.GameManager.SetScoreMsg("敵にダメージ");
+                    UnityEngine.Debug.Log("Enemy1Move");
+                    ScoreMessage.scoreMessage.TextInMsg();
+                }
             }
         }
 
