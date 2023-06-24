@@ -140,6 +140,14 @@ public class Enemy1MoveLostPoint : EnemyState
 
         if (enemy.PlayerSearch.isPlayerFind)
             stateMachine.ChangeState(enemy.PlayerSearchState);
+
+        if (enemy.isHerePlayerShotSound)
+        {
+            enemy.UseHerePlayerShotSound();
+            enemy.IdleState.SetLockTime(2.0f);
+            enemy.IdleState.SetNextState(enemy.MoveHerePointState);
+            stateMachine.ChangeState(enemy.IdleState);
+        }
         #endregion
     }
 

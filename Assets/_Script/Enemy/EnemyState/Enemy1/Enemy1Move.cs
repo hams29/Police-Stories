@@ -100,6 +100,14 @@ public class Enemy1Move : EnemyState
         {
             stateMachine.ChangeState(enemy.PlayerSearchState);
         }
+
+        if(enemy.isHerePlayerShotSound)
+        {
+            enemy.UseHerePlayerShotSound();
+            enemy.IdleState.SetLockTime(2.0f);
+            enemy.IdleState.SetNextState(enemy.MoveHerePointState);
+            stateMachine.ChangeState(enemy.IdleState);
+        }
     }
 
     public override void PhysicsUpdate()

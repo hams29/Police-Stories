@@ -31,4 +31,7 @@ public class EnemyData : ScriptableObject
     [Header("Enemy Interact Distance")]
     public float interactDistance = 2.5f;
     public string interactLayerName;
+
+    [Header("Enemy Here Probability"), Tooltip("音で気づく確率（0～100まで）")]
+    public float soundHereProbability = 40.0f;
 }

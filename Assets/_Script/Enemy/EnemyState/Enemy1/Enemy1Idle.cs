@@ -64,6 +64,13 @@ public class Enemy1Idle : EnemyState
             }
         }
 
+        if(enemy.isHerePlayerShotSound)
+        {
+            enemy.UseHerePlayerShotSound();
+            SetLockTime(2.0f);
+            SetNextState(enemy.MoveHerePointState);
+        }
+
         if (Time.time < lockTime)
             return;
         if (nextStateFlg)

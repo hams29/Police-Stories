@@ -31,6 +31,9 @@ public class PlayerShot : PlayerState
         if (gun != null)
         {
             gun.Shot();
+            foreach (EnemyControllerBase enemy in player.search.enemyList)
+                enemy.PlayerShotHere(player.transform.position, gun.GetMainWeaponData().probCollect);
+
             if(!gun.GetFullAuto() || gun.GetCurrentMagazineAmmo() <= 0 || !shotInput)
             {
                 player.inputController.UseShotInput();

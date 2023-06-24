@@ -29,6 +29,9 @@ public class mainWeaponData : ScriptableObject
     [Header("GunType")]
     public GunType gunType;
 
+    [Header("Probability correction"), Tooltip("銃を使った際に敵に気づかれる確率補正（0～1まで）")]
+    public float probCollect = 1.0f;
+
     public enum GunType
     {
         HandGun,

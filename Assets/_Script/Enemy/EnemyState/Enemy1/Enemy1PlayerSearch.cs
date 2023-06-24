@@ -72,6 +72,14 @@ public class Enemy1PlayerSearch : EnemyState
         //プレイヤーを見失った際にMoveLastPointステータスに移行
         if (!enemy.PlayerSearch.isPlayerFind)
             stateMachine.ChangeState(enemy.MoveLastPointState);
+
+        if (enemy.isHerePlayerShotSound)
+        {
+            enemy.UseHerePlayerShotSound();
+            enemy.IdleState.SetLockTime(2.0f);
+            enemy.IdleState.SetNextState(enemy.MoveHerePointState);
+            stateMachine.ChangeState(enemy.IdleState);
+        }
     }
 
     public override void PhysicsUpdate()

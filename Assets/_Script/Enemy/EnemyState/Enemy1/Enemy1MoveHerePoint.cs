@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy1RemoveNormalLoot : EnemyState
+public class Enemy1MoveHerePoint : EnemyState
 {
-
     private Enemy1ScoreData scoreData;
-    public Enemy1RemoveNormalLoot(Enemy1Controller enemy, EnemyStateMachine stateMachine, EnemyData enemyData, string animBoolName, Enemy1ScoreData scoreData) : base(enemy, stateMachine, enemyData, animBoolName)
+    public Enemy1MoveHerePoint(Enemy1Controller enemy, EnemyStateMachine stateMachine, EnemyData enemyData, string animBoolName, Enemy1ScoreData scoreData) : base(enemy, stateMachine, enemyData, animBoolName)
     {
         this.scoreData = scoreData;
     }
@@ -19,12 +18,14 @@ public class Enemy1RemoveNormalLoot : EnemyState
     public override void Enter()
     {
         base.Enter();
+
         enemy.navAgent.enabled = true;
     }
 
     public override void Exit()
     {
         base.Exit();
+
         enemy.navAgent.enabled = false;
     }
 
@@ -37,12 +38,36 @@ public class Enemy1RemoveNormalLoot : EnemyState
             if (enemy.enemySurrenderProbability)
             {
                 if (gameManager.GameManager != null)
-                    gameManager.GameManager.AddScore(scoreData.enemyAddShotScore);
+                {
+                    gameManager.GameManager.AddScore(10.0f);
+                    gameManager.GameManager.SetScorePM(true);
+                    gameManager.GameManager.SetScoreMsg("敵にダメージ");
+                    Debug.Log("Enemy1MovePoint");
+                    ScoreMessage.scoreMessage.TextInMsg();
+                }
             }
             else
             {
                 if (gameManager.GameManager != null)
-                    gameManager.GameManager.AddScore(scoreData.enemySubShotScore);
+                {
+                    gameManager.GameManager.AddScore(-10.0f);
+                    gameManager.GameManager.SetScorePM(false);
+                    gameManager.GameManager.SetScoreMsg("敵にダメージ");
+                    Debug.Log("Enemy1MovePoint");
+                    ScoreMessage.scoreMessage?.TextInMsg();
+                }
+            }
+        }
+        Vector3 lastPlayerPos = new Vector3(enemy.playerLastPos.x, 0, enemy.playerLastPos.z);
+        enemy.navAgent.SetDestination(lastPlayerPos);
+
+        if (lastPlayerPos.x + 0.1 > enemy.transform.position.x && lastPlayerPos.x - 0.1 < enemy.transform.position.x)
+        {
+            if (lastPlayerPos.z + 0.1 > enemy.transform.position.z && lastPlayerPos.z - 0.1 < enemy.transform.position.z)
+            {
+                enemy.IdleState.SetLockTime(2.0f);
+                enemy.IdleState.SetNextState(enemy.RemoveNormalLootState);
+                stateMachine.ChangeState(enemy.IdleState);
             }
         }
 
@@ -54,7 +79,7 @@ public class Enemy1RemoveNormalLoot : EnemyState
             int layerNo = LayerMask.NameToLayer(enemyData.interactLayerName);
             if (hitObject.transform.gameObject.layer == layerNo)
             {
-                if(DoorCheck(hitObject.transform.gameObject))
+                if (DoorCheck(hitObject.transform.gameObject))
                 {
                     Core otherCore = hitObject.transform.GetComponentInChildren<Core>();
                     if (otherCore != null)
@@ -71,37 +96,8 @@ public class Enemy1RemoveNormalLoot : EnemyState
             }
         }
 
-        workspace = enemy.MoveState.enemyLootList[enemy.MoveState.nowLootCount];
-        enemy.navAgent.SetDestination(workspace);
-
-        if (enemy.transform.position.x - workspace.x <= 0.1f && enemy.transform.position.x - workspace.x >= -0.1f)
-        {
-            if (enemy.transform.position.z - workspace.z <= 0.1f && enemy.transform.position.z - workspace.z >= -0.1f)
-            {
-                if (enemy.MoveState.nowLootCount + 1 >= enemy.MoveState.maxLootCount)
-                {
-                    enemy.MoveState.SetNowLootCount(0);
-                    enemy.IdleState.SetLockTime(2.0f);
-                    stateMachine.ChangeState(enemy.IdleState);
-                }
-                else
-                {
-                    enemy.MoveState.SetNowLootCount(enemy.MoveState.nowLootCount);
-                    stateMachine.ChangeState(enemy.MoveState);
-                }
-            }
-        }
-
         if (enemy.PlayerSearch.isPlayerFind)
             stateMachine.ChangeState(enemy.PlayerSearchState);
-
-        if (enemy.isHerePlayerShotSound)
-        {
-            enemy.UseHerePlayerShotSound();
-            enemy.IdleState.SetLockTime(2.0f);
-            enemy.IdleState.SetNextState(enemy.MoveHerePointState);
-            stateMachine.ChangeState(enemy.IdleState);
-        }
     }
 
     public override void PhysicsUpdate()

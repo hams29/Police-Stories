@@ -20,3 +20,4 @@ MonoBehaviour:
   ammoSpeed: 20
   shotDamage: 20
   gunType: 1
+  probCollect: 1

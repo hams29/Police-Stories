@@ -29,7 +29,9 @@ public class EnemyControllerBase : MonoBehaviour
     #region Variables
     public float playerOutOfViewTime { get; private set; }
     public bool isPlayerOutOfView { get; private set; }
+    public bool isHerePlayerShotSound { get; protected set; }
     private List<Renderer> renderers = new List<Renderer>();
+    public Vector3 playerLastPos { get; private set; }
     #endregion
 
     protected virtual void Awake()
@@ -55,6 +57,7 @@ public class EnemyControllerBase : MonoBehaviour
             renderers.Add(material[i]);
 
         Show?.InitMaterials(renderers);
+        isHerePlayerShotSound = false;
     }
 
     protected virtual void Update()
@@ -73,6 +76,28 @@ public class EnemyControllerBase : MonoBehaviour
 
     }
 
+    /*
+     *引数
+     *ppos プレイヤーのポジション
+     *proColl 確率補正0～1
+     */
+    public virtual void PlayerShotHere(Vector3 ppos, float proColl)
+    {
+        if (proColl > 1.0f)
+            proColl = 1;
+        else if (proColl < 0)
+            proColl = 0;
+
+        int rnd = Random.Range(0, 100);
+        if (enemyData.soundHereProbability * proColl > rnd)
+        {
+            playerLastPos = ppos;
+            isHerePlayerShotSound = true;
+            Debug.Log(this.gameObject.name + " is here shot sound!!");
+        }
+    }
+
     public void PlayerOutOfViewTIme() => playerOutOfViewTime = Time.time;
     public void SetPlayerOutOfView(bool flg) => isPlayerOutOfView = flg;
+    public void UseHerePlayerShotSound() => isHerePlayerShotSound = false;
 }

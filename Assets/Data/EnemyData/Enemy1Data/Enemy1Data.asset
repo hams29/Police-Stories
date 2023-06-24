@@ -22,3 +22,4 @@ MonoBehaviour:
   playerOutOfViewTime: 1.5
   interactDistance: 2.5
   interactLayerName: Interact
+  soundHereProbability: 20
