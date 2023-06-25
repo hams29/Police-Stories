@@ -136,7 +136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlayer: 0
   gadgetHolder: {fileID: 0}
-  debugMainWeapon: {fileID: 11400000, guid: 582bbfcd2345aa94991f97032a3105dc, type: 2}
+  debugMainWeapon: {fileID: 0}
   debugGadgets: []
 --- !u!1 &1497819694
 GameObject:
@@ -501,7 +501,7 @@ GameObject:
   - component: {fileID: 704455866504357771}
   - component: {fileID: 914905754}
   m_Layer: 9
-  m_Name: Enemy
+  m_Name: Enemy1(M4)
   m_TagString: target
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

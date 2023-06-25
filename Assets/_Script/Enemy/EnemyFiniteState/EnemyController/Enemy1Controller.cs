@@ -100,6 +100,7 @@ public class Enemy1Controller : EnemyControllerBase
         Inventory = GetComponentInChildren<Inventory>();
 
         GameObject setMainWeapon = null;
+        Inventory.SetMainWeaponTable(enemyData.mainWeaponTable);
         switch (Inventory.gunType)
         {
             case mainWeaponData.GunType.HandGun:

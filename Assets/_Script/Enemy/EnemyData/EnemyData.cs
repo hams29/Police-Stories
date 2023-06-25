@@ -34,4 +34,7 @@ public class EnemyData : ScriptableObject
 
     [Header("Enemy Here Probability"), Tooltip("音で気づく確率（0～100まで）")]
     public float soundHereProbability = 40.0f;
+
+    [Header("Use Enemy Main Weapon Table")]
+    public GunTable mainWeaponTable;
 }

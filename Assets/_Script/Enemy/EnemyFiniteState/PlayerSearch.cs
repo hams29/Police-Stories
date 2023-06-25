@@ -33,30 +33,35 @@ public class PlayerSearch : MonoBehaviour
                 //Rayを使用してtargetに当たっているか判別
                 if (Physics.Raycast(pos, posDelta, out RaycastHit hit))
                 {
-                    if (hit.collider == other)
+                    if (hit.transform.gameObject.tag == "Player")
                     {
-                        //視界内に収まっている場合
-                        playerPos = other.transform.position;
-                        States state = null;
-                        other.GetComponentInChildren<Core>().GetCoreComponent(ref state);
-                        if (state != null)
-                            isPlayerDead = state.dead;
-                        isPlayerFind = true;
-                    }
-                    else if (hit.collider.gameObject.layer == other.gameObject.layer)
-                    {
-                        playerPos = other.transform.position;
-                        States state = null;
-                        other.GetComponentInChildren<Core>().GetCoreComponent(ref state);
-                        if (state != null)
-                            isPlayerDead = state.dead;
-                        isPlayerFind = true;
+                        if (hit.collider == other)
+                        {
+                            //視界内に収まっている場合
+                            playerPos = other.transform.position;
+                            States state = null;
+                            other.GetComponentInChildren<Core>().GetCoreComponent(ref state);
+                            if (state != null)
+                                isPlayerDead = state.dead;
+                            isPlayerFind = true;
+                        }
+                        else if (hit.collider.gameObject.layer == other.gameObject.layer)
+                        {
+                            playerPos = other.transform.position;
+                            States state = null;
+                            other.GetComponentInChildren<Core>().GetCoreComponent(ref state);
+                            if (state != null)
+                                isPlayerDead = state.dead;
+                            isPlayerFind = true;
+                        }
+                        else
+                        {
+                            //ターゲットとプレイヤーの間に別のオブジェクトが入った場合
+                            isPlayerFind = false;
+                        }
                     }
                     else
-                    {
-                        //ターゲットとプレイヤーの間に別のオブジェクトが入った場合
                         isPlayerFind = false;
-                    }
                 }
             }
             else

@@ -22,6 +22,8 @@ public class Inventory : MonoBehaviour
     [SerializeField]
     private List<GadgetTable> debugGadgets = new List<GadgetTable>();
 
+    private bool isHaveDebugWeapon;
+
     private void Awake()
     {
         if(!isPlayer)
@@ -30,7 +32,10 @@ public class Inventory : MonoBehaviour
             {
                 mainWeaponTable = debugMainWeapon;
                 mainWeapon = mainWeaponTable.gunPrefab;
+                isHaveDebugWeapon = true;
             }
+            else
+                isHaveDebugWeapon = false;
 
             if (mainWeapon != null)
                 gunType = mainWeapon.GetComponent<Gun>().GetMainWeaponData().gunType;
@@ -100,6 +105,15 @@ public class Inventory : MonoBehaviour
         {
             gadgets.Add(gadgetObject.GetComponent<GadgetBase>());
         }
+    }
+
+    public void SetMainWeaponTable(GunTable mainWeaponTable)
+    {
+        if (isHaveDebugWeapon)
+            return;
+        this.mainWeaponTable = mainWeaponTable;
+        mainWeapon = this.mainWeaponTable.gunPrefab;
+        gunType = mainWeapon.GetComponent<Gun>().GetMainWeaponData().gunType;
     }
 
     public void SetWeaponActive(bool flg) { mainWeapon.SetActive(flg); }

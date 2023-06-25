@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bb80f3a709e8aef4591601e3b5e72d5e, type: 3}
-  m_Name: Enemy1Data
+  m_Name: Enemy1(M1911)Data
   m_EditorClassIdentifier: 
   maxHP: 100
   moveSpeed: 5
@@ -23,3 +23,4 @@ MonoBehaviour:
   interactDistance: 2.5
   interactLayerName: Interact
   soundHereProbability: 20
+  mainWeaponTable: {fileID: 11400000, guid: 3f34625098bdcb843a87a69db8cb3504, type: 2}
