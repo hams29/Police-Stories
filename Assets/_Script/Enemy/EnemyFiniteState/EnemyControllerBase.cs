@@ -27,10 +27,10 @@ public class EnemyControllerBase : MonoBehaviour
     #endregion
 
     #region Variables
+    protected List<Renderer> renderers = new List<Renderer>();
     public float playerOutOfViewTime { get; private set; }
     public bool isPlayerOutOfView { get; private set; }
     public bool isHerePlayerShotSound { get; protected set; }
-    private List<Renderer> renderers = new List<Renderer>();
     public Vector3 playerLastPos { get; private set; }
     #endregion
 
@@ -55,8 +55,6 @@ public class EnemyControllerBase : MonoBehaviour
         Renderer[] material = GetComponentsInChildren<Renderer>();
         for (int i = 0; i < material.Length; i++)
             renderers.Add(material[i]);
-
-        Show?.InitMaterials(renderers);
         isHerePlayerShotSound = false;
     }
 

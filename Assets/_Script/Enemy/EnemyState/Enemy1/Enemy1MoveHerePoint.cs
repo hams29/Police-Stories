@@ -20,6 +20,7 @@ public class Enemy1MoveHerePoint : EnemyState
         base.Enter();
 
         enemy.navAgent.enabled = true;
+        enemy.footImageManager.FootImageStart();
     }
 
     public override void Exit()
@@ -27,11 +28,13 @@ public class Enemy1MoveHerePoint : EnemyState
         base.Exit();
 
         enemy.navAgent.enabled = false;
+        enemy.footImageManager.FootImageStop();
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        enemy.footImageManager.SetFootImagePosition(enemy.transform.position);
 
         if (Damage.isDamage)
         {

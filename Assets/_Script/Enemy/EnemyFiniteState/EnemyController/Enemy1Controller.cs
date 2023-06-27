@@ -53,6 +53,7 @@ public class Enemy1Controller : EnemyControllerBase
     private Enemy1ScoreData enemyScoreData;
 
     public NavMeshAgent navAgent { get; private set; }
+    public FootImageManager footImageManager { get; private set; }
     #endregion
 
 
@@ -113,12 +114,18 @@ public class Enemy1Controller : EnemyControllerBase
         }
 
         navAgent = GetComponent<NavMeshAgent>();
+        footImageManager = GetComponentInChildren<FootImageManager>();
         enemySurrenderProbability = false;
         mainWeapon = Instantiate(Inventory.mainWeapon, setMainWeapon.transform);
         States.SetInitHP(enemyData.maxHP);
         stateMachine.Initialize(IdleState);
         Interact.canInteract = false;
         navAgent.enabled = false;
+
+        Renderer[] mat = mainWeapon.GetComponentsInChildren<Renderer>();
+        for (int i = 0; i < mat.Length; i++)
+            renderers.Add(mat[i]);
+        Show?.InitMaterials(renderers);
     }
 
     protected override void Update()

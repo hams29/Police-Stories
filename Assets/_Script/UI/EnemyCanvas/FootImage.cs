@@ -13,27 +13,31 @@ public class FootImage : MonoBehaviour
     [SerializeField]
     private bool debugFlg;
 
+    private RectTransform myRectTfm;
+
     private bool isFootStep;
     private bool isFootStepStop;
 
-    private Vector3 pos;
+    private Vector3 setPos;
+    private Vector3 nowPos;
 
     private float startTime;
     private float nowTime;
     private void Start()
     {
         footImage = GetComponent<Image>();
+        myRectTfm = GetComponent<RectTransform>();
         isFootStep = false;
         isFootStepStop = false;
         nowTime = 0.0f;
 
-        footImage.rectTransform.localScale = Vector3.zero;
+        myRectTfm.localScale = Vector3.zero;
         footImage.color = new Color(footImage.color.r, footImage.color.g, footImage.color.b, 0.0f);
     }
 
     private void Update()
     {
-        DebugCheck();
+        //DebugCheck();
         nowTime = Time.time;
         if(isFootStep)
         {
@@ -41,14 +45,23 @@ public class FootImage : MonoBehaviour
                                      AnimationValue(startTime, startTime + animationTime, 0.0f, maxScale.y, nowTime),
                                      AnimationValue(startTime, startTime + animationTime, 0.0f, maxScale.z, nowTime));
             float a = AnimationValue(startTime, startTime + animationTime, 1.0f, 0.0f, nowTime);
-            footImage.rectTransform.localScale = sc;
+            myRectTfm.localScale = sc;
             footImage.color = new Color(footImage.color.r, footImage.color.g, footImage.color.b, a);
+            myRectTfm.position = RectTransformUtility.WorldToScreenPoint(Camera.main, nowPos);
 
-            if(nowTime >= startTime + animationTime)
+            if (nowTime >= startTime + animationTime)
             {
-                footImage.rectTransform.localScale = Vector3.zero;
+                myRectTfm.localScale = Vector3.zero;
                 footImage.color = new Color(footImage.color.r, footImage.color.g, footImage.color.b, 0);
                 startTime = Time.time;
+                nowPos = setPos;
+                //myRectTfm.position = RectTransformUtility.WorldToScreenPoint(Camera.main, nowPos);
+
+                if (isFootStepStop)
+                {
+                    isFootStep = false;
+                    isFootStepStop = false;
+                }
             }
         }
     }
@@ -56,11 +69,14 @@ public class FootImage : MonoBehaviour
     public void StartFootStep()
     {
         isFootStep = true;
+        isFootStepStop = false;
         startTime = Time.time;
+        nowPos = setPos;
+        myRectTfm.position = RectTransformUtility.WorldToScreenPoint(Camera.main, nowPos);
     }
     public void StopFootStep() => isFootStepStop = true;
 
-    public void SetPosition(Vector3 pos) { this.pos = pos; }
+    public void SetPosition(Vector3 pos) { this.setPos = pos; }
 
     private float AnimationValue(float startTime,float endTime,float startKey,float endKey,float nowTime)
     {
@@ -76,6 +92,9 @@ public class FootImage : MonoBehaviour
         else
         {
             //TODO::StartKeyÇ™EndKeyÇÊÇËÇ‡è¨Ç≥Ç©Ç¡ÇΩèÍçáÇÃèàóù
+            k = startKey - endKey;
+            float key = k / t;
+            ret = startKey - (key * (nowTime - startTime));
         }
 
         return ret;

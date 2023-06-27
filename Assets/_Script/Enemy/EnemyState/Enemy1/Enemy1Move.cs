@@ -32,16 +32,19 @@ public class Enemy1Move : EnemyState
     public override void Enter()
     {
         base.Enter();
+        enemy.footImageManager.FootImageStart();
     }
 
     public override void Exit()
     {
         base.Exit();
+        enemy.footImageManager.FootImageStop();
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        enemy.footImageManager.SetFootImagePosition(enemy.transform.position);
 
         if (Damage.isDamage)
         {
