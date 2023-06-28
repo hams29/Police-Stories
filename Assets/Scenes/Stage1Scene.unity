@@ -2934,6 +2934,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 704455866504357771, guid: 1930e7ee83b3e7d479cb7f8c69e6c337, type: 3}
+      propertyPath: enemyData
+      value: 
+      objectReference: {fileID: 11400000, guid: 3f9eb1624dd707d40a12a870e6e97b57, type: 2}
+    - target: {fileID: 704455866504357771, guid: 1930e7ee83b3e7d479cb7f8c69e6c337, type: 3}
       propertyPath: moveLoot.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -12549,6 +12553,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 704455866504357771, guid: 1930e7ee83b3e7d479cb7f8c69e6c337, type: 3}
+      propertyPath: enemyData
+      value: 
+      objectReference: {fileID: 11400000, guid: 3f9eb1624dd707d40a12a870e6e97b57, type: 2}
+    - target: {fileID: 704455866504357771, guid: 1930e7ee83b3e7d479cb7f8c69e6c337, type: 3}
       propertyPath: moveLoot.Array.size
       value: 6
       objectReference: {fileID: 0}
@@ -12784,6 +12792,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 704455866504357771, guid: 1930e7ee83b3e7d479cb7f8c69e6c337, type: 3}
+      propertyPath: enemyData
+      value: 
+      objectReference: {fileID: 11400000, guid: 3f9eb1624dd707d40a12a870e6e97b57, type: 2}
     - target: {fileID: 704455866504357771, guid: 1930e7ee83b3e7d479cb7f8c69e6c337, type: 3}
       propertyPath: moveLoot.Array.size
       value: 2
@@ -17994,6 +18006,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 704455866504357771, guid: 1930e7ee83b3e7d479cb7f8c69e6c337, type: 3}
+      propertyPath: enemyData
+      value: 
+      objectReference: {fileID: 11400000, guid: 3f9eb1624dd707d40a12a870e6e97b57, type: 2}
     - target: {fileID: 704455866504357771, guid: 1930e7ee83b3e7d479cb7f8c69e6c337, type: 3}
       propertyPath: moveLoot.Array.size
       value: 2

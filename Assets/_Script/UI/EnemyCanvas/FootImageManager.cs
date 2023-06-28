@@ -68,6 +68,12 @@ public class FootImageManager : MonoBehaviour
         }
     }
 
+    public void InitFootImagePosition(Vector3 pos)
+    {
+        for (int i = 0; i < footImages.Length; i++)
+            footImages[i].SetPosition(pos);
+    }
+
     private void DebugCheck()
     {
         if (debugFlg && !isFootImage)

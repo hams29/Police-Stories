@@ -1708,10 +1708,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 704455866504357771, guid: 1930e7ee83b3e7d479cb7f8c69e6c337, type: 3}
-      propertyPath: enemyData
-      value: 
-      objectReference: {fileID: 11400000, guid: 30ad1d206c35b754b95a467a3ba313ce, type: 2}
-    - target: {fileID: 704455866504357771, guid: 1930e7ee83b3e7d479cb7f8c69e6c337, type: 3}
       propertyPath: moveLoot.Array.data[0]
       value: 
       objectReference: {fileID: 1503149979}

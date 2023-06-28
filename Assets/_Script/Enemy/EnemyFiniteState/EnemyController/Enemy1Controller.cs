@@ -115,6 +115,7 @@ public class Enemy1Controller : EnemyControllerBase
 
         navAgent = GetComponent<NavMeshAgent>();
         footImageManager = GetComponentInChildren<FootImageManager>();
+        footImageManager.InitFootImagePosition(transform.position);
         enemySurrenderProbability = false;
         mainWeapon = Instantiate(Inventory.mainWeapon, setMainWeapon.transform);
         States.SetInitHP(enemyData.maxHP);
