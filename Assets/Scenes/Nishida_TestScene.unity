@@ -1977,23 +1977,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8170490176752468437, guid: 3175e5bf58ed0bc41adcc8e7bb142670, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7839611
+      value: 0.7826082
       objectReference: {fileID: 0}
     - target: {fileID: 8170490176752468437, guid: 3175e5bf58ed0bc41adcc8e7bb142670, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.62081003
+      value: 0.6225146
       objectReference: {fileID: 0}
     - target: {fileID: 8170490176752468437, guid: 3175e5bf58ed0bc41adcc8e7bb142670, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8170490176752468437, guid: 3175e5bf58ed0bc41adcc8e7bb142670, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8170490176752468437, guid: 3175e5bf58ed0bc41adcc8e7bb142670, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 76.751
+      value: 77
       objectReference: {fileID: 0}
     - target: {fileID: 8170490176752468437, guid: 3175e5bf58ed0bc41adcc8e7bb142670, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -2024,6 +2024,10 @@ PrefabInstance:
       propertyPath: far clip plane
       value: 1000
       objectReference: {fileID: 0}
+    - target: {fileID: 8453537623580234185, guid: 444b31d0ff0418f4bb5afe467b012f74, type: 3}
+      propertyPath: near clip plane
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 8453537623580234187, guid: 444b31d0ff0418f4bb5afe467b012f74, type: 3}
       propertyPath: m_Name
       value: Main Camera
@@ -2050,11 +2054,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8453537623580234190, guid: 444b31d0ff0418f4bb5afe467b012f74, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7839611
+      value: 0.7826082
       objectReference: {fileID: 0}
     - target: {fileID: 8453537623580234190, guid: 444b31d0ff0418f4bb5afe467b012f74, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.62081003
+      value: 0.6225146
       objectReference: {fileID: 0}
     - target: {fileID: 8453537623580234190, guid: 444b31d0ff0418f4bb5afe467b012f74, type: 3}
       propertyPath: m_LocalRotation.y
