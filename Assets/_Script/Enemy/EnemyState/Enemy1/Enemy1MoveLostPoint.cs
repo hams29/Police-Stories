@@ -106,9 +106,9 @@ public class Enemy1MoveLostPoint : EnemyState
         Vector3 lastPlayerPos = new Vector3(enemy.PlayerSearch.playerPos.x, 0, enemy.PlayerSearch.playerPos.z);
         enemy.navAgent.SetDestination(lastPlayerPos);
 
-        if (lastPlayerPos.x + 0.1 > enemy.transform.position.x && lastPlayerPos.x - 0.1 < enemy.transform.position.x)
+        if (lastPlayerPos.x + 0.5f > enemy.transform.position.x && lastPlayerPos.x - 0.5f < enemy.transform.position.x)
         {
-            if (lastPlayerPos.z + 0.1 > enemy.transform.position.z && lastPlayerPos.z - 0.1 < enemy.transform.position.z)
+            if (lastPlayerPos.z + 0.5f > enemy.transform.position.z && lastPlayerPos.z - 0.5f < enemy.transform.position.z)
             {
                 enemy.IdleState.SetLockTime(2.0f);
                 enemy.IdleState.SetNextState(enemy.RemoveNormalLootState);

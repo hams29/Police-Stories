@@ -64,9 +64,9 @@ public class Enemy1MoveHerePoint : EnemyState
         Vector3 lastPlayerPos = new Vector3(enemy.playerLastPos.x, 0, enemy.playerLastPos.z);
         enemy.navAgent.SetDestination(lastPlayerPos);
 
-        if (lastPlayerPos.x + 0.1 > enemy.transform.position.x && lastPlayerPos.x - 0.1 < enemy.transform.position.x)
+        if (lastPlayerPos.x + 0.5f > enemy.transform.position.x && lastPlayerPos.x - 0.5f < enemy.transform.position.x)
         {
-            if (lastPlayerPos.z + 0.1 > enemy.transform.position.z && lastPlayerPos.z - 0.1 < enemy.transform.position.z)
+            if (lastPlayerPos.z + 0.5f > enemy.transform.position.z && lastPlayerPos.z - 0.5f < enemy.transform.position.z)
             {
                 enemy.IdleState.SetLockTime(2.0f);
                 enemy.IdleState.SetNextState(enemy.RemoveNormalLootState);

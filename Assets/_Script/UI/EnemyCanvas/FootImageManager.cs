@@ -15,11 +15,9 @@ public class FootImageManager : MonoBehaviour
     private float startTime;
     private int count;
 
-    private void Start()
+    private void Awake()
     {
-        footImages = GetComponentsInChildren<FootImage>();
-        isFootImage = false;
-        count = 0;
+
     }
 
     private void Update()
@@ -70,6 +68,10 @@ public class FootImageManager : MonoBehaviour
 
     public void InitFootImagePosition(Vector3 pos)
     {
+        footImages = GetComponentsInChildren<FootImage>();
+        isFootImage = false;
+        count = 0;
+
         for (int i = 0; i < footImages.Length; i++)
             footImages[i].SetPosition(pos);
     }

@@ -83,9 +83,9 @@ public class Enemy1Move : EnemyState
         workspace = new Vector3(workspace.x + pos.x, pos.y, workspace.z + pos.z);
         Rotation.SetRotation(workspace);
 
-        if (enemyLootList[nowLootCount].x + 0.1 > enemy.transform.position.x && enemyLootList[nowLootCount].x - 0.1 < enemy.transform.position.x)
+        if (enemyLootList[nowLootCount].x + 0.5f > enemy.transform.position.x && enemyLootList[nowLootCount].x - 0.5f < enemy.transform.position.x)
         {
-            if (enemyLootList[nowLootCount].z + 0.1 > enemy.transform.position.z && enemyLootList[nowLootCount].z - 0.1 < enemy.transform.position.z)
+            if (enemyLootList[nowLootCount].z + 0.5f > enemy.transform.position.z && enemyLootList[nowLootCount].z - 0.5f < enemy.transform.position.z)
             {
                 if (maxLootCount <= nowLootCount + 1)
                 {

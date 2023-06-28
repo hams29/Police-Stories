@@ -35,6 +35,9 @@ public class PlayerInventoryUI : MonoBehaviour
     private float deadZone = 10.0f;
 
     [SerializeField]
+    private Image haveInventoryImage;
+
+    [SerializeField]
     private GameObject InventoryUITopImg;
     [SerializeField]
     private GameObject InventoryUIBottomImg;
@@ -200,7 +203,10 @@ public class PlayerInventoryUI : MonoBehaviour
     {
         inventory = inv;
         if (inventory.mainWeapon != null)
+        {
             InventoryUITopImg.GetComponent<Image>().sprite = inventory.mainWeaponTable.gunSprite;
+            SetHaveInventoryImage(inventory.mainWeaponTable.gunSprite);
+        }
 
         Image left = InventoryUILeftImg.GetComponent<Image>();
         Image right = InventoryUIRightImg.GetComponent<Image>();
@@ -236,5 +242,10 @@ public class PlayerInventoryUI : MonoBehaviour
             right.color = new Color(0, 0, 0, 0);
         if (bottom.sprite == null)
             bottom.color = new Color(0, 0, 0, 0);
+    }
+
+    public void SetHaveInventoryImage(Sprite img)
+    {
+        haveInventoryImage.sprite = img;
     }
 }

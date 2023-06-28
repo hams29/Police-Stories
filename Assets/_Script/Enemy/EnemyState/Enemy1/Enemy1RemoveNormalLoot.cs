@@ -77,9 +77,9 @@ public class Enemy1RemoveNormalLoot : EnemyState
         workspace = enemy.MoveState.enemyLootList[enemy.MoveState.nowLootCount];
         enemy.navAgent.SetDestination(workspace);
 
-        if (enemy.transform.position.x - workspace.x <= 0.1f && enemy.transform.position.x - workspace.x >= -0.1f)
+        if (enemy.transform.position.x - workspace.x <= 0.5f && enemy.transform.position.x - workspace.x >= -0.5f)
         {
-            if (enemy.transform.position.z - workspace.z <= 0.1f && enemy.transform.position.z - workspace.z >= -0.1f)
+            if (enemy.transform.position.z - workspace.z <= 0.5f && enemy.transform.position.z - workspace.z >= -0.5f)
             {
                 if (enemy.MoveState.nowLootCount + 1 >= enemy.MoveState.maxLootCount)
                 {
