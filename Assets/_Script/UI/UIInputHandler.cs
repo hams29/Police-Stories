@@ -5,12 +5,11 @@ using UnityEngine;
 public class UIInputHandler : MonoBehaviour
 {
 
-    private GameEndInputHandler inputController;
+    private GameEndInputHandler inputController { get => ic ?? InputManagerDontDestroy.Instance.GetGameEndUIInputHandler(ref ic);}
+    private GameEndInputHandler ic;
 
     private void Start()
     {
-        if (InputManagerDontDestroy.Instance != null)
-            inputController = InputManagerDontDestroy.Instance.gameEndInputHandler;
     }
     private void Update()
     {
