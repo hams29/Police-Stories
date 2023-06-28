@@ -68,4 +68,17 @@ public class EnemyState
     }
 
     public virtual void AnimationFinishTrigger() => isAnimationFinishTrigger = true;
+
+    protected bool DoorCheck(GameObject obj)
+    {
+        bool ret = false;
+        DoorOpen doorOpen = obj.GetComponent<DoorOpen>();
+        if (doorOpen != null)
+        {
+            if (!doorOpen.isOpened)
+                ret = true;
+        }
+
+        return ret;
+    }
 }

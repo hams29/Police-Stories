@@ -8,6 +8,7 @@ public class FunSearch : MonoBehaviour
     private float angle = 45.0f;
 
     public List<EnemyControllerBase> enemyShowList { get; private set; }
+    public List<EnemyControllerBase> enemyList { get; private set; }
     public List<CitizenController> citizenShowList { get; private set; }
     private GameObject throwObject;
     private bool isAllShow;
@@ -15,17 +16,23 @@ public class FunSearch : MonoBehaviour
     private void Awake()
     {
         enemyShowList = new List<EnemyControllerBase>();
+        enemyList = new List<EnemyControllerBase>();
         citizenShowList = new List<CitizenController>();
         isAllShow = false;
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if(other.gameObject.tag == "target")
+        EnemyControllerBase enemy = other.gameObject.GetComponent<EnemyControllerBase>();
+        CitizenController citizen = other.gameObject.GetComponent<CitizenController>();
+        if (enemy != null) addEnemyList(enemy);
+
+        if (other.gameObject.tag == "target")
         {
             //視界の角度内に収まっているか
             Vector3 posDelta = other.transform.position - this.transform.position;
             float target_angle = Vector3.Angle(this.transform.forward,posDelta);
+
 
             //target_angleがangleに収まっているかどうか
             if (target_angle < angle) 
@@ -39,12 +46,12 @@ public class FunSearch : MonoBehaviour
                     {
                         //視界内に収まっている場合
                         SetShow(other.gameObject);
-                        EnemyControllerBase enemy = other.gameObject.GetComponent<EnemyControllerBase>();
+                        //EnemyControllerBase enemy = other.gameObject.GetComponent<EnemyControllerBase>();
                         if(enemy != null)
-                            addEnemyList(enemy);
+                            addEnemyShowList(enemy);
                         else
                         {
-                            CitizenController citizen = other.gameObject.GetComponent<CitizenController>();
+                            //CitizenController citizen = other.gameObject.GetComponent<CitizenController>();
                             if (citizen != null)
                                 addCitizenList(citizen);
                         }
@@ -55,12 +62,12 @@ public class FunSearch : MonoBehaviour
                         if (hit.collider.gameObject == throwObject)
                         {
                             SetShow(other.gameObject);
-                            EnemyControllerBase enemy = other.gameObject.GetComponent<EnemyControllerBase>();
+                           // EnemyControllerBase enemy = other.gameObject.GetComponent<EnemyControllerBase>();
                             if (enemy != null)
-                                addEnemyList(enemy);
+                                addEnemyShowList(enemy);
                             else
                             {
-                                CitizenController citizen = other.gameObject.GetComponent<CitizenController>();
+                                //CitizenController citizen = other.gameObject.GetComponent<CitizenController>();
                                 if (citizen != null)
                                     addCitizenList(citizen);
                             }
@@ -70,12 +77,12 @@ public class FunSearch : MonoBehaviour
                     {
                         //ターゲットとプレイヤーの間に別のオブジェクトが入った場合
                         SetBlind(other.gameObject);
-                        EnemyControllerBase enemy = other.gameObject.GetComponent<EnemyControllerBase>();
+                       // EnemyControllerBase enemy = other.gameObject.GetComponent<EnemyControllerBase>();
                         if (enemy != null)
-                            delEnemyList(enemy);
+                            delEnemyShowList(enemy);
                         else
                         {
-                            CitizenController citizen = other.gameObject.GetComponent<CitizenController>();
+                            //CitizenController citizen = other.gameObject.GetComponent<CitizenController>();
                             if (citizen != null)
                                 delCitizenList(citizen);
                         }
@@ -91,12 +98,12 @@ public class FunSearch : MonoBehaviour
             {
                 //角度内に収まっていない場合
                 SetBlind(other.gameObject);
-                EnemyControllerBase enemy = other.gameObject.GetComponent<EnemyControllerBase>();
+                //EnemyControllerBase enemy = other.gameObject.GetComponent<EnemyControllerBase>();
                 if (enemy != null)
-                    delEnemyList(enemy);
+                    delEnemyShowList(enemy);
                 else
                 {
-                    CitizenController citizen = other.gameObject.GetComponent<CitizenController>();
+                    //CitizenController citizen = other.gameObject.GetComponent<CitizenController>();
                     if (citizen != null)
                         delCitizenList(citizen);
                 }
@@ -112,7 +119,10 @@ public class FunSearch : MonoBehaviour
             SetBlind(other.gameObject);
             EnemyControllerBase enemy = other.gameObject.GetComponent<EnemyControllerBase>();
             if (enemy != null)
+            {
+                delEnemyShowList(enemy);
                 delEnemyList(enemy);
+            }
             else
             {
                 CitizenController citizen = other.gameObject.GetComponent<CitizenController>();
@@ -152,7 +162,7 @@ public class FunSearch : MonoBehaviour
         }
     }
 
-    private void addEnemyList(EnemyControllerBase enemy)
+    private void addEnemyShowList(EnemyControllerBase enemy)
     {
         if(!enemyShowList.Contains(enemy))
         {
@@ -161,13 +171,29 @@ public class FunSearch : MonoBehaviour
         }
     }
 
-    private void delEnemyList(EnemyControllerBase enemy)
+    private void delEnemyShowList(EnemyControllerBase enemy)
     {
         if(enemyShowList.Contains(enemy))
         {
             enemy.SetPlayerOutOfView(true);
             enemy.PlayerOutOfViewTIme();
             enemyShowList.Remove(enemy);
+        }
+    }
+
+    private void addEnemyList(EnemyControllerBase enemy)
+    {
+        if (!enemyList.Contains(enemy))
+        {
+            enemyList.Add(enemy);
+        }
+    }
+
+    private void delEnemyList(EnemyControllerBase enemy)
+    {
+        if (enemyList.Contains(enemy))
+        {
+            enemyList.Remove(enemy);
         }
     }
 

@@ -27,6 +27,9 @@ public class Enemy1Shot : EnemyState
 
     public override void LogicUpdate()
     {
+        if (gameManager.GameManager.isPlayerDead)
+            stateMachine.ChangeState(enemy.IdleState);
+
         base.LogicUpdate();
         Gun gun = enemy.mainWeapon.GetComponent<Gun>();
 
@@ -37,7 +40,11 @@ public class Enemy1Shot : EnemyState
                 shotCount++;
             if (!gun.GetFullAuto() || gun.GetCurrentMagazineAmmo() <= 0 || shotCount >= enemyData.enemyShotCount)
             {
-                stateMachine.ChangeState(enemy.IdleState);
+                //stateMachine.ChangeState(enemy.IdleState);
+                if (enemy.PlayerSearch.isPlayerFind)
+                    stateMachine.ChangeState(enemy.ShotState);
+                else
+                    stateMachine.ChangeState(enemy.MoveLastPointState);
             }
             else
             {

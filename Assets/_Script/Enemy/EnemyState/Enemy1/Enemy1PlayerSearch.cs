@@ -42,7 +42,7 @@ public class Enemy1PlayerSearch : EnemyState
                     gameManager.GameManager.SetScorePM(true);
                     gameManager.GameManager.SetScoreMsg("敵にダメージ");
                     Debug.Log("Enemy1Search");
-                    ScoreMessage.scoreMessage.TextInMsg();
+                    ScoreMessage.scoreMessage?.TextInMsg();
                 }
             }
             else
@@ -53,7 +53,7 @@ public class Enemy1PlayerSearch : EnemyState
                     gameManager.GameManager.SetScorePM(false);
                     gameManager.GameManager.SetScoreMsg("敵にダメージ");
                     Debug.Log("Enemy1Search");
-                    ScoreMessage.scoreMessage.TextInMsg();
+                    ScoreMessage.scoreMessage?.TextInMsg();
                 }
             }
         }
@@ -72,6 +72,14 @@ public class Enemy1PlayerSearch : EnemyState
         //プレイヤーを見失った際にMoveLastPointステータスに移行
         if (!enemy.PlayerSearch.isPlayerFind)
             stateMachine.ChangeState(enemy.MoveLastPointState);
+
+        if (enemy.isHerePlayerShotSound)
+        {
+            enemy.UseHerePlayerShotSound();
+            enemy.IdleState.SetLockTime(2.0f);
+            enemy.IdleState.SetNextState(enemy.MoveHerePointState);
+            stateMachine.ChangeState(enemy.IdleState);
+        }
     }
 
     public override void PhysicsUpdate()

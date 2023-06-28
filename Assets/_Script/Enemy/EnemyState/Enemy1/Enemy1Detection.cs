@@ -26,7 +26,9 @@ public class Enemy1Detection : EnemyState
             gameManager.GameManager.SetScoreMsg("“G‚ÌS‘©‚É¬Œ÷");
             gameManager.GameManager.addEliminatedEnemy();
             Debug.Log("Enemy1Detection");
-            ScoreMessage.scoreMessage.TextInMsg();
+
+
+            ScoreMessage.scoreMessage?.TextInMsg();
         }
         Debug.Log(enemy.name + " ‚ğS‘©");
     }
@@ -48,7 +50,7 @@ public class Enemy1Detection : EnemyState
                 gameManager.GameManager.SetScorePM(false);
                 gameManager.GameManager.SetScoreMsg("“G‚ªƒ_ƒ[ƒW‚ğó‚¯‚½");
                 Debug.Log("Enemy1Detection");
-                ScoreMessage.scoreMessage.TextInMsg();
+                ScoreMessage.scoreMessage?.TextInMsg();
             }
         }    
     }

@@ -48,7 +48,7 @@ public class Enemy1Idle : EnemyState
                     gameManager.GameManager.SetScorePM(true);
                     gameManager.GameManager.SetScoreMsg("S‘©’†‚Ì“G‚Éƒ_ƒ[ƒW");
                     Debug.Log("Enemy1Idle");
-                    ScoreMessage.scoreMessage.TextInMsg();
+                    ScoreMessage.scoreMessage?.TextInMsg();
                 }
             }
             else
@@ -59,9 +59,16 @@ public class Enemy1Idle : EnemyState
                     gameManager.GameManager.SetScorePM(false);
                     gameManager.GameManager.SetScoreMsg("S‘©’†‚Ì“G‚Éƒ_ƒ[ƒW");
                     Debug.Log("Enemy1Idle");
-                    ScoreMessage.scoreMessage.TextInMsg();
+                    ScoreMessage.scoreMessage?.TextInMsg();
                 }
             }
+        }
+
+        if(enemy.isHerePlayerShotSound)
+        {
+            enemy.UseHerePlayerShotSound();
+            SetLockTime(2.0f);
+            SetNextState(enemy.MoveHerePointState);
         }
 
         if (Time.time < lockTime)

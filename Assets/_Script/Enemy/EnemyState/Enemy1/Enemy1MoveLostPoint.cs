@@ -20,6 +20,7 @@ public class Enemy1MoveLostPoint : EnemyState
         base.Enter();
 
         enemy.navAgent.enabled = true;
+        enemy.footImageManager.FootImageStart();
     }
 
     public override void Exit()
@@ -27,11 +28,13 @@ public class Enemy1MoveLostPoint : EnemyState
         base.Exit();
 
         enemy.navAgent.enabled = false;
+        enemy.footImageManager.FootImageStop();
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        enemy.footImageManager.SetFootImagePosition(enemy.transform.position);
 
         if (Damage.isDamage)
         {
@@ -54,7 +57,7 @@ public class Enemy1MoveLostPoint : EnemyState
                     gameManager.GameManager.SetScorePM(false);
                     gameManager.GameManager.SetScoreMsg("敵にダメージ");
                     Debug.Log("Enemy1MovePoint");
-                    ScoreMessage.scoreMessage.TextInMsg();
+                    ScoreMessage.scoreMessage?.TextInMsg();
                 }
             }
         }
@@ -113,8 +116,41 @@ public class Enemy1MoveLostPoint : EnemyState
             }
         }
 
+        //ドアを開ける処理（閉まっている時は何もしない）
+        RaycastHit hitObject;
+        Vector3 pos = new Vector3(enemy.transform.position.x, enemy.transform.position.y + 1.5f, enemy.transform.position.z);
+        if (Physics.Raycast(pos, enemy.transform.forward, out hitObject, enemyData.interactDistance))
+        {
+            int layerNo = LayerMask.NameToLayer(enemyData.interactLayerName);
+            if (hitObject.transform.gameObject.layer == layerNo)
+            {
+                if (DoorCheck(hitObject.transform.gameObject))
+                {
+                    Core otherCore = hitObject.transform.GetComponentInChildren<Core>();
+                    if (otherCore != null)
+                    {
+                        Interact otherInteract = null;
+                        otherCore.GetCoreComponent(ref otherInteract);
+                        if (otherInteract != null)
+                        {
+                            if (otherInteract.canInteract)
+                                otherInteract.SetInteract();
+                        }
+                    }
+                }
+            }
+        }
+
         if (enemy.PlayerSearch.isPlayerFind)
             stateMachine.ChangeState(enemy.PlayerSearchState);
+
+        if (enemy.isHerePlayerShotSound)
+        {
+            enemy.UseHerePlayerShotSound();
+            enemy.IdleState.SetLockTime(2.0f);
+            enemy.IdleState.SetNextState(enemy.MoveHerePointState);
+            stateMachine.ChangeState(enemy.IdleState);
+        }
         #endregion
     }
 

@@ -59,4 +59,10 @@ public class InputManagerDontDestroy : MonoBehaviour
 
         playerInput.SwitchCurrentActionMap(actionMapName);
     }
+
+    public GameEndInputHandler GetGameEndUIInputHandler(ref GameEndInputHandler ret)
+    {
+        ret = gameEndInputHandler;
+        return gameEndInputHandler;
+    }
 }

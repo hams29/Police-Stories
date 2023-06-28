@@ -30,7 +30,7 @@ public class Enemy1Death : EnemyState
                 gameManager.GameManager.SetScorePM(true);
                 gameManager.GameManager.SetScoreMsg("“G‚ÌŒÄ‚Ñ‚©‚¯‚É¬Œ÷");
                 Debug.Log("Enemy1Death");
-                ScoreMessage.scoreMessage.TextInMsg();
+                ScoreMessage.scoreMessage?.TextInMsg();
             }
             else
             {
@@ -38,7 +38,7 @@ public class Enemy1Death : EnemyState
                 gameManager.GameManager.SetScorePM(false);
                 gameManager.GameManager.SetScoreMsg("“G‚ÌŒÄ‚Ñ‚©‚¯‚É¸”s");
                 Debug.Log("Enemy1Death");
-                ScoreMessage.scoreMessage.TextInMsg();
+                ScoreMessage.scoreMessage?.TextInMsg();
             }
         }
     }

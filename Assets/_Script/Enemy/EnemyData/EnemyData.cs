@@ -27,4 +27,14 @@ public class EnemyData : ScriptableObject
 
     [Header("Enemy Player Out of View Time"),Tooltip("敵がプレイヤーを見失って巡回に戻るまでの時間")]
     public float playerOutOfViewTime = 1.5f;
+
+    [Header("Enemy Interact Distance")]
+    public float interactDistance = 2.5f;
+    public string interactLayerName;
+
+    [Header("Enemy Here Probability"), Tooltip("音で気づく確率（0～100まで）")]
+    public float soundHereProbability = 40.0f;
+
+    [Header("Use Enemy Main Weapon Table")]
+    public GunTable mainWeaponTable;
 }

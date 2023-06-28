@@ -24,6 +24,7 @@ public class DoorOpen : MonoBehaviour
     {
         core = GetComponentInChildren<Core>();
         Interact.canInteract = true;
+        NavMeshObs.SetActive(false);
     }
 
     // Update is called once per frame
@@ -35,6 +36,7 @@ public class DoorOpen : MonoBehaviour
             doorAC.SetBool("opened",isOpened);
             doorAC.SetBool("closed", !isOpened);
             useInteract = true;
+            NavMeshObs.SetActive(true);
         }
         else if (Interact.isInteract && isOpened && !useInteract)
         {
@@ -42,6 +44,7 @@ public class DoorOpen : MonoBehaviour
             doorAC.SetBool("opened", isOpened);
             doorAC.SetBool("closed", !isOpened);
             useInteract = true;
+            NavMeshObs.SetActive(false);
         }
     }
 

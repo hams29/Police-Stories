@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb80f3a709e8aef4591601e3b5e72d5e, type: 3}
+  m_Name: Enemy1(M4)Data
+  m_EditorClassIdentifier: 
+  maxHP: 100
+  moveSpeed: 5
+  runSpeed: 8
+  playerSearchTime: 0.5
+  enemyShotCount: 5
+  surrenderProbability: 50
+  detantionTime: 2
+  playerOutOfViewTime: 1.5
+  interactDistance: 2.5
+  interactLayerName: Interact
+  soundHereProbability: 20
+  mainWeaponTable: {fileID: 11400000, guid: 3f34625098bdcb843a87a69db8cb3504, type: 2}

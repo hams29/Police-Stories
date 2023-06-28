@@ -32,16 +32,19 @@ public class Enemy1Move : EnemyState
     public override void Enter()
     {
         base.Enter();
+        enemy.footImageManager.FootImageStart();
     }
 
     public override void Exit()
     {
         base.Exit();
+        enemy.footImageManager.FootImageStop();
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        enemy.footImageManager.SetFootImagePosition(enemy.transform.position);
 
         if (Damage.isDamage)
         {
@@ -53,7 +56,7 @@ public class Enemy1Move : EnemyState
                     gameManager.GameManager.SetScorePM(true);
                     gameManager.GameManager.SetScoreMsg("敵にダメージ");
                     UnityEngine.Debug.Log("Enemy1Move");
-                    ScoreMessage.scoreMessage.TextInMsg();
+                    ScoreMessage.scoreMessage?.TextInMsg();
                 }
             }
             else
@@ -64,7 +67,7 @@ public class Enemy1Move : EnemyState
                     gameManager.GameManager.SetScorePM(false);
                     gameManager.GameManager.SetScoreMsg("敵にダメージ");
                     UnityEngine.Debug.Log("Enemy1Move");
-                    ScoreMessage.scoreMessage.TextInMsg();
+                    ScoreMessage.scoreMessage?.TextInMsg();
                 }
             }
         }
@@ -99,6 +102,14 @@ public class Enemy1Move : EnemyState
         if (enemy.PlayerSearch.isPlayerFind)
         {
             stateMachine.ChangeState(enemy.PlayerSearchState);
+        }
+
+        if(enemy.isHerePlayerShotSound)
+        {
+            enemy.UseHerePlayerShotSound();
+            enemy.IdleState.SetLockTime(2.0f);
+            enemy.IdleState.SetNextState(enemy.MoveHerePointState);
+            stateMachine.ChangeState(enemy.IdleState);
         }
     }
 
