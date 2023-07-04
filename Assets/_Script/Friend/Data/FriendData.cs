@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FriendData : MonoBehaviour
+[CreateAssetMenu(fileName = "newFriendData", menuName = "Data/Friend Data/Base Data")]
+public class FriendData : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [Header("Friend HP")]
+    public float maxHP = 100.0f;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [Header("Move State")]
+    public float moveSpeed = 5.0f;
+    public float runSpeed = 8.0f;
+
+    [Header("Move Player Around"), Tooltip("ÉvÉåÉCÉÑÅ[Ç…ãﬂÇ√Ç≠ãóó£")]
+    public float playerAround = 3.0f;
+
 }

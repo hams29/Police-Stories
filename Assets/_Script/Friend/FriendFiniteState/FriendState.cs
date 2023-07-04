@@ -35,7 +35,7 @@ public class FriendState
         this.stateMachine = stateMachine;
         this.friendData = friendData;
         this.animBoolName = animBoolName;
-        //core = friend.Core;
+        core = friend.Core;
     }
 
     public virtual void Enter()

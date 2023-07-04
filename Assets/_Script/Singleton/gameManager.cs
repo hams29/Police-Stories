@@ -12,6 +12,8 @@ public class gameManager  : MonoBehaviour
     private List<GameObject> canvasObj = new List<GameObject>();
     private GameObject gameClearCanvas;
     private GameObject gameOverCanvas;
+    public PlayerController player { get; private set; }
+    public FriendController friend { get; private set; }
 
     public enum Scene
     {
@@ -185,6 +187,8 @@ public class gameManager  : MonoBehaviour
                 eliminateEnemy = 0;
                 isGameClear = false;
                 gadgetObjects.Clear();
+                player = null;
+                friend = null;
                 break;
         }
         nowScene = ns; 
@@ -265,5 +269,6 @@ public class gameManager  : MonoBehaviour
 
     public void SetScoreMsg(string msg) { scoreMsg = msg; }
 
-
+    public void SetPlayer(PlayerController p) { player = p; }
+    public void SetFriend(FriendController f) { friend = f; }
 }

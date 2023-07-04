@@ -144,6 +144,7 @@ public class PlayerController : MonoBehaviour
 
         isHaveMainWeapon = true;
         inventoryUI.HideInventoryUI();
+        gameManager.GameManager?.SetPlayer(this);
     }
 
     private void Update()

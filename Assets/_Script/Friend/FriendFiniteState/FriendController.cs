@@ -1,11 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class FriendController : MonoBehaviour
 {
     #region State Variables
     public FriendStateMachine stateMachine { get; private set; }
+
+    public FriendIdleState IdleState { get; private set; }
+    public FriendMoveState MoveState { get; private set; }
 
     [SerializeField]
     private FriendData friendData;
@@ -38,8 +42,8 @@ public class FriendController : MonoBehaviour
     #region Other Variables
     private Vector3 workspace;
 
-    //private Plane plane = new Plane();
-    //private float distance = 0;
+    public bool isFollow { get; private set; }
+    public NavMeshAgent navAgent { get; private set; }
     #endregion
 
     #region Unity Callback Function
@@ -47,6 +51,9 @@ public class FriendController : MonoBehaviour
     {
         Core = GetComponentInChildren<Core>();
         stateMachine = new FriendStateMachine();
+
+        IdleState = new FriendIdleState(this, stateMachine, friendData, "idle");
+        MoveState = new FriendMoveState(this, stateMachine, friendData, "move");
     }
 
     private void Start()
@@ -57,6 +64,7 @@ public class FriendController : MonoBehaviour
         Anim = GetComponent<Animator>();
         Inventory = GetComponentInChildren<Inventory>();
         search = GetComponentInChildren<FunSearch>();
+        navAgent = GetComponent<NavMeshAgent>();
 
         Inventory.SetMainWeapon();
         Inventory.SetGadget();
@@ -76,7 +84,10 @@ public class FriendController : MonoBehaviour
         //mainWeapon = Instantiate(Inventory.mainWeapon, setMainWeapon.transform);
         this.Inventory.SetMainWeapon(Instantiate(Inventory.mainWeapon, setMainWeapon.transform));
         gun = this.Inventory.mainWeapon.GetComponent<Gun>();
-        //stateMachine.Initialize(IdleState);
+        isFollow = true;
+        stateMachine.Initialize(IdleState);
+        navAgent.enabled = false;
+        gameManager.GameManager?.SetFriend(this);
     }
 
     private void Update()
@@ -140,5 +151,7 @@ public class FriendController : MonoBehaviour
         }
         return false;
     }
+
+    public void SetFollow(bool flg) => isFollow = flg;
     #endregion
 }
