@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: 0407f1f09f9c11d4ab05295962860f1a, type: 2}
+--- !u!114 &33013309 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2789363740189317005, guid: 94b9302bc347d564980e6d1a690a6718, type: 3}
+  m_PrefabInstance: {fileID: 1544285630}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e498115e73cd344da5b9277ed7b984f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &52977601
 GameObject:
   m_ObjectHideFlags: 0
@@ -940,14 +951,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1238012741}
-  m_LocalRotation: {x: 0.064229794, y: -0.61517644, z: 0.7856275, w: -0.014895341}
-  m_LocalPosition: {x: -0.1569, y: -0.0515, z: 0.0106}
+  m_LocalRotation: {x: -0.12414609, y: -0.15829085, z: 0.96909755, w: 0.14276505}
+  m_LocalPosition: {x: -0.442, y: 0.042, z: -0.045}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 216721347}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 105.272, y: -153.082, z: 22.884003}
+  m_LocalEulerAnglesHint: {x: 164.255, y: -197.275, z: -19.166992}
 --- !u!1 &1334172945
 GameObject:
   m_ObjectHideFlags: 0
@@ -1524,6 +1535,46 @@ PrefabInstance:
     - target: {fileID: 2789363740189316994, guid: 94b9302bc347d564980e6d1a690a6718, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2789363740189317004, guid: 94b9302bc347d564980e6d1a690a6718, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2789363740189317004, guid: 94b9302bc347d564980e6d1a690a6718, type: 3}
+      propertyPath: m_ActionEvents.Array.data[11].m_ActionId
+      value: 84d2058b-7c9e-4406-aab5-67341f36d167
+      objectReference: {fileID: 0}
+    - target: {fileID: 2789363740189317004, guid: 94b9302bc347d564980e6d1a690a6718, type: 3}
+      propertyPath: m_ActionEvents.Array.data[11].m_ActionName
+      value: Game/FriendAction[/Mouse/middleButton]
+      objectReference: {fileID: 0}
+    - target: {fileID: 2789363740189317004, guid: 94b9302bc347d564980e6d1a690a6718, type: 3}
+      propertyPath: m_ActionEvents.Array.data[11].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2789363740189317004, guid: 94b9302bc347d564980e6d1a690a6718, type: 3}
+      propertyPath: m_ActionEvents.Array.data[11].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2789363740189317004, guid: 94b9302bc347d564980e6d1a690a6718, type: 3}
+      propertyPath: m_ActionEvents.Array.data[11].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 33013309}
+    - target: {fileID: 2789363740189317004, guid: 94b9302bc347d564980e6d1a690a6718, type: 3}
+      propertyPath: m_ActionEvents.Array.data[11].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2789363740189317004, guid: 94b9302bc347d564980e6d1a690a6718, type: 3}
+      propertyPath: m_ActionEvents.Array.data[11].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnFriendActionInput
+      objectReference: {fileID: 0}
+    - target: {fileID: 2789363740189317004, guid: 94b9302bc347d564980e6d1a690a6718, type: 3}
+      propertyPath: m_ActionEvents.Array.data[11].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerInputHandler, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2789363740189317004, guid: 94b9302bc347d564980e6d1a690a6718, type: 3}
+      propertyPath: m_ActionEvents.Array.data[11].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2789363740189317007, guid: 94b9302bc347d564980e6d1a690a6718, type: 3}
       propertyPath: m_Name

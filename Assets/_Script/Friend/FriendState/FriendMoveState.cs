@@ -18,6 +18,7 @@ public class FriendMoveState : FriendState
     {
         base.Enter();
         friend.navAgent.enabled = true;
+        friend.navAgent.speed = friendData.moveSpeed;
     }
 
     public override void Exit()
@@ -38,12 +39,15 @@ public class FriendMoveState : FriendState
         Vector2 ppos = new Vector2(gameManager.GameManager.player.transform.position.x, gameManager.GameManager.player.transform.position.z);
         Vector2 fpos = new Vector2(friend.transform.position.x, friend.transform.position.z);
         float distance = Vector2.Distance(ppos, fpos);
+        SetPosition(gameManager.GameManager.player.transform.position);
+        OpenFrontDoor();
+
+
         if(distance < friendData.playerAround)
         {
             //プレイヤーに近づいたら待機状態に戻る
             stateMachine.ChangeState(friend.IdleState);
         }
-
     }
 
     public override void PhysicsUpdate()

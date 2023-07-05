@@ -15,4 +15,8 @@ public class FriendData : ScriptableObject
     [Header("Move Player Around"), Tooltip("ƒvƒŒƒCƒ„[‚É‹ß‚Ã‚­‹——£")]
     public float playerAround = 3.0f;
 
+    [Header("Interact")]
+    public float interactDistance = 2.5f;
+    public string interactLayerName;
+
 }

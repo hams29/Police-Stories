@@ -38,7 +38,7 @@ public class FriendIdleState : FriendState
             if(distance > friendData.playerAround)
             {
                 //ƒvƒŒƒCƒ„[‚ÉŒü‚©‚Á‚Ä“®‚­
-                friend.MoveState.SetPosition(ppos);
+                friend.MoveState.SetPosition(gameManager.GameManager.player.transform.position);
                 stateMachine.ChangeState(friend.MoveState);
             }
         }

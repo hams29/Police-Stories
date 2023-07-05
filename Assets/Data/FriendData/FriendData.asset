@@ -16,3 +16,5 @@ MonoBehaviour:
   moveSpeed: 5
   runSpeed: 8
   playerAround: 3
+  interactDistance: 2.5
+  interactLayerName: Interact

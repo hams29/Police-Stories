@@ -25,6 +25,7 @@ public class PlayerInputHandler : MonoBehaviour
     public bool InventoryInput { get; private set; }
     public bool InteractInput { get; private set; }
     public bool CallInput { get; private set; }
+    public bool FriendActionInput { get; private set; }
 
     private float reloadInputStartTime;
     private float meleeInputStartTIme;
@@ -152,6 +153,15 @@ public class PlayerInputHandler : MonoBehaviour
 
         if (context.canceled)
             InventoryInput = false;
+    }
+
+    public void OnFriendActionInput(InputAction.CallbackContext context)
+    {
+        if (context.started)
+            FriendActionInput = true;
+
+        if (context.canceled)
+            FriendActionInput = false;
     }
 
     public void UseReloadInput() => ReloadInput = false;
