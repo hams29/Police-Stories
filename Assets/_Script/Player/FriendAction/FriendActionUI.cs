@@ -7,10 +7,11 @@ public class FriendActionUI : MonoBehaviour
 {
     public enum Action
     {
-        Action1,
-        Action2,
-        Action3,
-        Action4,
+        ActionUp,
+        ActionDown,
+        ActionRight,
+        ActionLeft,
+        ActionNone
     };
 
     [System.Serializable]
@@ -40,13 +41,53 @@ public class FriendActionUI : MonoBehaviour
             }
         }
 
-        public int Count
+        public int Count { get => 4; }
+    }
+    struct DirectionSendAction
+    {
+        public FriendController.SendAction actionUp;
+        public FriendController.SendAction actionDown;
+        public FriendController.SendAction actionRight;
+        public FriendController.SendAction actionLeft;
+
+        public FriendController.SendAction this[int dir]
         {
             get
             {
-                return 4;
+                switch(dir)
+                {
+                    case 0:
+                        return actionUp;
+                    case 1:
+                        return actionDown;
+                    case 2:
+                        return actionLeft;
+                    case 3:
+                        return actionRight;
+                }
+                return FriendController.SendAction.None;
+            }
+            set
+            {
+                switch (dir)
+                {
+                    case 0:
+                        actionUp = value;
+                        break;
+                    case 1:
+                        actionDown = value;
+                        break;
+                    case 2:
+                        actionLeft = value;
+                        break;
+                    case 3:
+                        actionRight = value;
+                        break;
+                }
             }
         }
+
+        public int Count { get => 4; }
     }
 
     public bool isShow { get; private set; }
@@ -80,15 +121,22 @@ public class FriendActionUI : MonoBehaviour
     [SerializeField]
     private float spriteSpace = 10.0f;
 
+    private DirectionSendAction sendAction;
+
     private void Start()
     {
         isShow = false;
         isSelect = false;
         nowShow = false;
-        selectAction = Action.Action1;
+        selectAction = Action.ActionNone;
 
         SetActiveGameObject(directionUIFrame, false);
         SetActiveGameObject(directionUIIcon, false);
+
+        for (int i = 0; i < sendAction.Count; i++)
+        {
+            sendAction[i] = FriendController.SendAction.None;
+        }
     }
 
     private void Update()
@@ -107,8 +155,84 @@ public class FriendActionUI : MonoBehaviour
                 SetObjectImageColor(directionUIIcon[i], defaultColor);
             }
 
-            //TODO::setObjectRectTransformPositionの続き
-            SetObjectRectTransformPosition(directionUIIcon.up, mousePos, new Vector3(0, spriteSpace, 0));
+            SetObjectRectTransformPosition(directionUIIcon.up, mousePos, new Vector2(0,spriteSpace));
+            SetObjectRectTransformPosition(directionUIIcon.down, mousePos, new Vector2(0,-spriteSpace));
+            SetObjectRectTransformPosition(directionUIIcon.right, mousePos, new Vector2(spriteSpace, 0));
+            SetObjectRectTransformPosition(directionUIIcon.left, mousePos, new Vector2(-spriteSpace, 0));
+
+            oldMousePos = mousePos;
+        }
+        else if(!isShow && nowShow)
+        {
+            //UIの非表示処理
+            nowShow = false;
+            SetActiveGameObject(directionUIFrame, false);
+            SetActiveGameObject(directionUIIcon, false);
+        }
+
+        //UIが表示中の時
+        if(isShow)
+        {
+            //TODO::FriendActionUI::ガジェットが選択された際に何が選択されたかわかるものの追加
+            //マウスが右に動いたとき
+            if(mousePos.x > oldMousePos.x + deadZone)
+            {
+                //右に動いたときの処理
+                for(int i = 0;i<directionUIFrame.Count;i++)
+                {
+                    SetObjectImageColor(directionUIFrame[i], defaultColor);
+                }
+                SetObjectImageColor(directionUIFrame.right, selectColor);
+                isSelect = true;
+                selectAction = Action.ActionRight;
+                
+            }
+            //マウスが左に動いたとき
+            else if(mousePos.x < oldMousePos.x - deadZone)
+            {
+                //左に動いたときの処理
+                for (int i = 0; i < directionUIFrame.Count; i++)
+                {
+                    SetObjectImageColor(directionUIFrame[i], defaultColor);
+                }
+                SetObjectImageColor(directionUIFrame.left, selectColor);
+                isSelect = true;
+                selectAction = Action.ActionLeft;
+            }
+            //マウスが上に動いたとき
+            else if(mousePos.y > oldMousePos.y + deadZone)
+            {
+                //上に動いたときの処理
+                for (int i = 0; i < directionUIFrame.Count; i++)
+                {
+                    SetObjectImageColor(directionUIFrame[i], defaultColor);
+                }
+                SetObjectImageColor(directionUIFrame.up, selectColor);
+                isSelect = true;
+                selectAction = Action.ActionUp;
+            }
+            //マウスが下に動いたとき
+            else if(mousePos.y < oldMousePos.y - deadZone)
+            {
+                //下に動いたときの処理
+                for (int i = 0; i < directionUIFrame.Count; i++)
+                {
+                    SetObjectImageColor(directionUIFrame[i], defaultColor);
+                }
+                SetObjectImageColor(directionUIFrame.down, selectColor);
+                isSelect = true;
+                selectAction = Action.ActionDown;
+            }
+            //動かなかったときの処理
+            else
+            {
+                for (int i = 0; i < directionUIFrame.Count; i++)
+                {
+                    SetObjectImageColor(directionUIFrame[i], defaultColor);
+                }
+                isSelect = false;
+                selectAction = Action.ActionNone;
+            }
         }
     }
 
@@ -124,7 +248,7 @@ public class FriendActionUI : MonoBehaviour
         img.color = color;
     }
 
-    private void SetObjectRectTransformPosition(GameObject obj, Vector3 mPos)
+    private void SetObjectRectTransformPosition(GameObject obj, Vector2 mPos)
     {
         RectTransform rTran = obj.GetComponent<RectTransform>();
         if (rTran == null)
@@ -136,7 +260,7 @@ public class FriendActionUI : MonoBehaviour
         rTran.position = mPos;
     }
 
-    private void SetObjectRectTransformPosition(GameObject obj, Vector3 mPos, Vector3 addPos)
+    private void SetObjectRectTransformPosition(GameObject obj, Vector2 mPos, Vector2 addPos)
     {
         RectTransform rTran = obj.GetComponent<RectTransform>();
         if (rTran == null)
@@ -145,7 +269,7 @@ public class FriendActionUI : MonoBehaviour
             return;
         }
 
-        rTran.position = mPos;
+        rTran.position = mPos + addPos;
     }
 
     private void SetActiveGameObject(DirectionUI directionUI,bool isActive)
@@ -153,6 +277,27 @@ public class FriendActionUI : MonoBehaviour
         for(int i = 0;i<directionUI.Count;i++)
         {
             directionUI[i].SetActive(isActive);
+        }
+    }
+
+    //UIを表示する際に表示させるアクションの追加
+    public void AddSendAction(FriendController.SendAction action)
+    {
+        for(int i = 0;i<sendAction.Count;i++)
+        {
+            if (sendAction[i] != FriendController.SendAction.None)
+                continue;
+
+            sendAction[i] = action;
+        }
+    }
+
+    //UIを消す際にアクションリセット用関数
+    public void ReomveSendAction()
+    {
+        for(int i = 0;i<sendAction.Count;i++)
+        {
+            sendAction[i] = FriendController.SendAction.None;
         }
     }
 }

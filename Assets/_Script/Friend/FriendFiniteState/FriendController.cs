@@ -44,6 +44,16 @@ public class FriendController : MonoBehaviour
 
     public bool isFollow { get; private set; }
     public NavMeshAgent navAgent { get; private set; }
+
+    public enum SendAction
+    {
+        Follow,
+        Move,
+        Stop,
+        OpenDoor,
+        ThrowFrashBang,
+        None
+    }
     #endregion
 
     #region Unity Callback Function
