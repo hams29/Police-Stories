@@ -32,14 +32,17 @@ public class FriendIdleState : FriendState
         if(friend.isFollow)
         {
             //追従中の時
-            Vector2 ppos = new Vector2(gameManager.GameManager.player.transform.position.x, gameManager.GameManager.player.transform.position.z);
-            Vector2 fpos = new Vector2(friend.transform.position.x, friend.transform.position.z);
-            float distance = Vector2.Distance(ppos, fpos);
-            if(distance > friendData.playerAround)
+            if(gameManager.GameManager != null)
             {
-                //プレイヤーに向かって動く
-                friend.MoveState.SetPosition(gameManager.GameManager.player.transform.position);
-                stateMachine.ChangeState(friend.MoveState);
+                Vector2 ppos = new Vector2(gameManager.GameManager.player.transform.position.x, gameManager.GameManager.player.transform.position.z);
+                Vector2 fpos = new Vector2(friend.transform.position.x, friend.transform.position.z);
+                float distance = Vector2.Distance(ppos, fpos);
+                if (distance > friendData.playerAround)
+                {
+                    //プレイヤーに向かって動く
+                    friend.MoveState.SetPosition(gameManager.GameManager.player.transform.position);
+                    stateMachine.ChangeState(friend.MoveState);
+                }
             }
         }
     }

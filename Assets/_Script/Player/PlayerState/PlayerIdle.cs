@@ -33,12 +33,12 @@ public class PlayerIdle : PlayerState
 
         GameObject other;
 
-        if(player.CheckFrontObject("interact", playerData.interactDistance) && !isInteractUIShow)
+        if(player.CheckFrontObject("Door", playerData.interactDistance) && !isInteractUIShow)
         {
             isInteractUIShow = true;
             player.InteractUI.Show();
         }
-        else if(!player.CheckFrontObject("interact", playerData.interactDistance) && isInteractUIShow)
+        else if(!player.CheckFrontObject("Door", playerData.interactDistance) && isInteractUIShow)
         {
             isInteractUIShow = false;
             player.InteractUI.Hide();
@@ -50,6 +50,10 @@ public class PlayerIdle : PlayerState
             if(inventoryInput)
             {
                 stateMachine.ChangeState(player.UseInventoryState);
+            }
+            else if(friendActionInput)
+            {
+                stateMachine.ChangeState(player.UseFriendActionState);
             }
             else if(shotInput && !player.isHaveMainWeapon)
             {

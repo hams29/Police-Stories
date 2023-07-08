@@ -10,6 +10,8 @@ public class FriendController : MonoBehaviour
 
     public FriendIdleState IdleState { get; private set; }
     public FriendMoveState MoveState { get; private set; }
+    public FriendMovePointState MovePointState { get; private set; }
+    public FriendOpenDoor OpenDoorState { get; private set; }
 
     [SerializeField]
     private FriendData friendData;
@@ -44,6 +46,7 @@ public class FriendController : MonoBehaviour
 
     public bool isFollow { get; private set; }
     public NavMeshAgent navAgent { get; private set; }
+    public Vector3 turgetPosition { get; private set; }
 
     public enum SendAction
     {
@@ -54,6 +57,7 @@ public class FriendController : MonoBehaviour
         ThrowFrashBang,
         None
     }
+
     #endregion
 
     #region Unity Callback Function
@@ -64,6 +68,8 @@ public class FriendController : MonoBehaviour
 
         IdleState = new FriendIdleState(this, stateMachine, friendData, "idle");
         MoveState = new FriendMoveState(this, stateMachine, friendData, "move");
+        MovePointState = new FriendMovePointState(this, stateMachine, friendData, "movePoint");
+        OpenDoorState = new FriendOpenDoor(this, stateMachine, friendData, "openDoor");
     }
 
     private void Start()
@@ -163,5 +169,30 @@ public class FriendController : MonoBehaviour
     }
 
     public void SetFollow(bool flg) => isFollow = flg;
+    public void ReceiveAction(SendAction action)
+    {
+        switch(action)
+        {
+            case SendAction.Follow:
+                isFollow = true;
+                break;
+            case SendAction.Move:
+                isFollow = false;
+                stateMachine.ChangeState(MovePointState);
+                break;
+            case SendAction.Stop:
+                isFollow = false;
+                break;
+            case SendAction.OpenDoor:
+                stateMachine.ChangeState(OpenDoorState);
+                break;
+            case SendAction.ThrowFrashBang:
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void SetTurgetPosition(Vector3 tpos) { turgetPosition = tpos; }
     #endregion
 }

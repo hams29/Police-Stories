@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class FriendActionUI : MonoBehaviour
 {
+    /*
     public enum Action
     {
         ActionUp,
@@ -13,6 +14,7 @@ public class FriendActionUI : MonoBehaviour
         ActionLeft,
         ActionNone
     };
+    */
 
     [System.Serializable]
     struct DirectionUI
@@ -57,13 +59,13 @@ public class FriendActionUI : MonoBehaviour
                 switch(dir)
                 {
                     case 0:
-                        return actionUp;
-                    case 1:
-                        return actionDown;
-                    case 2:
                         return actionLeft;
-                    case 3:
+                    case 1:
                         return actionRight;
+                    case 2:
+                        return actionUp;
+                    case 3:
+                        return actionDown;
                 }
                 return FriendController.SendAction.None;
             }
@@ -72,16 +74,16 @@ public class FriendActionUI : MonoBehaviour
                 switch (dir)
                 {
                     case 0:
-                        actionUp = value;
-                        break;
-                    case 1:
-                        actionDown = value;
-                        break;
-                    case 2:
                         actionLeft = value;
                         break;
-                    case 3:
+                    case 1:
                         actionRight = value;
+                        break;
+                    case 2:
+                        actionUp = value;
+                        break;
+                    case 3:
+                        actionDown = value;
                         break;
                 }
             }
@@ -92,12 +94,15 @@ public class FriendActionUI : MonoBehaviour
 
     public bool isShow { get; private set; }
     public bool isSelect { get; private set; }
-    public Action selectAction { get; private set; }
+    public FriendController.SendAction selectAction { get; private set; }
 
     private bool nowShow;
 
     private Vector2 mousePos;
     private Vector2 oldMousePos;
+
+    [SerializeField, Header("スプライト設定用テーブル")]
+    private FriendActionUITable actionUITable;
 
     [Header("マウスを動かしても反応しない範囲")]
     [SerializeField]
@@ -128,7 +133,7 @@ public class FriendActionUI : MonoBehaviour
         isShow = false;
         isSelect = false;
         nowShow = false;
-        selectAction = Action.ActionNone;
+        selectAction = FriendController.SendAction.None;
 
         SetActiveGameObject(directionUIFrame, false);
         SetActiveGameObject(directionUIIcon, false);
@@ -137,10 +142,15 @@ public class FriendActionUI : MonoBehaviour
         {
             sendAction[i] = FriendController.SendAction.None;
         }
+        SetActiveGameObject(directionUIFrame, false);
+        SetActiveGameObject(directionUIIcon, false);
+        RemoveSendAction();
     }
 
     private void Update()
     {
+        
+
         if (isShow && !nowShow)
         {
             //表示させる処理
@@ -152,7 +162,7 @@ public class FriendActionUI : MonoBehaviour
             for(int i = 0;i<directionUIFrame.Count;i++)
             {
                 SetObjectRectTransformPosition(directionUIFrame[i], mousePos);
-                SetObjectImageColor(directionUIIcon[i], defaultColor);
+                SetObjectImageColor(directionUIFrame[i], defaultColor);
             }
 
             SetObjectRectTransformPosition(directionUIIcon.up, mousePos, new Vector2(0,spriteSpace));
@@ -160,6 +170,7 @@ public class FriendActionUI : MonoBehaviour
             SetObjectRectTransformPosition(directionUIIcon.right, mousePos, new Vector2(spriteSpace, 0));
             SetObjectRectTransformPosition(directionUIIcon.left, mousePos, new Vector2(-spriteSpace, 0));
 
+            SetAllImage(directionUIIcon, sendAction);
             oldMousePos = mousePos;
         }
         else if(!isShow && nowShow)
@@ -168,6 +179,7 @@ public class FriendActionUI : MonoBehaviour
             nowShow = false;
             SetActiveGameObject(directionUIFrame, false);
             SetActiveGameObject(directionUIIcon, false);
+            RemoveSendAction();
         }
 
         //UIが表示中の時
@@ -184,7 +196,7 @@ public class FriendActionUI : MonoBehaviour
                 }
                 SetObjectImageColor(directionUIFrame.right, selectColor);
                 isSelect = true;
-                selectAction = Action.ActionRight;
+                selectAction = sendAction.actionRight;
                 
             }
             //マウスが左に動いたとき
@@ -197,7 +209,7 @@ public class FriendActionUI : MonoBehaviour
                 }
                 SetObjectImageColor(directionUIFrame.left, selectColor);
                 isSelect = true;
-                selectAction = Action.ActionLeft;
+                selectAction = sendAction.actionLeft;
             }
             //マウスが上に動いたとき
             else if(mousePos.y > oldMousePos.y + deadZone)
@@ -209,7 +221,7 @@ public class FriendActionUI : MonoBehaviour
                 }
                 SetObjectImageColor(directionUIFrame.up, selectColor);
                 isSelect = true;
-                selectAction = Action.ActionUp;
+                selectAction = sendAction.actionUp;
             }
             //マウスが下に動いたとき
             else if(mousePos.y < oldMousePos.y - deadZone)
@@ -221,7 +233,7 @@ public class FriendActionUI : MonoBehaviour
                 }
                 SetObjectImageColor(directionUIFrame.down, selectColor);
                 isSelect = true;
-                selectAction = Action.ActionDown;
+                selectAction = sendAction.actionDown;
             }
             //動かなかったときの処理
             else
@@ -231,7 +243,7 @@ public class FriendActionUI : MonoBehaviour
                     SetObjectImageColor(directionUIFrame[i], defaultColor);
                 }
                 isSelect = false;
-                selectAction = Action.ActionNone;
+                selectAction = FriendController.SendAction.None;
             }
         }
     }
@@ -280,6 +292,49 @@ public class FriendActionUI : MonoBehaviour
         }
     }
 
+    private void SetAllImage(DirectionUI directionUI,DirectionSendAction action)
+    {
+        Image img;
+        Color color;
+        for(int i = 0;i< directionUI.Count;i++)
+        {
+            img = directionUI[i].GetComponent<Image>();
+            color = img.color;
+            switch(action[i])
+            {
+                case FriendController.SendAction.Follow:
+                    img.sprite = actionUITable.FollowSprite;
+                    img.color = new Color(color.r, color.g, color.b, 1);
+                    break;
+
+                case FriendController.SendAction.Move:
+                    img.sprite = actionUITable.MoveSprite;
+                    img.color = new Color(color.r, color.g, color.b, 1);
+                    break;
+
+                case FriendController.SendAction.Stop:
+                    img.sprite = actionUITable.StopSprite;
+                    img.color = new Color(color.r, color.g, color.b, 1);
+                    break;
+
+                case FriendController.SendAction.OpenDoor:
+                    img.sprite = actionUITable.OpenDoorSprite;
+                    img.color = new Color(color.r, color.g, color.b, 1);
+                    break;
+
+                case FriendController.SendAction.ThrowFrashBang:
+                    img.sprite = actionUITable.ThrowFrashbangSprite;
+                    img.color = new Color(color.r, color.g, color.b, 1);
+                    break;
+
+                default:
+                    img.sprite = null;
+                    img.color = new Color(color.r, color.g, color.b, 0);
+                    break;
+            }
+        }
+    }
+
     //UIを表示する際に表示させるアクションの追加
     public void AddSendAction(FriendController.SendAction action)
     {
@@ -289,15 +344,23 @@ public class FriendActionUI : MonoBehaviour
                 continue;
 
             sendAction[i] = action;
+            break;
         }
     }
 
     //UIを消す際にアクションリセット用関数
-    public void ReomveSendAction()
+    public void RemoveSendAction()
     {
         for(int i = 0;i<sendAction.Count;i++)
         {
             sendAction[i] = FriendController.SendAction.None;
         }
     }
+
+    public FriendController.SendAction GetSelectAction() { return selectAction; }
+
+    public void SetShow(bool isShow) { this.isShow = isShow; }
+
+    public void SetMousePosition(Vector2 mpos) => mousePos = mpos;
+    public void UseIsSelect() => isSelect = false;
 }
