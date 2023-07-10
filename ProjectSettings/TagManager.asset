@@ -8,6 +8,7 @@ TagManager:
   - interact
   - TargetMesh
   - Door
+  - Friend
   layers:
   - Default
   - TransparentFX

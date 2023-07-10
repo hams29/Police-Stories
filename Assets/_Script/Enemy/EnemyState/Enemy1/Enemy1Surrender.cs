@@ -31,6 +31,7 @@ public class Enemy1Surrender : EnemyState
             gameManager.GameManager.SetScorePM(true);
             gameManager.GameManager.SetScoreMsg("“G‚ğS‘©");
         }
+        enemy.SetIsSurrender(true);
     }
 
     public override void Exit()
@@ -77,6 +78,7 @@ public class Enemy1Surrender : EnemyState
         {
             Interact.canInteract = false;
             stateMachine.ChangeState(enemy.IdleState);
+            enemy.SetIsSurrender(false);
         }
     }
 

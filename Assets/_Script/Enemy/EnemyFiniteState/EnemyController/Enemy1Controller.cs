@@ -47,8 +47,6 @@ public class Enemy1Controller : EnemyControllerBase
     #region Other Variables
     private Vector3 workspace;
 
-    public bool enemySurrenderProbability { get; private set; }
-
     [SerializeField]
     private Enemy1ScoreData enemyScoreData;
 
@@ -180,5 +178,6 @@ public class Enemy1Controller : EnemyControllerBase
     public List<GameObject> getMoveLoot() { return moveLoot; }
 
     public void SetTrueSurrenderProbability() { enemySurrenderProbability = true; }
+    public void SetIsSurrender(bool flg) { enemySurrender = flg; }
     #endregion
 }

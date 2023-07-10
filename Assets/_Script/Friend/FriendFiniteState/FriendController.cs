@@ -12,6 +12,9 @@ public class FriendController : MonoBehaviour
     public FriendMoveState MoveState { get; private set; }
     public FriendMovePointState MovePointState { get; private set; }
     public FriendOpenDoor OpenDoorState { get; private set; }
+    public FriendDetected DetectedState { get; private set; }
+    public FriendShotState ShotState { get; private set; }
+    public FriendReloadState ReloadState { get; private set; }
 
     [SerializeField]
     private FriendData friendData;
@@ -31,7 +34,7 @@ public class FriendController : MonoBehaviour
     public Inventory Inventory { get; private set; }
     //public GameObject mainWeapon { get; private set; }
     public Gun gun { get; private set; }
-    public FunSearch search { get; private set; }
+    public FriendSearch search { get; private set; }
 
     private States States { get => states ?? Core.GetCoreComponent(ref states); }
     private States states;
@@ -70,6 +73,9 @@ public class FriendController : MonoBehaviour
         MoveState = new FriendMoveState(this, stateMachine, friendData, "move");
         MovePointState = new FriendMovePointState(this, stateMachine, friendData, "movePoint");
         OpenDoorState = new FriendOpenDoor(this, stateMachine, friendData, "openDoor");
+        DetectedState = new FriendDetected(this, stateMachine, friendData, "detected");
+        ShotState = new FriendShotState(this, stateMachine, friendData, "shot");
+        ReloadState = new FriendReloadState(this, stateMachine, friendData, "reload");
     }
 
     private void Start()
@@ -79,7 +85,7 @@ public class FriendController : MonoBehaviour
 
         Anim = GetComponent<Animator>();
         Inventory = GetComponentInChildren<Inventory>();
-        search = GetComponentInChildren<FunSearch>();
+        search = GetComponentInChildren<FriendSearch>();
         navAgent = GetComponent<NavMeshAgent>();
 
         Inventory.SetMainWeapon();

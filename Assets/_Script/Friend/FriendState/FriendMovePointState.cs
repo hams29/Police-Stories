@@ -37,7 +37,11 @@ public class FriendMovePointState : FriendState
         OpenFrontDoor();
 
 
-        if (distance < friendData.playerAround)
+        if (friend.search.isDetected)
+        {
+            stateMachine.ChangeState(friend.DetectedState);
+        }
+        else if (distance < friendData.playerAround)
         {
             //ポイントに近づいたら待機状態に戻る
             stateMachine.ChangeState(friend.IdleState);

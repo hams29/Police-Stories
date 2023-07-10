@@ -74,7 +74,7 @@ public class FriendState
             int layerNo = LayerMask.NameToLayer(friendData.interactLayerName);
             if (hitObject.transform.gameObject.layer == layerNo)
             {
-                if (DoorCheck(hitObject.transform.gameObject))
+                if (OpenDoorCheck(hitObject.transform.gameObject))
                 {
                     Core otherCore = hitObject.transform.GetComponentInChildren<Core>();
                     if (otherCore != null)
@@ -97,6 +97,7 @@ public class FriendState
         //ドアを開ける処理（閉まっている時は何もしない）
         RaycastHit hitObject;
         Vector3 pos = new Vector3(friend.transform.position.x, friend.transform.position.y + 1.5f, friend.transform.position.z);
+        /*
         if (Physics.Raycast(pos, friend.transform.forward, out hitObject, friendData.interactDistance))
         {
             int layerNo = LayerMask.NameToLayer(friendData.interactLayerName);
@@ -121,10 +122,36 @@ public class FriendState
                 }
             }
         }
+        */
+        if(Physics.SphereCast(friend.transform.position,2.0f,friend.transform.forward,out hitObject,friendData.interactDistance))
+        {
+            int layerNo = LayerMask.NameToLayer(friendData.interactLayerName);
+            if (hitObject.transform.gameObject.layer == layerNo)
+            {
+                if (DoorCheck(hitObject.transform.gameObject))
+                {
+                    Core otherCore = hitObject.transform.GetComponentInChildren<Core>();
+                    if (otherCore != null)
+                    {
+                        Interact otherInteract = null;
+                        otherCore.GetCoreComponent(ref otherInteract);
+                        if (otherInteract != null)
+                        {
+                            if (otherInteract.canInteract)
+                            {
+                                otherInteract.SetInteract();
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         return false;
     }
 
-    private bool DoorCheck(GameObject obj)
+    private bool OpenDoorCheck(GameObject obj)
     {
         bool ret = false;
         DoorOpen doorOpen = obj.GetComponent<DoorOpen>();
@@ -133,6 +160,16 @@ public class FriendState
             if (!doorOpen.isOpened)
                 ret = true;
         }
+
+        return ret;
+    }
+
+    private bool DoorCheck(GameObject obj)
+    {
+        bool ret = false;
+        DoorOpen doorOpen = obj.GetComponent<DoorOpen>();
+        if (doorOpen != null)
+            ret = true;
 
         return ret;
     }

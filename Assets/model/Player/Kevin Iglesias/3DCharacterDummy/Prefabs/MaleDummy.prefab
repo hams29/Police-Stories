@@ -159,7 +159,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1334172946}
-  - component: {fileID: 1334172947}
+  - component: {fileID: 1464253783}
+  - component: {fileID: 1464253782}
   m_Layer: 0
   m_Name: Search
   m_TagString: Untagged
@@ -182,7 +183,20 @@ Transform:
   m_Father: {fileID: 8654250720420943610}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1334172947
+--- !u!135 &1464253783
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1334172945}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 10
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1464253782
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -191,7 +205,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1334172945}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e59c7b429677a9044a3b8fa53e6d2ca0, type: 3}
+  m_Script: {fileID: 11500000, guid: 73c2e31a745252745b3b34d8fad6d5e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   angle: 45
@@ -2379,7 +2393,7 @@ GameObject:
   - component: {fileID: 1885737078}
   m_Layer: 0
   m_Name: MaleDummy
-  m_TagString: Untagged
+  m_TagString: Friend
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

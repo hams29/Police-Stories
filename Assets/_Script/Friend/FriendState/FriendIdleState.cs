@@ -37,13 +37,22 @@ public class FriendIdleState : FriendState
                 Vector2 ppos = new Vector2(gameManager.GameManager.player.transform.position.x, gameManager.GameManager.player.transform.position.z);
                 Vector2 fpos = new Vector2(friend.transform.position.x, friend.transform.position.z);
                 float distance = Vector2.Distance(ppos, fpos);
-                if (distance > friendData.playerAround)
+                if(friend.search.isDetected)
+                {
+                    stateMachine.ChangeState(friend.DetectedState);
+                }
+                else if (distance > friendData.playerAround)
                 {
                     //ƒvƒŒƒCƒ„[‚ÉŒü‚©‚Á‚Ä“®‚­
                     friend.MoveState.SetPosition(gameManager.GameManager.player.transform.position);
                     stateMachine.ChangeState(friend.MoveState);
                 }
             }
+        }
+
+        if (friend.search.isDetected)
+        {
+            stateMachine.ChangeState(friend.DetectedState);
         }
     }
 

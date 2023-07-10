@@ -34,7 +34,11 @@ public class FriendOpenDoor : FriendState
         Vector2 fpos = new Vector2(friend.transform.position.x, friend.transform.position.z);
         float distance = Vector2.Distance(tpos, fpos);
 
-        if (isOpenFrontDoor())
+        if (friend.search.isDetected)
+        {
+            stateMachine.ChangeState(friend.DetectedState);
+        }
+        else if (isOpenFrontDoor())
         {
             //ドアを開いたら待機状態に戻る
             stateMachine.ChangeState(friend.IdleState);
