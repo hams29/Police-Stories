@@ -15,6 +15,7 @@ public class FriendController : MonoBehaviour
     public FriendDetected DetectedState { get; private set; }
     public FriendShotState ShotState { get; private set; }
     public FriendReloadState ReloadState { get; private set; }
+    public FriendDeadState DeadState { get; private set; }
 
     [SerializeField]
     private FriendData friendData;
@@ -76,6 +77,7 @@ public class FriendController : MonoBehaviour
         DetectedState = new FriendDetected(this, stateMachine, friendData, "detected");
         ShotState = new FriendShotState(this, stateMachine, friendData, "shot");
         ReloadState = new FriendReloadState(this, stateMachine, friendData, "reload");
+        DeadState = new FriendDeadState(this, stateMachine, friendData, "dead");
     }
 
     private void Start()
@@ -110,6 +112,7 @@ public class FriendController : MonoBehaviour
         stateMachine.Initialize(IdleState);
         navAgent.enabled = false;
         gameManager.GameManager?.SetFriend(this);
+        States?.SetInitHP(friendData.maxHP);
     }
 
     private void Update()
@@ -130,6 +133,11 @@ public class FriendController : MonoBehaviour
             stateMachine.canChangeState = false;
             Movement.CanSetVelocity = false;
             Rotation.CanSetRotate = false;
+        }
+        
+        if(States.dead && stateMachine.CurrentState != DeadState)
+        {
+            stateMachine.ChangeState(DeadState);
         }
     }
 
