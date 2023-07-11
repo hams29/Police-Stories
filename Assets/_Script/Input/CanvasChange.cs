@@ -9,7 +9,8 @@ public class CanvasChange : MonoBehaviour
 
     private int canvasCount;
 
-    private GameEndInputHandler gameEndInputHandler;
+    private GameEndInputHandler gameEndInputHandler { get => inputHandler ?? InputManagerDontDestroy.Instance.gameEndInputHandler; }
+    private GameEndInputHandler inputHandler;
 
     [SerializeField] private WeaponSetSceneChange sceneChange;
     [SerializeField] private Scrollbar scrollbar;
@@ -17,11 +18,13 @@ public class CanvasChange : MonoBehaviour
     [SerializeField] private Text eTextMesh;
     [SerializeField] private GameObject[] canvasGrp;
 
+    [SerializeField] private WeaponSet weaponSet;
+
 
     private void Start()
     {
         canvasCount = 0;
-        gameEndInputHandler = InputManagerDontDestroy.Instance.gameEndInputHandler;
+        //gameEndInputHandler = InputManagerDontDestroy.Instance.gameEndInputHandler;
     }
 
     private void Update()
@@ -38,6 +41,10 @@ public class CanvasChange : MonoBehaviour
         if (gameEndInputHandler.CanvasChangeNextInput)
         {
             gameEndInputHandler.UseNextInput();
+            //ステージを選択していないと前に進めないように
+            if (canvasCount == 0 && SelectStageChange.sceneId == -1)
+                return;
+
             CountPlus();
             SceneChange();
 
@@ -123,8 +130,9 @@ public class CanvasChange : MonoBehaviour
 
     public void SceneChange()
     {
-        if (canvasCount == 3 && weaponSelect.Instance.GetWeapon() != null)
+        if (canvasCount >= 3 && weaponSelect.setGunTable != null)
         {
+            weaponSet.setGun.gunTabele = weaponSelect.setGunTable;
             sceneChange?.ChangeClick();
         }
     }
@@ -140,9 +148,12 @@ public class CanvasChange : MonoBehaviour
 
     public bool IsWeaponSetFull()
     {
-        if (weaponSelect.Instance.GetWeapon().gunPrefab != null)
+        if(weaponSelect.setGunTable != null)
         {
-            return true;
+            if (weaponSelect.setGunTable.gunPrefab != null)
+            {
+                return true;
+            }
         }
         //修正箇所
         return false;

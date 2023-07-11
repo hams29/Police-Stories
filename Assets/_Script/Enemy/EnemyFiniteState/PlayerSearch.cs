@@ -38,14 +38,20 @@ public class PlayerSearch : MonoBehaviour
                 }
             }
 
-            if(CheckBetweenObject(findObject))
+            if(findObject != null)
+            {
+                if(CheckBetweenObject(findObject))
+                {
+                    isSearchFind = false;
+                    findObject = null;
+                }
+            }
+            else
             {
                 isSearchFind = false;
                 findObject = null;
             }
         }
-
-        Debug.Log(isSearchFind);
     }
 
     private void OnTriggerStay(Collider other)
