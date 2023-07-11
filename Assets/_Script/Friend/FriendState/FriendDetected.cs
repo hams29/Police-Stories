@@ -18,7 +18,6 @@ public class FriendDetected : FriendState
         base.Enter();
 
         Movement?.SetVelocityZero();
-        Rotation?.SetRotation(friend.search.detectedEnemy.transform.position);
     }
 
     public override void Exit()
@@ -29,6 +28,9 @@ public class FriendDetected : FriendState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+
+        if(friend.search.detectedEnemy != null)
+            Rotation?.SetRotation(friend.search.detectedEnemy.transform.position);
 
         if(friend.search.detectedEnemy != null)
         {

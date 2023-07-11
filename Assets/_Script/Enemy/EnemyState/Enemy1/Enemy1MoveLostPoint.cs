@@ -104,7 +104,8 @@ public class Enemy1MoveLostPoint : EnemyState
         #endregion
         #region new
         Vector3 lastPlayerPos = new Vector3(enemy.PlayerSearch.playerPos.x, 0, enemy.PlayerSearch.playerPos.z);
-        enemy.navAgent.SetDestination(lastPlayerPos);
+        if(enemy.navAgent.enabled == true)
+            enemy.navAgent.SetDestination(lastPlayerPos);
 
         if (lastPlayerPos.x + 0.5f > enemy.transform.position.x && lastPlayerPos.x - 0.5f < enemy.transform.position.x)
         {

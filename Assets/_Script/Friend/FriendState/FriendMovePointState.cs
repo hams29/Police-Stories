@@ -41,7 +41,7 @@ public class FriendMovePointState : FriendState
         {
             stateMachine.ChangeState(friend.DetectedState);
         }
-        else if (distance < friendData.playerAround)
+        else if (distance < 0.1f)
         {
             //ポイントに近づいたら待機状態に戻る
             stateMachine.ChangeState(friend.IdleState);

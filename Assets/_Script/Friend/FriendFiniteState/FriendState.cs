@@ -97,7 +97,6 @@ public class FriendState
         //ドアを開ける処理（閉まっている時は何もしない）
         RaycastHit hitObject;
         Vector3 pos = new Vector3(friend.transform.position.x, friend.transform.position.y + 1.5f, friend.transform.position.z);
-        /*
         if (Physics.Raycast(pos, friend.transform.forward, out hitObject, friendData.interactDistance))
         {
             int layerNo = LayerMask.NameToLayer(friendData.interactLayerName);
@@ -122,8 +121,8 @@ public class FriendState
                 }
             }
         }
-        */
-        if(Physics.SphereCast(friend.transform.position,2.0f,friend.transform.forward,out hitObject,friendData.interactDistance))
+        /*
+        if(Physics.SphereCast(pos,1.3f,friend.transform.forward,out hitObject,friendData.interactDistance))
         {
             int layerNo = LayerMask.NameToLayer(friendData.interactLayerName);
             if (hitObject.transform.gameObject.layer == layerNo)
@@ -147,6 +146,7 @@ public class FriendState
                 }
             }
         }
+        */
 
         return false;
     }

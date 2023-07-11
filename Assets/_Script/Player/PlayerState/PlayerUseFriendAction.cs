@@ -42,7 +42,8 @@ public class PlayerUseFriendAction : PlayerState
             {
                 player.friendActionUI.AddSendAction(FriendController.SendAction.OpenDoor);
                 player.friendActionUI.AddSendAction(FriendController.SendAction.ThrowFrashBang);
-                doorPosition = hit.transform.position;
+                doorPosition = hit.transform.GetComponent<doorVariable>().doorCameraPos.transform.position;
+                //doorPosition = hit.transform.position;
             }
         }
 

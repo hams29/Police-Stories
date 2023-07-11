@@ -28,7 +28,8 @@ public class FriendOpenDoor : FriendState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        friend.navAgent.SetDestination(friend.turgetPosition);
+        if(friend.navAgent.enabled != false)
+            friend.navAgent.SetDestination(friend.turgetPosition);
 
         Vector2 tpos = new Vector2(friend.turgetPosition.x, friend.turgetPosition.z);
         Vector2 fpos = new Vector2(friend.transform.position.x, friend.transform.position.z);
@@ -38,11 +39,17 @@ public class FriendOpenDoor : FriendState
         {
             stateMachine.ChangeState(friend.DetectedState);
         }
-        else if (isOpenFrontDoor())
+        else if (distance < 1.0f)
         {
-            //ドアを開いたら待機状態に戻る
-            stateMachine.ChangeState(friend.IdleState);
-        }
+            friend.navAgent.enabled = false;
+            Vector3 rot = new Vector3(tpos.x, friend.transform.position.y, tpos.y);
+            Rotation?.SetRotation(rot);
+            if (isOpenFrontDoor())
+            {
+                //ドアを開いたら待機状態に戻る
+                stateMachine.ChangeState(friend.IdleState);
+            }
+        }        
     }
 
     public override void PhysicsUpdate()

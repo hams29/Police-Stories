@@ -17,12 +17,38 @@ public class FriendSearch : MonoBehaviour
 
     private void Update()
     {
-        if(detectedEnemy != null && isDetected)
+        if (detectedEnemy != null && isDetected)
         {
             if (detectedEnemy.Core.GetCoreComponent<States>().dead)
             {
                 isDetected = false;
                 detectedEnemy = null;
+                return;
+            }
+
+            Vector3 posDelta = detectedEnemy.transform.position - this.transform.position;
+            float target_angle = Vector3.Angle(this.transform.forward, posDelta);
+
+            if (target_angle > angle)
+            {
+                //角度内に収まらなかった場合
+                detectedEnemy = null;
+                isDetected = false;
+                return;
+            }
+
+            Vector3 pos = new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z);
+            Debug.DrawRay(pos, posDelta, Color.red, 0.5f);
+            //Rayを使用してtargetに当たっているか判別
+            if (Physics.Raycast(pos, posDelta, out RaycastHit hit))
+            {
+                if(hit.transform.gameObject != detectedEnemy.gameObject)
+                {
+                    //間に何か入った場合
+                    detectedEnemy = null;
+                    isDetected = false;
+                    return;
+                }
             }
         }
     }
@@ -62,19 +88,7 @@ public class FriendSearch : MonoBehaviour
                             }
                         }
                     }
-                    else
-                    {
-                        //ターゲットとプレイヤーの間に別のオブジェクトが入った場合
-                        detectedEnemy = null;
-                        isDetected = false;
-                    }
                 }
-            }
-            else
-            {
-                //角度内に収まっていない場合
-                detectedEnemy = null;
-                isDetected = false;
             }
         }
     }
