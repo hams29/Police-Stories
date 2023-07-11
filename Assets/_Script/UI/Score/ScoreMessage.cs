@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ScoreMessage : MonoBehaviour
 {
-    //TODO: TextAnimationを使ってみる。
+    //TODO: TextMeshProのAnimationを使ってみる。
 
     [SerializeField] private Text[] ScorePM = new Text[3];
     [SerializeField] private Text[] ScoreMsg = new Text[3];

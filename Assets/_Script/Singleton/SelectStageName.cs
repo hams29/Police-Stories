@@ -9,12 +9,11 @@ public class SelectStageName : MonoBehaviour
 
     [SerializeField] private string[] nextStageName;
 
-    private int sceneNo;
 
+    private int sceneNo;
 
     public void SetStage()
     {
-        
         sceneNo = SelectStageChange.sceneId;
         stageName = nextStageName[sceneNo];
     }

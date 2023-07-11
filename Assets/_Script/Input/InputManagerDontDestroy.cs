@@ -15,6 +15,8 @@ public class InputManagerDontDestroy : MonoBehaviour
     private string PlayerActionMapName;
     [SerializeField]
     private string GameEndActionMapName;
+    [SerializeField]
+    private string WeaponSetActionMapName;
 
     private void Awake()
     {
@@ -39,8 +41,10 @@ public class InputManagerDontDestroy : MonoBehaviour
             playerInput = GetComponent<PlayerInput>();
     }
 
+
     public string GetPlayerActionMapName() { return PlayerActionMapName; }
     public string GetGameEndActionMapName() { return GameEndActionMapName; }
+    public string GetWeaponSetActionMapName() { return WeaponSetActionMapName; }
 
     public PlayerInputHandler GetPlayerInputHandler()
     {
@@ -50,6 +54,16 @@ public class InputManagerDontDestroy : MonoBehaviour
         }
 
         return this.playerInputHandler;
+    }
+
+    public GameEndInputHandler GetGameEndInputHandler()
+    {
+        if (this.gameEndInputHandler == null)
+        {
+            this.gameEndInputHandler = GetComponent<GameEndInputHandler>();
+        }
+
+        return this.gameEndInputHandler;
     }
 
     public void SetPlayerInputActionMap(string actionMapName)

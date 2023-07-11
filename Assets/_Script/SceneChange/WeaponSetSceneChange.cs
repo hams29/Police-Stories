@@ -26,4 +26,9 @@ public class WeaponSetSceneChange : SceneChange
     }
 
     public WeaponSet GetWeaponset() { return weaponSet; }
+
+    public void SetSceneName(gameManager.Scene scene)
+    {
+        base.SetScene(scene);
+    }
 }

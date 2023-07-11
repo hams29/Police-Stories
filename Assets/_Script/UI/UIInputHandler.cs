@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIInputHandler : MonoBehaviour
 {
 
     private GameEndInputHandler inputController { get => ic ?? InputManagerDontDestroy.Instance.GetGameEndUIInputHandler(ref ic);}
     private GameEndInputHandler ic;
+
+
 
     private void Start()
     {
@@ -15,7 +18,7 @@ public class UIInputHandler : MonoBehaviour
     {
         if (inputController == null)
             return;
-        
+
         if (gameManager.GameManager.isPlayerDead)
         {
             if (inputController.RestartInput)
@@ -43,4 +46,5 @@ public class UIInputHandler : MonoBehaviour
             }
         }
     }
+
 }

@@ -149,6 +149,11 @@ public class gameManager  : MonoBehaviour
                 }
             }
         }
+
+        if (nowScene == Scene.GunSet)
+        {
+            InputManagerDontDestroy.Instance?.SetPlayerInputActionMap(InputManagerDontDestroy.Instance.GetWeaponSetActionMapName());
+        }
     }
 
     public void SetGameUI(Text RemainingAmmo,Text Score,Text MaxAmmo, Slider Magazin1,Slider Magazin2,Slider Magazin3 ,Image CurrentNPCState)
@@ -227,8 +232,6 @@ public class gameManager  : MonoBehaviour
 
     public string GetRank() => rank;
 
-
-    //TODO :ステージによってランク付けが変わる
     public void Ranking()
     {
         if (score >= 1000)

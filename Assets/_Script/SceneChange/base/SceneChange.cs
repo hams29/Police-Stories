@@ -16,4 +16,9 @@ public class SceneChange : MonoBehaviour
         if (gameManager.GameManager != null)
             gameManager.GameManager.SetNextScene(nextScene);
     }
+
+    protected void SetScene(gameManager.Scene scene)
+    {
+        gameManager.GameManager.SetNextScene(scene);
+    }
 }

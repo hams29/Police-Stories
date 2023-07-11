@@ -302,6 +302,54 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "WeaponSetUI",
+            "id": "65abdd58-188e-40c9-bc66-2beee7a9c80a",
+            "actions": [
+                {
+                    "name": "Return",
+                    "type": "Button",
+                    "id": "b9ee71fa-257a-478e-9b6c-0cc99a300a21",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Next",
+                    "type": "Button",
+                    "id": "452879ae-3f27-461b-bcb3-5c424688b661",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "43ad6c74-6cfc-49a9-ad2c-3963e64572db",
+                    "path": "<Keyboard>/#(Q)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard & Mouse",
+                    "action": "Return",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b734b03c-7cf5-4514-a054-dff71be5b34a",
+                    "path": "<Keyboard>/#(E)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard & Mouse",
+                    "action": "Next",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
