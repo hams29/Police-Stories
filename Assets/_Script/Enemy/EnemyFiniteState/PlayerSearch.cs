@@ -11,15 +11,113 @@ public class PlayerSearch : MonoBehaviour
     public Vector3 playerPos { get; private set; }
     public bool isPlayerDead { get; private set; }
 
+    public bool isFriendFind { get; private set; }
+    public Vector3 friendrPos { get; private set; }
+    public bool isFriendDead { get; private set; }
+
+    public bool isSearchFind { get; private set; }
+    public bool isSearchDead { get; private set; }
+    public Vector3 SearchPos { get; private set; }
+    public GameObject findObject { get; private set; }
+
     private void Awake()
     {
         isPlayerFind = false;
         isPlayerDead = false;
+
+        isFriendFind = false;
+        isFriendDead = false;
+
+        //isSearchFind = false;
+    }
+
+    private void Update()
+    {
+        if(isSearchFind)
+        {
+            States state = null;
+            findObject.GetComponentInChildren<Core>().GetCoreComponent(ref state);
+            if(state != null)
+            {
+                if(state.dead)
+                {
+                    isSearchFind = false;
+                    findObject = null;
+                }
+            }
+
+            if(CheckBetweenObject(findObject))
+            {
+                isSearchFind = false;
+                findObject = null;
+            }
+        }
+
+        Debug.Log(isSearchFind);
     }
 
     private void OnTriggerStay(Collider other)
     {
+        /*
+        if(CheckView(other, "Player"))
+        {
+            playerPos = other.transform.position;
+            States state = null;
+            other.GetComponentInChildren<Core>().GetCoreComponent(ref state);
+            if (state != null)
+                isPlayerDead = state.dead;
+            isPlayerFind = true;
+        }
+
+        if(CheckView(other, "Friend"))
+        {
+            friendrPos = other.transform.position;
+            States state = null;
+            other.GetComponentInChildren<Core>().GetCoreComponent(ref state);
+            if (state != null)
+                isFriendDead = state.dead;
+            isFriendFind = true;
+        }
+        */
+
+        if (CheckView(other, "Player") || CheckView(other, "Friend"))
+        {
+            //TODO::中身            
+            States state = null;
+            other.GetComponentInChildren<Core>().GetCoreComponent(ref state);
+            if (state != null)
+            {
+                if (!state.dead)
+                {
+                    isSearchFind = true;
+                    SearchPos = other.transform.position;
+                    findObject = other.gameObject;
+                }
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        /*
         if (other.gameObject.tag == "Player")
+            isPlayerFind = false;
+
+        if (other.gameObject.tag == "Friend")
+            isFriendFind = false;
+        */
+
+        if(other.gameObject == findObject)
+        {
+            isSearchFind = false;
+        }
+    }
+
+    private bool CheckView(Collider other,string tag)
+    {
+        bool ret = false;
+
+        if (other.gameObject.tag == tag)
         {
             //視界の角度内に収まっているか
             Vector3 posDelta = other.transform.position - this.transform.position;
@@ -33,48 +131,44 @@ public class PlayerSearch : MonoBehaviour
                 //Rayを使用してtargetに当たっているか判別
                 if (Physics.Raycast(pos, posDelta, out RaycastHit hit))
                 {
-                    if (hit.transform.gameObject.tag == "Player")
+                    if (hit.transform.gameObject.tag == tag)
                     {
                         if (hit.collider == other)
                         {
                             //視界内に収まっている場合
-                            playerPos = other.transform.position;
-                            States state = null;
-                            other.GetComponentInChildren<Core>().GetCoreComponent(ref state);
-                            if (state != null)
-                                isPlayerDead = state.dead;
-                            isPlayerFind = true;
-                        }
-                        else if (hit.collider.gameObject.layer == other.gameObject.layer)
-                        {
-                            playerPos = other.transform.position;
-                            States state = null;
-                            other.GetComponentInChildren<Core>().GetCoreComponent(ref state);
-                            if (state != null)
-                                isPlayerDead = state.dead;
-                            isPlayerFind = true;
-                        }
-                        else
-                        {
-                            //ターゲットとプレイヤーの間に別のオブジェクトが入った場合
-                            isPlayerFind = false;
+                            ret = true;
                         }
                     }
-                    else
-                        isPlayerFind = false;
                 }
             }
-            else
-            {
-                //角度内に収まっていない場合
-                isPlayerFind = false;
-            }
         }
+
+        return ret;
     }
 
-    private void OnTriggerExit(Collider other)
+
+    //False :　間に他のオブジェクト無し   True : 他のオブジェクトあり
+    private bool CheckBetweenObject(GameObject obj)
     {
-        if (other.gameObject.tag == "Player")
-            isPlayerFind = false;
+        bool ret = false;
+        Vector3 posDelta = obj.transform.position - this.transform.position;
+        Vector3 pos = new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z);
+        //Rayを使用してtargetに当たっているか判別
+        if (Physics.Raycast(pos, posDelta, out RaycastHit hit))
+        {
+            if (hit.transform.gameObject.tag == tag)
+            {
+                if (hit.collider == obj)
+                {
+                    ret = false;
+                }
+                else
+                {
+                    ret = true;
+                }
+            }
+        }
+
+        return ret;
     }
 }
