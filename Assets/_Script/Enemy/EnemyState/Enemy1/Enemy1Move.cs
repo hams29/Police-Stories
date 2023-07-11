@@ -99,7 +99,7 @@ public class Enemy1Move : EnemyState
 
         }
 
-        if (enemy.PlayerSearch.isPlayerFind)
+        if (enemy.PlayerSearch.isSearchFind)
         {
             stateMachine.ChangeState(enemy.PlayerSearchState);
         }

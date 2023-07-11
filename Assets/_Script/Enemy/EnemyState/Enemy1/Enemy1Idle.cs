@@ -82,7 +82,7 @@ public class Enemy1Idle : EnemyState
         {
             stateMachine.ChangeState(enemy.ReloadState);
         }
-        else if (enemy.PlayerSearch.isPlayerFind)
+        else if (enemy.PlayerSearch.isSearchFind)
         {
             stateMachine.ChangeState(enemy.PlayerSearchState);
         }

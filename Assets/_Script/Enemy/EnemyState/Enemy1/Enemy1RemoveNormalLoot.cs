@@ -73,7 +73,7 @@ public class Enemy1RemoveNormalLoot : EnemyState
             }
         }
 
-        if (enemy.PlayerSearch.isPlayerFind)
+        if (enemy.PlayerSearch.isSearchFind)
             stateMachine.ChangeState(enemy.PlayerSearchState);
 
         if (enemy.isHerePlayerShotSound)

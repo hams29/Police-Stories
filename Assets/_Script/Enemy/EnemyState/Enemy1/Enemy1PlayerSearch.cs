@@ -59,18 +59,18 @@ public class Enemy1PlayerSearch : EnemyState
         }
 
         //プレイヤーの方向に向く
-        Rotation.SetRotation(enemy.PlayerSearch.playerPos);
+        Rotation.SetRotation(enemy.PlayerSearch.SearchPos);
         if (gun.GetCurrentMagazineAmmo() <= 0)
         {
             stateMachine.ChangeState(enemy.ReloadState);
         }
-        else if (Time.time > enemyData.playerSearchTime + startTIme && !enemy.PlayerSearch.isPlayerDead)
+        else if (Time.time > enemyData.playerSearchTime + startTIme && !enemy.PlayerSearch.isSearchDead)
         {
             stateMachine.ChangeState(enemy.ShotState);
         }
 
         //プレイヤーを見失った際にMoveLastPointステータスに移行
-        if (!enemy.PlayerSearch.isPlayerFind)
+        if (!enemy.PlayerSearch.isSearchFind)
             stateMachine.ChangeState(enemy.MoveLastPointState);
 
         if (enemy.isHerePlayerShotSound)

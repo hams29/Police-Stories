@@ -103,7 +103,7 @@ public class Enemy1MoveLostPoint : EnemyState
         */
         #endregion
         #region new
-        Vector3 lastPlayerPos = new Vector3(enemy.PlayerSearch.playerPos.x, 0, enemy.PlayerSearch.playerPos.z);
+        Vector3 lastPlayerPos = new Vector3(enemy.PlayerSearch.SearchPos.x, 0, enemy.PlayerSearch.SearchPos.z);
         if(enemy.navAgent.enabled == true)
             enemy.navAgent.SetDestination(lastPlayerPos);
 
@@ -120,7 +120,7 @@ public class Enemy1MoveLostPoint : EnemyState
         //ドアを開ける処理（閉まっている時は何もしない）
         OpenFrontDoor();
 
-        if (enemy.PlayerSearch.isPlayerFind)
+        if (enemy.PlayerSearch.isSearchFind)
             stateMachine.ChangeState(enemy.PlayerSearchState);
 
         if (enemy.isHerePlayerShotSound)

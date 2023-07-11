@@ -77,7 +77,7 @@ public class Enemy1MoveHerePoint : EnemyState
         //ドアを開ける処理（閉まっている時は何もしない）
         OpenFrontDoor();
 
-        if (enemy.PlayerSearch.isPlayerFind)
+        if (enemy.PlayerSearch.isSearchFind)
             stateMachine.ChangeState(enemy.PlayerSearchState);
     }
 
