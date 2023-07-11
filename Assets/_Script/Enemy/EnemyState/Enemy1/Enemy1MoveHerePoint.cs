@@ -64,9 +64,9 @@ public class Enemy1MoveHerePoint : EnemyState
         Vector3 lastPlayerPos = new Vector3(enemy.playerLastPos.x, 0, enemy.playerLastPos.z);
         enemy.navAgent.SetDestination(lastPlayerPos);
 
-        if (lastPlayerPos.x + 0.1 > enemy.transform.position.x && lastPlayerPos.x - 0.1 < enemy.transform.position.x)
+        if (lastPlayerPos.x + 0.5f > enemy.transform.position.x && lastPlayerPos.x - 0.5f < enemy.transform.position.x)
         {
-            if (lastPlayerPos.z + 0.1 > enemy.transform.position.z && lastPlayerPos.z - 0.1 < enemy.transform.position.z)
+            if (lastPlayerPos.z + 0.5f > enemy.transform.position.z && lastPlayerPos.z - 0.5f < enemy.transform.position.z)
             {
                 enemy.IdleState.SetLockTime(2.0f);
                 enemy.IdleState.SetNextState(enemy.RemoveNormalLootState);
@@ -75,29 +75,7 @@ public class Enemy1MoveHerePoint : EnemyState
         }
 
         //ドアを開ける処理（閉まっている時は何もしない）
-        RaycastHit hitObject;
-        Vector3 pos = new Vector3(enemy.transform.position.x, enemy.transform.position.y + 1.5f, enemy.transform.position.z);
-        if (Physics.Raycast(pos, enemy.transform.forward, out hitObject, enemyData.interactDistance))
-        {
-            int layerNo = LayerMask.NameToLayer(enemyData.interactLayerName);
-            if (hitObject.transform.gameObject.layer == layerNo)
-            {
-                if (DoorCheck(hitObject.transform.gameObject))
-                {
-                    Core otherCore = hitObject.transform.GetComponentInChildren<Core>();
-                    if (otherCore != null)
-                    {
-                        Interact otherInteract = null;
-                        otherCore.GetCoreComponent(ref otherInteract);
-                        if (otherInteract != null)
-                        {
-                            if (otherInteract.canInteract)
-                                otherInteract.SetInteract();
-                        }
-                    }
-                }
-            }
-        }
+        OpenFrontDoor();
 
         if (enemy.PlayerSearch.isPlayerFind)
             stateMachine.ChangeState(enemy.PlayerSearchState);

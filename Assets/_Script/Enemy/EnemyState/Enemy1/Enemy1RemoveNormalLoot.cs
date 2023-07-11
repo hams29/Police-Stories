@@ -50,36 +50,14 @@ public class Enemy1RemoveNormalLoot : EnemyState
         }
 
         //ドアを開ける処理（閉まっている時は何もしない）
-        RaycastHit hitObject;
-        Vector3 pos = new Vector3(enemy.transform.position.x, enemy.transform.position.y + 1.5f, enemy.transform.position.z);
-        if (Physics.Raycast(pos, enemy.transform.forward, out hitObject, enemyData.interactDistance))
-        {
-            int layerNo = LayerMask.NameToLayer(enemyData.interactLayerName);
-            if (hitObject.transform.gameObject.layer == layerNo)
-            {
-                if(DoorCheck(hitObject.transform.gameObject))
-                {
-                    Core otherCore = hitObject.transform.GetComponentInChildren<Core>();
-                    if (otherCore != null)
-                    {
-                        Interact otherInteract = null;
-                        otherCore.GetCoreComponent(ref otherInteract);
-                        if (otherInteract != null)
-                        {
-                            if (otherInteract.canInteract)
-                                otherInteract.SetInteract();
-                        }
-                    }
-                }
-            }
-        }
+        OpenFrontDoor();
 
         workspace = enemy.MoveState.enemyLootList[enemy.MoveState.nowLootCount];
         enemy.navAgent.SetDestination(workspace);
 
-        if (enemy.transform.position.x - workspace.x <= 0.1f && enemy.transform.position.x - workspace.x >= -0.1f)
+        if (enemy.transform.position.x - workspace.x <= 0.5f && enemy.transform.position.x - workspace.x >= -0.5f)
         {
-            if (enemy.transform.position.z - workspace.z <= 0.1f && enemy.transform.position.z - workspace.z >= -0.1f)
+            if (enemy.transform.position.z - workspace.z <= 0.5f && enemy.transform.position.z - workspace.z >= -0.5f)
             {
                 if (enemy.MoveState.nowLootCount + 1 >= enemy.MoveState.maxLootCount)
                 {

@@ -46,6 +46,7 @@ public class PlayerUseInventory : PlayerState
                 {
                     case PlayerInventoryUI.Item.mainWeapon:
                         player.isHaveMainWeapon = true;
+                        player.inventoryUI.SetHaveInventoryImage(player.Inventory.mainWeaponTable.gunSprite);
                         break;
 
                     case PlayerInventoryUI.Item.gadget1:
@@ -53,9 +54,13 @@ public class PlayerUseInventory : PlayerState
                         {
                             player.isHaveMainWeapon = false;
                             player.nowHaveGadget = 0;
+                            player.inventoryUI.SetHaveInventoryImage(player.Inventory.gadgetTables[(int)PlayerInventoryUI.Item.gadget1 - 1].gadgetImage);
                         }
                         else
+                        {
                             player.isHaveMainWeapon = true;
+                            player.inventoryUI.SetHaveInventoryImage(player.Inventory.mainWeaponTable.gunSprite);
+                        }
                         break;
 
                     case PlayerInventoryUI.Item.gadget2:
@@ -63,9 +68,13 @@ public class PlayerUseInventory : PlayerState
                         {
                             player.isHaveMainWeapon = false;
                             player.nowHaveGadget = 1;
+                            player.inventoryUI.SetHaveInventoryImage(player.Inventory.gadgetTables[(int)PlayerInventoryUI.Item.gadget2 - 1].gadgetImage);
                         }
                         else
+                        {
                             player.isHaveMainWeapon = true;
+                            player.inventoryUI.SetHaveInventoryImage(player.Inventory.mainWeaponTable.gunSprite);
+                        }
                         break;
 
                     case PlayerInventoryUI.Item.gadget3:
@@ -73,9 +82,13 @@ public class PlayerUseInventory : PlayerState
                         {
                             player.isHaveMainWeapon = false;
                             player.nowHaveGadget = 2;
+                            player.inventoryUI.SetHaveInventoryImage(player.Inventory.gadgetTables[(int)PlayerInventoryUI.Item.gadget3 - 1].gadgetImage);
                         }
                         else
+                        {
                             player.isHaveMainWeapon = true;
+                            player.inventoryUI.SetHaveInventoryImage(player.Inventory.mainWeaponTable.gunSprite);
+                        }
                         break;
                 }
             }

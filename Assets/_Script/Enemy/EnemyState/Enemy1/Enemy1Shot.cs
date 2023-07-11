@@ -41,7 +41,7 @@ public class Enemy1Shot : EnemyState
             if (!gun.GetFullAuto() || gun.GetCurrentMagazineAmmo() <= 0 || shotCount >= enemyData.enemyShotCount)
             {
                 //stateMachine.ChangeState(enemy.IdleState);
-                if (enemy.PlayerSearch.isPlayerFind)
+                if (enemy.PlayerSearch.isPlayerFind && !enemy.PlayerSearch.isPlayerDead)
                     stateMachine.ChangeState(enemy.ShotState);
                 else
                     stateMachine.ChangeState(enemy.MoveLastPointState);

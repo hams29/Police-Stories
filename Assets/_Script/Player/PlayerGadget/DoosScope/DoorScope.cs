@@ -24,7 +24,7 @@ public class DoorScope : GadgetBase
 
 
         bool flg = false;
-        if (player.CheckFrontObject("interact", out GameObject hitObj, playerData.meleeDistance))
+        if (player.CheckFrontObject("Door", out GameObject hitObj, playerData.meleeDistance))
         {
             doorObj = hitObj;
             doorVariable = hitObj.GetComponent<doorVariable>();

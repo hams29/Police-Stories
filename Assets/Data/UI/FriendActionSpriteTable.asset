@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6abfcfa6b26300042b7ca79c26c37fd0, type: 3}
+  m_Name: FriendActionSpriteTable
+  m_EditorClassIdentifier: 
+  MoveSprite: {fileID: 21300000, guid: 20409d4dcda009c49a9a1881e0775b16, type: 3}
+  FollowSprite: {fileID: 21300000, guid: 74ce44b97ba57bf45803836e85de0c43, type: 3}
+  StopSprite: {fileID: 21300000, guid: e59ffcc400f0f3044bf3904d8c828cf8, type: 3}
+  OpenDoorSprite: {fileID: 21300000, guid: 5ac2c679b7cbd164ab86cd53ab0ea146, type: 3}
+  ThrowFrashbangSprite: {fileID: 21300000, guid: e2affde44c78b6048b3fda63547b57de, type: 3}

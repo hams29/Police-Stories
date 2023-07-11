@@ -481,7 +481,7 @@ GameObject:
   - component: {fileID: 1497331635}
   m_Layer: 11
   m_Name: Wall Door
-  m_TagString: interact
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

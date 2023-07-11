@@ -32,12 +32,15 @@ public class EnemyControllerBase : MonoBehaviour
     public bool isPlayerOutOfView { get; private set; }
     public bool isHerePlayerShotSound { get; protected set; }
     public Vector3 playerLastPos { get; private set; }
+    public bool enemySurrenderProbability { get; protected set; }
+    public bool enemySurrender { get; protected set; }
     #endregion
 
     protected virtual void Awake()
     {
         Core = GetComponentInChildren<Core>();
         stateMachine = new EnemyStateMachine();
+        enemySurrender = false;
     }
 
     protected virtual void Start()

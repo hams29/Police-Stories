@@ -29,12 +29,12 @@ public class PlayerMove : PlayerState
 
         GameObject other;
 
-        if (player.CheckFrontObject("interact", playerData.interactDistance) && !isInteractUIShow)
+        if (player.CheckFrontObject("Door", playerData.interactDistance) && !isInteractUIShow)
         {
             isInteractUIShow = true;
             player.InteractUI.Show();
         }
-        else if (!player.CheckFrontObject("interact", playerData.interactDistance) && isInteractUIShow)
+        else if (!player.CheckFrontObject("Door", playerData.interactDistance) && isInteractUIShow)
         {
             isInteractUIShow = false;
             player.InteractUI.Hide();

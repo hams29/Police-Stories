@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     public PlayerDetantion DetantionState { get; private set; }
     public PlayerUseGadget UseGadgetState { get; private set; }
     public PlayerUseInventory UseInventoryState { get; private set; }
+    public PlayerUseFriendAction UseFriendActionState { get; private set; }
     #endregion
 
     #region Component
@@ -72,6 +73,7 @@ public class PlayerController : MonoBehaviour
     public PlayerInteractUI DetantionUI { get; private set; }
 
     public PlayerInventoryUI inventoryUI { get; private set; }
+    public FriendActionUI friendActionUI { get; private set; }
     #endregion
 
     #region Unity Callback Function
@@ -92,6 +94,7 @@ public class PlayerController : MonoBehaviour
         DetantionState = new PlayerDetantion(this, stateMachine, playerData, "detantion");
         UseGadgetState = new PlayerUseGadget(this, stateMachine, playerData, "useGadget");
         UseInventoryState = new PlayerUseInventory(this, stateMachine, playerData, "useInventory");
+        UseFriendActionState = new PlayerUseFriendAction(this, stateMachine, playerData, "useFriendAction");
     }
 
     private void Start()
@@ -110,6 +113,7 @@ public class PlayerController : MonoBehaviour
         Inventory = GetComponentInChildren<Inventory>();
         search = GetComponentInChildren<FunSearch>();
         inventoryUI = GetComponentInChildren<PlayerInventoryUI>();
+        friendActionUI = GetComponentInChildren<FriendActionUI>();
 
         Inventory.SetMainWeapon();
         Inventory.SetGadget();
@@ -144,6 +148,8 @@ public class PlayerController : MonoBehaviour
 
         isHaveMainWeapon = true;
         inventoryUI.HideInventoryUI();
+        friendActionUI.SetShow(false);
+        gameManager.GameManager?.SetPlayer(this);
     }
 
     private void Update()
@@ -183,6 +189,7 @@ public class PlayerController : MonoBehaviour
         
         //InventoryUIにマウスの座標をセット
         inventoryUI.SetMousePosition(inputController.MousePosition);
+        friendActionUI.SetMousePosition(inputController.MousePosition);
 
         //武器を持っていない時はメイン武器を非アクティブ状態に
         if (isHaveMainWeapon && !Inventory.GetWeaponActive())
