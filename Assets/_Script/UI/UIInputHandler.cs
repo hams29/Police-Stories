@@ -41,8 +41,9 @@ public class UIInputHandler : MonoBehaviour
             else if (inputController.TransSelectStageInput)
             {
                 inputController.UseTransSelectStageInput();
-                gameManager.GameManager?.StartStageSelectScene();
+                gameManager.GameManager?.StartStageWeaponSelectScene();
                 gameManager.GameManager?.ResetGameScene();
+                gameManager.GameManager?.SetNextScene(gameManager.Scene.GunSet);
             }
         }
     }

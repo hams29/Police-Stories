@@ -7,18 +7,26 @@ public class EnemyStateMachine
     public EnemyState CurrentState { get; private set; }
     public EnemyState OldState { get; private set; }
 
+    private bool canChangeState;
+
     public void Initialize(EnemyState iniState)
     {
         CurrentState = iniState;
         CurrentState.Enter();
         OldState = CurrentState;
+        canChangeState = true;
     }
 
     public void ChangeState(EnemyState nextState)
     {
-        OldState = CurrentState;
-        CurrentState.Exit();
-        CurrentState = nextState;
-        CurrentState.Enter();
+        if(canChangeState)
+        {
+            OldState = CurrentState;
+            CurrentState.Exit();
+            CurrentState = nextState;
+            CurrentState.Enter();
+        }
     }
+
+    public void SetCanChangeState(bool flg) => canChangeState = flg;
 }

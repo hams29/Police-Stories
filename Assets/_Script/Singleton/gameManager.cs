@@ -212,7 +212,7 @@ public class gameManager  : MonoBehaviour
     public void setGameClearCanvas(GameObject obj) { gameClearCanvas = obj; }
     public void setGameOverCanvas(GameObject obj) { gameOverCanvas = obj; }
     public void ReloadNowScene() { SceneManager.LoadScene(SceneManager.GetActiveScene().name); }
-    public void StartStageSelectScene() { SceneManager.LoadScene("StageSelectScene"); }
+    public void StartStageWeaponSelectScene() { SceneManager.LoadScene("WeaponSetScene"); }
     public void ResetGameScene() 
     {
         isSetGun = false;

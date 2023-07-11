@@ -47,7 +47,7 @@ public class Inventory : MonoBehaviour
 
     public void SetMainWeapon()
     {
-        if(gameManager.GameManager != null)
+        if(gameManager.GameManager != null && isPlayer)
         {
             if (gameManager.GameManager.setGun != null)
             {
