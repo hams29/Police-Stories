@@ -7,14 +7,6 @@ public class PlayerSearch : MonoBehaviour
     [SerializeField]
     private float angle = 45.0f;
 
-    public bool isPlayerFind { get; private set; }
-    public Vector3 playerPos { get; private set; }
-    public bool isPlayerDead { get; private set; }
-
-    public bool isFriendFind { get; private set; }
-    public Vector3 friendrPos { get; private set; }
-    public bool isFriendDead { get; private set; }
-
     public bool isSearchFind { get; private set; }
     public bool isSearchDead { get; private set; }
     public Vector3 SearchPos { get; private set; }
@@ -22,13 +14,13 @@ public class PlayerSearch : MonoBehaviour
 
     private void Awake()
     {
-        isPlayerFind = false;
-        isPlayerDead = false;
+        //isPlayerFind = false;
+        //isPlayerDead = false;
 
-        isFriendFind = false;
-        isFriendDead = false;
 
         //isSearchFind = false;
+        isSearchFind = false;
+        isSearchDead = false;
     }
 
     private void Update()
@@ -46,14 +38,20 @@ public class PlayerSearch : MonoBehaviour
                 }
             }
 
-            if(CheckBetweenObject(findObject))
+            if(findObject != null)
+            {
+                if(CheckBetweenObject(findObject))
+                {
+                    isSearchFind = false;
+                    findObject = null;
+                }
+            }
+            else
             {
                 isSearchFind = false;
                 findObject = null;
             }
         }
-
-        Debug.Log(isSearchFind);
     }
 
     private void OnTriggerStay(Collider other)

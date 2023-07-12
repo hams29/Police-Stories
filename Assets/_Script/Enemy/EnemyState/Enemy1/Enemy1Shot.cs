@@ -41,7 +41,7 @@ public class Enemy1Shot : EnemyState
             if (!gun.GetFullAuto() || gun.GetCurrentMagazineAmmo() <= 0 || shotCount >= enemyData.enemyShotCount)
             {
                 //stateMachine.ChangeState(enemy.IdleState);
-                if (enemy.PlayerSearch.isPlayerFind && !enemy.PlayerSearch.isPlayerDead)
+                if (enemy.PlayerSearch.isSearchFind && !enemy.PlayerSearch.isSearchDead)
                     stateMachine.ChangeState(enemy.ShotState);
                 else
                     stateMachine.ChangeState(enemy.MoveLastPointState);
@@ -49,7 +49,7 @@ public class Enemy1Shot : EnemyState
             else
             {
                 //ƒvƒŒƒCƒ„[‚Ì•ûŒü‚ÉŒü‚­
-                Rotation.SetRotation(enemy.PlayerSearch.playerPos);
+                Rotation.SetRotation(enemy.PlayerSearch.SearchPos);
             }
         }
         else

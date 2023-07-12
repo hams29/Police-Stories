@@ -54,7 +54,10 @@ public class EnemyState
     public virtual void LogicUpdate()
     {
         if (States.dead && stateMachine.CurrentState != enemy.DeadState)
+        {
             stateMachine.ChangeState(enemy.DeadState);
+            stateMachine.SetCanChangeState(false);
+        }
     }
 
     public virtual void PhysicsUpdate()

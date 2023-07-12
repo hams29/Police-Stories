@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class weaponSelect : MonoBehaviour
 {
-    static public weaponSelect Instance;
+    //static public weaponSelect Instance;
+    static public GunTable setGunTable = null;
 
     //public static GameObject weaponData;
     [SerializeField] private GameObject weaponPrefab;
@@ -14,15 +15,18 @@ public class weaponSelect : MonoBehaviour
 
     private void Start()
     {
+        /*
         if (Instance == null)
             Instance = this;
         else
             Destroy(this);
+        */
     }
     public void SetWeapon()
     {
         //weaponSet.setGun.gun = weaponPrefab;
-        weaponSet.setGun.gunTabele = this.gunTable;
+        //weaponSet.setGun.gunTabele = this.gunTable;
+        setGunTable = this.gunTable;
     }
 
     public GunTable GetWeapon()
