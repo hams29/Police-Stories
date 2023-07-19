@@ -17,9 +17,6 @@ public class FranshBangGadget : GadgetBase
     [SerializeField]
     private Vector3 debugTorque = Vector3.zero;
 
-    [SerializeField]
-    private bool debugThrow = false;
-
     private int nowHaveCount;
 
     public void Start()
@@ -30,15 +27,6 @@ public class FranshBangGadget : GadgetBase
 
     public void Update()
     {
-        if (debugThrow)
-        {
-            debugThrow = false;
-            GameObject flashBang = Instantiate(frashBangPrefab, this.gameObject.transform.position, Quaternion.identity);
-            Rigidbody fbRB = flashBang.GetComponent<Rigidbody>();
-            Vector3 throwVec = flashBang.transform.forward * debugThrowPower;
-            fbRB.velocity = throwVec;
-            fbRB.AddTorque(debugTorque);
-        }
     }
 
     public override void UseGadget()
@@ -58,6 +46,7 @@ public class FranshBangGadget : GadgetBase
         Vector3 throwVec = this.transform.forward * debugThrowPower;
         fbRB.velocity = throwVec;
         fbRB.AddTorque(debugTorque);
+        isEnd = true;
     }
 
     public override void EndGadget()

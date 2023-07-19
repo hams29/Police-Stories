@@ -9,11 +9,22 @@ public class States : CoreComponent, ILogicUpdate
 
     private float maxHP;
 
+    private WeakeningState nowWeakening = WeakeningState.None;
+    private float weakeningStartTime;
+    private float weakeningHoldTime;
+
+    public enum WeakeningState
+    {
+        None,
+        FrashBang
+    }
+
     protected override void Awake()
     {
         base.Awake();
         currentHP = 0;
         dead = false;
+        nowWeakening = WeakeningState.None;
     }
 
     public override void LogicUpdate()
@@ -22,6 +33,16 @@ public class States : CoreComponent, ILogicUpdate
 
         if (currentHP <= 0)
             dead = true;
+
+        switch(nowWeakening)
+        {
+            case WeakeningState.FrashBang:
+                if(weakeningStartTime + weakeningHoldTime < Time.time)
+                {
+                    nowWeakening = WeakeningState.None;
+                }
+                break;
+        }
     }
 
     #region Set Function
@@ -47,5 +68,11 @@ public class States : CoreComponent, ILogicUpdate
             currentHP += addHealth;
     }
 
+    public void SetWeakeningState(WeakeningState weake,float holdTime)
+    {
+        nowWeakening = weake;
+        weakeningStartTime = Time.time;
+        weakeningHoldTime = holdTime;
+    }
     #endregion
 }

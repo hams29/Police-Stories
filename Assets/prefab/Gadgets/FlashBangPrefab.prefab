@@ -173,3 +173,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ea4587f8fcc52f4a9d22e99bec290b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  frashBangData: {fileID: 11400000, guid: ba0636ca8016c084da2e2a06353245f2, type: 2}
