@@ -130,6 +130,11 @@ public class Enemy1MoveLostPoint : EnemyState
             enemy.IdleState.SetNextState(enemy.MoveHerePointState);
             stateMachine.ChangeState(enemy.IdleState);
         }
+
+        if (States?.nowWeakening == States.WeakeningState.FrashBang)
+        {
+            stateMachine.ChangeState(enemy.StunState);
+        }
         #endregion
     }
 

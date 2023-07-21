@@ -79,6 +79,11 @@ public class Enemy1MoveHerePoint : EnemyState
 
         if (enemy.PlayerSearch.isSearchFind)
             stateMachine.ChangeState(enemy.PlayerSearchState);
+
+        if (States?.nowWeakening == States.WeakeningState.FrashBang)
+        {
+            stateMachine.ChangeState(enemy.StunState);
+        }
     }
 
     public override void PhysicsUpdate()

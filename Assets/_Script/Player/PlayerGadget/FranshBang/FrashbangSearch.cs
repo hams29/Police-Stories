@@ -2,40 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FrashBang : MonoBehaviour
+public class FrashbangSearch : MonoBehaviour
 {
-
-    [SerializeField]
-    FrashBangData frashBangData;
-
-    private float startTime;
-    private FrashbangSearch search;
-    //private List<States> states = new List<States>();
-
-    private void Start()
-    {
-        startTime = Time.time;
-        search = GetComponentInChildren<FrashbangSearch>();
-    }
-
-    private void Update()
-    {
-        //フラッシュバンの更新
-        if(startTime + frashBangData.frashbangExplosionTime < Time.time)
-        {
-            foreach(States state in search.states)
-            {
-                Debug.Log(state.transform.root.name + "is Blind");
-                state.SetWeakeningState(States.WeakeningState.FrashBang, frashBangData.frashbangHoldTime);
-            }
-            GameObject.Destroy(this.gameObject);
-        }
-    }
-
-    /*
+    public List<States> states { get; private set; } = new List<States>();
     private void OnTriggerStay(Collider other)
     {
-        if(other.tag == "target" || other.tag == "Friend" || other.tag == "Player")
+        if (other.tag == "target" || other.tag == "Friend" || other.tag == "Player")
         {
             Core core = other.GetComponentInChildren<Core>();
             if (core == null) return;
@@ -49,14 +21,14 @@ public class FrashBang : MonoBehaviour
             {
                 if (hit.collider == other)
                 {
-                    if(!states.Contains(ostates))
+                    if (!states.Contains(ostates))
                     {
                         states.Add(ostates);
                     }
                 }
                 else
                 {
-                    if(states.Contains(ostates))
+                    if (states.Contains(ostates))
                     {
                         states.Remove(ostates);
                     }
@@ -76,5 +48,4 @@ public class FrashBang : MonoBehaviour
         if (states.Contains(ostates))
             states.Remove(ostates);
     }
-    */
 }

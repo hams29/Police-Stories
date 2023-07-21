@@ -83,6 +83,11 @@ public class Enemy1RemoveNormalLoot : EnemyState
             enemy.IdleState.SetNextState(enemy.MoveHerePointState);
             stateMachine.ChangeState(enemy.IdleState);
         }
+
+        if (States?.nowWeakening == States.WeakeningState.FrashBang)
+        {
+            stateMachine.ChangeState(enemy.StunState);
+        }
     }
 
     public override void PhysicsUpdate()

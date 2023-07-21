@@ -71,6 +71,11 @@ public class Enemy1Idle : EnemyState
             SetNextState(enemy.MoveHerePointState);
         }
 
+        if(States?.nowWeakening == States.WeakeningState.FrashBang)
+        {
+            stateMachine.ChangeState(enemy.StunState);
+        }
+
         if (Time.time < lockTime)
             return;
         if (nextStateFlg)
