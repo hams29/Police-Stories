@@ -10,8 +10,8 @@ public class States : CoreComponent, ILogicUpdate
     private float maxHP;
 
     public WeakeningState nowWeakening { get; private set; } = WeakeningState.None;
-    private float weakeningStartTime;
-    private float weakeningHoldTime;
+    public float weakeningStartTime { get; private set; }
+    public float weakeningHoldTime { get; private set; }
 
     public enum WeakeningState
     {

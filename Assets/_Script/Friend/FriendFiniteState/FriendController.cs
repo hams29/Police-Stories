@@ -16,6 +16,7 @@ public class FriendController : MonoBehaviour
     public FriendShotState ShotState { get; private set; }
     public FriendReloadState ReloadState { get; private set; }
     public FriendDeadState DeadState { get; private set; }
+    public FriendStunState StunState { get; private set; }
 
     [SerializeField]
     private FriendData friendData;
@@ -78,6 +79,7 @@ public class FriendController : MonoBehaviour
         ShotState = new FriendShotState(this, stateMachine, friendData, "shot");
         ReloadState = new FriendReloadState(this, stateMachine, friendData, "reload");
         DeadState = new FriendDeadState(this, stateMachine, friendData, "dead");
+        StunState = new FriendStunState(this, stateMachine, friendData, "stun");
     }
 
     private void Start()

@@ -1993,7 +1993,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4524479840273165841, guid: 1930e7ee83b3e7d479cb7f8c69e6c337, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1930e7ee83b3e7d479cb7f8c69e6c337, type: 3}
@@ -2119,7 +2119,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2151826634181653905, guid: 30bf893528586564d81595d5380e222c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30bf893528586564d81595d5380e222c, type: 3}
@@ -2178,14 +2178,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7384495091219298950, guid: 245f5c0e4059c3949ab7ba3874468284, type: 3}
-      propertyPath: debugGadgets.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7384495091219298950, guid: 245f5c0e4059c3949ab7ba3874468284, type: 3}
-      propertyPath: debugGadgets.Array.data[2]
-      value: 
-      objectReference: {fileID: 11400000, guid: 7ebcc27c872dfbc4c9557b9e825d8071, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 245f5c0e4059c3949ab7ba3874468284, type: 3}
 --- !u!1001 &7874829518046544359
