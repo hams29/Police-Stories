@@ -106,7 +106,13 @@ public class FriendSearch : MonoBehaviour
     {
         bool ret = false;
         enemy = obj.GetComponent<EnemyControllerBase>();
-        if (enemy != null) ret = true;
+        if (enemy != null)
+        {
+            if (enemy.enemySurrender)
+                ret = false;
+            else
+                ret = true;        
+        }
         else enemy = null;
 
         return ret;
