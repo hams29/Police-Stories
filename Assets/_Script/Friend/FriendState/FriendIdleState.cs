@@ -54,6 +54,10 @@ public class FriendIdleState : FriendState
         {
             stateMachine.ChangeState(friend.DetectedState);
         }
+        else if (States?.nowWeakening == States.WeakeningState.FrashBang)
+        {
+            stateMachine.ChangeState(friend.StunState);
+        }
     }
 
     public override void PhysicsUpdate()

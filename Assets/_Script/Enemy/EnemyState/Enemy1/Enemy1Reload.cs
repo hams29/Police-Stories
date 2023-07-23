@@ -63,6 +63,11 @@ public class Enemy1Reload : EnemyState
             gun.MaxAmmo();
             stateMachine.ChangeState(enemy.IdleState);
         }
+
+        if (States?.nowWeakening == States.WeakeningState.FrashBang)
+        {
+            stateMachine.ChangeState(enemy.StunState);
+        }
     }
 
     public override void PhysicsUpdate()

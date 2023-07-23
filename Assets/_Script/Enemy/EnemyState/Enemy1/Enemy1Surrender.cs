@@ -80,6 +80,11 @@ public class Enemy1Surrender : EnemyState
             stateMachine.ChangeState(enemy.IdleState);
             enemy.SetIsSurrender(false);
         }
+
+        if (States?.nowWeakening == States.WeakeningState.FrashBang)
+        {
+            stateMachine.ChangeState(enemy.StunState);
+        }
     }
 
     public override void PhysicsUpdate()

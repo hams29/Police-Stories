@@ -111,6 +111,11 @@ public class Enemy1Move : EnemyState
             enemy.IdleState.SetNextState(enemy.MoveHerePointState);
             stateMachine.ChangeState(enemy.IdleState);
         }
+
+        if (States?.nowWeakening == States.WeakeningState.FrashBang)
+        {
+            stateMachine.ChangeState(enemy.StunState);
+        }
     }
 
     public override void PhysicsUpdate()

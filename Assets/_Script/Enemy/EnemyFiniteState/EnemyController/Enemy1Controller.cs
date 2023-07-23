@@ -29,6 +29,7 @@ public class Enemy1Controller : EnemyControllerBase
     public Enemy1Detection DetactionState { get; private set; }
     public Enemy1RemoveNormalLoot RemoveNormalLootState { get; private set; }
     public Enemy1MoveHerePoint MoveHerePointState { get; private set; }
+    public Enemy1StunState StunState { get; private set; }
     #endregion
 
     #region Component
@@ -90,6 +91,7 @@ public class Enemy1Controller : EnemyControllerBase
         DetactionState = new Enemy1Detection(this, stateMachine, enemyData, "detaction", enemyScoreData);
         RemoveNormalLootState = new Enemy1RemoveNormalLoot(this, stateMachine, enemyData, "move", enemyScoreData);
         MoveHerePointState = new Enemy1MoveHerePoint(this, stateMachine, enemyData, "move", enemyScoreData);
+        StunState = new Enemy1StunState(this, stateMachine, enemyData, "stun", enemyScoreData);
     }
 
     protected override void Start()

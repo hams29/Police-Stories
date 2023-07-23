@@ -35,6 +35,10 @@ public class FriendReloadState : FriendState
             gun.MaxAmmo();
             stateMachine.ChangeState(friend.IdleState);
         }
+        else if (States?.nowWeakening == States.WeakeningState.FrashBang)
+        {
+            stateMachine.ChangeState(friend.StunState);
+        }
     }
 
     public override void PhysicsUpdate()

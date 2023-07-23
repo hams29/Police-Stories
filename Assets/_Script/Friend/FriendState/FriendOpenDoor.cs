@@ -49,7 +49,11 @@ public class FriendOpenDoor : FriendState
                 //ドアを開いたら待機状態に戻る
                 stateMachine.ChangeState(friend.IdleState);
             }
-        }        
+        }
+        else if (States?.nowWeakening == States.WeakeningState.FrashBang)
+        {
+            stateMachine.ChangeState(friend.StunState);
+        }
     }
 
     public override void PhysicsUpdate()
