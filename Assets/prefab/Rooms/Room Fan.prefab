@@ -171,10 +171,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3859412493431041271}
     m_Modifications:
-    - target: {fileID: 1848830782, guid: 3cbd2eafe98f3414aba68fe1d0dc1d3a, type: 3}
-      propertyPath: isInteract
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4790683710122119354, guid: 3cbd2eafe98f3414aba68fe1d0dc1d3a, type: 3}
       propertyPath: m_Name
       value: Wall Door
@@ -221,14 +217,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8367886754899993257, guid: 3cbd2eafe98f3414aba68fe1d0dc1d3a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8797286960433608355, guid: 3cbd2eafe98f3414aba68fe1d0dc1d3a, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8797286960433608355, guid: 3cbd2eafe98f3414aba68fe1d0dc1d3a, type: 3}
-      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

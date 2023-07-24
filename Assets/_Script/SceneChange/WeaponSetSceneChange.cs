@@ -11,12 +11,17 @@ public class WeaponSetSceneChange : SceneChange
 
     private void Awake()
     {
+        /*
         nextSceneName = SelectStageName.stageName;
         if (nextSceneName == null) nextSceneName = debugStageName;
+        */
     }
 
     public void ChangeClick()
     {
+        nextSceneName = SelectStageName.stageName;
+        if (nextSceneName == null) nextSceneName = debugStageName;
+
         base.ChangeNextScene();
         if (gameManager.GameManager != null)
         {

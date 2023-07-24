@@ -15,7 +15,7 @@ public class SelectStageName : MonoBehaviour
     public void SetStage()
     {
         sceneNo = SelectStageChange.sceneId;
-        stageName = nextStageName[sceneNo];
+        stageName = nextStageName[sceneNo - 1];
     }
 
 }
